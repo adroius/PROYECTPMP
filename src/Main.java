@@ -1,3 +1,3 @@
 public class Main {
-    //prueba hola
+    System.out.println('Hola');
 }
