@@ -1,3 +1,5 @@
 public class Main {
-    System.out.println('Hola');
+    public static void Main(String[] args) {
+        System.out.println("Main no compila");
+    }
 }
