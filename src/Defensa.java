@@ -1,13 +1,13 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.util.Scanner;
 
 public abstract class Defensa {
-    public String tipoDeDefensa() throws IOException {
-        Reader i = new InputStreamReader(System.in);
-        BufferedReader br = new BufferedReader(i);
-        String s = br.readLine();
-        return s;
+    public String tipoDeDefensa(){
+        String nombre;
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Introduzca el tipo de defensa: ");
+        nombre = teclado.nextLine();
+        return nombre;
     }
+
+    public abstract int dañoQueAbsorbe();
 }
