@@ -1,2 +1,2 @@
-public class MotorIonico {
+public class MotorIonico extends Propulsion{
 }

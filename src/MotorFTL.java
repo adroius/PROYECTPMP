@@ -1,2 +1,2 @@
-public class MotorFTL {
+public class MotorFTL extends Propulsion{
 }

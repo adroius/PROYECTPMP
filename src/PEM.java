@@ -1,2 +1,2 @@
-public class PEM {
+public class PEM extends Arma{
 }

@@ -1,2 +1,2 @@
-public class CanionPlasma {
+public class CanionPlasma extends Arma{
 }

@@ -1,2 +1,2 @@
-public class MisilTermonuclear {
+public class MisilTermonuclear extends Arma{
 }

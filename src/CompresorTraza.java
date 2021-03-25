@@ -1,2 +1,2 @@
-public class CompresorTraza {
+public class CompresorTraza extends Propulsion{
 }

@@ -1,2 +1,2 @@
-public class MotorCurvatura {
+public class MotorCurvatura extends Propulsion{
 }

@@ -1,2 +1,2 @@
-public class VelaSolar {
+public class VelaSolar extends Propulsion{
 }
