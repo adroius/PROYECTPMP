@@ -1,2 +1,2 @@
-public class Carguero {
+public class Carguero extends TipoDeNave{
 }

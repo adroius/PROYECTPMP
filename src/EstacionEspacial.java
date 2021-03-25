@@ -1,2 +1,2 @@
-public class EstacionEspacial {
+public class EstacionEspacial extends TipoDeNave{
 }

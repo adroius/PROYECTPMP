@@ -1,2 +1,2 @@
-public class Destructor {
+public class Destructor extends TipoDeNave{
 }

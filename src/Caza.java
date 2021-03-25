@@ -1,2 +1,2 @@
-public class Caza {
+public class Caza extends TipoDeNave{
 }
