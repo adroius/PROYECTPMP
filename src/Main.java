@@ -1,11 +1,10 @@
 import java.util.Scanner;
 
-public class Main {
+public class Main{
         public static void main (String [ ] args) {
             boolean finalizar=false;
             Scanner sc = new Scanner(System.in);
             do {
-                System.out.println("Empezamos la ejecución del programa");
                 System.out.println("¿Desea continuar?");
                 System.out.println("1) SI");
                 System.out.println("2) NO");

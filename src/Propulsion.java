@@ -1,6 +1,22 @@
 import java.util.Scanner;
 
 public class Propulsion {
+    String nombre="";
+    int velocidad=0;
+
+    public Propulsion() {
+        this.nombre = nombre();
+        this.velocidad= velSubLuminicaMax();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getVelocidad() {
+        return velocidad;
+    }
+
     public String nombre(){
         String nombre="";
         Scanner sc = new Scanner(System.in);
@@ -16,12 +32,16 @@ public class Propulsion {
                 isCompresorTraza(nombre);
                 break;
             case 1 : nombre ="Motor FTL";
+                isMotorFTL(nombre);
                 break;
             case 2 : nombre ="Vela Solar";
+                isVelaSolar(nombre);
                 break;
-            case 3 : nombre ="MotorCurvatura";
+            case 3 : nombre ="Motor Curvatura";
+                isMotorCurvatura(nombre);
                 break;
             case 4 : nombre ="Motor Ionico";
+                isMotorIonico(nombre);
                 break;
         }
         System.out.println("¡Ha elegido " + nombre + "!");
@@ -34,19 +54,19 @@ public class Propulsion {
         System.out.println("¡La velocidad maxima sera " + v + " km/seg!");
         return v;
     }
-    public boolean isCompresorTraza(String s){
+    private boolean isCompresorTraza(String s){
         return s=="Compresor de Traza";
     }
-    public boolean isMotorFTL(String s){
+    private boolean isMotorFTL(String s){
         return s=="Motor FTL";
     }
-    public boolean isVelaSolar(String s){
+    private boolean isVelaSolar(String s){
         return s=="Vela Solar";
     }
-    public boolean isMotorCurvatura(String s){
-        return s=="Curvatura";
+    private boolean isMotorCurvatura(String s){
+        return s=="Motor Curvatura";
     }
-    public boolean isMotorIonico(String s){
+    private boolean isMotorIonico(String s){
         return s=="Motor Ionico";
     }
 }
