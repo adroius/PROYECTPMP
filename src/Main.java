@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class Main extends Caza{
     public static void main(String[] args) {
         Sistema sistema = new Sistema();
         sistema.getSistema();

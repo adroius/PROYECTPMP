@@ -22,6 +22,7 @@ public class Blindaje extends Defensa{
 
     public String nombreMaterial(){
         String nombre = "";
+        System.out.println("Se va a seleccionar el material");
         int valorObtenido = number.nextInt(6);
         switch (valorObtenido){
             case 0: nombre="Adamantium";
