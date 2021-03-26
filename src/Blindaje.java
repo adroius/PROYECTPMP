@@ -1,8 +1,15 @@
 import java.util.Random;
-import java.util.*;
+
 public class Blindaje extends Defensa{
+    String material;
+    int dañoAbsorbe;
 
     private Random number = new Random();
+
+    public Blindaje() {
+        this.material= nombreMaterial();
+        this.dañoAbsorbe=dañoQueAbsorbe();
+    }
 
     public int dañoQueAbsorbe() {
         return number.nextInt();

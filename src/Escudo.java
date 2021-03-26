@@ -1,5 +1,5 @@
 import java.util.Random;
-import java.util.*;
+
 public class Escudo extends Defensa{
 
     private Random number = new Random();

@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.util.*;
+
 public class Defensa {
     String nombre="";
     public Defensa() {
@@ -8,6 +8,11 @@ public class Defensa {
 
     public String getNombre() {
         return nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "Defensa{" + "nombre='" + nombre + '}';
     }
 
     public String tipoDeDefensa(){

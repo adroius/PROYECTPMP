@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.util.*;
+
 public class Caza extends TipoDeNave{
     int tripulantesMax=0;
     String defensa="";
@@ -13,7 +13,8 @@ public class Caza extends TipoDeNave{
         Scanner sc = new Scanner(System.in);
         return  (int s = sc.nextInt());
     }
-    public seleccionDefensa(){
-
+    public String seleccionDefensa(){
+        Defensa d = new Defensa();
+        return d.toString();
     }
 }
