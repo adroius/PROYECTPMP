@@ -8,7 +8,7 @@ public class Destructor extends TipoDeNave{
     public Destructor(){
         this.tripulantesMax = tripulantes();
         this.cargaMax = carga();
-        this.defensa= new Defensa();
+        this.defensa= seleccionDefensa();
     }
     public int tripulantes(){
         System.out.println("¿?");
@@ -22,8 +22,21 @@ public class Destructor extends TipoDeNave{
         int c = sc.nextInt();
         return (c);
     }
-    public String seleccionDefensa(){
-        Defensa e = new Defensa();
-        return e.toString();
+    public Defensa seleccionDefensa(){
+        System.out.println("Introduzca el tipo de defensa: ");
+        System.out.println("1) Escudo");
+        System.out.println("2) Blindaje");
+        Scanner sc = new Scanner(System.in);
+        int e = sc.nextInt();
+        switch (e) {
+            case 1:
+                Defensa d = new Escudo();
+                return d;
+            case 2:
+                d = new Blindaje();
+                return d;
+            default:
+                throw new IllegalStateException("Valor incorrecto: " + e);
+        }
     }
 }

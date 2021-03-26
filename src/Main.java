@@ -1,13 +1,17 @@
 import java.util.Scanner;
 
-public class Main{
+public class Main {
     public static void main(String[] args) {
         Sistema sistema = new Sistema();
         sistema.getSistema();
         boolean finalizar = false;
         Scanner sc = new Scanner(System.in);
+
+
+        Caza c=new Caza();
+        System.out.println(c.toString());
+
         do {
-            Caza c = new Caza();
             System.out.println("¿Desea continuar?");
             System.out.println("1) SI");
             System.out.println("2) NO");
