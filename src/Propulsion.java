@@ -20,7 +20,7 @@ public class Propulsion {
     public String nombre(){
         String nombre="";
         Scanner sc = new Scanner(System.in);
-        System.out.println("Que arma quiere elegir:");
+        System.out.println("Que propulsion quiere elegir:");
         System.out.println("0) Compresor de Traza");
         System.out.println("1) Motor FTL");
         System.out.println("2) Vela Solar");
