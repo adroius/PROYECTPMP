@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 public class Destructor extends TipoDeNave{
-        int tripulantesMax=0;
-        int cargaMax=0;
-        Defensa defensa;
+    int tripulantesMax=0;
+    int cargaMax=0;
+    Defensa defensa;
 
     public Destructor(){
         this.tripulantesMax = tripulantes();
