@@ -1,12 +1,16 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Caza{
     int tripulantesMax=0;
     Defensa defensa;
+    List<Arma> conjuntoDeArmas=new ArrayList<>();
 
     public Caza(){
         this.tripulantesMax = tripulantes();
         this.defensa= tipoDeDefensa();
+        this.conjuntoDeArmas=conjuntoDeArmas();
     }
     public int tripulantes(){
         System.out.println("¿Cuantos tripulantes van a caber?");
@@ -25,7 +29,7 @@ public class Caza{
 
     @Override
     public String toString() {
-        return "Caza:" + "\nTripulacion = " + tripulantesMax + "\nDefensa = " + defensa.toString();
+        return "Caza:" + "\nTripulacion = " + tripulantesMax + "\nDefensa = " + defensa.toString() + "\nArmas: " +conjuntoDeArmas.toString();
     }
 
     public Defensa tipoDeDefensa(){
@@ -44,5 +48,17 @@ public class Caza{
             default:
                 throw new IllegalStateException("Valor incorrecto: " + e);
         }
+    }
+
+    public List<Arma> conjuntoDeArmas(){
+        List<Arma> armas = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        int i=2;
+        do{
+                Arma a=new Arma();
+                armas.add(a);
+                i=i-1;
+        } while (i!=0);
+        return armas;
     }
 }

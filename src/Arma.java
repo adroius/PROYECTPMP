@@ -9,6 +9,11 @@ public class Arma {
         this.potencia= potencia();
     }
 
+    @Override
+    public String toString() {
+        return "Nombre= " + nombre + ", Potencia = " + potencia;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -39,6 +44,8 @@ public class Arma {
             case 3 : nombre ="Cañon de plasma";
                 isCañonPlasma(nombre);
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + modelo);
         }
         System.out.println("¡Ha elegido " + nombre + "!");
         return nombre;
