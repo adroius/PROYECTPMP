@@ -3,19 +3,26 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Caza{
-    int tripulantesMax=0;
+    int tripulantesMax;
     Defensa defensa;
-    List<Arma> conjuntoDeArmas=new ArrayList<>();
+    List<Arma> conjuntoDeArmas;
+    Propulsion prop;
 
     public Caza(){
         this.tripulantesMax = tripulantes();
         this.defensa= tipoDeDefensa();
         this.conjuntoDeArmas=conjuntoDeArmas();
+        this.prop= new Propulsion();
     }
     public int tripulantes(){
         System.out.println("¿Cuantos tripulantes van a caber?");
         Scanner sc = new Scanner(System.in);
         int s = sc.nextInt();
+        while (s>2){
+            System.out.println("La capacidad del caza es insuficiente");
+            System.out.println("¿Cuantos tripulantes van a caber?");
+            s = sc.nextInt();
+        }
         return  (s);
     }
 
@@ -29,7 +36,7 @@ public class Caza{
 
     @Override
     public String toString() {
-        return "Caza:" + "\nTripulacion = " + tripulantesMax + "\nDefensa = " + defensa.toString() + "\nArmas: " +conjuntoDeArmas.toString();
+        return "Caza:" + "\nTripulacion = " + tripulantesMax + "\nDefensa = " + defensa.toString() + "\nArmas: " +conjuntoDeArmas.toString()+ "\nPropulsion: "+prop.toString();
     }
 
     public Defensa tipoDeDefensa(){
@@ -53,7 +60,8 @@ public class Caza{
     public List<Arma> conjuntoDeArmas(){
         List<Arma> armas = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
-        int i=2;
+        System.out.println("¿Cuantas armas va a querer(1 o 2)?");
+        int i = sc.nextInt();
         do{
                 Arma a=new Arma();
                 armas.add(a);

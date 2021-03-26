@@ -6,11 +6,8 @@ public class Main {
         sistema.getSistema();
         boolean finalizar;
         Scanner sc = new Scanner(System.in);
-
-
         Caza c=new Caza();
-
-
+        System.out.println(c.toString());
         do {
             System.out.println("¿Desea continuar?");
             System.out.println("1) SI");
