@@ -1,29 +1,30 @@
+import java.util.Scanner;
+
 public class Carguero extends TipoDeNave{
     int tripulantesMax=0;
     int cargaMax=0;
-    String defensa="";
+    Defensa defensa;
 
     public Carguero(){
         this.tripulantesMax = tripulantes();
         this.cargaMax = carga();
-        this.defensa= seleccionDefensa();
+        this.defensa= new Defensa();
     }
     public int tripulantes(){
         System.out.println("¿?");
         Scanner sc = new Scanner(System.in);
-        return  (int s = sc.nextInt());
+        int s = sc.nextInt();
+        return  (s);
     }
     public int carga(){
-        system.out.println("carga");
+        System.out.println("carga");
         Scanner sc = new Scanner(System.in);
-        return (int c = sc.nextInt());
+        int c = sc.nextInt();
+        return (c);
     }
-    public string seleccionDefensa(){
-        defensa e = new defensa();
-        return d.toString();
+    public String seleccionDefensa(){
+        Defensa e = new Defensa();
+        return e.toString();
     }
-    @Override
-    public arrancar
-}
 
 }

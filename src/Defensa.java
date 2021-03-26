@@ -42,4 +42,11 @@ public class Defensa {
             b.toString();
         }
     }
+
+    @Override
+    public String toString() {
+        return "Defensa{" +
+                "nombre='" + nombre + '\'' +
+                '}';
+    }
 }
