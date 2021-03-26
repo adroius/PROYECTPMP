@@ -1,20 +1,17 @@
 import java.util.Scanner;
 
-public class Caza extends TipoDeNave{
+public class Caza{
     int tripulantesMax=0;
-    String defensa="";
+    Defensa defensa;
 
     public Caza(){
         this.tripulantesMax = tripulantes();
-        this.defensa= seleccionDefensa();
+        this.defensa= new Defensa();;
     }
     public int tripulantes(){
         System.out.println("¿Cuantos tripulantes van a caber?");
         Scanner sc = new Scanner(System.in);
-        return  (int s = sc.nextInt());
-    }
-    public String seleccionDefensa(){
-        Defensa d = new Defensa();
-        return d.toString();
+        int s = sc.nextInt();
+        return  (s);
     }
 }
