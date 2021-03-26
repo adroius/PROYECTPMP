@@ -15,8 +15,14 @@ public class Blindaje extends Defensa{
         return number.nextInt();
     }
 
+    @Override
+    public String toString() {
+        return ("Blindaje{" + "material='" + material + ", dañoAbsorbe=" + dañoAbsorbe + '}');
+    }
+
     public String nombreMaterial(){
         String nombre = "";
+        System.out.println("Se va a seleccionar el material");
         int valorObtenido = number.nextInt(6);
         switch (valorObtenido){
             case 0: nombre="Adamantium";
@@ -32,6 +38,7 @@ public class Blindaje extends Defensa{
             case 5: nombre="Diamante";
                 break;
         }
+        System.out.println("Ha sido seleccionado: "+ nombre);
         return nombre;
     }
 }
