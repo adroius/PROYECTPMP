@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Destructor extends TipoDeNave{
         int tripulantesMax=0;
         int cargaMax=0;
@@ -14,11 +16,11 @@ public class Destructor extends TipoDeNave{
             return  (int s = sc.nextInt());
         }
         public int carga(){
-            system.out.println("carga");
+            System.out.println("carga");
             Scanner sc = new Scanner(System.in);
             return (int c = sc.nextInt());
         }
-        public string seleccionDefensa(){
+        public String seleccionDefensa(){
             defensa e = new defensa();
             return d.toString();
         }
