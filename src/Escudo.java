@@ -7,7 +7,6 @@ public class Escudo extends Defensa{
         return number.nextInt();
     }
 
-    @Override
     public int dañoQueAbsorbe() {
         return number.nextInt();
     }
