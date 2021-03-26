@@ -1,13 +1,15 @@
 import java.util.Scanner;
-
-public abstract class Defensa {
+import java.util.*;
+public class Defensa {
     String nombre="";
-    int dañoAbsorvido;
     public Defensa() {
         this.nombre=tipoDeDefensa();
-        if
-        this.dañoAbsorvido=
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
     public String tipoDeDefensa(){
         String nombre;
         Scanner teclado = new Scanner(System.in);

@@ -1,8 +1,9 @@
 import java.util.Random;
-
+import java.util.*;
 public class Blindaje extends Defensa{
+
     private Random number = new Random();
-    @Override
+
     public int dañoQueAbsorbe() {
         return number.nextInt();
     }
@@ -11,7 +12,7 @@ public class Blindaje extends Defensa{
         String nombre = "";
         int valorObtenido = number.nextInt(6);
         switch (valorObtenido){
-            case 0: nombre="Bronce";
+            case 0: nombre="Adamantium";
                 break;
             case 1: nombre="Hierro";
                 break;
