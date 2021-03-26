@@ -11,13 +11,13 @@ public class Blindaje extends Defensa{
         String nombre = "";
         int valorObtenido = number.nextInt(6);
         switch (valorObtenido){
-            case 0: nombre="Cobre";
+            case 0: nombre="Bronce";
                 break;
             case 1: nombre="Hierro";
                 break;
             case 2: nombre="Plata";
                 break;
-            case 3: nombre="Plástico";
+            case 3: nombre="Platino";
                 break;
             case 4: nombre="Oro";
                 break;
