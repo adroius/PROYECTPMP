@@ -6,7 +6,7 @@ public class Caza{
 
     public Caza(){
         this.tripulantesMax = tripulantes();
-        this.defensa= new Defensa();;
+        this.defensa= new Defensa();
     }
     public int tripulantes(){
         System.out.println("¿Cuantos tripulantes van a caber?");
