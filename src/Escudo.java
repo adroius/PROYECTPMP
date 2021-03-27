@@ -2,17 +2,17 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Escudo extends Defensa{
-    int energiaR=0;
-    int dañoQueAb=0;
+    int energiaR;
+    int danioQueAb;
 
     public Escudo() {
         this.energiaR = energiaRequerida();
-        this.dañoQueAb= dañoQueAbsorbe();
+        this.danioQueAb= danioQueAbsorbe();
     }
 
     @Override
     public String toString() {
-        return "Escudo: Energia requerida= " + energiaR + ", Daño absorbido= " + dañoQueAb;
+        return "Escudo: Energia requerida= " + energiaR + ", Daño absorbido= " + danioQueAb;
     }
 
     public int energiaRequerida(){
@@ -24,7 +24,7 @@ public class Escudo extends Defensa{
         return s;
     }
 
-    public int dañoQueAbsorbe() {
+    public int danioQueAbsorbe() {
         int e=this.energiaR*10;
         System.out.println("La energia que conseguira repeler sera de "+ e);
         return e;
