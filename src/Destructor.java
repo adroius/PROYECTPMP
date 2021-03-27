@@ -8,7 +8,7 @@ public class Destructor extends TipoDeNave{
     public Destructor(){
         this.tripulantesMax = tripulantes();
         this.cargaMax = carga();
-        this.defensa= seleccionDefensa();
+        this.defensa= tipoDeDefensa();
     }
     public int tripulantes(){
         System.out.println("¿?");
@@ -22,7 +22,7 @@ public class Destructor extends TipoDeNave{
         int c = sc.nextInt();
         return (c);
     }
-    public Defensa seleccionDefensa(){
+    public Defensa tipoDeDefensa(){
         System.out.println("Introduzca el tipo de defensa: ");
         System.out.println("1) Escudo");
         System.out.println("2) Blindaje");

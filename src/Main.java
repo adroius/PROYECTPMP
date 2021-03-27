@@ -7,7 +7,8 @@ public class Main {
         boolean finalizar;
         Scanner sc = new Scanner(System.in);
         Caza c=new Caza();
-        System.out.println(c.toString());
+        Caza d=new Caza();
+
         do {
             System.out.println("¿Desea continuar?");
             System.out.println("1) SI");

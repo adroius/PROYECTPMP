@@ -1,3 +1,4 @@
-public class TipoDeNave extends Nave{
-
+public class TipoDeNave {
+    public TipoDeNave() {
+    }
 }

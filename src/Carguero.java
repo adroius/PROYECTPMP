@@ -1,28 +1,28 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class Carguero extends TipoDeNave{
+public class Carguero extends Nave{
     int tripulantesMax=0;
-    int cargaMax=0;
+    int carga=0;
     Defensa defensa;
 
     public Carguero(){
         this.tripulantesMax = tripulantes();
-        this.cargaMax = carga();
-        this.defensa= seleccionDefensa();
+        this.carga = carga();
+        this.defensa= tipoDeDefensa();
     }
+
+    @Override
     public int tripulantes(){
-        System.out.println("¿?");
+        System.out.println("¿Cuanto va a ser la capacidad maxima del carguero?");
         Scanner sc = new Scanner(System.in);
         int s = sc.nextInt();
         return  (s);
     }
-    public int carga(){
-        System.out.println("carga");
-        Scanner sc = new Scanner(System.in);
-        int c = sc.nextInt();
-        return (c);
-    }
-    public Defensa seleccionDefensa(){
+
+    @Override
+    public Defensa tipoDeDefensa() {
         System.out.println("Introduzca el tipo de defensa: ");
         System.out.println("1) Escudo");
         System.out.println("2) Blindaje");
@@ -40,4 +40,18 @@ public class Carguero extends TipoDeNave{
         }
     }
 
+    @Override
+    public List<Arma> conjuntoDeArmas() {
+        List<Arma> armas = new ArrayList<>();
+            Arma a=new Arma();
+            armas.add(a);
+        return armas;
+    }
+
+    public int carga(){
+            System.out.println("Introduzca la carga maxima: ");
+        Scanner sc = new Scanner(System.in);
+        int c = sc.nextInt();
+        return c;
+    }
 }
