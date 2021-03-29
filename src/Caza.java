@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Caza extends TipoDeNave{
+public class Caza extends Nave{
     int tripulantesMax;
-    Defensa defensa;
+    List<Defensa> defensa;
     List<Arma> conjuntoDeArmas;
     Propulsion prop;
 
@@ -15,7 +15,7 @@ public class Caza extends TipoDeNave{
         this.prop= new Propulsion();
         this.conjuntoDeArmas=conjuntoDeArmas();
     }
-    public Caza(int e,Defensa d, Propulsion p){
+    public Caza(int e,List<Defensa> d, Propulsion p){
         super();
         this.tripulantesMax = e;
         this.defensa= d;
@@ -35,35 +35,32 @@ public class Caza extends TipoDeNave{
         return  (s);
     }
 
-    public int getTripulantesMax() {
-        return tripulantesMax;
-    }
-
-    public Defensa getDefensa() {
-        return defensa;
-    }
-
     @Override
     public String toString() {
         return "Caza:" + "\nTripulacion = " + tripulantesMax + "\nDefensa = " + defensa.toString() + "\nArmas: " +conjuntoDeArmas.toString()+ "\nPropulsion: "+prop.toString();
     }
 
-    public Defensa tipoDeDefensa(){
+    public List<Defensa> tipoDeDefensa(){
+        List<Defensa> defensa = new ArrayList<>();
         System.out.println("Introduzca el tipo de defensa: ");
         System.out.println("1) Escudo");
         System.out.println("2) Blindaje");
         Scanner sc = new Scanner(System.in);
         int e = sc.nextInt();
+        Defensa d;
         switch (e) {
             case 1:
-                Defensa d = new Escudo();
-                return d;
+                d = new Escudo();
+                defensa.add(d);
+                break;
             case 2:
                 d = new Blindaje();
-                return d;
+                defensa.add(d);
+                break;
             default:
                 throw new IllegalStateException("Valor incorrecto: " + e);
         }
+        return defensa;
     }
 
     public List<Arma> conjuntoDeArmas(){

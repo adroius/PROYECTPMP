@@ -15,7 +15,7 @@ public class NaveBuilder {
         int s = sc.nextInt();
         switch (s){
             case 1:
-                n=new Caza;
+                n=new Caza();
                 break;
             case 2:
                 n=new Destructor();

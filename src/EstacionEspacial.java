@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class EstacionEspacial extends Nave{
     int tripulantesMax;
-    Defensa defensa;
+    List<Defensa> defensa;
     List<Arma> conjuntoDeArmas;
     List<Nave> conjuntoDeNaves;
     Propulsion prop;
@@ -34,22 +34,36 @@ public class EstacionEspacial extends Nave{
     }
 
     @Override
-    public Defensa tipoDeDefensa() {
-        System.out.println("Introduzca el tipo de defensa: ");
-        System.out.println("1) Escudo");
-        System.out.println("2) Blindaje");
+    public List<Defensa>  tipoDeDefensa() {
+        List<Defensa> defensa = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
+        System.out.println("¿Cuantas defensas tiene?");
         int e = sc.nextInt();
-        switch (e) {
-            case 1:
-                Defensa d = new Escudo();
-                return d;
-            case 2:
-                d = new Blindaje();
-                return d;
-            default:
-                throw new IllegalStateException("Valor incorrecto: " + e);
+        while (e>3){
+            System.out.println("Solo puede tener dos defensas, ¿Cuantas posee?(1 o 3)");
+            e = sc.nextInt();
         }
+        Defensa d;
+        do{
+            System.out.println("Introduzca el tipo de defensa: ");
+            System.out.println("1) Escudo");
+            System.out.println("2) Blindaje");
+            int ef = sc.nextInt();
+            switch (ef) {
+                case 1:
+                    d = new Escudo();
+                    defensa.add(d);
+                    break;
+                case 2:
+                    d = new Blindaje();
+                    defensa.add(d);
+                    break;
+                default:
+                    throw new IllegalStateException("Valor incorrecto: " + e);
+            }
+            e=e-1;
+        } while (e!=0);
+        return defensa;
     }
 
     @Override

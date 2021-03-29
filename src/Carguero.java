@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Carguero extends Nave{
     int tripulantesMax=0;
     int carga=0;
-    Defensa defensa;
+    List<Defensa> defensa;
     Propulsion prop;
 
     public Carguero(){
@@ -24,7 +24,8 @@ public class Carguero extends Nave{
     }
 
     @Override
-    public Defensa tipoDeDefensa() {
+    public List<Defensa> tipoDeDefensa() {
+        List<Defensa> defensa = new ArrayList<>();
         System.out.println("Introduzca el tipo de defensa: ");
         System.out.println("1) Escudo");
         System.out.println("2) Blindaje");
@@ -33,13 +34,16 @@ public class Carguero extends Nave{
         switch (e) {
             case 1:
                 Defensa d = new Escudo();
-                return d;
+                defensa.add(d);
+                break;
             case 2:
                 d = new Blindaje();
-                return d;
+                defensa.add(d);
+                break;
             default:
                 throw new IllegalStateException("Valor incorrecto: " + e);
         }
+        return defensa;
     }
 
     @Override
