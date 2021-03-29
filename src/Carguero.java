@@ -6,11 +6,13 @@ public class Carguero extends Nave{
     int tripulantesMax=0;
     int carga=0;
     Defensa defensa;
+    Propulsion prop;
 
     public Carguero(){
         this.tripulantesMax = tripulantes();
         this.carga = carga();
         this.defensa= tipoDeDefensa();
+        this.prop=new Propulsion();
     }
 
     @Override
