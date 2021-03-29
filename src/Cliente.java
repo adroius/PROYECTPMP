@@ -6,4 +6,14 @@ public abstract class Cliente {
     int NavesEnPropiedad;
     String Nick;
     String email;
+
+    public Cliente (){
+        this.Nombre = Nombre;
+        this.PlanetaOrigen = PlanetaOrigen;
+        this.Especie = Especie;
+        this.numeroIdentificacion = numeroIdentificacion;
+        this.NavesEnPropiedad = NavesEnPropiedad;
+        this.Nick = Nick;
+        this.email = email;
+    }
 }
