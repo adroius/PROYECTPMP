@@ -54,6 +54,20 @@ public class Destructor extends NaveBuilder{
 
     @Override
     public List<Arma> conjuntoDeArmas() {
+        int r=0;
+        public List<Arma> conjuntoDeArmas(){
+            List<Arma> armas = new ArrayList<>();
+            Scanner sc = new Scanner(System.in);
+            System.out.println("La capacidad del destructor para portar armas es ilimitada");
+            System.out.println("¿Cuantas armas tiene el destructor, minimo 1?");
+            int i = sc.nextInt();
+            while (r<i);
+            do {
+                Arma a = new Arma();
+                armas.add(a);
+                r = r + 1;
+                return armas;
+            }
         return null;
     }
 
