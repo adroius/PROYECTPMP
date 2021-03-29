@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Carguero extends Nave{
+public class Carguero extends NaveBuilder{
     int tripulantesMax=0;
     int carga=0;
     List<Defensa> defensa;

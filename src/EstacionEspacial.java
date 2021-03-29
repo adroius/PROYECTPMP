@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class EstacionEspacial extends Nave{
+public class EstacionEspacial extends NaveBuilder{
     int tripulantesMax;
     List<Defensa> defensa;
     List<Arma> conjuntoDeArmas;

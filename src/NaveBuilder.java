@@ -1,7 +1,9 @@
 import java.util.Scanner;
 
-public class NaveBuilder {
+public abstract class NaveBuilder extends Nave{
+
     public NaveBuilder() {
+
     }
 
     public Nave seleccionarTipoDeNave(){

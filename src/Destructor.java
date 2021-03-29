@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Destructor extends Nave{
+public class Destructor extends NaveBuilder{
     List<Arma> conjuntoDeArmas;
     List<Defensa> conjuntoDefensa;
     Propulsion prop;
