@@ -8,7 +8,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Caza c=new Caza();
         Caza d=new Caza();
-
+        System.out.println(c);
+        System.out.println(d);
         do {
             System.out.println("¿Desea continuar?");
             System.out.println("1) SI");

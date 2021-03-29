@@ -69,9 +69,9 @@ public class Caza extends TipoDeNave{
     public List<Arma> conjuntoDeArmas(){
         List<Arma> armas = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
-        System.out.println("¿Cuantas armas va a querer(1 o 2)?");
+        System.out.println("¿Cuantas armas va a querer?");
         int i = sc.nextInt();
-        while (i<2){
+        while (i>2){
             System.out.println("La capacidad del caza para portar armas es limitada");
             System.out.println("¿Cuantas armas va a querer(1 o 2)?");
             i = sc.nextInt();
