@@ -1,2 +1,4 @@
-public class EspecieKromagg {
+public class EspecieKromagg extends Cliente{
+    String licenciaEspecial;
+
 }

@@ -6,7 +6,7 @@ public class Propulsion {
 
     public Propulsion() {
         this.nombre = nombre();
-        this.velocidad= velSubLuminicaMax();
+        this.velocidad = velSubLuminicaMax();
     }
 
     public String getNombre() {
