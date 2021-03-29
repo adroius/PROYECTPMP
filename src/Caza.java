@@ -6,16 +6,16 @@ public class Caza extends NaveBuilder{
     int tripulantesMax;
     List<Defensa> defensa;
     List<Arma> conjuntoDeArmas;
-    Propulsion prop;
+    List<Propulsion> prop;
 
     public Caza(){
         super();
         this.tripulantesMax = tripulantes();
         this.defensa= tipoDeDefensa();
-        this.prop= new Propulsion();
+        this.prop= conjuntoDePropulsion();
         this.conjuntoDeArmas=conjuntoDeArmas();
     }
-    public Caza(int e,List<Defensa> d, Propulsion p){
+    public Caza(int e,List<Defensa> d, List<Propulsion> p){
         super();
         this.tripulantesMax = e;
         this.defensa= d;
@@ -24,15 +24,9 @@ public class Caza extends NaveBuilder{
     }
 
     public int tripulantes(){
-        System.out.println("¿Cuantos tripulantes van a caber?");
-        Scanner sc = new Scanner(System.in);
-        int s = sc.nextInt();
-        while (s>2){
-            System.out.println("La capacidad del caza es insuficiente");
-            System.out.println("¿Cuantos tripulantes van a caber?");
-            s = sc.nextInt();
-        }
-        return  (s);
+        System.out.println("La capacidad es de solo un tripulante.");
+        int s=1;
+        return (s);
     }
 
     @Override
@@ -79,5 +73,24 @@ public class Caza extends NaveBuilder{
                 i=i-1;
         } while (i!=0);
         return armas;
+    }
+
+    @Override
+    public List<Propulsion> conjuntoDePropulsion() {
+        List<Propulsion> prop = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("¿Cuantas propulsiones va a querer?");
+        int i = sc.nextInt();
+        while (i>2){
+            System.out.println("La capacidad de la nave para portar propulsiones es limitada");
+            System.out.println("¿Cuantas propulsiones va a querer(1 o 2)?");
+            i = sc.nextInt();
+        }
+        do{
+            Propulsion a=new Propulsion();
+            prop.add(a);
+            i=i-1;
+        } while (i!=0);
+        return prop;
     }
 }

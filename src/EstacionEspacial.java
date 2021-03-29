@@ -7,12 +7,12 @@ public class EstacionEspacial extends NaveBuilder{
     List<Defensa> defensa;
     List<Arma> conjuntoDeArmas;
     List<Nave> conjuntoDeNaves;
-    Propulsion prop;
+    List<Propulsion> prop;
 
     public EstacionEspacial() {
         this.tripulantesMax = tripulantes();
         this.defensa= tipoDeDefensa();
-        this.prop= new Propulsion();
+        this.prop= conjuntoDePropulsion();
         this.conjuntoDeArmas=conjuntoDeArmas();
         this.conjuntoDeNaves=conjuntoDeNaves();
     }
@@ -30,7 +30,10 @@ public class EstacionEspacial extends NaveBuilder{
 
     @Override
     public int tripulantes() {
-        return 0;
+        System.out.println("¿Cuanto va a ser la capacidad maxima del carguero?");
+        Scanner sc = new Scanner(System.in);
+        int s = sc.nextInt();
+        return  (s);
     }
 
     @Override
@@ -83,6 +86,25 @@ public class EstacionEspacial extends NaveBuilder{
             i=i-1;
         } while (i!=0);
         return armas;
+    }
+
+    @Override
+    public List<Propulsion> conjuntoDePropulsion() {
+        List<Propulsion> prop = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("¿Cuantas propulsiones va a querer?");
+        int i = sc.nextInt();
+        while (i>2){
+            System.out.println("La capacidad de la nave para portar propulsiones es limitada");
+            System.out.println("¿Cuantas propulsiones va a querer(1 o 2)?");
+            i = sc.nextInt();
+        }
+        do{
+            Propulsion a=new Propulsion();
+            prop.add(a);
+            i=i-1;
+        } while (i!=0);
+        return prop;
     }
 
     public List<Nave> conjuntoDeNaves() {

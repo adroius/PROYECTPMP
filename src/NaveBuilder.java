@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public abstract class NaveBuilder extends Nave{
+public class NaveBuilder extends Nave{
 
     public NaveBuilder() {
 

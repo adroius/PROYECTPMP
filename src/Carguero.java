@@ -6,13 +6,13 @@ public class Carguero extends NaveBuilder{
     int tripulantesMax=0;
     int carga=0;
     List<Defensa> defensa;
-    Propulsion prop;
+    List<Propulsion> prop;
 
     public Carguero(){
         this.tripulantesMax = tripulantes();
         this.carga = carga();
         this.defensa= tipoDeDefensa();
-        this.prop=new Propulsion();
+        this.prop=conjuntoDePropulsion();
     }
 
     @Override
@@ -52,6 +52,25 @@ public class Carguero extends NaveBuilder{
             Arma a=new Arma();
             armas.add(a);
         return armas;
+    }
+
+    @Override
+    public List<Propulsion> conjuntoDePropulsion() {
+        List<Propulsion> prop = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("¿Cuantas propulsiones va a querer?");
+        int i = sc.nextInt();
+        while (i>2){
+            System.out.println("La capacidad de la nave para portar propulsiones es limitada");
+            System.out.println("¿Cuantas propulsiones va a querer(1 o 2)?");
+            i = sc.nextInt();
+        }
+        do{
+            Propulsion a=new Propulsion();
+            prop.add(a);
+            i=i-1;
+        } while (i!=0);
+        return prop;
     }
 
     public int carga(){

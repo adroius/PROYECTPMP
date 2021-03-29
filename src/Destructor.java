@@ -5,18 +5,21 @@ import java.util.Scanner;
 public class Destructor extends NaveBuilder{
     List<Arma> conjuntoDeArmas;
     List<Defensa> conjuntoDefensa;
-    Propulsion prop;
+    List<Propulsion> prop;
 
     public Destructor(){
         super();
-        this.prop= new Propulsion();
+        this.prop= conjuntoDePropulsion();
         this.conjuntoDeArmas=conjuntoDeArmas();
         this.conjuntoDefensa=tipoDeDefensa();
     }
 
     @Override
     public int tripulantes() {
-        return 0;
+        System.out.println("¿Cuanto va a ser la capacidad maxima del carguero?");
+        Scanner sc = new Scanner(System.in);
+        int s = sc.nextInt();
+        return  (s);
     }
 
     @Override
@@ -53,27 +56,40 @@ public class Destructor extends NaveBuilder{
     }
 
     @Override
-    public List<Arma> conjuntoDeArmas() {
-        int r=0;
-        public List<Arma> conjuntoDeArmas(){
-            List<Arma> armas = new ArrayList<>();
-            Scanner sc = new Scanner(System.in);
-            System.out.println("La capacidad del destructor para portar armas es ilimitada");
-            System.out.println("¿Cuantas armas tiene el destructor, minimo 1?");
-            int i = sc.nextInt();
-            while (r<i);
-            do {
-                Arma a = new Arma();
-                armas.add(a);
-                r = r + 1;
-                return armas;
-            }
-        return null;
+    public List<Arma> conjuntoDeArmas(){
+        List<Arma> armas = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("La capacidad del destructor para portar armas es ilimitada");
+        System.out.println("¿Cuantas armas tiene el destructor?");
+        int i = sc.nextInt();
+        do {
+            Arma a = new Arma();
+            armas.add(a);
+            i=i-1;
+        }while (i!=0);
+        return armas;
     }
 
+    @Override
+    public List<Propulsion> conjuntoDePropulsion() {
+        List<Propulsion> prop = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("¿Cuantas propulsiones va a querer?");
+        int i = sc.nextInt();
+        while (i>2){
+            System.out.println("La capacidad de la nave para portar propulsiones es limitada");
+            System.out.println("¿Cuantas propulsiones va a querer(1 o 2)?");
+            i = sc.nextInt();
+        }
+        do{
+            Propulsion a=new Propulsion();
+            prop.add(a);
+            i=i-1;
+        } while (i!=0);
+        return prop;
+    }
 
     @Override
-
     public String toString() {
         return "Destructor:" + "\nDefensa = " + conjuntoDefensa.toString() + "\nArmas: " +conjuntoDeArmas.toString()+ "\nPropulsion: "+prop.toString();
     }
