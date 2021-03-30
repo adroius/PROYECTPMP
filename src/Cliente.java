@@ -22,7 +22,7 @@ public class Cliente extends Usuario{
         System.out.println("¿Cual es su Especie?");
         s = sc.next();
         this.Especie = s;
-        System.out.println("¿Cual es su numero de Identificacion?");
+        System.out.println("¿Cual es su numero de identificacion?");
         s = sc.next();
         this.numeroIdentificacion = s;
         this.NavesEnPropiedad = null;
