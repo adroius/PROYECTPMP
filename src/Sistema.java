@@ -5,29 +5,51 @@ public class Sistema {
     }
 
     public void getSistema() {
-        boolean f;
+        boolean f = false;
+        Scanner sc = new Scanner(System.in);
         do {
+            int s = sc.nextInt();
             System.out.println("Bienvenido al concesionario espacial");
             System.out.println("¿Que es lo que desea realizar?");
-            System.out.println("0) Ingresar cliente");
-            System.out.println("1) Registrarse nuevo cliente");
-            System.out.println("2) Ver ofertas");
+            System.out.println("1) Ingresar nuevo cliente");
+            System.out.println("2) Registrarse cliente");
             System.out.println("3) Salir");
-            f=finalizar();
-        }while(!f);
+            switch (s) {
+                case 1:
+                    registrarNuevoCliente();
+                    break;
+                case 2:
+                
+
+                    break;
+                case 3:
+                    f = finalizar();
+                    break;
+            }
+        } while (!f);
     }
-    public boolean finalizar(){
+
+    private boolean finalizar() {
         boolean finalizar;
         Scanner sc = new Scanner(System.in);
-            System.out.println("¿Desea continuar?");
-            System.out.println("1) SI");
-            System.out.println("2) NO");
-            int s = sc.nextInt();
-            switch (s) {
-                case 1 -> finalizar = false;
-                case 2 -> finalizar = true;
-                default -> throw new IllegalStateException("Unexpected value: " + s);
-            }
+        System.out.println("¿Desea Salir?");
+        System.out.println("1) SI");
+        System.out.println("2) NO");
+        int s = sc.nextInt();
+        switch (s) {
+            case 1 -> finalizar = true;
+            case 2 -> finalizar = false;
+            default -> throw new IllegalStateException("Unexpected value: " + s);
+        }
         return finalizar;
+    }
+
+    public void registrarNuevoCliente() {
+        Usuario u = new Usuario();
+    }
+
+    public boolean iniciarSesion(String user, String contraseña) {
+        boolean ingresado = false;
+        return ingresado;
     }
 }
