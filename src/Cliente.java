@@ -27,9 +27,10 @@ public class Cliente {
     }
     public boolean isKromagg(){
         boolean is=false;
-        if (this.Especie=="Kromagg" || this.Especie=="kromagg"){
+        if (this.Especie == "Kromagg" || this.Especie == "kromagg"){
             is=true;
         }
         return is;
     }
+
 }
