@@ -1,19 +1,19 @@
 import java.util.Scanner;
-
+//Clase Arma
 public class Arma {
     String nombre="";
     int potencia=0;
-
+    //Builder Arma
     public Arma() {
         this.nombre = nombre();
         this.potencia= potencia();
     }
 
     @Override
+
     public String toString() {
         return "Nombre= " + nombre + ", Potencia = " + potencia;
     }
-
     public String getNombre() {
         return nombre;
     }
