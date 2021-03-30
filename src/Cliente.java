@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.Scanner;
 
-public class Cliente extends Usuario{
+public class Cliente{
     String Nombre;
     String PlanetaOrigen;
     String Especie;

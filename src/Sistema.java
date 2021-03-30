@@ -1,26 +1,25 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Sistema {
+    List<Usuario> users = new ArrayList<>();
     public Sistema() {
-    }
-
-    public void getSistema() {
         boolean f = false;
         Scanner sc = new Scanner(System.in);
         do {
-            int s = sc.nextInt();
             System.out.println("Bienvenido al concesionario espacial");
-            System.out.println("¿Que es lo que desea realizar?");
             System.out.println("1) Ingresar nuevo cliente");
             System.out.println("2) Registrarse cliente");
             System.out.println("3) Salir");
+            int s = sc.nextInt();
             switch (s) {
                 case 1:
-                    registrarNuevoCliente();
+                    users.add(registrarNuevoCliente());
+                    System.out.println(users.toString());
                     break;
                 case 2:
-                
-
+                    iniciarSesion();
                     break;
                 case 3:
                     f = finalizar();
@@ -44,12 +43,14 @@ public class Sistema {
         return finalizar;
     }
 
-    public void registrarNuevoCliente() {
-        Usuario u = new Usuario();
+    public Usuario registrarNuevoCliente() {
+        Usuario u= new Usuario();
+        return u;
     }
 
-    public boolean iniciarSesion(String user, String contraseña) {
+    public boolean iniciarSesion() {
         boolean ingresado = false;
+
         return ingresado;
     }
 }

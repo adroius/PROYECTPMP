@@ -1,15 +1,17 @@
 import java.util.Scanner;
 import java.util.Random;
 
-public class Usuario {
+public class Usuario{
     Cliente usuario;
     String user;
     String contraseña;
-    boolean isKromagg=usuario.Kromagg;
+    boolean isKromagg=false;
+    boolean isPirata=false;
+    boolean isFraude=false;
     int licenciaEspecial;
 
     public Usuario() {
-        this.usuario = new Cliente();
+        this.usuario = client();
         this.user = user();
         this.contraseña = contraseña();
     }
@@ -27,6 +29,25 @@ public class Usuario {
         String s = sc.next();
         return s;
     }
+
+    private Cliente client() {
+        Cliente s=new Cliente();
+        return s;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "usuario=" + usuario +
+                ", user='" + user + '\'' +
+                ", contraseña='" + contraseña + '\'' +
+                ", isKromagg=" + isKromagg +
+                ", isPirata=" + isPirata +
+                ", isFraude=" + isFraude +
+                ", licenciaEspecial=" + licenciaEspecial +
+                '}';
+    }
+
     private void ifIsKromagg(){
         if (this.isKromagg){
             System.out.println("Necesitara una licencia especial según un decreto de la Federación Intergaláctica");

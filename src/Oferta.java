@@ -8,33 +8,33 @@ public class Oferta{
         this.nIdentificacion = nIdentificacion;
     }
 
-    public void getOferta () {
+    /*public void getOferta () {
 
     }
 
-    public List<Nave> ofertaNave (int ) {
+    public List<Nave> ofertaNave (int c ) {
 
     }
 
-    public Date fechaLimite (int) {
+    public Date fechaLimite (int c) {
 
     }
 
-    public int PrecioOfertaTotal (int) {
+    public int PrecioOfertaTotal (int c) {
 
     }
 
-    public int ProteccionTotal (int) {
+    public int ProteccionTotal (int c) {
 
     }
 
-    public int crearVotacion (int , int ) {
+    public int crearVotacion (int c , int d) {
 
     }
 
-    public String crearComentario (int , int ) {
+    public String crearComentario (int c, int d) {
 
     }
 
-
+*/
 }
