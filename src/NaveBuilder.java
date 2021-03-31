@@ -4,7 +4,7 @@ public abstract class NaveBuilder extends Nave{
 
     public static Nave CrearNave(){
         Nave n;
-        System.out.println("Que nave desea construir:");
+        System.out.println("Que nave desea registrar:");
         System.out.println("1) Caza");
         System.out.println("2) Destructor");
         System.out.println("3) Carguero");
