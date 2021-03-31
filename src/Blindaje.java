@@ -50,6 +50,7 @@ public class Blindaje extends Defensa {
         return p;
     }
 
+    @Override
     public int danioQueAbsorbe() {
         int d = 0;
         switch (materialEscogido()) {
