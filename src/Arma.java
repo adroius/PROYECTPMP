@@ -1,7 +1,7 @@
 import java.util.Scanner;
 //Clase Arma
 public class Arma {
-
+    //Elegir arma
     public String nombre(){
         String nombre="";
         Scanner sc = new Scanner(System.in);
@@ -30,6 +30,8 @@ public class Arma {
         System.out.println("¡Ha elegido " + nombre + "!");
         return nombre;
     }
+
+    //Introducir la potencia del arma
     public static int potencia(){
         Scanner sc = new Scanner(System.in);
         System.out.print("Introduzca la potencia del arma: ");
@@ -37,6 +39,8 @@ public class Arma {
         System.out.println("¡La potencia de su arma será " + v + " !");
         return v;
     }
+
+    //Guardar el tipo de Arma ??
     private boolean isPEM(String s){
         return s=="PEM";
     }
