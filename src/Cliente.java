@@ -35,7 +35,7 @@ public class Cliente{
         this.email = s;
         this.Kromagg = isKromagg();
     }
-
+    //Builder Cliente
     public Cliente(String Nombre, String PlanetaOrigen, String Especie, String numeroIdentificacion, List<Nave> NavesEnPropiedad, String Nick, String email) {
         this.Nombre = Nombre;
         this.PlanetaOrigen = PlanetaOrigen;
@@ -46,7 +46,7 @@ public class Cliente{
         this.email = email;
         this.Kromagg = isKromagg();
     }
-
+    //Comprobar si es de la especie Kromagg
     private boolean isKromagg() {
         boolean is = false;
         if (this.Especie == "Kromagg" || this.Especie == "kromagg") {
