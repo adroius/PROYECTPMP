@@ -36,7 +36,7 @@ public class Cliente{
         this.Kromagg = isKromagg();
     }
     //Builder Cliente
-    public Cliente(String Nombre, String PlanetaOrigen, String Especie, String numeroIdentificacion, List<Nave> NavesEnPropiedad, String Nick, String email) {
+    public void getCliente(String Nombre, String PlanetaOrigen, String Especie, String numeroIdentificacion, List<Nave> NavesEnPropiedad, String Nick, String email) {
         this.Nombre = Nombre;
         this.PlanetaOrigen = PlanetaOrigen;
         this.Especie = Especie;
@@ -46,6 +46,7 @@ public class Cliente{
         this.email = email;
         this.Kromagg = isKromagg();
     }
+
     //Comprobar si es de la especie Kromagg
     private boolean isKromagg() {
         boolean is = false;
