@@ -1,7 +1,9 @@
 import java.util.Scanner;
 
+//Clase NaveBuilder hereda de Nave
 public abstract class NaveBuilder extends Nave{
 
+    //Escoger que clase de nave se va a crear
     public static Nave CrearNave(){
         Nave n;
         System.out.println("Que nave desea registrar:");

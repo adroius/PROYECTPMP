@@ -2,12 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//Clase Carguero hereda de NaveBuilder
 public class Carguero extends NaveBuilder{
     int tripulantesMax=0;
     int carga=0;
     List<Defensa> defensa;
     List<Propulsion> prop;
 
+    //Constructor Carguero
     public Carguero(){
         this.tripulantesMax = tripulantes();
         this.carga = carga();
@@ -15,6 +17,7 @@ public class Carguero extends NaveBuilder{
         this.prop=conjuntoDePropulsion();
     }
 
+    //Cantidad de tripulantes
     @Override
     public int tripulantes(){
         System.out.println("¿Cuanto va a ser la capacidad maxima de tripulantes del carguero?");
@@ -23,6 +26,7 @@ public class Carguero extends NaveBuilder{
         return  (s);
     }
 
+    //
     @Override
     public List<Defensa> tipoDeDefensa() {
         List<Defensa> defensa = new ArrayList<>();
