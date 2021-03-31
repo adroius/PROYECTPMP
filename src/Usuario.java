@@ -31,7 +31,7 @@ public class Usuario{
     }
 
     private Cliente client() {
-        Cliente s=new Cliente();
+        Cliente s = new Cliente();
         return s;
     }
 
