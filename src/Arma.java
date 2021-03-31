@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Arma {
     String nombre="";
     int potencia=0;
-    //Builder Arma
+
     public Arma() {
         this.nombre = nombre();
         this.potencia= potencia();

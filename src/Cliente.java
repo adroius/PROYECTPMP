@@ -11,7 +11,7 @@ public class Cliente{
     String email;
     boolean Kromagg;
 
-    //Builder Cliente
+    //Constructor Cliente
     public Cliente() {
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cual es su nombre?");
@@ -35,7 +35,7 @@ public class Cliente{
         this.email = s;
         this.Kromagg = isKromagg();
     }
-    //Builder Cliente
+    //Constructor Cliente
     public Cliente(String Nombre, String PlanetaOrigen, String Especie, String numeroIdentificacion, List<Nave> NavesEnPropiedad, String Nick, String email) {
         this.Nombre = Nombre;
         this.PlanetaOrigen = PlanetaOrigen;
