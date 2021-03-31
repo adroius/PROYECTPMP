@@ -35,6 +35,7 @@ public class Cliente{
         this.email = s;
         this.Kromagg = isKromagg();
     }
+
     //Builder Cliente
     public void getCliente(String Nombre, String PlanetaOrigen, String Especie, String numeroIdentificacion, List<Nave> NavesEnPropiedad, String Nick, String email) {
         this.Nombre = Nombre;
