@@ -50,6 +50,7 @@ public class Arma {
         return s=="Cañon de plasma";
     }
 
+    @Override
     public String toString(){
         String f=" ";
         f=("La potencia del "+ nombre() +" es de " +potencia()+ "GigaJulios");
