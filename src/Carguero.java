@@ -17,7 +17,7 @@ public class Carguero extends NaveBuilder{
 
     @Override
     public int tripulantes(){
-        System.out.println("¿Cuanto va a ser la capacidad maxima del carguero?");
+        System.out.println("¿Cuanto va a ser la capacidad maxima de tripulantes del carguero?");
         Scanner sc = new Scanner(System.in);
         int s = sc.nextInt();
         return  (s);
