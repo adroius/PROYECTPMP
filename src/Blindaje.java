@@ -12,9 +12,9 @@ public class Blindaje extends Defensa {
         this.peso = peso();
     }
 
-    private int materialEscogido(){
+    private int materialEscogido() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Que arma quiere elegir:");
+        System.out.println("Que blindaje quiere elegir:");
         System.out.println("0) Adamantium");
         System.out.println("1) Hierro");
         System.out.println("2) Plata");
@@ -75,11 +75,6 @@ public class Blindaje extends Defensa {
         return d;
     }
 
-    @Override
-    public String toString() {
-        return ("Blindaje: " + "Material='" + material + ", danioAbsorbe=" + danioAbsorbe);
-    }
-
     public String nombreMaterial() {
         String nombre = "";
         switch (materialEscogido()) {
@@ -106,4 +101,8 @@ public class Blindaje extends Defensa {
         return nombre;
     }
 
+    @Override
+    public String toString() {
+        return ("Blindaje: " + "Material='" + material + ", danioAbsorbe=" + danioAbsorbe);
+    }
 }
