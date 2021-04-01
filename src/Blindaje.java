@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 //Clase Blindaje hereda de Defensa
 public class Blindaje extends Defensa {
     private String material;
@@ -10,7 +11,7 @@ public class Blindaje extends Defensa {
         super();
         this.material = materialEscogido();
         this.danioAbsorbe = danioQueAbsorbe();
-        this.peso = danioQueAbsorbe()*10;
+        this.peso = danioQueAbsorbe() * 10;
     }
 
     @Override
@@ -19,28 +20,35 @@ public class Blindaje extends Defensa {
         switch (materialEscogido()) {
             case "Adamantium" -> {
                 p = 1832732;
+                break;
             }
             case "Hierro" -> {
                 p = 329473;
+                break;
             }
-            case  "Plata" -> {
+            case "Plata" -> {
                 p = 7324823;
+                break;
             }
             case "Platino" -> {
                 p = 321091;
+                break;
             }
             case "Oro" -> {
                 p = 4398453;
+                break;
             }
             case "Diamante" -> {
                 p = 74910132;
+                break;
             }
+            default -> throw new IllegalStateException("Unexpected value: " + materialEscogido());
         }
         return p;
     }
 
     //Indicar material del Blindaje
-    private String materialEscogido() {
+    public String materialEscogido() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Que blindaje quiere elegir:");
         System.out.println("0) Adamantium");
@@ -54,21 +62,27 @@ public class Blindaje extends Defensa {
         switch (valorObtenido) {
             case 0 -> {
                 nombre = "Adamantium";
+                break;
             }
             case 1 -> {
                 nombre = "Hierro";
+                break;
             }
             case 2 -> {
                 nombre = "Plata";
+                break;
             }
             case 3 -> {
                 nombre = "Platino";
+                break;
             }
             case 4 -> {
                 nombre = "Oro";
+                break;
             }
             case 5 -> {
                 nombre = "Diamante";
+                break;
             }
             default -> throw new IllegalStateException("Unexpected value: " + valorObtenido);
         }

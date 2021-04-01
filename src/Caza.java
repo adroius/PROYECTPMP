@@ -7,6 +7,7 @@ public class Caza extends NaveBuilder {
     List<Defensa> defensa;
     List<Arma> conjuntoDeArmas;
     List<Propulsion> prop;
+    int numDefensas=numeroDeDefensasMax();
 
     public Caza() {
         super();
@@ -36,25 +37,29 @@ public class Caza extends NaveBuilder {
     }
 
     public List<Defensa> tipoDeDefensa() {
+        int def=numDefensas;
         List<Defensa> defensa = new ArrayList<>();
-        System.out.println("Introduzca el tipo de defensa: ");
-        System.out.println("1) Escudo");
-        System.out.println("2) Blindaje");
-        Scanner sc = new Scanner(System.in);
-        int e = sc.nextInt();
-        Defensa d;
-        switch (e) {
-            case 1:
-                d = new Escudo();
-                defensa.add(d);
-                break;
-            case 2:
-                d = new Blindaje();
-                defensa.add(d);
-                break;
-            default:
-                throw new IllegalStateException("Valor incorrecto: " + e);
-        }
+        do {
+            System.out.println("Introduzca el tipo de defensa: ");
+            System.out.println("1) Escudo");
+            System.out.println("2) Blindaje");
+            Scanner sc = new Scanner(System.in);
+            int e = sc.nextInt();
+            Defensa d;
+            switch (e) {
+                case 1:
+                    d = new Escudo();
+                    defensa.add(d);
+                    break;
+                case 2:
+                    d = new Blindaje();
+                    defensa.add(d);
+                    break;
+                default:
+                    throw new IllegalStateException("Valor incorrecto: " + e);
+            }
+            def=def-1;
+        } while (def!=0);
         return defensa;
     }
 
@@ -93,5 +98,10 @@ public class Caza extends NaveBuilder {
             i = i - 1;
         } while (i != 0);
         return prop;
+    }
+
+    @Override
+    public int numeroDeDefensasMax() {
+        return 1;
     }
 }

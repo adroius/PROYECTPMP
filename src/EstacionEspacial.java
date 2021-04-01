@@ -8,6 +8,7 @@ public class EstacionEspacial extends NaveBuilder{
     List<Arma> conjuntoDeArmas;
     List<Nave> conjuntoDeNaves;
     List<Propulsion> prop;
+    int numDefensas=numeroDeDefensasMax();
 
     public EstacionEspacial() {
         this.tripulantesMax = tripulantes();
@@ -105,6 +106,11 @@ public class EstacionEspacial extends NaveBuilder{
             i=i-1;
         } while (i!=0);
         return prop;
+    }
+
+    @Override
+    public int numeroDeDefensasMax() {
+        return 3;
     }
 
     public List<Nave> conjuntoDeNaves() {

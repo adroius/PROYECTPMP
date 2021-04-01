@@ -91,6 +91,11 @@ public class Destructor extends NaveBuilder{
         return prop;
     }
 
+    @Override
+    public int numeroDeDefensasMax() {
+        return 2;
+    }
+
     //Devuelve el tipo de defensas, armas y propulsion del destructor
     @Override
     public String toString() {
