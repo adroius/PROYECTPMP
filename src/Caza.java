@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Caza extends NaveBuilder {
-    int tripulantesMax;
+    int tripulantesMax; //
     List<Defensa> defensa;
     List<Arma> conjuntoDeArmas;
     List<Propulsion> prop;
