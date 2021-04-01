@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 //Clase Arma
 public class Arma {
+
     //Elegir arma
     String nombre = "";
     int potencia = 0;
