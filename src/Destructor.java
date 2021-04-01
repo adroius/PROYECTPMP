@@ -7,13 +7,15 @@ public class Destructor extends NaveBuilder{
     List<Defensa> conjuntoDefensa;
     List<Propulsion> prop;
 
+    //Constructor Destructor
     public Destructor(){
         super();
-        this.prop= conjuntoDePropulsion();
+        this.prop= conjuntoDePropulsion(); //
         this.conjuntoDeArmas=conjuntoDeArmas();
         this.conjuntoDefensa=tipoDeDefensa();
     }
 
+    //Capacidad de tripulantes
     @Override
     public int tripulantes() {
         System.out.println("¿Cuanto va a ser la capacidad maxima del carguero?");
@@ -89,6 +91,7 @@ public class Destructor extends NaveBuilder{
         return prop;
     }
 
+    //Devuelve el tipo de defensas, armas y propulsion del destructor
     @Override
     public String toString() {
         return "Destructor:" + "\nDefensa = " + conjuntoDefensa.toString() + "\nArmas: " +conjuntoDeArmas.toString()+ "\nPropulsion: "+prop.toString();
