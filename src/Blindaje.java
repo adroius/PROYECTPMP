@@ -1,10 +1,11 @@
 import java.util.Scanner;
-
+//Clase Blindaje hereda de Defensa
 public class Blindaje extends Defensa {
     private String material;
     private int danioAbsorbe;
     private int peso;
 
+    //Constructor Blindaje
     public Blindaje() {
         super();
         this.material = nombreMaterial();
@@ -12,6 +13,7 @@ public class Blindaje extends Defensa {
         this.peso = peso();
     }
 
+    //Indicar material del Blindaje
     private int materialEscogido() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Que blindaje quiere elegir:");
@@ -25,6 +27,7 @@ public class Blindaje extends Defensa {
         return valorObtenido;
     }
 
+    //Asignar peso del Blindaje
     public int peso() {
         int p = 0;
         switch (materialEscogido()) {
@@ -50,6 +53,7 @@ public class Blindaje extends Defensa {
         return p;
     }
 
+    //Asignar danio que Absorbe el blindaje
     @Override
     public int danioQueAbsorbe() {
         int d = 0;
@@ -76,6 +80,7 @@ public class Blindaje extends Defensa {
         return d;
     }
 
+    //Asignar el nombre del material del Blindaje
     public String nombreMaterial() {
         String nombre = "";
         switch (materialEscogido()) {
@@ -102,6 +107,7 @@ public class Blindaje extends Defensa {
         return nombre;
     }
 
+    //Devuleve el material y el danio que Absorbe el Blindaje
     @Override
     public String toString() {
         return ("Blindaje: " + "Material='" + material + ", danioAbsorbe=" + danioAbsorbe);
