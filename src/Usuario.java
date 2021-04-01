@@ -37,8 +37,7 @@ public class Usuario{
 
     @Override
     public String toString() {
-        return "Usuario{" +
-                "usuario=" + usuario +
+        return "Usuario{" + usuario +
                 ", user='" + user + '\'' +
                 ", contraseña='" + contraseña + '\'' +
                 ", isKromagg=" + isKromagg +

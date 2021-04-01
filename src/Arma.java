@@ -72,8 +72,6 @@ public class Arma {
 
     @Override
     public String toString() {
-        String f = " ";
-        f = ("La potencia del " + nombre() + " es de " + potencia() + "GigaJulios");
-        return f;
+       return "La potencia del " + nombre + " es de " + potencia+ "GigaJulios";
     }
 }
