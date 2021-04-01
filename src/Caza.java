@@ -17,14 +17,6 @@ public class Caza extends NaveBuilder {
         this.conjuntoDeArmas = conjuntoDeArmas();
     }
 
-    public Caza(int e, List<Defensa> d, List<Propulsion> p) {
-        super();
-        this.tripulantesMax = e;
-        this.defensa = d;
-        this.prop = p;
-        this.conjuntoDeArmas = conjuntoDeArmas();
-    }
-
     public int tripulantes() {
         System.out.println("La capacidad es de solo un tripulante.");
         int s = 1;
