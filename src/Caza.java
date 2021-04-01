@@ -25,7 +25,14 @@ public class Caza extends NaveBuilder {
 
     @Override
     public String toString() {
-        return "Caza:" + "\nTripulacion = " + tripulantesMax + "\nDefensa = " + defensa.toString() + "\nArmas: " + conjuntoDeArmas.toString() + "\nPropulsion: " + prop.toString();
+        return "Caza{" +
+                "tripulantesMax=" + tripulantesMax +
+                ", defensa=" + defensa +
+                ", conjuntoDeArmas=" + conjuntoDeArmas +
+                ", prop=" + prop +
+                ", numDefensas=" + numDefensas +
+                ", numidentificacion=" + numidentificacion +
+                '}';
     }
 
     public List<Defensa> tipoDeDefensa() {

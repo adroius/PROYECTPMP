@@ -26,6 +26,8 @@ public class EstacionEspacial extends NaveBuilder{
                 ", conjuntoDeArmas=" + conjuntoDeArmas +
                 ", conjuntoDeNaves=" + conjuntoDeNaves +
                 ", prop=" + prop +
+                ", numDefensas=" + numDefensas +
+                ", numidentificacion=" + numidentificacion +
                 '}';
     }
 

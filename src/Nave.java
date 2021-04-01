@@ -4,7 +4,7 @@ import java.util.Random;
 public abstract class Nave {
     int numidentificacion;
     public Nave() {
-        this.numidentificacion=numaleatorios();
+        this.numidentificacion=Math.abs(numaleatorios());
     }
     public int numaleatorios(){
         Random r=new Random();
@@ -19,6 +19,6 @@ public abstract class Nave {
 
     @Override
     public String toString() {
-        return "Nave: numidentificacion=" + numidentificacion;
+        return "numidentificacion=" + numidentificacion;
     }
 }

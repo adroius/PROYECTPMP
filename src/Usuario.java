@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Usuario{
     Cliente usuario;
-    String user;
+    int user;
     String contraseña;
     boolean isKromagg=false;
     boolean isPirata=false;
@@ -16,10 +16,10 @@ public class Usuario{
         this.contraseña = contraseña();
     }
 
-    private String user() {
-        System.out.println("Introduzca usuario");
+    private int user() {
+        System.out.println("Introduzca usuario en numeros");
         Scanner sc = new Scanner(System.in);
-        String s = sc.next();
+        int s = sc.nextInt();
         return s;
     }
 

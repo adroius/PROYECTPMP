@@ -6,10 +6,12 @@ public class Destructor extends NaveBuilder{
     List<Arma> conjuntoDeArmas;
     List<Defensa> conjuntoDefensa;
     List<Propulsion> prop;
+    int tripulantesMax;
 
     //Constructor Destructor
     public Destructor(){
         super();
+        this.tripulantesMax = tripulantes();
         this.prop= conjuntoDePropulsion(); //
         this.conjuntoDeArmas=conjuntoDeArmas();
         this.conjuntoDefensa=tipoDeDefensa();
@@ -97,9 +99,15 @@ public class Destructor extends NaveBuilder{
     }
 
     //Devuelve el tipo de defensas, armas y propulsion del destructor
+
+
     @Override
     public String toString() {
-        return "Destructor:" + "\nDefensa = " + conjuntoDefensa.toString() + "\nArmas: " +conjuntoDeArmas.toString()+ "\nPropulsion: "+prop.toString();
+        return "Destructor{" +
+                "conjuntoDeArmas=" + conjuntoDeArmas +
+                ", conjuntoDefensa=" + conjuntoDefensa +
+                ", prop=" + prop +
+                ", numidentificacion=" + numidentificacion +
+                '}';
     }
-
 }

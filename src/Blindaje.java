@@ -17,7 +17,7 @@ public class Blindaje extends Defensa {
     @Override
     public int danioQueAbsorbe() {
         int p = 0;
-        switch (materialEscogido()) {
+        switch (material) {
             case "Adamantium" -> {
                 p = 1832732;
                 break;

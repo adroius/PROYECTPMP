@@ -88,6 +88,18 @@ public class Carguero extends NaveBuilder {
         return 1;
     }
 
+    @Override
+    public String toString() {
+        return "Carguero{" +
+                "tripulantesMax=" + tripulantesMax +
+                ", carga=" + carga +
+                ", defensa=" + defensa +
+                ", prop=" + prop +
+                ", numDefensas=" + numDefensas +
+                ", numidentificacion=" + numidentificacion +
+                '}';
+    }
+
     public int carga() {
         System.out.println("Introduzca la carga maxima: ");
         Scanner sc = new Scanner(System.in);
