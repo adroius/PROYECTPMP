@@ -2,27 +2,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Carguero extends NaveBuilder{
-    int tripulantesMax=0;
-    int carga=0;
+//Clase Carguero hereda de NaveBuilder
+public class Carguero extends NaveBuilder {
+    int tripulantesMax = 0;
+    int carga = 0;
     List<Defensa> defensa;
     List<Propulsion> prop;
 
-    public Carguero(){
+    //Constructor Carguero
+    public Carguero() {
         this.tripulantesMax = tripulantes();
         this.carga = carga();
-        this.defensa= tipoDeDefensa();
-        this.prop=conjuntoDePropulsion();
+        this.defensa = tipoDeDefensa();
+        this.prop = conjuntoDePropulsion();
     }
 
+    //Cantidad de tripulantes
     @Override
-    public int tripulantes(){
-        System.out.println("¿Cuanto va a ser la capacidad maxima del carguero?");
+    public int tripulantes() {
+        System.out.println("¿Cuanto va a ser la capacidad maxima de tripulantes del carguero?");
         Scanner sc = new Scanner(System.in);
         int s = sc.nextInt();
-        return  (s);
+        return s;
     }
 
+    //Lista de defensa
     @Override
     public List<Defensa> tipoDeDefensa() {
         List<Defensa> defensa = new ArrayList<>();
@@ -49,8 +53,8 @@ public class Carguero extends NaveBuilder{
     @Override
     public List<Arma> conjuntoDeArmas() {
         List<Arma> armas = new ArrayList<>();
-            Arma a=new Arma();
-            armas.add(a);
+        Arma a = new Arma();
+        armas.add(a);
         return armas;
     }
 
@@ -60,21 +64,21 @@ public class Carguero extends NaveBuilder{
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cuantas propulsiones va a querer?");
         int i = sc.nextInt();
-        while (i>2){
+        while (i > 2 || i <= 0) {
             System.out.println("La capacidad de la nave para portar propulsiones es limitada");
             System.out.println("¿Cuantas propulsiones va a querer(1 o 2)?");
             i = sc.nextInt();
         }
-        do{
-            Propulsion a=new Propulsion();
+        do {
+            Propulsion a = new Propulsion();
             prop.add(a);
-            i=i-1;
-        } while (i!=0);
+            i = i - 1;
+        } while (i != 0);
         return prop;
     }
 
-    public int carga(){
-            System.out.println("Introduzca la carga maxima: ");
+    public int carga() {
+        System.out.println("Introduzca la carga maxima: ");
         Scanner sc = new Scanner(System.in);
         int c = sc.nextInt();
         return c;

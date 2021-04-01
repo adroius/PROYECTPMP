@@ -1,27 +1,7 @@
 import java.util.Scanner;
 //Clase Arma
 public class Arma {
-    String nombre="";
-    int potencia=0;
-    //Builder Arma
-    public Arma() {
-        this.nombre = nombre();
-        this.potencia= potencia();
-    }
-
-    @Override
-
-    public String toString() {
-        return "Nombre= " + nombre + ", Potencia = " + potencia;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-
-    public int getPotencia() {
-        return potencia;
-    }
-
+    //Elegir arma
     public String nombre(){
         String nombre="";
         Scanner sc = new Scanner(System.in);
@@ -50,13 +30,17 @@ public class Arma {
         System.out.println("¡Ha elegido " + nombre + "!");
         return nombre;
     }
-    public int potencia(){
+
+    //Introducir la potencia del arma
+    public static int potencia(){
         Scanner sc = new Scanner(System.in);
         System.out.print("Introduzca la potencia del arma: ");
         int v = sc.nextInt();
-        System.out.println("¡La potencia de su "+ this.nombre+" será " + v + " !");
+        System.out.println("¡La potencia de su arma será " + v + " !");
         return v;
     }
+
+    //Guardar el tipo de Arma ??
     private boolean isPEM(String s){
         return s=="PEM";
     }
@@ -68,5 +52,12 @@ public class Arma {
     }
     private boolean isCañonPlasma(String s){
         return s=="Cañon de plasma";
+    }
+
+    @Override
+    public String toString(){
+        String f=" ";
+        f=("La potencia del "+ nombre() +" es de " +potencia()+ "GigaJulios");
+        return f;
     }
 }

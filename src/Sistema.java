@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Sistema {
     List<Usuario> users = new ArrayList<>();
+    //Builder Sistema
     public Sistema() {
         boolean f = false;
         Scanner sc = new Scanner(System.in);
@@ -42,12 +43,12 @@ public class Sistema {
         }
         return finalizar;
     }
-
+    //Registrar Nuevo Cliente
     public Usuario registrarNuevoCliente() {
         Usuario u= new Usuario();
         return u;
     }
-
+    //Inciar Sesion
     public boolean iniciarSesion() {
         boolean ingresado = false;
 
