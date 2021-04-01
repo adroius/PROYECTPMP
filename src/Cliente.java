@@ -1,14 +1,14 @@
 import java.util.List;
 import java.util.Scanner;
 
-public class Cliente{
-    String Nombre;
-    String PlanetaOrigen;
-    String Especie;
-    String numeroIdentificacion;
+public class Cliente {
+    protected String Nombre;
+    protected String PlanetaOrigen;
+    protected String Especie;
+    protected String numeroIdentificacion;
     List<Nave> NavesEnPropiedad;
-    String Nick;
-    String email;
+    private String Nick;
+    private String email;
     boolean Kromagg;
 
     //Builder Cliente
