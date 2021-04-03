@@ -15,34 +15,16 @@ public class Sistema {
             System.out.println("3) Salir");
             int s = sc.nextInt();
             switch (s) {
-                case 1:
+                case 1 -> {
                     users.add(registrarNuevoCliente());
                     System.out.println(users.toString());
-                    break;
-                case 2:
-                    iniciarSesion();
-                    break;
-                case 3:
-                    f = finalizar();
-                    break;
+                }
+                case 2 -> iniciarSesion();
+                case 3 -> f = true;
             }
         } while (!f);
     }
 
-    private boolean finalizar() {
-        boolean finalizar;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("¿Desea Salir?");
-        System.out.println("1) SI");
-        System.out.println("2) NO");
-        int s = sc.nextInt();
-        switch (s) {
-            case 1 -> finalizar = true;
-            case 2 -> finalizar = false;
-            default -> throw new IllegalStateException("Unexpected value: " + s);
-        }
-        return finalizar;
-    }
     //Registrar Nuevo Cliente
     public Usuario registrarNuevoCliente() {
         Usuario u= new Usuario();
@@ -51,7 +33,6 @@ public class Sistema {
     //Inciar Sesion
     public boolean iniciarSesion() {
         boolean ingresado = false;
-
         return ingresado;
     }
 }
