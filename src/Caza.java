@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-//Clase Carguero hereda de NaveBuilder
+//Clase Caza hereda de NaveBuilder
 public class Caza extends NaveBuilder {
     int tripulantesMax; //Caza solo puede tener 1 tripulante
     List<Defensa> defensa; //Caza solo puede tener 1 defensa
     List<Arma> conjuntoDeArmas; //Caza tiene 2 armas
     List<Propulsion> prop; //Caza tiene 1 o 2 tipos de propulsion
-    int numDefensas=numeroDeDefensasMax(); //Max 1 defensa
+    int numDefensas=numeroDeDefensasMax(); //Max 1
 
     //Constructor de Caza
     public Caza() {
@@ -33,7 +33,7 @@ public class Caza extends NaveBuilder {
         //Escoger el tipo de Defensa del Caza
 
         //Hay que hacer un bucle para asegurarse de que el valor introducido es correcto
-        //Tiene más sentido hacer un bucle for
+        //Tiene más sentido hacer un bucle for o no hacer un bucle
         do {
             System.out.println("Introduzca el tipo de defensa: ");
             System.out.println("1) Escudo");
@@ -50,7 +50,7 @@ public class Caza extends NaveBuilder {
                     d = new Blindaje(); //Constructor Blindaje
                     defensa.add(d);
                     break;
-                //Si el valor introducido no es correcto
+                //El valor introducido no es correcto
                 default:
                     throw new IllegalStateException("Valor incorrecto: " + e);
             }
@@ -75,14 +75,15 @@ public class Caza extends NaveBuilder {
         return armas;
     }
 
-    //Lista de tipos de Propulsion de Caza (1 o 2)
+    //Lista de tipos de Propulsion del Caza (1 o 2)
     @Override
     public List<Propulsion> conjuntoDePropulsion() {
         List<Propulsion> prop = new ArrayList<>();
+        //Preguntar cuantos tipos de Propulsion tiene el Caza (1 o 2)
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cuantas propulsiones va a querer?");
         int i = sc.nextInt();
-        //Preguntar cuantos tipos de Propulsion tiene la nave (1 o 2)
+        //Comprobar que el numero de tipos de Propulsion es correcto
         while (i > 2 || i <= 0) {
             System.out.println("La capacidad de la nave para portar propulsiones es limitada");
             System.out.println("¿Cuantas propulsiones va a querer(1 o 2)?");
@@ -107,12 +108,12 @@ public class Caza extends NaveBuilder {
     @Override
     public String toString() {
         return "Caza {" +
-                "tripulantesMax=" + tripulantesMax +
-                ", defensa=" + defensa +
-                ", conjuntoDeArmas=" + conjuntoDeArmas +
-                ", prop=" + prop +
-                ", numDefensas=" + numDefensas +
-                ", numidentificacion=" + numReg +
+                " Numero de Tripulantes = " + tripulantesMax +
+                " Numero de Defensas = " + numDefensas +
+                " Defensas = " + defensa +
+                " Armas = " + conjuntoDeArmas +
+                " Propulsion = " + prop +
+                " Numero de Identificacion = " + numReg +
                 '}';
     }
 }

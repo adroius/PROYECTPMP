@@ -9,7 +9,7 @@ public class Cliente {
     List<Nave> NavesEnPropiedad;
     private String Nick;
     private String email;
-    boolean Kromagg;
+    boolean Kromagg; //Para que sirve esto??
     boolean isKromagg=false;
     boolean isPirata=false;
     boolean isFraude=false;
@@ -39,7 +39,7 @@ public class Cliente {
         this.Kromagg = isKromagg();
     }
 
-    //Builder Cliente
+    //Constructor Cliente
     public void getCliente(String Nombre, String PlanetaOrigen, String Especie, String numeroIdentificacion, List<Nave> NavesEnPropiedad, String Nick, String email) {
         this.Nombre = Nombre;
         this.PlanetaOrigen = PlanetaOrigen;
@@ -60,6 +60,8 @@ public class Cliente {
         return is;
     }
 
+    //Comprobar si es Sospechoso de Pirateria
+    //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isPirata() {
         boolean is = false;
         if (this.Especie == "Kromagg" || this.Especie == "kromagg") {
@@ -68,6 +70,8 @@ public class Cliente {
         return is;
     }
 
+    //Comprobar si es Sospechoso de Fraude
+    //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isFraude() {
         boolean is = false;
         if (this.Especie == "Kromagg" || this.Especie == "kromagg") {
