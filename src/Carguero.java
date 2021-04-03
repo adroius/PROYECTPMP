@@ -8,7 +8,7 @@ public class Carguero extends NaveBuilder {
     int carga = 0;
     List<Defensa> defensa;
     List<Propulsion> prop;
-    int numDefensas=numeroDeDefensasMax();
+    int numDefensas = numeroDeDefensasMax();
 
     //Constructor Carguero
     public Carguero() {
@@ -30,7 +30,7 @@ public class Carguero extends NaveBuilder {
     //Lista de defensa
     @Override
     public List<Defensa> tipoDeDefensa() {
-        int def=numDefensas;
+        int def = numDefensas;
         List<Defensa> defensa = new ArrayList<>();
         do {
             System.out.println("Introduzca el tipo de defensa: ");
@@ -51,8 +51,8 @@ public class Carguero extends NaveBuilder {
                 default:
                     throw new IllegalStateException("Valor incorrecto: " + e);
             }
-            def=def-1;
-        } while (def!=0);
+            def = def - 1;
+        } while (def != 0);
         return defensa;
     }
 

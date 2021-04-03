@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Sistema {
     List<Usuario> users = new ArrayList<>();
+
     //Builder Sistema
     public Sistema() {
         boolean f = false;
@@ -17,19 +18,45 @@ public class Sistema {
             switch (s) {
                 case 1 -> {
                     users.add(registrarNuevoCliente());
+                    menu();
+                    f = true;
                 }
-                case 2 -> iniciarSesion();
+                case 2 -> {
+                    if (iniciarSesion()) {
+                        menu();
+                        f = true;
+                    }
+                }
                 case 3 -> f = true;
                 default -> throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
     }
 
+    public void menu() {
+        Scanner sc = new Scanner(System.in);
+        boolean f = false;
+        do {
+            System.out.println("¿Que es lo que quiere realizar?");
+            System.out.println("1) Registrar nave");
+            System.out.println("2) Ver ofertas");
+            System.out.println("3) Salir");
+            int s = sc.nextInt();
+            switch (s) {
+                //case 1 -> ;
+                //case 2 -> ;
+                case 3 -> f = true;
+                default -> throw new IllegalStateException("Unexpected value: " + s);
+            }
+        } while(!f);
+    }
+
     //Registrar Nuevo Cliente
     public Usuario registrarNuevoCliente() {
-        Usuario u= new Usuario();
+        Usuario u = new Usuario();
         return u;
     }
+
     //Inciar Sesion
     public boolean iniciarSesion() {
         boolean ingresado = false;

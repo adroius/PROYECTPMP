@@ -10,6 +10,9 @@ public class Cliente {
     private String Nick;
     private String email;
     boolean Kromagg;
+    boolean isKromagg=false;
+    boolean isPirata=false;
+    boolean isFraude=false;
 
     //Builder Cliente
     public Cliente() {
@@ -50,6 +53,22 @@ public class Cliente {
 
     //Comprobar si es de la especie Kromagg
     private boolean isKromagg() {
+        boolean is = false;
+        if (this.Especie == "Kromagg" || this.Especie == "kromagg") {
+            is = true;
+        }
+        return is;
+    }
+
+    private boolean isPirata() {
+        boolean is = false;
+        if (this.Especie == "Kromagg" || this.Especie == "kromagg") {
+            is = true;
+        }
+        return is;
+    }
+
+    private boolean isFraude() {
         boolean is = false;
         if (this.Especie == "Kromagg" || this.Especie == "kromagg") {
             is = true;

@@ -5,9 +5,6 @@ public class Usuario{
     Cliente usuario;
     int user;
     String contraseña;
-    boolean isKromagg=false;
-    boolean isPirata=false;
-    boolean isFraude=false;
     int licenciaEspecial;
 
     public Usuario() {
@@ -40,19 +37,8 @@ public class Usuario{
         return "Usuario{" + usuario +
                 ", user='" + user + '\'' +
                 ", contraseña='" + contraseña + '\'' +
-                ", isKromagg=" + isKromagg +
-                ", isPirata=" + isPirata +
-                ", isFraude=" + isFraude +
                 ", licenciaEspecial=" + licenciaEspecial +
                 '}';
     }
 
-    private void ifIsKromagg(){
-        if (this.isKromagg){
-            System.out.println("Necesitara una licencia especial según un decreto de la Federación Intergaláctica");
-            Random number = new Random();
-            int valorObtenido = number.nextInt(100000);
-            this.licenciaEspecial=valorObtenido;
-        }
-    }
 }
