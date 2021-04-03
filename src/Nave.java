@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.Random;
 
 public abstract class Nave {
     String numReg;
@@ -7,7 +6,7 @@ public abstract class Nave {
         this.numReg=crearMatricula();
         //El numero de Identificacion tiene que tener un LNNNNLLL (L = letra, N = numero)
     }
-    
+
     public String crearMatricula(){
         String s="";
         s+=generarPalabra(1);
@@ -39,8 +38,4 @@ public abstract class Nave {
     public abstract List<Propulsion> conjuntoDePropulsion(); //Lista de tipos de propulsion de la nave
     public abstract int numeroDeDefensasMax();
 
-    @Override
-    public String toString() {
-        return "numidentificacion=" + numReg;
-    }
 }
