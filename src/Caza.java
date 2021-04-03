@@ -31,7 +31,7 @@ public class Caza extends NaveBuilder {
                 ", conjuntoDeArmas=" + conjuntoDeArmas +
                 ", prop=" + prop +
                 ", numDefensas=" + numDefensas +
-                ", numidentificacion=" + numidentificacion +
+                ", numidentificacion=" + numReg +
                 '}';
     }
 

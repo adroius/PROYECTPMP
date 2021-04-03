@@ -107,7 +107,7 @@ public class Destructor extends NaveBuilder{
                 "conjuntoDeArmas=" + conjuntoDeArmas +
                 ", conjuntoDefensa=" + conjuntoDefensa +
                 ", prop=" + prop +
-                ", numidentificacion=" + numidentificacion +
+                ", numidentificacion=" + numReg +
                 '}';
     }
 }

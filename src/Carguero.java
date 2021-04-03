@@ -96,7 +96,7 @@ public class Carguero extends NaveBuilder {
                 ", defensa=" + defensa +
                 ", prop=" + prop +
                 ", numDefensas=" + numDefensas +
-                ", numidentificacion=" + numidentificacion +
+                ", numidentificacion=" + numReg +
                 '}';
     }
 

@@ -2,16 +2,35 @@ import java.util.List;
 import java.util.Random;
 
 public abstract class Nave {
-    int numidentificacion;
+    String numReg;
     public Nave() {
-        this.numidentificacion=Math.abs(numaleatorios());
+        this.numReg=crearMatricula();
         //El numero de Identificacion tiene que tener un LNNNNLLL (L = letra, N = numero)
     }
+    
+    public String crearMatricula(){
+        String s="";
+        s+=generarPalabra(1);
+        s+="-";
+        s+=numaleatorios();
+        s+="-";
+        s+=generarPalabra(3);
+        return s;
+    }
 
+    public String numaleatorios(){
+        int numero = (int)(Math.random()*10000+1000);
+        return String.valueOf(Math.abs(numero));
+    }
 
-    public int numaleatorios(){
-        Random r=new Random();
-        return r.nextInt();
+    public String generarPalabra(int cantidad){
+        String palabra = "";
+        for (int i=0; i<cantidad; i++){
+            int codigoAscii = (int)Math.floor(Math.random()*(122 -
+                    97)+97);
+            palabra = palabra + (char)codigoAscii;
+        }
+        return palabra;
     }
 
     public abstract int tripulantes(); //Numero de tripulantes de la nave
@@ -20,8 +39,9 @@ public abstract class Nave {
     public abstract List<Propulsion> conjuntoDePropulsion(); //Lista de tipos de propulsion de la nave
     public abstract int numeroDeDefensasMax();
 
+
     @Override
     public String toString() {
-        return "numidentificacion=" + numidentificacion;
+        return "numidentificacion=" + numReg;
     }
 }
