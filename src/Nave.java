@@ -39,7 +39,6 @@ public abstract class Nave {
     public abstract List<Propulsion> conjuntoDePropulsion(); //Lista de tipos de propulsion de la nave
     public abstract int numeroDeDefensasMax();
 
-
     @Override
     public String toString() {
         return "numidentificacion=" + numReg;
