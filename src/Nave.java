@@ -5,7 +5,7 @@ public abstract class Nave {
     int numidentificacion;
     public Nave() {
         this.numidentificacion=Math.abs(numaleatorios());
-        //El numero de Identificacion tiene que tener un LNNNNLLL (L = letra, N = numero)
+        //El numero de Registro tiene que tener un LNNNNLLL (L = letra, N = numero)
     }
 
 
