@@ -1,5 +1,6 @@
+import java.io.IOException;
 import java.util.Scanner;
-import java.util.Random;
+
 
 public class Usuario{
     Cliente usuario;
@@ -13,7 +14,7 @@ public class Usuario{
         this.contraseña = contraseña();
     }
 
-    private int user() {
+    private int user(){
         System.out.println("Introduzca usuario en numeros");
         Scanner sc = new Scanner(System.in);
         int s = sc.nextInt();
