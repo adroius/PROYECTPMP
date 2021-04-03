@@ -13,6 +13,7 @@ public abstract class NaveBuilder extends Nave{
         System.out.println("4) Estacion espacial");
         Scanner sc = new Scanner(System.in);
         int s = sc.nextInt();
+        //Seleccion del tipo de Nave que se va a registrar
         switch (s) {
             case 1 -> {
                 System.out.println("Ha seleccionada Caza");

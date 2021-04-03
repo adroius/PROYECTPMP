@@ -6,13 +6,14 @@ public class Arma {
     //Elegir arma
     String nombre = "";
     int potencia = 0;
-    //Builder Arma
 
+    //Constructor Arma
     public Arma() {
         this.nombre = nombre();
         this.potencia = potencia();
     }
 
+    //Nombre del arma de la nave
     public String nombre() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Que arma quiere elegir:");
@@ -21,6 +22,7 @@ public class Arma {
         System.out.println("2) Rayo Laser");
         System.out.println("3) Cañon de plasma");
         int modelo = sc.nextInt();
+        //Seleccion del tipo de Arma de la nave
         switch (modelo) {
             case 0:
                 nombre = "PEM";
@@ -54,7 +56,7 @@ public class Arma {
         return v;
     }
 
-    //Guardar el tipo de Arma ??
+    //Guardar el tipo de Arma
     private boolean isPEM(String s) {
         return s == "PEM";
     }

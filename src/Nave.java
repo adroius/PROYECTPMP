@@ -5,12 +5,15 @@ public abstract class Nave {
     int numidentificacion;
     public Nave() {
         this.numidentificacion=Math.abs(numaleatorios());
+        //El numero de Identificacion tiene que tener un LNNNNLLL (L = letra, N = numero)
     }
+
+
     public int numaleatorios(){
         Random r=new Random();
         return r.nextInt();
     }
-    //Hay que añadir un numero de registro!
+
     public abstract int tripulantes(); //Numero de tripulantes de la nave
     public abstract List<Defensa> tipoDeDefensa(); //Lista de las defensas de la nave
     public abstract List<Arma> conjuntoDeArmas(); //Lista de las armas de la nave
