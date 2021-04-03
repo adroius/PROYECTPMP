@@ -4,7 +4,7 @@ public abstract class Nave {
     String numReg;
     public Nave() {
         this.numReg=crearMatricula();
-        //El numero de Identificacion tiene que tener un LNNNNLLL (L = letra, N = numero)
+        //El numero de Identificacion tiene que tener un formato LNNNNLLL (L = letra, N = numero)
     }
 
     public String crearMatricula(){
