@@ -1,10 +1,11 @@
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
 
 public class Usuario{
     Cliente usuario;
-    int user;
+    String user;
     String contraseña;
     int licenciaEspecial;
 
@@ -14,10 +15,10 @@ public class Usuario{
         this.contraseña = contraseña();
     }
 
-    private int user(){
+    private String  user(){
         System.out.println("Introduzca usuario en numeros");
         Scanner sc = new Scanner(System.in);
-        int s = sc.nextInt();
+        String  s = sc.next();
         return s;
     }
 

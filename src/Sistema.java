@@ -1,3 +1,4 @@
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -54,6 +55,18 @@ public class Sistema {
     //Registrar Nuevo Cliente
     public Usuario registrarNuevoCliente() {
         Usuario u = new Usuario();
+        try
+        {
+            FileWriter escribir=new FileWriter("usercontraseña.txt",true);
+            escribir.write(u.user);
+            escribir.write(u.contraseña);
+            escribir.write("\n");
+            escribir.close();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error al escribir");
+        }
         return u;
     }
 
