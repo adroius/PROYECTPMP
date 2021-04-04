@@ -38,6 +38,10 @@ public class Cliente {
         s = sc.next();
         this.email = s;
         this.Kromagg = isKromagg();
+        escribirInfo();
+    }
+
+    public void escribirInfo(){
         try {
             FileWriter escribir = new FileWriter("usuarioInfo.txt");
             escribir.write(this.Nombre);
@@ -58,7 +62,6 @@ public class Cliente {
             System.out.println("Error al escribir");
         }
     }
-
     //Constructor Cliente
     public void getCliente(String Nombre, String PlanetaOrigen, String Especie, String numeroIdentificacion, List<Nave> NavesEnPropiedad, String Nick, String email) {
         this.Nombre = Nombre;

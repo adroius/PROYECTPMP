@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Sistema {
-    List<Usuario> users = new ArrayList<>();
     private int intentospermitidos = 2;
     //Constructor Sistema
     public Sistema() throws FileNotFoundException {
@@ -19,9 +18,9 @@ public class Sistema {
             int s = sc.nextInt();
             switch (s) {
                 case 1: {
-                    users.add(registrarNuevoCliente());
-                    menu();
+                    registrarNuevoCliente();
                     f = true;
+                    break;
                 }
                 case 2: {
                     if (iniciarSesion()) {
