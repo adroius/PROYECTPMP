@@ -1,9 +1,10 @@
 import java.util.List;
 import java.util.Date;
-
+//Clase Oferta
 public class Oferta{
-    String nIdentificacion;
+    String nIdentificacion; //Numero de identificacion de Oferta
 
+    //Constructor Oferta
     public Oferta (String nIdentificacion){
 
         this.nIdentificacion = nIdentificacion;

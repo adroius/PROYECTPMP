@@ -6,10 +6,11 @@ import java.util.Scanner;
 public class Sistema {
     List<Usuario> users = new ArrayList<>();
 
-    //Builder Sistema
+    //Constructor Sistema
     public Sistema() {
         boolean f = false;
         Scanner sc = new Scanner(System.in);
+        //Menu del sistema
         do {
             System.out.println("Bienvenido al concesionario espacial");
             System.out.println("1) Ingresar nuevo cliente");
@@ -34,6 +35,7 @@ public class Sistema {
         } while (!f);
     }
 
+    //Menu
     public void menu() {
         Scanner sc = new Scanner(System.in);
         boolean f = false;

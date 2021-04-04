@@ -31,6 +31,7 @@ public abstract class NaveBuilder extends Nave{
                 System.out.println("Ha seleccionada Estacion Espacial");
                 n = new EstacionEspacial(); //Constructor de EstacionEspacial
             }
+            //Valor introducido incorrecto
             default -> throw new IllegalStateException("Unexpected value: " + s); //Ha introducido un numero incorrecto
         }
         return n;

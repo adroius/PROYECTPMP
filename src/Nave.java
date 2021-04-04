@@ -1,12 +1,15 @@
 import java.util.List;
 
 public abstract class Nave {
-    String numReg;
+    String numReg;//Numero de Registro de la nave
+    //Tiene un formato LNNNNLLL (L = letra, N = número)
+
+    //Constructor Nave
     public Nave() {
         this.numReg=crearMatricula();
-        //El numero de Identificacion tiene que tener un formato LNNNNLLL (L = letra, N = numero)
     }
 
+    //Crear el numero de Registro (Formato LNNNNLLL)
     public String crearMatricula(){
         String s="";
         s+=generarPalabra(1);
@@ -17,11 +20,13 @@ public abstract class Nave {
         return s;
     }
 
+    //Parte numerica del Numero de Registro
     public String numaleatorios(){
         int numero = (int)(Math.random()*10000+1000);
         return String.valueOf(Math.abs(numero));
     }
 
+    //Parte literal del Numero de Registro
     public String generarPalabra(int cantidad){
         String palabra = "";
         for (int i=0; i<cantidad; i++){
@@ -36,6 +41,6 @@ public abstract class Nave {
     public abstract List<Defensa> tipoDeDefensa(); //Lista de las defensas de la nave
     public abstract List<Arma> conjuntoDeArmas(); //Lista de las armas de la nave
     public abstract List<Propulsion> conjuntoDePropulsion(); //Lista de tipos de propulsion de la nave
-    public abstract int numeroDeDefensasMax();
+    public abstract int numeroDeDefensasMax(); //Numero máximo de Defensas de la nave
 
 }
