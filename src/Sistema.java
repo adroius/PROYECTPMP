@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class Sistema {
     List<Usuario> users = new ArrayList<>();
-    private int intentospermitidos = 3;
+    private int intentospermitidos = 2;
+
     //Constructor Sistema
     public Sistema() throws FileNotFoundException {
         boolean f = false;
@@ -79,6 +80,7 @@ public class Sistema {
         use += sc.next();
         try {
             do {
+                intentospermitidos = intentospermitidos - 1;
                 BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
                 String linea = "";
                 while ((linea = br.readLine()) != null) {
@@ -87,16 +89,13 @@ public class Sistema {
                         break;
                     }
                 }
-                if (!encontrado) {
-                    intentospermitidos = intentospermitidos - 1;
-                    use=null;
-                    System.out.println("Datos erroneos");
-                    System.out.println("Introduzca usuario");
-                    use += sc.next();
-                    System.out.println("Introduzca contraseña");
-                    use += sc.next();
+                if (!encontrado && intentospermitidos >= 0) {
+                    System.out.println("Error en los datos introducidos.");
+                     encontrado=iniciarSesion();
+                } else if (!encontrado && intentospermitidos < 0){
+                    break;
                 }
-            } while (use.equalsIgnoreCase("si") && intentospermitidos > 0);
+            } while (intentospermitidos >= 0 || !encontrado);
         } catch (IOException e) {
             System.out.println("Error");
         }
