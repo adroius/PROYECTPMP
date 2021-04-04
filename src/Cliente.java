@@ -1,3 +1,4 @@
+import java.io.FileWriter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,6 +38,25 @@ public class Cliente {
         s = sc.next();
         this.email = s;
         this.Kromagg = isKromagg();
+        try {
+            FileWriter escribir = new FileWriter("usuarioInfo.txt");
+            escribir.write(this.Nombre);
+            escribir.write("-");
+            escribir.write(this.PlanetaOrigen);
+            escribir.write("-");
+            escribir.write(this.Especie);
+            escribir.write("-");
+            escribir.write(this.numeroIdentificacion);
+            escribir.write("-");
+            escribir.write(this.NavesEnPropiedad.toString());
+            escribir.write("-");
+            escribir.write(this.Nick);
+            escribir.write("-");
+            escribir.write(this.email);
+            escribir.close();
+        } catch (Exception e) {
+            System.out.println("Error al escribir");
+        }
     }
 
     //Constructor Cliente
