@@ -38,7 +38,6 @@ public class Cliente {
         s = sc.next();
         this.email = s;
         this.Kromagg = isKromagg();
-        escribirInfo();
     }
 
     public void escribirInfo(){
@@ -52,11 +51,10 @@ public class Cliente {
             escribir.write("-");
             escribir.write(this.numeroIdentificacion);
             escribir.write("-");
-            escribir.write(this.NavesEnPropiedad.toString());
-            escribir.write("-");
             escribir.write(this.Nick);
             escribir.write("-");
             escribir.write(this.email);
+            escribir.write("\n");
             escribir.close();
         } catch (Exception e) {
             System.out.println("Error al escribir");

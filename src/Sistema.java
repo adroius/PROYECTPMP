@@ -69,6 +69,7 @@ public class Sistema {
             FileWriter escribir = new FileWriter("usercontraseña.txt", true);
             escribir.write(u.user);
             escribir.write(u.contraseña);
+            u.usuario.escribirInfo();
             escribir.write("\n");
             escribir.close();
         } catch (Exception e) {
