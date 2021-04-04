@@ -19,32 +19,33 @@ public class Blindaje extends Defensa {
         int p = 0;
         //Dependiendo del material del Blindaje absorbera una cantidad de danio
         switch (material) {
-            case "Adamantium" -> {
+            case "Adamantium": {
                 p = 1832732;
                 break;
             }
-            case "Hierro" -> {
+            case "Hierro": {
                 p = 329473;
                 break;
             }
-            case "Plata" -> {
+            case "Plata": {
                 p = 7324823;
                 break;
             }
-            case "Platino" -> {
+            case "Platino": {
                 p = 321091;
                 break;
             }
-            case "Oro" -> {
+            case "Oro": {
                 p = 4398453;
                 break;
             }
-            case "Diamante" -> {
+            case "Diamante": {
                 p = 74910132;
                 break;
             }
             //Es realmente necesario este default??
-            default -> throw new IllegalStateException("Unexpected value: " + materialEscogido());
+            default:
+                throw new IllegalStateException("Unexpected value: " + materialEscogido());
 
         }
         return p;
@@ -64,32 +65,33 @@ public class Blindaje extends Defensa {
         String nombre;
         //Deberiamos hacer un while hasta que el cliente introduzca un numero correcto?
         switch (valorObtenido) {
-            case 0 -> {
+            case 0: {
                 nombre = "Adamantium";
                 break;
             }
-            case 1 -> {
+            case 1: {
                 nombre = "Hierro";
                 break;
             }
-            case 2 -> {
+            case 2: {
                 nombre = "Plata";
                 break;
             }
-            case 3 -> {
+            case 3: {
                 nombre = "Platino";
                 break;
             }
-            case 4 -> {
+            case 4: {
                 nombre = "Oro";
                 break;
             }
-            case 5 -> {
+            case 5: {
                 nombre = "Diamante";
                 break;
             }
             //Si el cliente introduce un numero que no corresponde
-            default -> throw new IllegalStateException("Unexpected value: " + valorObtenido);
+            default:
+                throw new IllegalStateException("Unexpected value: " + valorObtenido);
         }
         return nombre;
     }

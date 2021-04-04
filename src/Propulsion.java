@@ -41,25 +41,29 @@ public class Propulsion {
 
         //Deberiamos hacer un bucle para comprobar que el valor introducido es correcto
         switch (modelo) {
-            case 0 -> {
+            case 0: {
                 nombre = "Compresor de Traza";
+                break;
             }
-            case 1 -> {
+            case 1: {
                 nombre = "Motor FTL";
+                break;
             }
-            case 2 -> {
+            case 2: {
                 nombre = "Vela Solar";
+                break;
             }
-            case 3 -> {
+            case 3: {
                 nombre = "Motor Curvatura";
+                break;
             }
-            case 4 -> {
+            case 4: {
                 nombre = "Motor Ionico";
+                break;
             }
             //Valor introducido erroneo
-            default -> throw new IllegalStateException("Unexpected value: " + modelo);
+            default: throw new IllegalStateException("Unexpected value: " + modelo);
         }
-        System.out.println("¡Ha elegido " + nombre + "!");
         return nombre;
     }
 

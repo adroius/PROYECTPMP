@@ -1,9 +1,12 @@
-import java.io.File;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
 
-//Nave n=NaveBuilder.CrearNave();
+//Nave n= NaveBuilder.CrearNave();
 public class Main {
     public static void main(String[] args) {
-        new Sistema();
+        try {
+            new Sistema();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,3 +1,4 @@
+import java.io.FileWriter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,6 +40,26 @@ public class Cliente {
         this.Kromagg = isKromagg();
     }
 
+    public void escribirInfo(){
+        try {
+            FileWriter escribir = new FileWriter("usuarioInfo.txt");
+            escribir.write(this.Nombre);
+            escribir.write("-");
+            escribir.write(this.PlanetaOrigen);
+            escribir.write("-");
+            escribir.write(this.Especie);
+            escribir.write("-");
+            escribir.write(this.numeroIdentificacion);
+            escribir.write("-");
+            escribir.write(this.Nick);
+            escribir.write("-");
+            escribir.write(this.email);
+            escribir.write("\n");
+            escribir.close();
+        } catch (Exception e) {
+            System.out.println("Error al escribir");
+        }
+    }
     //Constructor Cliente
     public void getCliente(String Nombre, String PlanetaOrigen, String Especie, String numeroIdentificacion, List<Nave> NavesEnPropiedad, String Nick, String email) {
         this.Nombre = Nombre;
