@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class Sistema {
     List<Usuario> users = new ArrayList<>();
     private int intentospermitidos = 2;
-
     //Constructor Sistema
     public Sistema() throws FileNotFoundException {
         boolean f = false;
@@ -19,19 +18,24 @@ public class Sistema {
             System.out.println("3) Salir");
             int s = sc.nextInt();
             switch (s) {
-                case 1 -> {
+                case 1: {
                     users.add(registrarNuevoCliente());
                     menu();
                     f = true;
                 }
-                case 2 -> {
+                case 2: {
                     if (iniciarSesion()) {
                         menu();
                     }
                     f = true;
+                    break;
                 }
-                case 3 -> f = true;
-                default -> throw new IllegalStateException("Unexpected value: " + s);
+                case 3:{
+                    f = true;
+                    break;
+                }
+                default:
+                    throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
     }
@@ -48,9 +52,13 @@ public class Sistema {
             int s = sc.nextInt();
             switch (s) {
                 //case 1 -> ;
-                //case 2 -> ;
-                case 3 -> f = true;
-                default -> throw new IllegalStateException("Unexpected value: " + s);
+                //case 2 -> Buscador();
+                case 3:{
+                    f = true;
+                    break;
+                }
+                default:
+                    throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
     }
