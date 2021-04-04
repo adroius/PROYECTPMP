@@ -14,7 +14,7 @@ public class Cliente {
     boolean isPirata=false;
     boolean isFraude=false;
 
-    //Builder Cliente
+    //Constructor Cliente
     public Cliente() {
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cual es su nombre?");

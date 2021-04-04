@@ -7,7 +7,7 @@ public class Usuario{
     Cliente usuario;
     String user;
     String contraseña;
-    int licenciaEspecial; //Esto tiene que estar aquí??
+    int licenciaEspecial; //Esto tiene que estar aquí?? No debería estar en Cliente??
 
     //Constructor Usuario
     public Usuario() {
