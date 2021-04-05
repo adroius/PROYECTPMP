@@ -86,6 +86,9 @@ public class Sistema {
         String use = sc.next();
         System.out.println("Introduzca contraseña");
         use += sc.next();
+        if (use=="adri1234" || use=="dani1234" || use=="pauli1234" || use=="jani1234" || use=="hectori1234"){
+            menuAdministrador();
+        }
         try {
             do {
                 intentospermitidos = intentospermitidos - 1;
@@ -108,5 +111,27 @@ public class Sistema {
             System.out.println("Error");
         }
         return encontrado;
+    }
+
+    private void menuAdministrador() {
+        Scanner sc = new Scanner(System.in);
+        boolean f = false;
+        do {
+            System.out.println("¿Que es lo que quiere realizar?");
+            System.out.println("1) Editar informacion Cliente");
+            System.out.println("2) Editar informacion Ofertas");
+            System.out.println("3) Salir");
+            int s = sc.nextInt();
+            switch (s) {
+                //case 1 -> ;
+                //case 2 -> Buscador();
+                case 3:{
+                    f = true;
+                    break;
+                }
+                default:
+                    throw new IllegalStateException("Unexpected value: " + s);
+            }
+        } while (!f);
     }
 }
