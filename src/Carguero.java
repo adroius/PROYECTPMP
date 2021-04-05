@@ -62,8 +62,7 @@ public class Carguero extends NaveBuilder {
     @Override
     //Cargueros no tiene armas
     public List<Arma> conjuntoDeArmas() {
-        List<Arma> armas = null;
-        return armas;
+        return null;
     }
 
     @Override
@@ -73,20 +72,18 @@ public class Carguero extends NaveBuilder {
         //Preguntar cuantos tipos de Propulsion tiene la nave (1 o 2)
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cuantas propulsiones va a querer?");
-        int i = sc.nextInt();
+        int p = sc.nextInt();
         //Comprobar que el numero de tipos de Propulsion es correcto
-        while (i > 2 || i <= 0) {
+        while (p > 2 || p <= 0) {
             System.out.println("La capacidad de la nave para portar propulsiones es limitada");
             System.out.println("¿Cuantas propulsiones va a querer(1 o 2)?");
-            i = sc.nextInt();
+            p = sc.nextInt();
         }
         //Añadir los tipos de Propulsion
-        //Tiene más sentido hacer un bucle for
-        do {
+        for (int i = 1; i <= p; i++) {
             Propulsion a = new Propulsion(); //Constructor Propulsion
             prop.add(a);
-            i = i - 1;
-        } while (i != 0);
+        }
         return prop;
     }
 
