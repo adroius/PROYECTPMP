@@ -22,13 +22,13 @@ public class Kromagg extends Cliente {
         return licencia;
     }
 
-    public Kromagg() {
-        if (isKromagg()) {
+    public NaveBuilder KromaggNave() {
+        NaveBuilder n = null;
             if (licencia()) {
-                NaveBuilder.CrearNave();
+                n.CrearNave();
             } else {
-                NaveBuilder.CrearNaveEspecial();
+                n.CrearNaveEspecial();
             }
+            return n;
         }
     }
-}
