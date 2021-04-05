@@ -44,10 +44,11 @@ public class Cliente {
         this.isFraude = isFraude();
     }
 
-    public Oferta crearOferta() {
+    /*public Oferta crearOferta() {
         Oferta oferta;
         oferta = new Registro();
-    }
+        return oferta;
+    }*/
 
     public void escribirInfo(){
         try {
@@ -70,7 +71,7 @@ public class Cliente {
         }
     }
 
-    public Oferta modificarOferta(String nIdentificacion) {
+    public void modificarOferta(String nIdentificacion) {
         boolean encontrado = comprobarNIdentificacion();
         if (encontrado) {
             System.out.println("¿Que quieres modificar?");
