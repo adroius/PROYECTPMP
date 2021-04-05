@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 //Clase Usuario
@@ -52,30 +49,35 @@ public class Usuario {
         try {
             do {
                 BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
-                String linea = "";
-                while ((linea = br.readLine()) != null) {
-                    if (linea.contains(id)) {
-                        /*String lineaSiguiente=br.readLine();
-                        System.out.println(lineaSiguiente);
-                        System.out.println("¿Desea modificar la informacion?");
+                String line;
+                String input = "";
+                while ((line = br.readLine()) != null) {
+                    if (line.contains(id)) {
+                        String ls = br.readLine();
+                        System.out.println(ls);
                         Scanner sc = new Scanner(System.in);
+                        System.out.println("¿Cual es su nombre?");
                         String s = sc.next();
-                        encontrado = true;
-                        br.close();
-                        break;*/
-                        BufferedReader file = new BufferedReader(new FileReader("./Archivo.txt"));
-                        String line;String input = "";
-                        while((line = file.readLine()) != null){
-                            if(line.contains("Usuario_1"))
-                                input += line.replaceAll("Activo", "NO Activo \r\n");
-                            else
-                                input += line+"\r\n";
-                        }
-                        FileOutputStream fileOut = new FileOutputStream("./Archivo.txt");
-                        fileOut.write(input.getBytes());
-                        fileOut.close();
-                    }
+                        System.out.println("¿Cual es su Planeta de Origen?");
+                        s += sc.next();
+                        System.out.println("¿Cual es su Especie?");
+                        s += sc.next();
+                        System.out.println("¿Cual es su numero de identificacion?");
+                        s += sc.next();
+                        System.out.println("¿Cual es su Nick?");
+                        s += sc.next();
+                        System.out.println("¿Cual es su email?");
+                        s += sc.next();
+                        System.out.println(sc);
+                        input += line.replaceAll(id, s);
+                        break;
+                    } else
+                        input += line + "Error";
+                    break;
                 }
+                FileOutputStream fileOut = new FileOutputStream("usuarioInfo.txt");
+                fileOut.write(input.getBytes());
+                fileOut.close();
                 if (!encontrado) {
                     System.out.println("Error en los datos introducidos.");
                     break;
