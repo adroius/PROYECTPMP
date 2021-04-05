@@ -45,11 +45,11 @@ public class Usuario{
                 ", Contraseña ='" + contraseña + '\'' +
                 '}';
     }
-    public void modificarInformacionUsuario(String id){
+    public static void modificarInformacionUsuario(String id){
         boolean encontrado=false;
         try {
             do {
-                BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
+                BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
                 String linea = "";
                 while ((linea = br.readLine()) != null) {
                     if (linea.equalsIgnoreCase(id)) {
@@ -59,8 +59,6 @@ public class Usuario{
                 }
                 if (!encontrado) {
                     System.out.println("Error en los datos introducidos.");
-                } else if (!encontrado){
-                    break;
                 }
             } while (!encontrado);
         } catch (IOException e) {
