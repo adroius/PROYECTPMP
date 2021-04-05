@@ -121,12 +121,12 @@ public class Destructor extends NaveBuilder{
     @Override
     public String toString() {
         return "Destructor { " +
-                " Numero de Tripulantes" + tripulantesMax +
-                " Numero de Defensas" + numDefensas +
-                " Defensas = " + conjuntoDefensa +
-                " Armas = " + conjuntoDeArmas +
-                " Propulsion = " + prop +
-                " Numero de Identificacion = " + numReg +
+                " \nNumero de Tripulantes" + tripulantesMax +
+                " \nNumero de Defensas" + numDefensas +
+                " \nDefensas = " + conjuntoDefensa +
+                " \nArmas = " + conjuntoDeArmas +
+                " \nPropulsion = " + prop +
+                " \nNumero de Identificacion = " + numReg +
                 '}';
     }
 }

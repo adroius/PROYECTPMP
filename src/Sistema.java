@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Sistema {
-    List<Usuario> users = new ArrayList<>();
     private int intentospermitidos = 2;
+
     //Constructor Sistema
     public Sistema() throws FileNotFoundException {
         boolean f = false;
@@ -19,9 +19,9 @@ public class Sistema {
             int s = sc.nextInt();
             switch (s) {
                 case 1: {
-                    users.add(registrarNuevoCliente());
-                    menu();
+                    registrarNuevoCliente();
                     f = true;
+                    break;
                 }
                 case 2: {
                     if (iniciarSesion()) {
@@ -30,7 +30,7 @@ public class Sistema {
                     f = true;
                     break;
                 }
-                case 3:{
+                case 3: {
                     f = true;
                     break;
                 }
@@ -53,7 +53,7 @@ public class Sistema {
             switch (s) {
                 //case 1 -> ;
                 //case 2 -> Buscador();
-                case 3:{
+                case 3: {
                     f = true;
                     break;
                 }
@@ -67,7 +67,7 @@ public class Sistema {
     public Usuario registrarNuevoCliente() {
         Usuario u = new Usuario();
         try {
-            FileWriter escribir = new FileWriter("usercontraseña.txt", true);
+            FileWriter escribir = new FileWriter("usercontraseña.txt");
             escribir.write(u.user);
             escribir.write(u.contraseña);
             escribir.write("\n");
@@ -75,6 +75,7 @@ public class Sistema {
         } catch (Exception e) {
             System.out.println("Error al escribir");
         }
+        u.usuario.escribirInfo();
         return u;
     }
 
@@ -86,27 +87,57 @@ public class Sistema {
         String use = sc.next();
         System.out.println("Introduzca contraseña");
         use += sc.next();
-        try {
-            do {
-                intentospermitidos = intentospermitidos - 1;
-                BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
-                String linea = "";
-                while ((linea = br.readLine()) != null) {
-                    if (linea.equalsIgnoreCase(use)) {
-                        encontrado = true;
+        if (!(use == "dani1234" || use == "pauli1234" || use == "jani1234" || use == "hectori1234" || use != "adri1234")) {
+            try {
+                do {
+                    intentospermitidos = intentospermitidos - 1;
+                    BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
+                    String linea = "";
+                    while ((linea = br.readLine()) != null) {
+                        if (linea.equalsIgnoreCase(use)) {
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado && intentospermitidos >= 0) {
+                        System.out.println("Error en los datos introducidos.");
+                        encontrado = iniciarSesion();
+                    } else if (!encontrado && intentospermitidos < 0) {
                         break;
                     }
-                }
-                if (!encontrado && intentospermitidos >= 0) {
-                    System.out.println("Error en los datos introducidos.");
-                     encontrado=iniciarSesion();
-                } else if (!encontrado && intentospermitidos < 0){
-                    break;
-                }
-            } while (intentospermitidos >= 0 || !encontrado);
-        } catch (IOException e) {
-            System.out.println("Error");
+                } while (intentospermitidos >= 0 || !encontrado);
+            } catch (IOException e) {
+                System.out.println("Error");
+            }
+        } else {
+            menuAdministrador();
+            encontrado=false;
         }
         return encontrado;
+    }
+
+    private void menuAdministrador() {
+        Scanner sc = new Scanner(System.in);
+        boolean f = false;
+        do {
+            System.out.println("¿Que es lo que quiere realizar?");
+            System.out.println("1) Editar informacion Cliente");
+            System.out.println("2) Editar informacion Ofertas");
+            System.out.println("3) Salir");
+            int s = sc.nextInt();
+            switch (s) {
+                case 1 -> {
+                    System.out.println("¿Usuario a editar?");
+                    String mod = sc.next();
+                    Usuario.modificarInformacionUsuario(mod);
+                }
+                //case 2 -> Buscador();
+                case 3 -> {
+                    f = true;
+                    break;
+                }
+                default -> throw new IllegalStateException("Unexpected value: " + s);
+            }
+        } while (!f);
     }
 }

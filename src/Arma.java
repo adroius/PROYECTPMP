@@ -3,7 +3,6 @@ import java.util.Scanner;
 //Clase Arma
 public class Arma {
 
-    //Elegir arma
     String nombre = "";
     int potencia = 0;
 
@@ -75,6 +74,7 @@ public class Arma {
 
     @Override
     public String toString() {
-       return "La potencia del " + nombre + " es de " + potencia+ "GigaJulios";
+
+        return "La potencia del " + nombre + " es de " + potencia+ "GigaJulios";
     }
 }
