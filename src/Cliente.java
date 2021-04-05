@@ -73,6 +73,8 @@ public class Cliente {
         this.Kromagg = isKromagg();
     }
 
+
+
     //Comprobar si es de la especie Kromagg
     private boolean isKromagg() {
         boolean is = false;
