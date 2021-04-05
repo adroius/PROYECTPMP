@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
-public class Kromagg extends Cliente{
+public class Kromagg extends Cliente {
     boolean licencia;
 
-    private boolean licencia(){
+    private boolean licencia() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Tienes licencia?");
         System.out.println("1) Si");
@@ -21,12 +21,14 @@ public class Kromagg extends Cliente{
         }
         return licencia;
     }
+
     public Kromagg() {
-        if (licencia()){
-            NaveBuilder.CrearNave();
-        }
-        else {
-            NaveBuilder.CrearNaveEspecial();
+        if (isKromagg()) {
+            if (licencia()) {
+                NaveBuilder.CrearNave();
+            } else {
+                NaveBuilder.CrearNaveEspecial();
+            }
         }
     }
 }
