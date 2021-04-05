@@ -47,10 +47,10 @@ public class Cliente {
         this.isFraude = isFraude();
     }
 
-    public Oferta crearOferta() {
-        Oferta oferta;
-        oferta = new Registro();
-    }
+//    public Oferta crearOferta() {
+//        Oferta oferta;
+//        oferta = new Registro();
+//    }
 
     public Oferta modificarOferta(String nIdentificacion) {
         boolean encontrado = comprobarNIdentificacion();
