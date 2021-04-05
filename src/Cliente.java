@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Timer;
@@ -14,6 +18,7 @@ public class Cliente {
     boolean isKromagg;
     boolean isPirata;
     boolean isFraude;
+    int nAdvertencias = 0;
 
     //Constructor Cliente
     public Cliente() {
@@ -40,6 +45,66 @@ public class Cliente {
         this.isKromagg = isKromagg();
         this.isPirata = isPirata();
         this.isFraude = isFraude();
+    }
+
+    public Oferta crearOferta() {
+        Oferta oferta;
+        oferta = new Registro();
+    }
+
+    public Oferta modificarOferta(String nIdentificacion) {
+        boolean encontrado = comprobarNIdentificacion();
+        if (encontrado) {
+            System.out.println("¿Que quieres modificar?");
+            System.out.println("¿Que quieres modificar?");
+            System.out.println("¿Que quieres modificar?");
+            System.out.println("¿Que quieres modificar?");
+        }
+    }
+
+
+    public int numeroAdvertencias(String nIdentificacion) {
+        boolean encontrado = comprobarNIdentificacion();
+        if (encontrado) {
+            System.out.println("Llevas " + nAdvertencias + " advertencias");
+        }
+        return nAdvertencias;
+    }
+
+    private boolean comprobarNIdentificacion() {
+        String nIdentificacion;
+        Scanner sc = new Scanner(System.in);
+        nIdentificacion = sc.next();
+        boolean encontrado = false;
+        try {
+            do {
+                BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
+                String linea = "";
+                while ((linea = br.readLine()) != null) {
+                    if (linea.contains(nIdentificacion)) {
+                        BufferedReader file = new BufferedReader(new FileReader("./Archivo.txt"));
+                        String line;
+                        String input = "";
+                        while ((line = file.readLine()) != null) {
+                            if (line.contains("Usuario_1"))
+                                input += line.replaceAll("Activo", "NO Activo \r\n");
+                            else
+                                input += line + "\r\n";
+                        }
+                        FileOutputStream fileOut = new FileOutputStream("./Archivo.txt");
+                        fileOut.write(input.getBytes());
+                        fileOut.close();
+                    }
+                }
+                if (!encontrado) {
+                    System.out.println("Error en los datos introducidos.");
+                    break;
+                }
+            } while (!encontrado);
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
+        return encontrado;
     }
 
     //Comprobar si es de la especie Kromagg
