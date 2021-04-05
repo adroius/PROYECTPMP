@@ -69,10 +69,11 @@ public class Usuario {
                         System.out.println("¿Cual es su email?");
                         s += sc.next();
                         System.out.println(sc);
-                        input += line.replaceAll(id, s);
+                        System.out.println(s);
+                        input = line.replaceAll(id, s);
                         break;
                     } else
-                        input += line + "Error";
+                        input = line + "Error";
                     break;
                 }
                 FileOutputStream fileOut = new FileOutputStream("usuarioInfo.txt");
