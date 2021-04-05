@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Timer;
@@ -51,6 +48,27 @@ public class Cliente {
 //        Oferta oferta;
 //        oferta = new Registro();
 //    }
+
+    public void escribirInfo(){
+        try {
+            FileWriter escribir = new FileWriter("usuarioInfo.txt");
+            escribir.write(this.numeroIdentificacion);
+            escribir.write("\n");
+            escribir.write(this.Nombre);
+            escribir.write("-");
+            escribir.write(this.PlanetaOrigen);
+            escribir.write("-");
+            escribir.write(this.Especie);
+            escribir.write("-");
+            escribir.write(this.Nick);
+            escribir.write("-");
+            escribir.write(this.email);
+            escribir.write("\n");
+            escribir.close();
+        } catch (Exception e) {
+            System.out.println("Error al escribir");
+        }
+    }
 
     public Oferta modificarOferta(String nIdentificacion) {
         boolean encontrado = comprobarNIdentificacion();

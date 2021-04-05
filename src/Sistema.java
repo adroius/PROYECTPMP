@@ -87,7 +87,10 @@ public class Sistema {
         String use = sc.next();
         System.out.println("Introduzca contraseña");
         use += sc.next();
-        if (!(use == "dani1234" || use == "pauli1234" || use == "jani1234" || use == "hectori1234" || use != "adri1234")) {
+        if (use == "dani1234" || use == "pauli1234" || use == "jani1234" || use == "hectori1234" || use == "adri1234") {
+            menuAdministrador();
+            encontrado=false;
+        } else {
             try {
                 do {
                     intentospermitidos = intentospermitidos - 1;
@@ -109,9 +112,6 @@ public class Sistema {
             } catch (IOException e) {
                 System.out.println("Error");
             }
-        } else {
-            menuAdministrador();
-            encontrado=false;
         }
         return encontrado;
     }
