@@ -70,15 +70,15 @@ public class Cliente {
         }
     }
 
-    public Oferta modificarOferta(String nIdentificacion) {
-        boolean encontrado = comprobarNIdentificacion();
-        if (encontrado) {
-            System.out.println("¿Que quieres modificar?");
-            System.out.println("¿Que quieres modificar?");
-            System.out.println("¿Que quieres modificar?");
-            System.out.println("¿Que quieres modificar?");
-        }
-    }
+//    public Oferta modificarOferta(String nIdentificacion) {
+//        boolean encontrado = comprobarNIdentificacion();
+//        if (encontrado) {
+//            System.out.println("¿Que quieres modificar?");
+//            System.out.println("¿Que quieres modificar?");
+//            System.out.println("¿Que quieres modificar?");
+//            System.out.println("¿Que quieres modificar?");
+//        }
+//    }
 
 
     public int numeroAdvertencias(String nIdentificacion) {
