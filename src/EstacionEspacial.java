@@ -8,8 +8,8 @@ public class EstacionEspacial extends NaveBuilder{
     List<Arma> conjuntoDeArmas; //Conjunto de Armas de las naves que contiene la EstacionEspacial
     List<Nave> conjuntoDeNaves; //Naves que contiene la EstacionEspacial (Numero Indeterminado)
     List<Propulsion> prop; //EstacionEspacial puede tener 1 o 2 tipos de propulsion
-    int numDefensas=numeroDeDefensasMax(); //Por si sola las Defensas maximas son 3
-
+    int numDefensas = numeroDeDefensasMax(); //Por si sola las Defensas maximas son 3
+    int numPasajerosMax;
     //Falta el numero máximo de pasajeros
 
 
@@ -20,6 +20,7 @@ public class EstacionEspacial extends NaveBuilder{
         this.prop= conjuntoDePropulsion();
         this.conjuntoDeArmas=conjuntoDeArmas();
         this.conjuntoDeNaves=conjuntoDeNaves();
+        this.numPasajerosMax=numPasajerosMax();
     }
 
     //Cantidad de tripulantes
@@ -28,7 +29,15 @@ public class EstacionEspacial extends NaveBuilder{
         System.out.println("¿Cual es la capacidad de tripulantes de la Estacion Espacial?");
         Scanner sc = new Scanner(System.in);
         int s = sc.nextInt();
-        return  (s);
+        return s;
+    }
+
+    //Numero máximo de pasajeros
+    public int numPasajerosMax() {
+        System.out.println("¿Cual es la capacidad de pasajeros de la Estacion Espacial?");
+        Scanner sc = new Scanner(System.in);
+        int s = sc.nextInt();
+        return s;
     }
 
     //Lista de Defensas de la EstacionEspacial (Por si sola puede tener 1, 2 o 3)
@@ -120,13 +129,13 @@ public class EstacionEspacial extends NaveBuilder{
     @Override
     public String toString() {
         return "Estacion Espacial {" +
-                " Numero de Tripulantes = " + tripulantesMax +
-                " Numero de Defensas = " + numDefensas +
-                " Defensas = " + defensa +
-                " Armas = " + conjuntoDeArmas +
-                " Propulsion = " + prop +
-                " Numero de Identificacion = " + numReg +
-                " Naves = " + conjuntoDeNaves +
+                "\nNumero de Tripulantes = " + tripulantesMax +
+                "\nNumero de Defensas = " + numDefensas +
+                "\nDefensas = " + defensa +
+                "\nArmas = " + conjuntoDeArmas +
+                "\nPropulsion = " + prop +
+                "\nNumero de Identificacion = " + numReg +
+                "\nNaves = " + conjuntoDeNaves +
                 '}';
     }
 

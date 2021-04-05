@@ -1,4 +1,3 @@
-import java.util.Random;
 import java.util.Scanner;
 
 //Clase Escudo hereda de Defensa
@@ -33,7 +32,7 @@ public class Escudo extends Defensa{
     @Override
     public String toString() {
         return "Escudo: Energia requerida= " + energiaR +
-                ", Daño Absorbido= " + danioQueAb;
+                "\nDaño Absorbido= " + danioQueAb;
     }
 
 }

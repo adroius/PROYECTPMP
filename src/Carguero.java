@@ -35,8 +35,7 @@ public class Carguero extends NaveBuilder {
         //Escoger el tipo de Defensa del Carguero
 
         //Hay que hacer un bucle para asegurarse de que el valor introducido es correcto
-        //Tiene más sentido hacer un bucle for o no hacer un bucle
-        do {
+        for (int i = 1; i <= 1; i++){
             System.out.println("Introduzca el tipo de defensa: ");
             System.out.println("1) Escudo");
             System.out.println("2) Blindaje");
@@ -56,8 +55,7 @@ public class Carguero extends NaveBuilder {
                 default:
                     throw new IllegalStateException("Valor incorrecto: " + e);
             }
-            def = def - 1;
-        } while (def != 0);
+        }
         return defensa;
     }
 
@@ -109,12 +107,12 @@ public class Carguero extends NaveBuilder {
     @Override
     public String toString() {
         return "Carguero {" +
-                " Numero de Tripulantes = " + tripulantesMax +
-                " Carga Máxima = " + carga +
-                " Numero de Defensas = " + numDefensas +
-                " Defensas = " + defensa +
-                " Propulsion = " + prop +
-                " Numero de Identificacion = " + numReg +
+                "\nNumero de Tripulantes = " + tripulantesMax +
+                "\nCarga Máxima = " + carga +
+                "\nNumero de Defensas = " + numDefensas +
+                "\nDefensas = " + defensa +
+                "\nPropulsion = " + prop +
+                "\nNumero de Identificacion = " + numReg +
                 '}';
     }
 

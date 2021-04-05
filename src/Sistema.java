@@ -50,8 +50,8 @@ public class Sistema {
             System.out.println("3) Salir");
             int s = sc.nextInt();
             switch (s) {
-                //case 1 -> ;
-                //case 2 -> Buscador();
+                //case 1: { break;}
+                //case 2: { break;} -> Buscador();
                 case 3:{
                     f = true;
                     break;

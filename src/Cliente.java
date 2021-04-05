@@ -12,6 +12,7 @@ public class Cliente {
     private String email;
     boolean Kromagg; //Para que sirve esto??
     boolean isKromagg=false;
+    int licenciaEspecial;
     boolean isPirata=false;
     boolean isFraude=false;
 
@@ -103,6 +104,14 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente: " + "\nNombre= " + Nombre + "\nPlanetaOrigen= " + PlanetaOrigen + "\nEspecie= " + Especie + "\nNumero Identificacion= " + numeroIdentificacion + "\nNaves En Propiedad=" + NavesEnPropiedad + "\nNick=" + Nick + "\nEmail='" + email + "\nKromagg=" + Kromagg;
+        return "Cliente: " +
+                "\nNombre= " + Nombre +
+                "\nPlanetaOrigen= " + PlanetaOrigen +
+                "\nEspecie= " + Especie +
+                "\nNumero Identificacion= " + numeroIdentificacion +
+                "\nNaves En Propiedad=" + NavesEnPropiedad +
+                "\nNick=" + Nick +
+                "\nEmail='" + email +
+                "\nKromagg=" + Kromagg;
     }
 }

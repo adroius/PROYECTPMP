@@ -8,7 +8,6 @@ public class Usuario{
     Cliente usuario;
     String user;
     String contraseña;
-    int licenciaEspecial; //Esto tiene que estar aquí?? No debería estar en Cliente??
 
     //Constructor Usuario
     public Usuario() {
@@ -44,7 +43,6 @@ public class Usuario{
         return "Usuario {" + usuario +
                 ", User ='" + user + '\'' +
                 ", Contraseña ='" + contraseña + '\'' +
-                ", Licencia Especial =" + licenciaEspecial +
                 '}';
     }
     public void modificarInformacionUsuario(String id){
