@@ -1,4 +1,5 @@
-import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -18,7 +19,7 @@ public class Usuario{
 
     //Introducir Usuario
     private String  user(){
-        System.out.println("Introduzca usuario en numeros");
+        System.out.println("Introduzca usuario");
         Scanner sc = new Scanner(System.in);
         String  s = sc.next();
         return s;
@@ -46,5 +47,26 @@ public class Usuario{
                 ", Licencia Especial =" + licenciaEspecial +
                 '}';
     }
-
+    public void modificarInformacionUsuario(String id){
+        boolean encontrado=false;
+        try {
+            do {
+                BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
+                String linea = "";
+                while ((linea = br.readLine()) != null) {
+                    if (linea.equalsIgnoreCase(id)) {
+                        encontrado=true;
+                        break;
+                    }
+                }
+                if (!encontrado) {
+                    System.out.println("Error en los datos introducidos.");
+                } else if (!encontrado){
+                    break;
+                }
+            } while (!encontrado);
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
+    }
 }
