@@ -43,13 +43,13 @@ public class Cliente {
     public void escribirInfo(){
         try {
             FileWriter escribir = new FileWriter("usuarioInfo.txt");
+            escribir.write(this.numeroIdentificacion);
+            escribir.write("\n");
             escribir.write(this.Nombre);
             escribir.write("-");
             escribir.write(this.PlanetaOrigen);
             escribir.write("-");
             escribir.write(this.Especie);
-            escribir.write("-");
-            escribir.write(this.numeroIdentificacion);
             escribir.write("-");
             escribir.write(this.Nick);
             escribir.write("-");
