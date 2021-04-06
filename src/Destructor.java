@@ -38,19 +38,26 @@ public class Destructor extends NaveBuilder{
         System.out.println("¿Cuantas defensas tiene?");
         int e = sc.nextInt();
         //Comprobar que el numero de Defensas es correcto
-        while (e>2){
+        while (e > numeroDeDefensasMax() || e < 1){
             System.out.println("Puede tener como maximo dos defensas, ¿Cuantas posee?(1 o 2)");
             e = sc.nextInt();
         }
         Defensa d;
         //Escoger los tipos de defensas de Destructor
         //Hay que hacer un bucle para asegurar que el valor introducido es correcto
-        //Tiene más sentido hacer un bucle for
-        do{
+        for (int i = 1; i < e; i++){
             System.out.println("Introduzca el tipo de defensa: ");
             System.out.println("1) Escudo");
             System.out.println("2) Blindaje");
             int ef = sc.nextInt();
+            while (ef < 1 || ef > 2)
+            {
+                System.out.println("El valor es incorrecto.");
+                System.out.println("Vuelva a introducir el valor: ");
+                System.out.println("1) Escudo");
+                System.out.println("2) Blindaje");
+                ef = sc.nextInt();
+            }
             switch (ef) {
                 case 1:
                     d = new Escudo();
@@ -63,8 +70,7 @@ public class Destructor extends NaveBuilder{
                 default:
                     throw new IllegalStateException("Valor incorrecto: " + e);
             }
-            e=e-1;
-        } while (e!=0);
+        }
         return defensa;
     }
 
@@ -72,16 +78,12 @@ public class Destructor extends NaveBuilder{
     @Override
     public List<Arma> conjuntoDeArmas(){
         List<Arma> armas = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
-        int i = 1; //Destructor solo tiene 1 Arma
+        int arm = 1; //Destructor solo tiene 1 Arma
         //Escoger el tipo de Arma
-
-        //Tiene más sentido hacer un bucle for o no hacer un bucle
-        do {
+        for (int i = 1; i <= arm; i++) {
             Arma a = new Arma();
             armas.add(a);
-            i=i-1;
-        }while (i!=0);
+        }
         return armas;
     }
 
@@ -92,20 +94,18 @@ public class Destructor extends NaveBuilder{
         //Preguntar cuantos tipos de Propulsion tiene el Destructor (1 o 2)
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cuantas propulsiones va a querer?");
-        int i = sc.nextInt();
+        int p = sc.nextInt();
         //Comprobar que el numero de tipos de Propulsion es correcto
-        while (i>2){
+        while (p > 2 || p < 1){
             System.out.println("La capacidad de la nave para portar propulsiones es limitada");
             System.out.println("¿Cuantas propulsiones va a querer(1 o 2)?");
-            i = sc.nextInt();
+            p = sc.nextInt();
         }
         //Añadir los tipos de Propulsion
-        //Tiene más sentido hacer un bucle for
-        do{
-            Propulsion a=new Propulsion();
+        for (int i = 1; i <= p; i++){
+            Propulsion a=new Propulsion(); //Constructor Propulsion
             prop.add(a);
-            i=i-1;
-        } while (i!=0);
+        }
         return prop;
     }
 
