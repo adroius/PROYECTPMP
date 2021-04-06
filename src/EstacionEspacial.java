@@ -126,6 +126,12 @@ public class EstacionEspacial extends NaveBuilder{
 
     //Esto tiene que devolver Null???
     public List<Nave> conjuntoDeNaves() {
+        List<Nave> conjuntoDeNaves = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("¿Cuantas naves tiene la estacion espacial?");
+        int n = sc.nextInt();
+            do n-1
+
 
         return null;
     }
