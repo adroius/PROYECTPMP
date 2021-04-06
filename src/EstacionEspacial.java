@@ -72,11 +72,11 @@ public class EstacionEspacial extends NaveBuilder{
                 }
             switch (ef) {
                 case 1:
-                    d = new Escudo();
+                    d = new Escudo(); //Constructor Escudo
                     defensa.add(d);
                     break;
                 case 2:
-                    d = new Blindaje();
+                    d = new Blindaje(); //Constructor Blindaje
                     defensa.add(d);
                     break;
                 //El dato introducido es incorrecto
@@ -102,20 +102,18 @@ public class EstacionEspacial extends NaveBuilder{
         //Preguntar cuantos tipos de Propulsion tiene la EstacionEspacial (1 o 2)
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cuantas propulsiones va a querer?");
-        int i = sc.nextInt();
+        int p = sc.nextInt();
         //Comprobar que el numero de tipos de Propulsion es correcto
-        while (i>2){
+        while (p > 2 || p < 1){
             System.out.println("La capacidad de la nave para portar propulsiones es limitada");
-            System.out.println("¿Cuantas propulsiones va a querer(1 o 2)?");
-            i = sc.nextInt();
+            System.out.println("¿Cuantas propulsiones va a querer (1 o 2)?");
+            p = sc.nextInt();
         }
         //Añadir los tipos de Propulsion
-        //Tiene más sentido hacer un bucle for
-        do{
+        for (int i = 1; i < p; i++){
             Propulsion a=new Propulsion();
             prop.add(a);
-            i=i-1;
-        } while (i!=0);
+        }
         return prop;
     }
 
