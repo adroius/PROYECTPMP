@@ -30,18 +30,16 @@ public class Carguero extends NaveBuilder {
     //Lista de defensas del Carguero (Carguero solo puede tener una defensa)
     @Override
     public List<Defensa> tipoDeDefensa() {
-        int def = numDefensas;
         List<Defensa> defensa = new ArrayList<>();
         //Escoger el tipo de Defensa del Carguero
-
-        //Hay que hacer un bucle para asegurarse de que el valor introducido es correcto
-        for (int i = 1; i <= numeroDeDefensasMax(); i++){
+        for (int i = 1; i <= numDefensas; i++){
             System.out.println("Introduzca el tipo de defensa: ");
             System.out.println("1) Escudo");
             System.out.println("2) Blindaje");
             Scanner sc = new Scanner(System.in);
             int e = sc.nextInt();
-            while (e>2 ||e<1){
+            //Comprobar si el valor introducido es correcto
+            while (e > 2 ||e < 1){
                 System.out.println("Valor introducido incorrecto: ");
                 System.out.println("Vuelva a introducirlo: ");
                 System.out.println("1) Escudo");
@@ -50,17 +48,16 @@ public class Carguero extends NaveBuilder {
             }
             Defensa d;
             switch (e) {
-                case 1:
+                case 1 -> {
                     d = new Escudo(); //Constructor Escudo
                     defensa.add(d);
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     d = new Blindaje(); //Constructor Blindaje
                     defensa.add(d);
-                    break;
-                //El valor introducido no es correcto
-                default:
-                    throw new IllegalStateException("Valor incorrecto: " + e);
+                }
+                //El dato introducido es incorrecto
+                default -> throw new IllegalStateException("Valor incorrecto: " + e);
             }
         }
         return defensa;
@@ -83,7 +80,7 @@ public class Carguero extends NaveBuilder {
         //Comprobar que el numero de tipos de Propulsion es correcto
         while (p > 2 || p <= 0) {
             System.out.println("La capacidad de la nave para portar propulsiones es limitada");
-            System.out.println("¿Cuantas propulsiones va a querer(1 o 2)?");
+            System.out.println("¿Cuantas propulsiones va a querer (1 o 2)?");
             p = sc.nextInt();
         }
         //Añadir los tipos de Propulsion
