@@ -13,12 +13,13 @@ public class Cliente {
     private String Nick;
     private String email;
     boolean isKromagg;
-    boolean isPirata;
-    boolean isFraude;
+    boolean isPirata; //Sospechoso de Pirateria
+    boolean isFraude; //Sospechoso de Fraude
     int nAdvertencias = 0;
 
     //Constructor Cliente
     public Cliente() {
+        //Introducir la informacion del cliente
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cual es su nombre?");
         String s = sc.next();
@@ -44,18 +45,23 @@ public class Cliente {
         this.isFraude = isFraude();
     }
 
-    public List<Nave> navesEnVenta(){
 
+    //Hay que hacer este metodo
+    public List<Nave> navesEnVenta(){
+        return null;
     }
 
+    //Crear una oferta de naves
     public Oferta crearOferta() throws FileNotFoundException {
         Registro oferta;
         oferta = new Registro();
         Sistema s = new Sistema();
-        int numBid = s.numOferta();
+        int numBid = s.numOferta(); //Hay que llamar a la clase Oferta, ¿no?
         return null;
     }
 
+    //Suscribirse una oferta
+    //No se supone que tiene que suscribirse para que le notifiquen todas las ofertas que se hagan con un tipo de nave??
     public boolean suscribirseAUnaOferta(int nOferta){
         boolean suscribirse = false;
         boolean exit = false;
@@ -76,6 +82,7 @@ public class Cliente {
                     exit = true;
                     break;
                 }
+                //Valor obtenido incorrecto
                 default:
                     throw new IllegalStateException("Unexpected value: " + s);
             }
@@ -119,6 +126,7 @@ public class Cliente {
         return encontrado;
     }
 
+
     public void escribirInfo(){
         try {
             FileWriter escribir = new FileWriter("usuarioInfo.txt");
@@ -151,6 +159,7 @@ public class Cliente {
     }
 
 
+    //Contador del numero de advertencias dadas al cliente
     public int numeroAdvertencias(String nIdentificacion) {
         boolean encontrado = comprobarNIdentificacion();
         if (encontrado) {
@@ -158,6 +167,7 @@ public class Cliente {
         }
         return nAdvertencias;
     }
+
 
     private boolean comprobarNIdentificacion() {
         String nIdentificacion;
@@ -195,7 +205,7 @@ public class Cliente {
         return encontrado;
     }
 
-    //Comprobar si es de la especie Kromagg
+    //Comprobar si el cliente es de la especie Kromagg
     protected boolean isKromagg() {
         boolean is = false;
         if (this.Especie == "Kromagg" || this.Especie == "kromagg") {
@@ -207,7 +217,6 @@ public class Cliente {
     }
 
     //Comprobar si es Sospechoso de Pirateria
-    //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isPirata() {
         boolean is = false;
         if (this.isPirata) {
@@ -218,16 +227,16 @@ public class Cliente {
     }
 
     //Comprobar si es Sospechoso de Fraude
-    //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isFraude() {
         boolean is = false;
         if (this.isFraude) {
-            noEntrarAlSistema();
+            noEntrarAlSistema(); //Tiene que ir a una sin timer
             is = true;
         }
         return is;
     }
 
+    //Comprar nave si eres sospechoso de Pirateria (Solo pueden comprar cargueros)
     private boolean comprarNave() {
         Nave n;
         boolean compra;
@@ -238,7 +247,7 @@ public class Cliente {
         int s = sc.nextInt();
         switch (s) {
             case 1: {
-                n = new Carguero();
+                n = new Carguero(); //Constructor Carguero
                 compra = true;
                 break;
             }
@@ -252,6 +261,8 @@ public class Cliente {
         return compra;
     }
 
+    //Impide entrar al sistema si tienes 2 advertencias
+    //Hay que hacer un noEntrarAlSistema para los Sospechosos de Fraude pero sin el timer (Mirar el enunciado)
     private boolean noEntrarAlSistema() {
         Timer timer = new Timer();
         int seconds = 432000;
@@ -272,6 +283,13 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente: " + "\nNombre= " + Nombre + "\nPlanetaOrigen= " + PlanetaOrigen + "\nEspecie= " + Especie + "\nNumero Identificacion= " + numeroIdentificacion + "\nNaves En Propiedad=" + NavesEnPropiedad + "\nNick=" + Nick + "\nEmail='" + email;
+        return "Cliente: " +
+                "\nNombre= " + Nombre +
+                "\nPlanetaOrigen= " + PlanetaOrigen +
+                "\nEspecie= " + Especie +
+                "\nNumero Identificacion= " + numeroIdentificacion +
+                "\nNick=" + Nick +
+                "\nEmail='" + email +
+                "\nNaves En Propiedad=" + NavesEnPropiedad;
     }
 }
