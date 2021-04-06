@@ -35,12 +35,19 @@ public class Carguero extends NaveBuilder {
         //Escoger el tipo de Defensa del Carguero
 
         //Hay que hacer un bucle para asegurarse de que el valor introducido es correcto
-        for (int i = 1; i <= 1; i++){
+        for (int i = 1; i <= numeroDeDefensasMax(); i++){
             System.out.println("Introduzca el tipo de defensa: ");
             System.out.println("1) Escudo");
             System.out.println("2) Blindaje");
             Scanner sc = new Scanner(System.in);
             int e = sc.nextInt();
+            while (e>2 ||e<1){
+                System.out.println("Valor introducido incorrecto: ");
+                System.out.println("Vuelva a introducirlo: ");
+                System.out.println("1) Escudo");
+                System.out.println("2) Blindaje");
+                e = sc.nextInt();
+            }
             Defensa d;
             switch (e) {
                 case 1:

@@ -87,31 +87,38 @@ public class Sistema {
         String use = sc.next();
         System.out.println("Introduzca contraseña");
         use += sc.next();
-        if (use == "dani1234" || use == "pauli1234" || use == "jani1234" || use == "hectori1234" || use == "adri1234") {
-            menuAdministrador();
-            encontrado=false;
-        } else {
-            try {
-                do {
-                    intentospermitidos = intentospermitidos - 1;
-                    BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
-                    String linea = "";
-                    while ((linea = br.readLine()) != null) {
-                        if (linea.equalsIgnoreCase(use)) {
-                            encontrado = true;
+        switch (use) {
+            case "dani1234":
+            case "pauli1234":
+            case "jani1234":
+            case "hectori1234":
+            case "adri1234":
+                menuAdministrador();
+                encontrado = false;
+                break;
+            default:
+                try {
+                    do {
+                        intentospermitidos = intentospermitidos - 1;
+                        BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
+                        String linea = "";
+                        while ((linea = br.readLine()) != null) {
+                            if (linea.equalsIgnoreCase(use)) {
+                                encontrado = true;
+                                break;
+                            }
+                        }
+                        if (!encontrado && intentospermitidos >= 0) {
+                            System.out.println("Error en los datos introducidos.");
+                            encontrado = iniciarSesion();
+                        } else if (!encontrado && intentospermitidos < 0) {
                             break;
                         }
-                    }
-                    if (!encontrado && intentospermitidos >= 0) {
-                        System.out.println("Error en los datos introducidos.");
-                        encontrado = iniciarSesion();
-                    } else if (!encontrado && intentospermitidos < 0) {
-                        break;
-                    }
-                } while (intentospermitidos >= 0 || !encontrado);
-            } catch (IOException e) {
-                System.out.println("Error");
-            }
+                    } while (intentospermitidos >= 0 || !encontrado);
+                } catch (IOException e) {
+                    System.out.println("Error");
+                }
+                break;
         }
         return encontrado;
     }
