@@ -16,39 +16,39 @@ public class Blindaje extends Defensa {
 
     @Override
     public int danioQueAbsorbe() {
-        int p = 0;
+        int dqa;
         //Dependiendo del material del Blindaje absorbera una cantidad de danio
         switch (material) {
             case "Adamantium": {
-                p = 1832732;
+                dqa = 1832732;
                 break;
             }
             case "Hierro": {
-                p = 329473;
+                dqa = 329473;
                 break;
             }
             case "Plata": {
-                p = 7324823;
+                dqa = 7324823;
                 break;
             }
             case "Platino": {
-                p = 321091;
+                dqa = 321091;
                 break;
             }
             case "Oro": {
-                p = 4398453;
+                dqa = 4398453;
                 break;
             }
             case "Diamante": {
-                p = 74910132;
+                dqa = 74910132;
                 break;
             }
-            //Es realmente necesario este default??
+            //Si el valor recogido es incorrecto
             default:
                 throw new IllegalStateException("Unexpected value: " + materialEscogido());
 
         }
-        return p;
+        return dqa;
     }
 
     //Indicar material del Blindaje
@@ -63,7 +63,17 @@ public class Blindaje extends Defensa {
         System.out.println("5) Diamante");
         int valorObtenido = sc.nextInt();
         String nombre;
-        //Deberiamos hacer un while hasta que el cliente introduzca un numero correcto?
+        while (valorObtenido < 0 || valorObtenido > 5){
+            System.out.println("El valor introducido es incorrecto.");
+            System.out.println("Vuelva a introducir el valor:");
+            System.out.println("0) Adamantium");
+            System.out.println("1) Hierro");
+            System.out.println("2) Plata");
+            System.out.println("3) Platino");
+            System.out.println("4) Oro");
+            System.out.println("5) Diamante");
+            valorObtenido = sc.nextInt();
+        }
         switch (valorObtenido) {
             case 0: {
                 nombre = "Adamantium";
@@ -89,7 +99,7 @@ public class Blindaje extends Defensa {
                 nombre = "Diamante";
                 break;
             }
-            //Si el cliente introduce un numero que no corresponde
+            //El valor introducido es incorrecto
             default:
                 throw new IllegalStateException("Unexpected value: " + valorObtenido);
         }
@@ -99,6 +109,9 @@ public class Blindaje extends Defensa {
     //Devuleve el material y el danio que Absorbe el Blindaje
     @Override
     public String toString() {
-        return ("Blindaje: " + "Material='" + material + ", danioAbsorbe=" + danioAbsorbe);
+
+        return ("Blindaje: " +
+                "\nMaterial='" + material +
+                "\nDanio Que Absorbe=" + danioAbsorbe);
     }
 }
