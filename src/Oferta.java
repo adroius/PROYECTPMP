@@ -45,31 +45,7 @@ public class Oferta{
         return encontrado;
 
     private void menuOfertas() {
-        Scanner sc = new Scanner(System.in);
-        boolean f = false;
-        do {
-            System.out.println("¿Que es lo que desea?");
-            System.out.println("1) Editar Oferta");
-            System.out.println("2) Editar informacion Ofertas");
-            System.out.println("3) Salir");
-            int s = sc.nextInt();
-            switch (s) {
-                case 1: {
-                    System.out.println("¿Usuario a editar?");
-                    String mod = sc.next();
-                    Usuario.modificarInformacionUsuario(mod);
-                    break;
-                }
-                //case 2 -> Buscador();
-                case 3: {
-                    f = true;
-                    break;
-                }
-                default: throw new IllegalStateException("Unexpected value: " + s);
-            }
-        } while (!f);
-    }
-}
+
 
     /*public void getOferta () {
 
