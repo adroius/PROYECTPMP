@@ -1,17 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+//Clase EstacionEspacial hereda NaveBuilder
 public class EstacionEspacial extends NaveBuilder{
     int tripulantesMax;
     List<Defensa> defensa; //EstacionEspacial tiene 1, 2 o 3 Defensas además de las de las naves que contiene
     List<Arma> conjuntoDeArmas; //Conjunto de Armas de las naves que contiene la EstacionEspacial
     List<Nave> conjuntoDeNaves; //Naves que contiene la EstacionEspacial (Numero Indeterminado)
     List<Propulsion> prop; //EstacionEspacial puede tener 1 o 2 tipos de propulsion
-    int numDefensas = numeroDeDefensasMax(); //Por si sola las Defensas maximas son 3
+    int numDefensas; //Por si sola las Defensas maximas son 3
     int numPasajerosMax;
-    //Falta el numero máximo de pasajeros
-
 
     //Constructor EstacionEspacial
     public EstacionEspacial() {
@@ -48,21 +46,30 @@ public class EstacionEspacial extends NaveBuilder{
         //Preguntar cuantas Defensas tiene EstacionEspacial
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cuantas defensas tiene?");
-        int e = sc.nextInt();
+        int def = sc.nextInt();
         //Comprobar que el numero de Defensas es correcto
-        while (e>3){
-            System.out.println("Puede tener 1, 2 o 3 defensas, ¿Cuantas posee?");
-            e = sc.nextInt();
+        while (def > 3 || def < 1){
+            System.out.println("Solo puede tener 1, 2 o 3 defensas, ¿Cuantas posee?");
+            def = sc.nextInt();
         }
+        numDefensas = def;
         Defensa d;
         //Escoger el tipo de Defensa que tiene EstacionEspacial
         //Hay que hacer un bucle para asegurarse de que el valor introducido es correcto
-        //Tiene más sentido hacer un bucle for
-        do{
+        for (int i = 1; i < def; i++){
             System.out.println("Introduzca el tipo de defensa: ");
             System.out.println("1) Escudo");
             System.out.println("2) Blindaje");
             int ef = sc.nextInt();
+            //Comprobar que el valor introducido es correcto
+            while (ef < 1 || ef > 2 )
+                {
+                   System.out.println ("El valor es incorrecto");
+                   System.out.println ("Vuelva a introducir el valor:");
+                    System.out.println("1) Escudo");
+                    System.out.println("2) Blindaje");
+                    ef = sc.nextInt();
+                }
             switch (ef) {
                 case 1:
                     d = new Escudo();
@@ -72,11 +79,11 @@ public class EstacionEspacial extends NaveBuilder{
                     d = new Blindaje();
                     defensa.add(d);
                     break;
+                //El dato introducido es incorrecto
                 default:
-                    throw new IllegalStateException("Valor incorrecto: " + e);
+                    throw new IllegalStateException("Valor incorrecto: " + def);
             }
-            e=e-1;
-        } while (e!=0);
+        }
         return defensa;
     }
 
@@ -130,13 +137,14 @@ public class EstacionEspacial extends NaveBuilder{
     public String toString() {
         return "Estacion Espacial {" +
                 "\nNumero de Tripulantes = " + tripulantesMax +
+                "\nNumero de Pasajeros Máximo" + numPasajerosMax +
                 "\nNumero de Defensas = " + numDefensas +
                 "\nDefensas = " + defensa +
                 "\nArmas = " + conjuntoDeArmas +
                 "\nPropulsion = " + prop +
                 "\nNumero de Identificacion = " + numReg +
                 "\nNaves = " + conjuntoDeNaves +
-                '}';
+                "}";
     }
 
 }
