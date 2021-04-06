@@ -8,7 +8,7 @@ public class EstacionEspacial extends NaveBuilder{
     List<Arma> conjuntoDeArmas; //Conjunto de Armas de las naves que contiene la EstacionEspacial
     List<Nave> conjuntoDeNaves; //Naves que contiene la EstacionEspacial (Numero Indeterminado)
     List<Propulsion> prop; //EstacionEspacial puede tener 1 o 2 tipos de propulsion
-    int numDefensas; //Por si sola las Defensas maximas son 3
+    int numDefensas;
     int numPasajerosMax;
 
     //Constructor EstacionEspacial
@@ -48,15 +48,14 @@ public class EstacionEspacial extends NaveBuilder{
         System.out.println("¿Cuantas defensas tiene?");
         int def = sc.nextInt();
         //Comprobar que el numero de Defensas es correcto
-        while (def > 3 || def < 1){
+        while (def > numeroDeDefensasMax() || def < 1){
             System.out.println("Solo puede tener 1, 2 o 3 defensas, ¿Cuantas posee?");
             def = sc.nextInt();
         }
         numDefensas = def;
         Defensa d;
         //Escoger el tipo de Defensa que tiene EstacionEspacial
-        //Hay que hacer un bucle para asegurarse de que el valor introducido es correcto
-        for (int i = 1; i < def; i++){
+        for (int i = 1; i <= numDefensas; i++){
             System.out.println("Introduzca el tipo de defensa: ");
             System.out.println("1) Escudo");
             System.out.println("2) Blindaje");
@@ -72,11 +71,11 @@ public class EstacionEspacial extends NaveBuilder{
                 }
             switch (ef) {
                 case 1:
-                    d = new Escudo();
+                    d = new Escudo(); //Constructor Escudo
                     defensa.add(d);
                     break;
                 case 2:
-                    d = new Blindaje();
+                    d = new Blindaje(); //Constructor Blindaje
                     defensa.add(d);
                     break;
                 //El dato introducido es incorrecto
@@ -102,20 +101,18 @@ public class EstacionEspacial extends NaveBuilder{
         //Preguntar cuantos tipos de Propulsion tiene la EstacionEspacial (1 o 2)
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cuantas propulsiones va a querer?");
-        int i = sc.nextInt();
+        int p = sc.nextInt();
         //Comprobar que el numero de tipos de Propulsion es correcto
-        while (i>2){
+        while (p > 2 || p < 1){
             System.out.println("La capacidad de la nave para portar propulsiones es limitada");
-            System.out.println("¿Cuantas propulsiones va a querer(1 o 2)?");
-            i = sc.nextInt();
+            System.out.println("¿Cuantas propulsiones va a querer (1 o 2)?");
+            p = sc.nextInt();
         }
         //Añadir los tipos de Propulsion
-        //Tiene más sentido hacer un bucle for
-        do{
+        for (int i = 1; i <= p; i++){
             Propulsion a=new Propulsion();
             prop.add(a);
-            i=i-1;
-        } while (i!=0);
+        }
         return prop;
     }
 
