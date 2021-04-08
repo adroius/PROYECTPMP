@@ -1,8 +1,5 @@
 import java.io.*;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Cliente {
     protected String Nombre;
@@ -129,20 +126,20 @@ public class Cliente {
 
 
     public void escribirInfo(){
+        List<String> fichero = new ArrayList<>();
         try {
+            BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
+            String line;
+            while ((line = br.readLine()) != null) {
+                fichero.add(line);
+            }
+            fichero.add(this.numeroIdentificacion);
+            fichero.add(this.Nombre+"-"+this.PlanetaOrigen+"-"+this.Especie+"-"+this.Nick+"-"+this.email);
             FileWriter escribir = new FileWriter("usuarioInfo.txt");
-            escribir.write(this.numeroIdentificacion);
-            escribir.write("\n");
-            escribir.write(this.Nombre);
-            escribir.write("-");
-            escribir.write(this.PlanetaOrigen);
-            escribir.write("-");
-            escribir.write(this.Especie);
-            escribir.write("-");
-            escribir.write(this.Nick);
-            escribir.write("-");
-            escribir.write(this.email);
-            escribir.write("\n");
+            PrintWriter escritura = new PrintWriter(escribir);
+            for (int i = 0; i < fichero.size(); i++) {
+                escritura.println(fichero.get(i));
+            }
             escribir.close();
         } catch (Exception e) {
             System.out.println("Error al escribir");

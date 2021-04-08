@@ -57,7 +57,7 @@ public class Usuario {
                 while ((line = br.readLine()) != null) {
                     fichero.add(line);
                 }
-                int max = fichero.size();
+                int max = fichero.size()-1;
                 int min=0;
                 do{
                     if (id.equals(fichero.get(min))){

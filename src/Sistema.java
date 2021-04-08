@@ -121,13 +121,22 @@ public class Sistema {
 
     //Registrar Nuevo Cliente
     public Usuario registrarNuevoCliente() {
+        List<String> fichero = new ArrayList<>();
         Usuario u = new Usuario();
         try {
-            FileWriter escribir = new FileWriter("usercontraseña.txt");
-            escribir.write(u.user);
-            escribir.write(u.contraseña);
-            escribir.write("\n");
-            escribir.close();
+            BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
+            String line;
+            while ((line = br.readLine()) != null) {
+                fichero.add(line);
+            }
+            String s=u.user+u.contraseña;
+            fichero.add(s);
+            FileWriter fw = new FileWriter("usercontraseña.txt");
+            PrintWriter escritura = new PrintWriter(fw);
+            for (int i = 0; i < fichero.size(); i++) {
+                escritura.println(fichero.get(i));
+            }
+            escritura.close();
             u.usuario.escribirInfo();
         } catch (Exception e) {
             System.out.println("Error al escribir");
