@@ -156,6 +156,7 @@ public class Cliente {
             System.out.println("¿Que quieres modificar?");
             System.out.println("¿Que quieres modificar?");
         }
+        return null;
     }
 
 
@@ -230,7 +231,7 @@ public class Cliente {
     private boolean isFraude() {
         boolean is = false;
         if (this.isFraude) {
-            noEntrarAlSistema(); //Tiene que ir a una sin timer
+            noEntrarAlSistemaFraude(); //Tiene que ir a una sin timer
             is = true;
         }
         return is;
@@ -262,7 +263,6 @@ public class Cliente {
     }
 
     //Impide entrar al sistema si tienes 2 advertencias
-    //Hay que hacer un noEntrarAlSistema para los Sospechosos de Fraude pero sin el timer (Mirar el enunciado)
     private boolean noEntrarAlSistema() {
         Timer timer = new Timer();
         int seconds = 432000;
@@ -279,6 +279,13 @@ public class Cliente {
 
         }
         return bloqueoFinalizado;
+    }
+
+    //Impide entrar al sistema si eres sospechoso de Fraude
+    //No terminado
+    private boolean noEntrarAlSistemaFraude () {
+        System.out.println("No puedes entrar al sistema");
+        return true;
     }
 
     @Override

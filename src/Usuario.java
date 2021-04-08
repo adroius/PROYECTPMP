@@ -42,11 +42,12 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario {" + usuario +
-                ", User ='" + user + '\'' +
-                ", Contraseña ='" + contraseña + '\'' +
+                "User ='" + user + '\'' +
+                "Contraseña ='" + contraseña + '\'' +
                 '}';
     }
 
+    //Modificar Informacion del Usuario
     public static void modificarInformacionUsuario(String id) {
         boolean encontrado = false;
         List<String> fichero=new ArrayList<>();
