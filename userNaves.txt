@@ -1,0 +1,8 @@
+danirep666
+Destructor {  
+Numero de Tripulantes1 
+Numero de Defensas2 
+Defensas = [] 
+Armas = [La potencia del Misil Termonuclear es de 1GigaJulios] 
+Propulsion = [ Nombre = Motor FTL Velocidad = 1] 
+Numero de Identificacion = e-8597-aus}
