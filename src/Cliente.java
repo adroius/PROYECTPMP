@@ -190,7 +190,7 @@ public class Cliente {
                             else
                                 input += line + "\r\n";
                         }
-                        FileOutputStream fileOut = new FileOutputStream("./Archivo.txt");
+                        FileOutputStream fileOut = new FileOutputStream("./Archivo.txt",true);
                         fileOut.write(input.getBytes());
                         fileOut.close();
                     }
