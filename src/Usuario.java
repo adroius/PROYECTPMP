@@ -84,9 +84,7 @@ public class Usuario {
                         max = max - 1;
                     }
                 } while(!encontrado || max<=0);
-            String ruta = "usuarioInfo.txt";
-            File f = new File(ruta);
-            FileWriter fw = new FileWriter(f,true);
+            FileWriter fw = new FileWriter("usuarioInfo.txt");
             PrintWriter escritura = new PrintWriter(fw);
             for(int i=0;i<fichero.size();i++){
                 escritura.println(fichero.get(i));

@@ -22,7 +22,7 @@ public class Sistema {
                 //Registrar Nuevo Cliente
                 case 1: {
                     registrarNuevoCliente();
-                    f = true;
+                    f = false;
                     break;
                 }
                 //Inciar Sesion en el Sistema
@@ -123,15 +123,15 @@ public class Sistema {
     public Usuario registrarNuevoCliente() {
         Usuario u = new Usuario();
         try {
-            FileWriter escribir = new FileWriter("usercontraseña.txt", true);
+            FileWriter escribir = new FileWriter("usercontraseña.txt");
             escribir.write(u.user);
             escribir.write(u.contraseña);
             escribir.write("\n");
             escribir.close();
+            u.usuario.escribirInfo();
         } catch (Exception e) {
             System.out.println("Error al escribir");
         }
-        u.usuario.escribirInfo();
         return u;
     }
 
