@@ -19,11 +19,13 @@ public class Sistema {
             System.out.println("3) Salir");
             int s = sc.nextInt();
             switch (s) {
+                //Registrar Nuevo Cliente
                 case 1: {
                     registrarNuevoCliente();
                     f = true;
                     break;
                 }
+                //Inciar Sesion en el Sistema
                 case 2: {
                     if (iniciarSesion()) {
                         menu();
@@ -35,6 +37,7 @@ public class Sistema {
                     f = true;
                     break;
                 }
+                //Valor introducido incorrecto
                 default:
                     throw new IllegalStateException("Unexpected value: " + s);
             }

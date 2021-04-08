@@ -48,6 +48,7 @@ public class Cliente {
 
     //Hay que hacer este metodo
     public List<Nave> navesEnVenta(){
+
         return null;
     }
 
@@ -231,7 +232,7 @@ public class Cliente {
     private boolean isFraude() {
         boolean is = false;
         if (this.isFraude) {
-            noEntrarAlSistemaFraude(); //Tiene que ir a una sin timer
+            noEntrarAlSistemaFraude(); //No puede entrar el sistema hasta dejar de ser sospechoso
             is = true;
         }
         return is;
@@ -263,7 +264,7 @@ public class Cliente {
     }
 
     //Impide entrar al sistema si tienes 2 advertencias
-    private boolean noEntrarAlSistema() {
+    private boolean noEntrarAlSistemaAdvertencias() {
         Timer timer = new Timer();
         int seconds = 432000;
         boolean bloqueoFinalizado = (seconds != 0);
@@ -282,10 +283,9 @@ public class Cliente {
     }
 
     //Impide entrar al sistema si eres sospechoso de Fraude
-    //No terminado
     private boolean noEntrarAlSistemaFraude () {
         System.out.println("No puedes entrar al sistema");
-        return true;
+        return false;
     }
 
     @Override
