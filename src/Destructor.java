@@ -115,6 +115,8 @@ public class Destructor extends NaveBuilder{
 
         return 2;
     }
+    @Override
+    public List<Nave> conjuntoDeNaves(){return null;}
 
 
 
