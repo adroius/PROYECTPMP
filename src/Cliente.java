@@ -52,13 +52,13 @@ public class Cliente {
     }
 
     //Crear una oferta de naves
-    public Oferta crearOferta() throws FileNotFoundException {
+    /*public Oferta crearOferta() throws FileNotFoundException {
         Registro oferta;
         oferta = new Registro();
         Sistema s = new Sistema();
         int numBid = s.numOferta(); //Hay que llamar a la clase Oferta, ¿no?
         return null;
-    }
+    }*/
 
     //Suscribirse una oferta
     //No se supone que tiene que suscribirse para que le notifiquen todas las ofertas que se hagan con un tipo de nave??
@@ -148,7 +148,7 @@ public class Cliente {
         }
     }
 
-    public Oferta modificarOferta(String nIdentificacion) {
+    /*public Oferta modificarOferta(String nIdentificacion) {
         boolean encontrado = comprobarNIdentificacion();
         if (encontrado) {
             System.out.println("¿Que quieres modificar?");
@@ -157,7 +157,7 @@ public class Cliente {
             System.out.println("¿Que quieres modificar?");
         }
         return null;
-    }
+    }*/
 
 
     //Contador del numero de advertencias dadas al cliente

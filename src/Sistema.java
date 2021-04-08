@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Sistema {
     private int intentospermitidos = 2;
+    String usuarioEntrar="";
 
     //Constructor Sistema
     public Sistema() throws FileNotFoundException {
@@ -47,22 +48,69 @@ public class Sistema {
         do {
             System.out.println("¿Que es lo que quiere realizar?");
             System.out.println("1) Registrar nave");
-            System.out.println("2) Ver ofertas");
-            System.out.println("3) Salir");
+            System.out.println("2) Crear Oferta");
+            System.out.println("3) Ver ofertas");
+            System.out.println("4) Salir");
             int s = sc.nextInt();
             switch (s) {
-                //case 1 -> ;
+                case 1 -> insertarNave();
                 //case 2 -> Buscador();
-                case 3: {
+                case 4 -> {
                     f = true;
                     break;
                 }
-                default:
+                default->
                     throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
     }
 
+    public void insertarNave(){
+        List<String> fichero=new ArrayList<>();
+        boolean encontrado=false;
+        String usuarioAmeter=usuarioEntrar;
+        Nave n= NaveBuilder.CrearNave();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("userNaves.txt"));
+            String line;
+            while ((line = br.readLine()) != null) {
+                fichero.add(line);
+            }
+            int max = fichero.size();
+            int min=0;
+            do{
+                if (usuarioAmeter.equals(fichero.get(min))){
+                    String s= n.toString();
+                    fichero.add(min+1,s);
+                    encontrado=true;
+                } else {
+                    min = min + 1;
+                    max = max - 1;
+                }
+            } while(!encontrado || max<=0);
+            String ruta = "userNaves.txt";
+            File f = new File(ruta);
+            FileWriter fw = new FileWriter(f);
+            PrintWriter escritura = new PrintWriter(fw);
+            for(int i=0;i<fichero.size();i++){
+                escritura.println(fichero.get(i));
+            }
+            escritura.close();
+            try {
+                FileWriter escribir = new FileWriter("userNaves.txt");
+                escribir.write(usuarioAmeter);
+                escribir.write("\n");
+                escribir.write(n.toString());
+                escribir.write("\n");
+                escribir.close();
+            } catch (Exception e) {
+                System.out.println("Error al escribir");
+            }
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
+    }
+    
     //Registrar Nuevo Cliente
     public Usuario registrarNuevoCliente() {
         Usuario u = new Usuario();
@@ -105,6 +153,7 @@ public class Sistema {
                         while ((linea = br.readLine()) != null) {
                             if (linea.equalsIgnoreCase(use)) {
                                 encontrado = true;
+                                usuarioEntrar=use;
                                 break;
                             }
                         }
