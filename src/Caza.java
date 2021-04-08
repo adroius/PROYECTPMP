@@ -104,6 +104,9 @@ public class Caza extends NaveBuilder {
     }
 
     @Override
+    public List<Nave> conjuntoDeNaves(){return null;}
+
+    @Override
     public String toString() {
         return "Caza {" +
                 "\nNumero de Tripulantes = " + tripulantesMax +

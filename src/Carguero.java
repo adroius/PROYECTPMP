@@ -104,6 +104,8 @@ public class Carguero extends NaveBuilder {
         int c = sc.nextInt();
         return c;
     }
+    @Override
+    public List<Nave> conjuntoDeNaves(){return null;}
 
     @Override
     public String toString() {
