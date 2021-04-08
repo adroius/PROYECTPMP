@@ -42,5 +42,6 @@ public abstract class Nave {
     public abstract List<Arma> conjuntoDeArmas(); //Lista de las armas de la nave
     public abstract List<Propulsion> conjuntoDePropulsion(); //Lista de tipos de propulsion de la nave
     public abstract int numeroDeDefensasMax(); //Numero máximo de Defensas de la nave
+    public abstract List<Nave> conjuntoDeNaves();
 
 }

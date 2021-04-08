@@ -18,7 +18,6 @@ public class EstacionEspacial extends NaveBuilder{
         this.prop= conjuntoDePropulsion();
         this.conjuntoDeArmas=conjuntoDeArmas();
         this.conjuntoDeNaves=conjuntoDeNaves();
-        this.numPasajerosMax=numPasajerosMax();
     }
 
     //Cantidad de tripulantes
@@ -29,15 +28,6 @@ public class EstacionEspacial extends NaveBuilder{
         int s = sc.nextInt();
         return s;
     }
-
-    //Numero máximo de pasajeros
-    public int numPasajerosMax() {
-        System.out.println("¿Cual es la capacidad de pasajeros de la Estacion Espacial?");
-        Scanner sc = new Scanner(System.in);
-        int s = sc.nextInt();
-        return s;
-    }
-
     //Lista de Defensas de la EstacionEspacial (Por si sola puede tener 1, 2 o 3)
     //No debería añadir también las Defensas de las naves que contiene?
     @Override
@@ -123,8 +113,8 @@ public class EstacionEspacial extends NaveBuilder{
         return 3;
     }
 
-
     //Esto tiene que devolver Null???
+    @Override
     public List<Nave> conjuntoDeNaves() {
         List<Nave> conjuntoDeNaves = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
