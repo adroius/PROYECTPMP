@@ -130,9 +130,12 @@ public class EstacionEspacial extends NaveBuilder{
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cuantas naves tiene la estacion espacial?");
         int n = sc.nextInt();
-            do n-1
-
-
+        int i;
+        do {
+            i = n - 1;
+                NaveBuilder.CrearNave();
+            }
+            while (i!=0);
         return null;
     }
 
