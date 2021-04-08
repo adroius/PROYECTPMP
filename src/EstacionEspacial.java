@@ -17,7 +17,7 @@ public class EstacionEspacial extends NaveBuilder{
         this.defensa= tipoDeDefensa();
         this.prop= conjuntoDePropulsion();
         this.conjuntoDeArmas=conjuntoDeArmas();
-        this.conjuntoDeNaves=conjuntoDeNaves();
+        //this.conjuntoDeNaves=conjuntoDeNaves();
         this.numPasajerosMax=numPasajerosMax();
     }
 
@@ -125,7 +125,7 @@ public class EstacionEspacial extends NaveBuilder{
 
 
     //Esto tiene que devolver Null???
-    public List<Nave> conjuntoDeNaves() {
+    /*public List<Nave> conjuntoDeNaves() {
         List<Nave> conjuntoDeNaves = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cuantas naves tiene la estacion espacial?");
@@ -137,7 +137,7 @@ public class EstacionEspacial extends NaveBuilder{
             }
             while (i!=0);
         return null;
-    }
+    }*/
 
     @Override
     public String toString() {
