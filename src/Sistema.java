@@ -81,38 +81,42 @@ public class Sistema {
                 fichero.add(line);
             }
             Nave n = NaveBuilder.CrearNave();
-            String s = n.toString();
-            if (fichero.size() != 0) {
-                for (int i = 0; i < fichero.size(); i++) {
-                    if (usuarioAmeter.equals(fichero.get(i))) {
-                        fichero.add(i + 1, s);
+            int min = 0;
+            int max = fichero.size()-1;
+            if (max!= 0 && pertenece(usuarioAmeter)) {
+                while (!encontrado && max != 0) {
+                    if (usuarioAmeter.equals(fichero.get(min))) {
+                        fichero.add(min + 1, n.toString());
                         encontrado = true;
-                    } else {
-                        fichero.add(usuarioAmeter);
-                        fichero.add(s);
                     }
+                    min = min + 1;
+                    max = max - 1;
                 }
-                FileWriter fw = new FileWriter("userNaves.txt", true);
-                PrintWriter escritura = new PrintWriter(fw);
-                for (int i = 0; i < fichero.size(); i++) {
-                    escritura.println(fichero.get(i));
-                }
-                escritura.close();
             } else {
-                try {
-                    FileWriter escribir = new FileWriter("userNaves.txt", true);
-                    escribir.write(usuarioAmeter);
-                    escribir.write("\n");
-                    escribir.write(n.toString());
-                    escribir.write("\n");
-                    escribir.close();
-                } catch (Exception e) {
-                    System.out.println("Error al escribir");
-                }
+                fichero.add(usuarioAmeter);
+                fichero.add(n.toString());
             }
+            FileWriter fw = new FileWriter("userNaves.txt");
+            PrintWriter escritura = new PrintWriter(fw);
+            for (int i = 0; i < fichero.size(); i++) {
+                escritura.println(fichero.get(i));
+            }
+            escritura.close();
         } catch (IOException e) {
             System.out.println("Error");
         }
+    }
+
+    public boolean pertenece(String use) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("userNaves.txt"));
+        String linea = "";
+        boolean encontrado=false;
+        while ((linea = br.readLine()) != null) {
+            if (linea.equalsIgnoreCase(use)) {
+                encontrado = true;
+            }
+        }
+        return encontrado;
     }
 
     //Registrar Nuevo Cliente
