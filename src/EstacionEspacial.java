@@ -123,10 +123,11 @@ public class EstacionEspacial extends NaveBuilder{
         int i;
         do {
             i = n - 1;
-                NaveBuilder.CrearNave();
+                conjuntoDeNaves.add(NaveBuilder.CrearNave());
             }
             while (i!=0);
-        return null;
+        System.out.println("Se ha llenado la estacion");
+        return conjuntoDeNaves;
     }
 
     @Override
