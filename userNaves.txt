@@ -1,0 +1,25 @@
+hector2000
+Destructor {  
+Numero de Tripulantes1 
+Numero de Defensas2 
+Defensas = [] 
+Armas = [La potencia del Misil Termonuclear es de 1GigaJulios] 
+Propulsion = [ Nombre = Motor FTL Velocidad = 1] 
+Numero de Identificacion = w-6890-mpp}
+Caza {
+Numero de Tripulantes = 1
+Numero de Defensas = 1
+Defensas = [Escudo: Energia requerida= 1
+Daño Absorbido= 10]
+Armas = [La potencia del Misil Termonuclear es de 1GigaJulios, La potencia del Misil Termonuclear es de 1GigaJulios]
+Propulsion = [ Nombre = Motor FTL Velocidad = 1]
+Numero de Identificacion = d-10210-jsy}
+adrian2000
+Carguero {
+Numero de Tripulantes = 1
+Carga Máxima = 1
+Numero de Defensas = 1
+Defensas = [Escudo: Energia requerida= 1
+Daño Absorbido= 10]
+Propulsion = [ Nombre = Motor FTL Velocidad = 1]
+Numero de Identificacion = d-1476-btj}
