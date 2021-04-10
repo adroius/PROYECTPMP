@@ -44,23 +44,22 @@ public class Cliente {
         this.isFraude = isFraude();
     }
 
-    public List<Nave> navesEnVenta(){
+    /*public List<Nave> navesEnVenta() {
 
-    }
+    }*/
 
-    public Oferta crearOferta() throws FileNotFoundException {
+    public void crearOferta() throws FileNotFoundException {
         Registro oferta;
         oferta = new Registro();
-        Sistema s = new Sistema();
-        int numBid = s.numOferta();
-        return null;
+        Scanner sc = new Scanner(System.in);
+        int numBid = sc.nextInt();
     }
 
-    public boolean suscribirseAUnaOferta(int nOferta){
+    public boolean suscribirseAUnaOferta(int nOferta) {
         boolean suscribirse = false;
         boolean exit = false;
         Scanner sc = new Scanner(System.in);
-        if(comprobarNOferta(nOferta)){
+        if (comprobarNOferta(nOferta)) {
             System.out.println("¿Quieres suscribirte a esta oferta?");
             System.out.println("1) Si");
             System.out.println("2) No");
@@ -77,9 +76,10 @@ public class Cliente {
                     break;
                 }
                 default:
-                    throw new IllegalStateException("Unexpected value: " + s);
+                    throw new IllegalStateException("Valor no valido");
             }
-        } while (!exit);
+        }
+        while (!exit) ;
         return suscribirse;
     }
 
@@ -89,37 +89,23 @@ public class Cliente {
         String idenOferta = String.valueOf(nOferta);
         boolean encontrado = false;
         try {
-            do {
-                BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
-                String linea = "";
-                while ((linea = br.readLine()) != null) {
-                    if (linea.equalsIgnoreCase(idenOferta)) {
-                        BufferedReader file = new BufferedReader(new FileReader("./Archivo.txt"));
-                        String line;
-                        String input = "";
-                        while ((line = file.readLine()) != null) {
-                            if (line.contains("Usuario_1"))
-                                input += line.replaceAll("Activo", "NO Activo \r\n");
-                            else
-                                input += line + "\r\n";
-                        }
-                        FileOutputStream fileOut = new FileOutputStream("./Archivo.txt");
-                        fileOut.write(input.getBytes());
-                        fileOut.close();
-                    }
+            BufferedReader br = new BufferedReader(new FileReader("ofertaInfo.txt"));
+            String linea = "";
+            while (((linea = br.readLine()) != null) && (!encontrado)) {
+                if (linea.equalsIgnoreCase(idenOferta)) {
+                    encontrado = true;
                 }
-                if (!encontrado) {
-                    System.out.println("Error en los datos introducidos.");
-                    break;
-                }
-            } while (!encontrado);
+            }
+            if (!encontrado) {
+                System.out.println("Error en los datos introducidos.");
+            }
         } catch (IOException e) {
             System.out.println("Error");
         }
         return encontrado;
     }
 
-    public void escribirInfo(){
+    public void escribirInfo() {
         try {
             FileWriter escribir = new FileWriter("usuarioInfo.txt");
             escribir.write(this.numeroIdentificacion);
@@ -143,68 +129,58 @@ public class Cliente {
     public boolean modificarOferta(String nIdentificacion, int nOferta) {
         boolean exit = false;
         Scanner sc = new Scanner(System.in);
-        if(comprobarNOferta(nOferta)){
-            System.out.println("¿Quieres modificar esta oferta?");
-            System.out.println("1) Si");
-            System.out.println("2) No");
-            int s = sc.nextInt();
-            switch (s) {
-                case 1: {
-
-                    exit = true;
-                    break;
+        System.out.print("Pon su numero de identificacion");
+        nIdentificacion = sc.next();
+        if (comprobarNIdentificacion(nIdentificacion)) {
+            System.out.print("Pon su numero de identificacion");
+            nOferta = sc.nextInt();
+            if (comprobarNOferta(nOferta)) {
+                System.out.println("¿Quieres modificar esta oferta?");
+                System.out.println("1) Si");
+                System.out.println("2) No");
+                int s = sc.nextInt();
+                switch (s) {
+                    case 1: {
+                        exit = true;
+                        break;
+                    }
+                    case 2: {
+                        exit = true;
+                        break;
+                    }
+                    default:
+                        throw new IllegalStateException("Numero no valido, ponga otro numero " + s);
                 }
-                case 2: {
-
-                    exit = true;
-                    break;
-                }
-                default:
-                    throw new IllegalStateException("Numero no valido, ponga otro numero " + s);
             }
-        } while (!exit);
+            while (!exit) ;
+        }
         return exit;
     }
 
 
     public int numeroAdvertencias(String nIdentificacion) {
-        boolean encontrado = comprobarNIdentificacion();
+        boolean encontrado = comprobarNIdentificacion(nIdentificacion);
         if (encontrado) {
             System.out.println("Llevas " + nAdvertencias + " advertencias");
         }
         return nAdvertencias;
     }
 
-    private boolean comprobarNIdentificacion() {
-        String nIdentificacion;
+    private boolean comprobarNIdentificacion(String nIdentificacion) {
         Scanner sc = new Scanner(System.in);
         nIdentificacion = sc.next();
         boolean encontrado = false;
         try {
-            do {
-                BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
-                String linea = "";
-                while ((linea = br.readLine()) != null) {
-                    if (linea.contains(nIdentificacion)) {
-                        BufferedReader file = new BufferedReader(new FileReader("./Archivo.txt"));
-                        String line;
-                        String input = "";
-                        while ((line = file.readLine()) != null) {
-                            if (line.contains("Usuario_1"))
-                                input += line.replaceAll("Activo", "NO Activo \r\n");
-                            else
-                                input += line + "\r\n";
-                        }
-                        FileOutputStream fileOut = new FileOutputStream("./Archivo.txt");
-                        fileOut.write(input.getBytes());
-                        fileOut.close();
-                    }
+            BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
+            String linea = "";
+            while ((linea = br.readLine()) != null && (!encontrado)) {
+                if (linea.contains(nIdentificacion)) {
+                    encontrado = true;
                 }
-                if (!encontrado) {
-                    System.out.println("Error en los datos introducidos.");
-                    break;
-                }
-            } while (!encontrado);
+            }
+            if (!encontrado) {
+                System.out.println("Error en los datos introducidos.");
+            }
         } catch (IOException e) {
             System.out.println("Error");
         }
@@ -228,7 +204,7 @@ public class Cliente {
         boolean is = false;
         if (this.isPirata) {
             is = true;
-            comprarNave();
+            comprarNavePirata();
         }
         return is;
     }
@@ -244,7 +220,7 @@ public class Cliente {
         return is;
     }
 
-    private boolean comprarNave() {
+    private boolean comprarNavePirata() {
         Nave n;
         boolean compra;
         Scanner sc = new Scanner(System.in);
