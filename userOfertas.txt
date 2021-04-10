@@ -9,6 +9,16 @@ Armas = [La potencia del Misil Termonuclear es de 1GigaJulios, La potencia del M
 Propulsion = [ Nombre = Motor FTL Velocidad = 1]
 Numero de Identificacion = h-5989-qgb
 -
+Caza
+Numero de Tripulantes = 1
+Numero de Defensas = 1
+Defensas = [Blindaje: 
+Material='Hierro
+Danio Que Absorbe=329473]
+Armas = [La potencia del Misil Termonuclear es de 1GigaJulios, La potencia del Misil Termonuclear es de 1GigaJulios]
+Propulsion = [ Nombre = Motor FTL Velocidad = 1]
+Numero de Identificacion = h-5989-qgb
+-
 *
 adriam2000
 Caza

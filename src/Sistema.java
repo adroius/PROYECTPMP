@@ -43,7 +43,6 @@ public class Sistema {
             }
         } while (!f);
     }
-
     //Menu
     public void menu() throws IOException {
         Scanner sc = new Scanner(System.in);
@@ -64,6 +63,10 @@ public class Sistema {
                     crearOferta();
                     break;
                 }
+                case 3 -> {
+                    verOfertas();
+                    break;
+                }
                 case 4 -> {
                     f = true;
                     break;
@@ -71,6 +74,10 @@ public class Sistema {
                 default -> throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
+    }
+
+    public void verOfertas(){
+
     }
 
     public void crearOferta() throws IOException {
@@ -155,7 +162,7 @@ public class Sistema {
         }
     }
 
-    public void insertarNave() throws FileNotFoundException {
+    public void insertarNave() {
         List<String> fichero = new ArrayList<>();
         boolean encontrado = false;
         String usuarioAmeter = usuarioEntrar;

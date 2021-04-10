@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Date;
 import java.util.Scanner;
 
-//Clase Oferta
+/*Clase Oferta
 public class Oferta {
     String nIdentificacion; //Numero de identificacion de Oferta
     List<Oferta> Ofertas;
@@ -51,4 +51,4 @@ public class Oferta {
     }
 
 
-}
+}*/
