@@ -115,8 +115,7 @@ public class Carguero extends NaveBuilder {
                 "\nNumero de Defensas = " + numDefensas +
                 "\nDefensas = " + defensa +
                 "\nPropulsion = " + prop +
-                "\nNumero de Identificacion = " + numReg +
-                '}';
+                "\nNumero de Identificacion = " + numReg;
     }
 
 }

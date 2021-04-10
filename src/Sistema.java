@@ -111,8 +111,24 @@ public class Sistema {
         System.out.println("Introduzca la matricula de la nave que quiera poner en venta:");
         Scanner sc = new Scanner(System.in);
         String s = sc.next();
-        naves=cogerNave(naves,s);
-        System.out.println(naves.toString());
+        naves = cogerNave(naves, s);
+        List<String> lecturaOfertas = new ArrayList<>();
+        br = new BufferedReader(new FileReader("userOfertas.txt"));
+        String lineas;
+        while ((lineas = br.readLine()) != null) {
+            lecturaOfertas.add(lineas);
+        }
+        for (int i = 0; i < naves.size(); i++) {
+            lecturaOfertas.add(naves.get(i));
+        }
+        FileWriter fw = new FileWriter("userOfertas.txt");
+        PrintWriter escritura = new PrintWriter(fw);
+        escritura.println(usuarioEntrar);
+        for (int i = 0; i < lecturaOfertas.size(); i++) {
+            escritura.println(lecturaOfertas.get(i));
+        }
+        escritura.println("*");
+        escritura.close();
     }
 
     public void insertarNave() throws FileNotFoundException {
@@ -155,24 +171,27 @@ public class Sistema {
         }
     }
 
-    public List<String> cogerNave(List<String> naves, String matricula){
+    public List<String> cogerNave(List<String> naves, String matricula) {
         List<String> devolucion = new ArrayList<>();
-        int i=0;
-        boolean encontrado=true;
-        while(!encontrado) {
+        int i = 0;
+        boolean encontrado = false;
+        while (!encontrado) {
             if (naves.get(i).contains("Caza") || naves.get(i).contains("Carguero") || naves.get(i).contains("Destructor") || naves.get(i).contains("Estacion Espacial")) {
                 while (!(naves.get(i).equals("-"))) {
                     devolucion.add(naves.get(i));
                     i = i + 1;
                 }
-                String r=devolucion.get(i-1);
-                String resultado ="Numero de Identificacion = "+matricula;
+                int last = devolucion.size();
+                String r = devolucion.get(last - 1);
+                String resultado = "Numero de Identificacion = " + matricula;
                 if (!(r.equals(resultado))) {
-                    encontrado=false;
+                    encontrado = false;
                     devolucion.clear();
                 } else {
-                    encontrado=true;
+                    encontrado = true;
                 }
+            } else {
+                i = i + 1;
             }
         }
         return devolucion;

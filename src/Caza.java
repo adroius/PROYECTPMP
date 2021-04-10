@@ -115,7 +115,6 @@ public class Caza extends NaveBuilder {
                 "\nDefensas = " + defensa +
                 "\nArmas = " + conjuntoDeArmas +
                 "\nPropulsion = " + prop +
-                "\nNumero de Identificacion = " + numReg +
-                '}';
+                "\nNumero de Identificacion = " + numReg ;
     }
 }

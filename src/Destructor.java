@@ -128,7 +128,6 @@ public class Destructor extends NaveBuilder{
                 " \nDefensas = " + conjuntoDefensa +
                 " \nArmas = " + conjuntoDeArmas +
                 " \nPropulsion = " + prop +
-                " \nNumero de Identificacion = " + numReg +
-                '}';
+                " \nNumero de Identificacion = " + numReg;
     }
 }

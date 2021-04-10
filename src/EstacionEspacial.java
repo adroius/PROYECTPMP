@@ -139,8 +139,7 @@ public class EstacionEspacial extends NaveBuilder{
                 "\nArmas = " + conjuntoDeArmas +
                 "\nPropulsion = " + prop +
                 "\nNaves = " + conjuntoDeNaves +
-                "\nNumero de Identificacion = " + numReg +
-                "}";
+                "\nNumero de Identificacion = " + numReg;
     }
 
 }
