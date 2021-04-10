@@ -8,7 +8,7 @@ public class Sistema {
     String usuarioEntrar = "";
 
     //Constructor Sistema
-    public Sistema() throws FileNotFoundException {
+    public Sistema() throws IOException {
         boolean f = false;
         Scanner sc = new Scanner(System.in);
         //Menu del sistema
@@ -45,7 +45,7 @@ public class Sistema {
     }
 
     //Menu
-    public void menu() throws FileNotFoundException {
+    public void menu() throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean f = false;
         do {
@@ -60,7 +60,10 @@ public class Sistema {
                     insertarNave();
                     break;
                 }
-                //case 2 -> Buscador();
+                case 2 -> {
+                    crearOferta();
+                    break;
+                }
                 case 4 -> {
                     f = true;
                     break;
@@ -68,6 +71,36 @@ public class Sistema {
                 default -> throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
+    }
+
+    public void crearOferta() throws IOException {
+        String usuarioAmeter=usuarioEntrar;
+        List<String> fichero = new ArrayList<>();
+        List<String> naves = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader("userNaves.txt"));
+        String line;
+        boolean encontrado=false;
+        while ((line = br.readLine()) != null) {
+            fichero.add(line);
+        }
+        int min = 0;
+        int max = fichero.size() - 1;
+        String tope="*";
+        if (max != 0 && pertenece(usuarioAmeter)) {
+            while (!encontrado && max != 0) {
+                if (usuarioAmeter.equals(fichero.get(min))) {
+                    while (!(fichero.get(min).equals(tope))){
+                        naves.add(fichero.get(min));
+                        min = min + 1;
+                    }
+                    encontrado = true;
+                }
+                min = min + 1;
+                max = max - 1;
+            }
+        }
+        System.out.println("Que nave desea poner en venta:");
+        for (int i=0;i<=)
     }
 
     public void insertarNave() throws FileNotFoundException {
@@ -95,6 +128,7 @@ public class Sistema {
             } else {
                 fichero.add(usuarioAmeter);
                 fichero.add(n.toString());
+                fichero.add("*");
             }
             FileWriter fw = new FileWriter("userNaves.txt");
             PrintWriter escritura = new PrintWriter(fw);
@@ -118,7 +152,6 @@ public class Sistema {
         }
         return encontrado;
     }
-
     //Registrar Nuevo Cliente
     public Usuario registrarNuevoCliente() {
         List<String> fichero = new ArrayList<>();
@@ -143,7 +176,6 @@ public class Sistema {
         }
         return u;
     }
-
     //Inciar Sesion
     public boolean iniciarSesion() throws FileNotFoundException {
         Scanner sc = new Scanner(System.in);

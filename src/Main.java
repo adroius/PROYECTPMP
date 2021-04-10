@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.io.IOException;
 //Nave n= NaveBuilder.CrearNave();
 
 public class Main {
@@ -6,6 +7,8 @@ public class Main {
         try {
             new Sistema();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
