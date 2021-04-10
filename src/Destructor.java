@@ -82,7 +82,7 @@ public class Destructor extends NaveBuilder {
         for (int i = 1; i <= arm; i++) {
             Arma a = new Arma();
             armas.add(a);
-            potencia += a.potencia();
+            potencia += a.potencia;
         }
         return armas;
     }
