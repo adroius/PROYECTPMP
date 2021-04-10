@@ -109,7 +109,7 @@ public class Caza extends NaveBuilder {
 
     @Override
     public String toString() {
-        return "Caza {" +
+        return "Caza" +
                 "\nNumero de Tripulantes = " + tripulantesMax +
                 "\nNumero de Defensas = " + numDefensas +
                 "\nDefensas = " + defensa +

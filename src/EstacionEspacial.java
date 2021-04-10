@@ -131,15 +131,15 @@ public class EstacionEspacial extends NaveBuilder{
 
     @Override
     public String toString() {
-        return "Estacion Espacial {" +
+        return "Estacion Espacial" +
                 "\nNumero de Tripulantes = " + tripulantesMax +
                 "\nNumero de Pasajeros Máximo" + numPasajerosMax +
                 "\nNumero de Defensas = " + numDefensas +
                 "\nDefensas = " + defensa +
                 "\nArmas = " + conjuntoDeArmas +
                 "\nPropulsion = " + prop +
-                "\nNumero de Identificacion = " + numReg +
                 "\nNaves = " + conjuntoDeNaves +
+                "\nNumero de Identificacion = " + numReg +
                 "}";
     }
 
