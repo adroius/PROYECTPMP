@@ -89,6 +89,7 @@ public class Sistema {
         if (max != 0 && pertenece(usuarioAmeter)) {
             while (!encontrado && max != 0) {
                 if (usuarioAmeter.equals(fichero.get(min))) {
+                    min=min+1;
                     while (!(fichero.get(min).equals(tope))){
                         naves.add(fichero.get(min));
                         min = min + 1;
@@ -100,7 +101,9 @@ public class Sistema {
             }
         }
         System.out.println("Que nave desea poner en venta:");
-        for (int i=0;i<=)
+        for (int i=0;i<naves.size();i++){
+            System.out.println(naves.get(i));
+        }
     }
 
     public void insertarNave() throws FileNotFoundException {
