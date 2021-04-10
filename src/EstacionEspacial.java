@@ -18,7 +18,7 @@ public class EstacionEspacial extends NaveBuilder{
         this.defensa= sistemaDeDefensa();
         this.prop= conjuntoDePropulsion();
         this.conjuntoDeArmas=conjuntoDeArmas();
-        this.conjuntoDeNaves=añadirNaves();
+        this.conjuntoDeNaves=conjuntoNaves();
     }
 
     //Cantidad de tripulantes
@@ -133,8 +133,9 @@ public class EstacionEspacial extends NaveBuilder{
     public int potenciaDeAtaque(){
         return 0;
     }
+
     //Esto tiene que devolver Null???
-    public List<Nave> añadirNaves() {
+    public List<Nave> conjuntoNaves() {
         List<Nave> conjuntoDeNaves = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cuantas naves tiene la estacion espacial?");
