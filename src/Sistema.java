@@ -111,24 +111,48 @@ public class Sistema {
         System.out.println("Introduzca la matricula de la nave que quiera poner en venta:");
         Scanner sc = new Scanner(System.in);
         String s = sc.next();
-        naves = cogerNave(naves, s);
+        naves = cogerNave(naves, s);        //ya tenemos la nave que queremos
         List<String> lecturaOfertas = new ArrayList<>();
         br = new BufferedReader(new FileReader("userOfertas.txt"));
         String lineas;
         while ((lineas = br.readLine()) != null) {
             lecturaOfertas.add(lineas);
         }
-        for (int i = 0; i < naves.size(); i++) {
-            lecturaOfertas.add(naves.get(i));
+        min = 0;
+        max = lecturaOfertas.size();
+        boolean found=false;
+        if (pertenece(usuarioAmeter)) {
+            if (max != 0) {
+                while (!found && max != 0) {
+                    if (usuarioAmeter.equals(lecturaOfertas.get(min))) {
+                        min=min+1;
+                        for (int i = 0; i < naves.size(); i++) {
+                            lecturaOfertas.add(min, naves.get(i));
+                            min=min+1;
+                        }
+                        lecturaOfertas.add(min, "-");
+                        found = true;
+                    } else {
+                        min = min + 1;
+                        max = max - 1;
+                    }
+                }
+            }
+            if (!found){
+                lecturaOfertas.add(usuarioAmeter);
+                for (int i = 0; i < naves.size(); i++) {
+                    lecturaOfertas.add(naves.get(i));
+                }
+                lecturaOfertas.add("-");
+                lecturaOfertas.add("*");
+            }
+            FileWriter fw = new FileWriter("userOfertas.txt");
+            PrintWriter escritura = new PrintWriter(fw);
+            for (int i = 0; i < lecturaOfertas.size(); i++) {
+                escritura.println(lecturaOfertas.get(i));
+            }
+            escritura.close();
         }
-        FileWriter fw = new FileWriter("userOfertas.txt");
-        PrintWriter escritura = new PrintWriter(fw);
-        escritura.println(usuarioEntrar);
-        for (int i = 0; i < lecturaOfertas.size(); i++) {
-            escritura.println(lecturaOfertas.get(i));
-        }
-        escritura.println("*");
-        escritura.close();
     }
 
     public void insertarNave() throws FileNotFoundException {
