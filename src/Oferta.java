@@ -1,4 +1,4 @@
-import java.io.*;
+/*import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -46,8 +46,8 @@ public class Oferta{
 
     private void menuOfertas() {
 
-
-    /*public void getOferta () {
+    }
+    public void getOferta () {
 
     }
 
@@ -76,5 +76,6 @@ public class Oferta{
 
     }
 
-*/
+
 }
+*/

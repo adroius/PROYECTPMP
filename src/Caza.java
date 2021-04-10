@@ -37,14 +37,13 @@ public class Caza extends NaveBuilder {
             Scanner sc = new Scanner(System.in);
             int e = sc.nextInt();
             //Comprobar que el valor introducido es correcto
-            while (e > 2 || e < 1)
-                {
-                    System.out.println("El valor introducido es incorrecto.");
-                    System.out.println("Vuelva a introducir el valor: ");
-                    System.out.println("1) Escudo");
-                    System.out.println("2) Blindaje");
-                    e = sc.nextInt();
-                }
+            while (e > 2 || e < 1) {
+                System.out.println("El valor introducido es incorrecto.");
+                System.out.println("Vuelva a introducir el valor: ");
+                System.out.println("1) Escudo");
+                System.out.println("2) Blindaje");
+                e = sc.nextInt();
+            }
             Defensa d;
             switch (e) {
                 case 1:
@@ -101,6 +100,11 @@ public class Caza extends NaveBuilder {
     @Override
     public int numeroDeDefensasMax() {
         return 1;
+    }
+
+    @Override
+    public List<Nave> conjuntoDeNaves() {
+        return null;
     }
 
     @Override

@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 //Clase NaveBuilder hereda de Nave
@@ -42,6 +43,7 @@ public abstract class NaveBuilder extends Nave{
         return n;
     }
 
+    //Elegir que nave se va a crear para especie Kromagg sin LicenciaEspecial
     public static Nave CrearNaveEspecial(){
         Nave n;
         System.out.println("Que nave desea registrar:");
@@ -67,4 +69,7 @@ public abstract class NaveBuilder extends Nave{
         }
         return n;
     }
+
+    //Esto tiene que devolver Null???
+
 }
