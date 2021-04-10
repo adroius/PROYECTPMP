@@ -1,1 +1,11 @@
-
+adriam2000
+Caza
+Numero de Tripulantes = 1
+Numero de Defensas = 1
+Defensas = [Escudo: Energia requerida= 1
+Daño Absorbido= 10]
+Armas = [La potencia del Misil Termonuclear es de 1GigaJulios, La potencia del Misil Termonuclear es de 1GigaJulios]
+Propulsion = [ Nombre = Motor FTL Velocidad = 1]
+Numero de Identificacion = l-1795-jce
+-
+*

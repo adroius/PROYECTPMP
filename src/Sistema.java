@@ -111,11 +111,8 @@ public class Sistema {
         System.out.println("Introduzca la matricula de la nave que quiera poner en venta:");
         Scanner sc = new Scanner(System.in);
         String s = sc.next();
-        while (!pertenece(s)){
-            System.out.println("Introduzca la matricula de la nave que quiera poner en venta:");
-            s = sc.next();
-        }
-
+        naves=cogerNave(naves,s);
+        System.out.println(naves.toString());
     }
 
     public void insertarNave() throws FileNotFoundException {
@@ -161,14 +158,21 @@ public class Sistema {
     public List<String> cogerNave(List<String> naves, String matricula){
         List<String> devolucion = new ArrayList<>();
         int i=0;
-        if (naves.get(i).contains("Caza") || naves.get(i).contains("Carguero") || naves.get(i).contains("Destructor") || naves.get(i).contains("Estacion Espacial")){
-            i=i+1;
-            while (naves.get(i).equals("-")){
-                devolucion.add(naves.get(i));
-                if (naves.get(i)){
-
+        boolean encontrado=true;
+        while(!encontrado) {
+            if (naves.get(i).contains("Caza") || naves.get(i).contains("Carguero") || naves.get(i).contains("Destructor") || naves.get(i).contains("Estacion Espacial")) {
+                while (!(naves.get(i).equals("-"))) {
+                    devolucion.add(naves.get(i));
+                    i = i + 1;
                 }
-                i=i+1;
+                String r=devolucion.get(i-1);
+                String resultado ="Numero de Identificacion = "+matricula;
+                if (!(r.equals(resultado))) {
+                    encontrado=false;
+                    devolucion.clear();
+                } else {
+                    encontrado=true;
+                }
             }
         }
         return devolucion;
