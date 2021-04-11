@@ -15,7 +15,7 @@ public class Cliente {
     boolean isKromagg;
     boolean isPirata;
     boolean isFraude;
-    int nAdvertencias = 0;
+    int nAdvertencias = 0; //Inicializar las Advertencias en 0
 
     //Constructor Cliente
     public Cliente() {
@@ -32,7 +32,7 @@ public class Cliente {
         System.out.println("¿Cual es su numero de identificacion?");
         s = sc.next();
         this.numeroIdentificacion = s;
-        this.NavesEnPropiedad = null;
+        this.NavesEnPropiedad = null; //El cliente tiene que registrar sus naves despues de registrarse
         System.out.println("¿Cual es su Nick?");
         s = sc.next();
         this.Nick = s;
@@ -48,6 +48,8 @@ public class Cliente {
 
     }*/
 
+
+    //Aun no terminado
     public void crearOferta() throws FileNotFoundException {
         Registro oferta;
         oferta = new Registro();
@@ -55,6 +57,8 @@ public class Cliente {
         int numBid = sc.nextInt();
     }
 
+
+    //Aun no terminado
     public boolean suscribirseAUnaOferta(int nOferta) {
         boolean suscribirse = false;
         boolean exit = false;
@@ -75,11 +79,12 @@ public class Cliente {
                     exit = true;
                     break;
                 }
+                //El valor introducido es incorrecto
                 default:
                     throw new IllegalStateException("Valor no valido");
             }
         }
-        while (!exit) ;
+        while (!exit);
         return suscribirse;
     }
 
@@ -105,6 +110,12 @@ public class Cliente {
         return encontrado;
     }
 
+
+    //Guardar la informacion del Cliente en UsuarioInfo.txt
+        /*El formato en que se guarda es:
+        numeroIdentificacion
+        Nombre-PlanetaOrigen-Especia-Nick-email
+        */
     public void escribirInfo() {
         try {
             FileWriter escribir = new FileWriter("usuarioInfo.txt");
@@ -126,6 +137,8 @@ public class Cliente {
         }
     }
 
+
+    //Aun no terminado
     public boolean modificarOferta(String nIdentificacion, int nOferta) {
         boolean exit = false;
         Scanner sc = new Scanner(System.in);
@@ -158,6 +171,7 @@ public class Cliente {
     }
 
 
+    //Escribe por pantalla el numero de advertencias de un Cliente
     public int numeroAdvertencias(String nIdentificacion) {
         boolean encontrado = comprobarNIdentificacion(nIdentificacion);
         if (encontrado) {
@@ -166,6 +180,7 @@ public class Cliente {
         return nAdvertencias;
     }
 
+    //Comprueba el numero de Identificacion introducido
     private boolean comprobarNIdentificacion(String nIdentificacion) {
         Scanner sc = new Scanner(System.in);
         nIdentificacion = sc.next();
@@ -187,7 +202,7 @@ public class Cliente {
         return encontrado;
     }
 
-    //Comprobar si es de la especie Kromagg
+    //Comprobar si el Cliente es de la especie Kromagg
     protected boolean isKromagg() {
         boolean is = false;
         if (this.Especie == "Kromagg" || this.Especie == "kromagg") {
@@ -198,8 +213,7 @@ public class Cliente {
         return is;
     }
 
-    //Comprobar si es Sospechoso de Pirateria
-    //Hay que hacer este metodo cuando hagamos la base de datos
+    //Comprobar si el Cliente es Sospechoso de Pirateria
     private boolean isPirata() {
         boolean is = false;
         if (this.isPirata) {
@@ -209,17 +223,17 @@ public class Cliente {
         return is;
     }
 
-    //Comprobar si es Sospechoso de Fraude
-    //Hay que hacer este metodo cuando hagamos la base de datos
+    //Comprobar si el Cliente es Sospechoso de Fraude
     private boolean isFraude() {
         boolean is = false;
         if (this.isFraude) {
-            noEntrarAlSistema();
+            noEntrarAlSistemaFraude();
             is = true;
         }
         return is;
     }
 
+    //Comprardor de naves si eres Pirata (Solo pueden comprar Cargueros)
     private boolean comprarNavePirata() {
         Nave n;
         boolean compra;
@@ -230,7 +244,7 @@ public class Cliente {
         int s = sc.nextInt();
         switch (s) {
             case 1: {
-                n = new Carguero();
+                n = new Carguero(); //Constructor Carguero
                 compra = true;
                 break;
             }
@@ -238,13 +252,15 @@ public class Cliente {
                 compra = false;
                 break;
             }
+            //El valor introducido es incorrecto
             default:
                 throw new IllegalStateException("Unexpected value: " + s);
         }
         return compra;
     }
 
-    private boolean noEntrarAlSistema() {
+    //Cuando tienes 2 advertencias no puedes entrar al sistema en 5 días
+    private boolean noEntrarAlSistemaAdvertencias() {
         Timer timer = new Timer();
         int seconds = 432000;
         boolean bloqueoFinalizado = (seconds != 0);
@@ -262,8 +278,19 @@ public class Cliente {
         return bloqueoFinalizado;
     }
 
+    private void noEntrarAlSistemaFraude(){
+        System.out.println("No puedes entrar al sistema");
+    }
+
     @Override
     public String toString() {
-        return "Cliente: " + "\nNombre= " + Nombre + "\nPlanetaOrigen= " + PlanetaOrigen + "\nEspecie= " + Especie + "\nNumero Identificacion= " + numeroIdentificacion + "\nNaves En Propiedad=" + NavesEnPropiedad + "\nNick=" + Nick + "\nEmail='" + email;
+        return "Cliente: " +
+                "\nNombre= " + Nombre +
+                "\nPlanetaOrigen= " + PlanetaOrigen +
+                "\nEspecie= " + Especie +
+                "\nNumero Identificacion= " + numeroIdentificacion +
+                "\nNaves En Propiedad=" + NavesEnPropiedad +
+                "\nNick=" + Nick +
+                "\nEmail='" + email;
     }
 }
