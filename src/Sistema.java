@@ -43,7 +43,6 @@ public class Sistema {
             }
         } while (!f);
     }
-
     //Menu
     public void menu() throws IOException {
         Scanner sc = new Scanner(System.in);
@@ -64,6 +63,10 @@ public class Sistema {
                     crearOferta();
                     break;
                 }
+                case 3 -> {
+                    verOfertas();
+                    break;
+                }
                 case 4 -> {
                     f = true;
                     break;
@@ -73,89 +76,19 @@ public class Sistema {
         } while (!f);
     }
 
-    public void crearOferta() throws IOException {
-        String usuarioAmeter = usuarioEntrar;
-        List<String> fichero = new ArrayList<>();
-        List<String> naves = new ArrayList<>();
-        BufferedReader br = new BufferedReader(new FileReader("userNaves.txt"));
-        String line;
-        boolean encontrado = false;
-        while ((line = br.readLine()) != null) {
-            fichero.add(line);
-        }
-        int min = 0;
-        int max = fichero.size() - 1;
-        String tope = "*";
-        if (max != 0 && pertenece(usuarioAmeter)) {
-            while (!encontrado && max != 0) {
-                if (usuarioAmeter.equals(fichero.get(min))) {
-                    min = min + 1;
-                    while (!(fichero.get(min).equals(tope))) {
-                        naves.add(fichero.get(min));
-                        min = min + 1;
-                    }
-                    encontrado = true;
-                }
-                min = min + 1;
-                max = max - 1;
-            }
-        }
-        System.out.println("Que nave desea poner en venta:");
-        for (int i = 0; i < naves.size(); i++) {
-            if (naves.get(i).contains("Caza") || naves.get(i).contains("Carguero") || naves.get(i).contains("Destructor") || naves.get(i).contains("Estacion Espacial"))
-                System.out.println(naves.get(i));
-            else if (naves.get(i).contains("Numero de Identificacion")) {
-                System.out.println(naves.get(i));
-            }
-        }
-        System.out.println("Introduzca la matricula de la nave que quiera poner en venta:");
-        Scanner sc = new Scanner(System.in);
-        String s = sc.next();
-        naves = cogerNave(naves, s);        //ya tenemos la nave que queremos
-        List<String> lecturaOfertas = new ArrayList<>();
-        br = new BufferedReader(new FileReader("userOfertas.txt"));
-        String lineas;
-        while ((lineas = br.readLine()) != null) {
-            lecturaOfertas.add(lineas);
-        }
-        min = 0;
-        max = lecturaOfertas.size();
-        boolean found=false;
-        if (pertenece(usuarioAmeter)) {
-            if (max != 0) {
-                while (!found && max != 0) {
-                    if (usuarioAmeter.equals(lecturaOfertas.get(min))) {
-                        min=min+1;
-                        for (int i = 0; i < naves.size(); i++) {
-                            lecturaOfertas.add(min, naves.get(i));
-                            min=min+1;
-                        }
-                        lecturaOfertas.add(min, "-");
-                        found = true;
-                    } else {
-                        min = min + 1;
-                        max = max - 1;
-                    }
-                }
-            }
-            if (!found){
-                lecturaOfertas.add(usuarioAmeter);
-                for (int i = 0; i < naves.size(); i++) {
-                    lecturaOfertas.add(naves.get(i));
-                }
-                lecturaOfertas.add("-");
-                lecturaOfertas.add("*");
-            }
-            FileWriter fw = new FileWriter("userOfertas.txt");
-            PrintWriter escritura = new PrintWriter(fw);
-            for (int i = 0; i < lecturaOfertas.size(); i++) {
-                escritura.println(lecturaOfertas.get(i));
-            }
-            escritura.close();
+    public void verOfertas(){
+        try {
+            new Oferta().listaDeOfertas();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void insertarNave() throws FileNotFoundException {
+    public void crearOferta() throws IOException {
+        new Oferta().construirOferta(usuarioEntrar);
+    }
+
+    public void insertarNave() {
         List<String> fichero = new ArrayList<>();
         boolean encontrado = false;
         String usuarioAmeter = usuarioEntrar;
@@ -195,7 +128,7 @@ public class Sistema {
         }
     }
 
-    public List<String> cogerNave(List<String> naves, String matricula) {
+    public static List<String> cogerNave(List<String> naves, String matricula) {
         List<String> devolucion = new ArrayList<>();
         int i = 0;
         boolean encontrado = false;
@@ -221,7 +154,7 @@ public class Sistema {
         return devolucion;
     }
 
-    public boolean pertenece(String use) throws IOException {
+    public static boolean pertenece(String use) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("userNaves.txt"));
         String linea = "";
         boolean encontrado = false;
@@ -232,7 +165,6 @@ public class Sistema {
         }
         return encontrado;
     }
-
     //Registrar Nuevo Cliente
     public Usuario registrarNuevoCliente() {
         List<String> fichero = new ArrayList<>();
@@ -329,4 +261,5 @@ public class Sistema {
             }
         } while (!f);
     }
+
 }

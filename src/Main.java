@@ -3,13 +3,7 @@ import java.io.IOException;
 //Nave n= NaveBuilder.CrearNave();
 
 public class Main {
-    public static void main(String[] args) {
-        try {
+    public static void main(String[] args) throws IOException {
             new Sistema();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
