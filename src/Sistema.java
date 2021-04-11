@@ -76,12 +76,8 @@ public class Sistema {
         } while (!f);
     }
 
-    public void verOfertas(){
-        try {
-            new Oferta().listaDeOfertas();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void verOfertas() throws IOException {
+        new Oferta().buscadorDeOfertas();
     }
 
     public void crearOferta() throws IOException {
@@ -189,7 +185,6 @@ public class Sistema {
         }
         return u;
     }
-
     //Inciar Sesion
     public boolean iniciarSesion() throws FileNotFoundException {
         Scanner sc = new Scanner(System.in);
