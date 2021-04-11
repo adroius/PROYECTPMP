@@ -3,17 +3,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//Clase Sistema
 public class Sistema {
-    private int intentospermitidos = 2;
+    private int intentospermitidos = 2; //Se permiten dos intentos para poner bien el usuario y la contraseña
     String usuarioEntrar = "";
 
     //Constructor Sistema
     public Sistema() throws IOException {
         boolean f = false;
         Scanner sc = new Scanner(System.in);
-        //Menu del sistema
+        //Registrarse como nuevo Cliente o Iniciar Sesion
         do {
-            System.out.println("Bienvenido al concesionario espacial");
+            System.out.println("Bienvenido al Concesionario Espacial");
             System.out.println("1) Ingresar nuevo cliente");
             System.out.println("2) Iniciar Sesion");
             System.out.println("3) Salir");
@@ -33,6 +34,7 @@ public class Sistema {
                     f = true;
                     break;
                 }
+                //Salir del Sistema
                 case 3: {
                     f = true;
                     break;
@@ -43,7 +45,7 @@ public class Sistema {
             }
         } while (!f);
     }
-    //Menu
+    //Menu una vez has ingresado como Cliente
     public void menu() throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean f = false;
@@ -55,18 +57,22 @@ public class Sistema {
             System.out.println("4) Salir");
             int s = sc.nextInt();
             switch (s) {
+                //Ingresar una nueva nave propiedad del Cliente
                 case 1 -> {
                     insertarNave();
                     break;
                 }
+                //Crear una oferta con las naves que posee el Cliente
                 case 2 -> {
                     crearOferta();
                     break;
                 }
+                //Ver las ofertas publicadas en la pagina web
                 case 3 -> {
                     verOfertas();
                     break;
                 }
+                //
                 case 4 -> {
                     f = true;
                     break;
