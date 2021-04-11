@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 public class Sistema {
     private int intentospermitidos = 2;
-    String usuarioEntrar="";
+    String usuarioEntrar = "";
 
     //Constructor Sistema
-    public Sistema() throws FileNotFoundException {
+    public Sistema() throws IOException {
         boolean f = false;
         Scanner sc = new Scanner(System.in);
         //Menu del sistema
@@ -19,11 +19,13 @@ public class Sistema {
             System.out.println("3) Salir");
             int s = sc.nextInt();
             switch (s) {
+                //Registrar Nuevo Cliente
                 case 1: {
                     registrarNuevoCliente();
-                    f = true;
+                    f = false;
                     break;
                 }
+                //Inciar Sesion en el Sistema
                 case 2: {
                     if (iniciarSesion()) {
                         menu();
@@ -35,14 +37,14 @@ public class Sistema {
                     f = true;
                     break;
                 }
+                //Valor introducido incorrecto
                 default:
                     throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
     }
-
     //Menu
-    public void menu() throws FileNotFoundException {
+    public void menu() throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean f = false;
         do {
@@ -57,78 +59,209 @@ public class Sistema {
                     insertarNave();
                     break;
                 }
-                //case 2 -> Buscador();
+                case 2 -> {
+                    crearOferta();
+                    break;
+                }
+                case 3 -> {
+                    verOfertas();
+                    break;
+                }
                 case 4 -> {
                     f = true;
                     break;
                 }
-                default-> throw new IllegalStateException("Unexpected value: " + s);
+                default -> throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
     }
 
-    public void insertarNave() throws FileNotFoundException{
-        List<String> fichero=new ArrayList<>();
-        boolean encontrado=false;
-        String usuarioAmeter=usuarioEntrar;
-        new File("userNaves.txt");
+    public void verOfertas(){
+
+    }
+
+    public void crearOferta() throws IOException {
+        String usuarioAmeter = usuarioEntrar;
+        List<String> fichero = new ArrayList<>();
+        List<String> naves = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader("userNaves.txt"));
+        String line;
+        boolean encontrado = false;
+        while ((line = br.readLine()) != null) {
+            fichero.add(line);
+        }
+        int min = 0;
+        int max = fichero.size() - 1;
+        String tope = "*";
+        if (max != 0 && pertenece(usuarioAmeter)) {
+            while (!encontrado && max != 0) {
+                if (usuarioAmeter.equals(fichero.get(min))) {
+                    min = min + 1;
+                    while (!(fichero.get(min).equals(tope))) {
+                        naves.add(fichero.get(min));
+                        min = min + 1;
+                    }
+                    encontrado = true;
+                }
+                min = min + 1;
+                max = max - 1;
+            }
+        }
+        System.out.println("Que nave desea poner en venta:");
+        for (int i = 0; i < naves.size(); i++) {
+            if (naves.get(i).contains("Caza") || naves.get(i).contains("Carguero") || naves.get(i).contains("Destructor") || naves.get(i).contains("Estacion Espacial"))
+                System.out.println(naves.get(i));
+            else if (naves.get(i).contains("Numero de Identificacion")) {
+                System.out.println(naves.get(i));
+            }
+        }
+        System.out.println("Introduzca la matricula de la nave que quiera poner en venta:");
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        naves = cogerNave(naves, s);        //ya tenemos la nave que queremos
+        List<String> lecturaOfertas = new ArrayList<>();
+        br = new BufferedReader(new FileReader("userOfertas.txt"));
+        String lineas;
+        while ((lineas = br.readLine()) != null) {
+            lecturaOfertas.add(lineas);
+        }
+        min = 0;
+        max = lecturaOfertas.size();
+        boolean found=false;
+        if (pertenece(usuarioAmeter)) {
+            if (max != 0) {
+                while (!found && max != 0) {
+                    if (usuarioAmeter.equals(lecturaOfertas.get(min))) {
+                        min=min+1;
+                        for (int i = 0; i < naves.size(); i++) {
+                            lecturaOfertas.add(min, naves.get(i));
+                            min=min+1;
+                        }
+                        lecturaOfertas.add(min, "-");
+                        found = true;
+                    } else {
+                        min = min + 1;
+                        max = max - 1;
+                    }
+                }
+            }
+            if (!found){
+                lecturaOfertas.add(usuarioAmeter);
+                for (int i = 0; i < naves.size(); i++) {
+                    lecturaOfertas.add(naves.get(i));
+                }
+                lecturaOfertas.add("-");
+                lecturaOfertas.add("*");
+            }
+            FileWriter fw = new FileWriter("userOfertas.txt");
+            PrintWriter escritura = new PrintWriter(fw);
+            for (int i = 0; i < lecturaOfertas.size(); i++) {
+                escritura.println(lecturaOfertas.get(i));
+            }
+            escritura.close();
+        }
+    }
+
+    public void insertarNave() {
+        List<String> fichero = new ArrayList<>();
+        boolean encontrado = false;
+        String usuarioAmeter = usuarioEntrar;
         try {
             BufferedReader br = new BufferedReader(new FileReader("userNaves.txt"));
             String line;
             while ((line = br.readLine()) != null) {
                 fichero.add(line);
             }
-            int max = fichero.size();
-            int min=0;
-            if (fichero.size()!=0) {
-                do{
+            Nave n = NaveBuilder.CrearNave();
+            int min = 0;
+            int max = fichero.size() - 1;
+            if (max != 0 && pertenece(usuarioAmeter)) {
+                while (!encontrado && max != 0) {
                     if (usuarioAmeter.equals(fichero.get(min))) {
-                        Nave n = NaveBuilder.CrearNave();
-                        String s = n.toString();
-                        fichero.add(min + 1, s);
+                        fichero.add(min + 1, n.toString());
+                        fichero.add(min + 2, "-");
                         encontrado = true;
-                    } else {
-                        min = min + 1;
-                        max = max - 1;
                     }
+                    min = min + 1;
+                    max = max - 1;
                 }
-                while (!encontrado || max <= 0) ;
+            } else {
+                fichero.add(usuarioAmeter);
+                fichero.add(n.toString());
+                fichero.add("-");
+                fichero.add("*");
             }
             FileWriter fw = new FileWriter("userNaves.txt");
             PrintWriter escritura = new PrintWriter(fw);
-            for(int i=0;i<fichero.size();i++){
+            for (int i = 0; i < fichero.size(); i++) {
                 escritura.println(fichero.get(i));
             }
             escritura.close();
-            try {
-                FileWriter escribir = new FileWriter("userNaves.txt");
-                Nave n= NaveBuilder.CrearNave();
-                escribir.write(usuarioAmeter);
-                escribir.write("\n");
-                escribir.write(n.toString());
-                escribir.write("\n");
-                escribir.close();
-            } catch (Exception e) {
-                System.out.println("Error al escribir");
-            }
         } catch (IOException e) {
             System.out.println("Error");
         }
     }
-    
+
+    public List<String> cogerNave(List<String> naves, String matricula) {
+        List<String> devolucion = new ArrayList<>();
+        int i = 0;
+        boolean encontrado = false;
+        while (!encontrado) {
+            if (naves.get(i).contains("Caza") || naves.get(i).contains("Carguero") || naves.get(i).contains("Destructor") || naves.get(i).contains("Estacion Espacial")) {
+                while (!(naves.get(i).equals("-"))) {
+                    devolucion.add(naves.get(i));
+                    i = i + 1;
+                }
+                int last = devolucion.size();
+                String r = devolucion.get(last - 1);
+                String resultado = "Numero de Identificacion = " + matricula;
+                if (!(r.equals(resultado))) {
+                    encontrado = false;
+                    devolucion.clear();
+                } else {
+                    encontrado = true;
+                }
+            } else {
+                i = i + 1;
+            }
+        }
+        return devolucion;
+    }
+
+    public boolean pertenece(String use) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("userNaves.txt"));
+        String linea = "";
+        boolean encontrado = false;
+        while ((linea = br.readLine()) != null) {
+            if (linea.equalsIgnoreCase(use)) {
+                encontrado = true;
+            }
+        }
+        return encontrado;
+    }
+
     //Registrar Nuevo Cliente
     public Usuario registrarNuevoCliente() {
+        List<String> fichero = new ArrayList<>();
         Usuario u = new Usuario();
         try {
-            FileWriter escribir = new FileWriter("usercontraseña.txt");
-            escribir.write(u.user);
-            escribir.write(u.contraseña);
-            escribir.write("\n");
-            escribir.close();
+            BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
+            String line;
+            while ((line = br.readLine()) != null) {
+                fichero.add(line);
+            }
+            String s = u.user + u.contraseña;
+            fichero.add(s);
+            FileWriter fw = new FileWriter("usercontraseña.txt");
+            PrintWriter escritura = new PrintWriter(fw);
+            for (int i = 0; i < fichero.size(); i++) {
+                escritura.println(fichero.get(i));
+            }
+            escritura.close();
+            u.usuario.escribirInfo();
         } catch (Exception e) {
             System.out.println("Error al escribir");
         }
-        u.usuario.escribirInfo();
         return u;
     }
 
@@ -158,7 +291,7 @@ public class Sistema {
                         while ((linea = br.readLine()) != null) {
                             if (linea.equalsIgnoreCase(use)) {
                                 encontrado = true;
-                                usuarioEntrar=use;
+                                usuarioEntrar = use;
                                 break;
                             }
                         }
@@ -198,7 +331,8 @@ public class Sistema {
                     f = true;
                     break;
                 }
-                default: throw new IllegalStateException("Unexpected value: " + s);
+                default:
+                    throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
     }

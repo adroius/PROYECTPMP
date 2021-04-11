@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Scanner;
 
 public abstract class Nave {
     String numReg;//Numero de Registro de la nave
@@ -37,11 +38,17 @@ public abstract class Nave {
         return palabra;
     }
 
-    public abstract int tripulantes(); //Numero de tripulantes de la nave
-    public abstract List<Defensa> tipoDeDefensa(); //Lista de las defensas de la nave
-    public abstract List<Arma> conjuntoDeArmas(); //Lista de las armas de la nave
+    public String propietario(){
+        String nombre;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Quien es el propietario?");
+        nombre = sc.next();
+        return nombre;
+    }
+
+    public abstract int tripulantesTotales(); //Numero de tripulantes de la nave
+    public abstract List<Defensa> sistemaDeDefensa(); //Lista de las defensas de la nave
+    public abstract int potenciaDeAtaque(); //Lista de las armas de la nave
     public abstract List<Propulsion> conjuntoDePropulsion(); //Lista de tipos de propulsion de la nave
-    public abstract int numeroDeDefensasMax(); //Numero máximo de Defensas de la nave
-    public abstract List<Nave> conjuntoDeNaves();
 
 }

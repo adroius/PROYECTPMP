@@ -57,7 +57,7 @@ public class Usuario {
                 while ((line = br.readLine()) != null) {
                     fichero.add(line);
                 }
-                int max = fichero.size();
+                int max = fichero.size()-1;
                 int min=0;
                 do{
                     if (id.equals(fichero.get(min))){
@@ -84,9 +84,7 @@ public class Usuario {
                         max = max - 1;
                     }
                 } while(!encontrado || max<=0);
-            String ruta = "usuarioInfo.txt";
-            File f = new File(ruta);
-            FileWriter fw = new FileWriter(f);
+            FileWriter fw = new FileWriter("usuarioInfo.txt");
             PrintWriter escritura = new PrintWriter(fw);
             for(int i=0;i<fichero.size();i++){
                 escritura.println(fichero.get(i));

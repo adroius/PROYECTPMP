@@ -13,13 +13,12 @@ public class Cliente {
     private String Nick;
     private String email;
     boolean isKromagg;
-    boolean isPirata; //Sospechoso de Pirateria
-    boolean isFraude; //Sospechoso de Fraude
+    boolean isPirata;
+    boolean isFraude;
     int nAdvertencias = 0;
 
     //Constructor Cliente
     public Cliente() {
-        //Introducir la informacion del cliente
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cual es su nombre?");
         String s = sc.next();
@@ -45,28 +44,22 @@ public class Cliente {
         this.isFraude = isFraude();
     }
 
+    /*public List<Nave> navesEnVenta() {
 
-    //Hay que hacer este metodo
-    public List<Nave> navesEnVenta(){
-        return null;
-    }
-
-    //Crear una oferta de naves
-    /*public Oferta crearOferta() throws FileNotFoundException {
-        Registro oferta;
-        oferta = new Registro();
-        Sistema s = new Sistema();
-        int numBid = s.numOferta(); //Hay que llamar a la clase Oferta, ¿no?
-        return null;
     }*/
 
-    //Suscribirse una oferta
-    //No se supone que tiene que suscribirse para que le notifiquen todas las ofertas que se hagan con un tipo de nave??
-    public boolean suscribirseAUnaOferta(int nOferta){
+    public void crearOferta() throws FileNotFoundException {
+        Registro oferta;
+        oferta = new Registro();
+        Scanner sc = new Scanner(System.in);
+        int numBid = sc.nextInt();
+    }
+
+    public boolean suscribirseAUnaOferta(int nOferta) {
         boolean suscribirse = false;
         boolean exit = false;
         Scanner sc = new Scanner(System.in);
-        if(comprobarNOferta(nOferta)){
+        if (comprobarNOferta(nOferta)) {
             System.out.println("¿Quieres suscribirte a esta oferta?");
             System.out.println("1) Si");
             System.out.println("2) No");
@@ -82,11 +75,11 @@ public class Cliente {
                     exit = true;
                     break;
                 }
-                //Valor obtenido incorrecto
                 default:
-                    throw new IllegalStateException("Unexpected value: " + s);
+                    throw new IllegalStateException("Valor no valido");
             }
-        } while (!exit);
+        }
+        while (!exit) ;
         return suscribirse;
     }
 
@@ -96,38 +89,23 @@ public class Cliente {
         String idenOferta = String.valueOf(nOferta);
         boolean encontrado = false;
         try {
-            do {
-                BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
-                String linea = "";
-                while ((linea = br.readLine()) != null) {
-                    if (linea.equalsIgnoreCase(idenOferta)) {
-                        BufferedReader file = new BufferedReader(new FileReader("./Archivo.txt"));
-                        String line;
-                        String input = "";
-                        while ((line = file.readLine()) != null) {
-                            if (line.contains("Usuario_1"))
-                                input += line.replaceAll("Activo", "NO Activo \r\n");
-                            else
-                                input += line + "\r\n";
-                        }
-                        FileOutputStream fileOut = new FileOutputStream("./Archivo.txt");
-                        fileOut.write(input.getBytes());
-                        fileOut.close();
-                    }
+            BufferedReader br = new BufferedReader(new FileReader("ofertaInfo.txt"));
+            String linea = "";
+            while (((linea = br.readLine()) != null) && (!encontrado)) {
+                if (linea.equalsIgnoreCase(idenOferta)) {
+                    encontrado = true;
                 }
-                if (!encontrado) {
-                    System.out.println("Error en los datos introducidos.");
-                    break;
-                }
-            } while (!encontrado);
+            }
+            if (!encontrado) {
+                System.out.println("Error en los datos introducidos.");
+            }
         } catch (IOException e) {
             System.out.println("Error");
         }
         return encontrado;
     }
 
-
-    public void escribirInfo(){
+    public void escribirInfo() {
         try {
             FileWriter escribir = new FileWriter("usuarioInfo.txt");
             escribir.write(this.numeroIdentificacion);
@@ -148,65 +126,68 @@ public class Cliente {
         }
     }
 
-    /*public Oferta modificarOferta(String nIdentificacion) {
-        boolean encontrado = comprobarNIdentificacion();
-        if (encontrado) {
-            System.out.println("¿Que quieres modificar?");
-            System.out.println("¿Que quieres modificar?");
-            System.out.println("¿Que quieres modificar?");
-            System.out.println("¿Que quieres modificar?");
+    public boolean modificarOferta(String nIdentificacion, int nOferta) {
+        boolean exit = false;
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Pon su numero de identificacion");
+        nIdentificacion = sc.next();
+        if (comprobarNIdentificacion(nIdentificacion)) {
+            System.out.print("Pon su numero de identificacion");
+            nOferta = sc.nextInt();
+            if (comprobarNOferta(nOferta)) {
+                System.out.println("¿Quieres modificar esta oferta?");
+                System.out.println("1) Si");
+                System.out.println("2) No");
+                int s = sc.nextInt();
+                switch (s) {
+                    case 1: {
+                        exit = true;
+                        break;
+                    }
+                    case 2: {
+                        exit = true;
+                        break;
+                    }
+                    default:
+                        throw new IllegalStateException("Numero no valido, ponga otro numero " + s);
+                }
+            }
+            while (!exit) ;
         }
-        return null;
-    }*/
+        return exit;
+    }
 
 
-    //Contador del numero de advertencias dadas al cliente
     public int numeroAdvertencias(String nIdentificacion) {
-        boolean encontrado = comprobarNIdentificacion();
+        boolean encontrado = comprobarNIdentificacion(nIdentificacion);
         if (encontrado) {
             System.out.println("Llevas " + nAdvertencias + " advertencias");
         }
         return nAdvertencias;
     }
 
-
-    private boolean comprobarNIdentificacion() {
-        String nIdentificacion;
+    private boolean comprobarNIdentificacion(String nIdentificacion) {
         Scanner sc = new Scanner(System.in);
         nIdentificacion = sc.next();
         boolean encontrado = false;
         try {
-            do {
-                BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
-                String linea = "";
-                while ((linea = br.readLine()) != null) {
-                    if (linea.contains(nIdentificacion)) {
-                        BufferedReader file = new BufferedReader(new FileReader("./Archivo.txt"));
-                        String line;
-                        String input = "";
-                        while ((line = file.readLine()) != null) {
-                            if (line.contains("Usuario_1"))
-                                input += line.replaceAll("Activo", "NO Activo \r\n");
-                            else
-                                input += line + "\r\n";
-                        }
-                        FileOutputStream fileOut = new FileOutputStream("./Archivo.txt");
-                        fileOut.write(input.getBytes());
-                        fileOut.close();
-                    }
+            BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
+            String linea = "";
+            while ((linea = br.readLine()) != null && (!encontrado)) {
+                if (linea.contains(nIdentificacion)) {
+                    encontrado = true;
                 }
-                if (!encontrado) {
-                    System.out.println("Error en los datos introducidos.");
-                    break;
-                }
-            } while (!encontrado);
+            }
+            if (!encontrado) {
+                System.out.println("Error en los datos introducidos.");
+            }
         } catch (IOException e) {
             System.out.println("Error");
         }
         return encontrado;
     }
 
-    //Comprobar si el cliente es de la especie Kromagg
+    //Comprobar si es de la especie Kromagg
     protected boolean isKromagg() {
         boolean is = false;
         if (this.Especie == "Kromagg" || this.Especie == "kromagg") {
@@ -218,27 +199,28 @@ public class Cliente {
     }
 
     //Comprobar si es Sospechoso de Pirateria
+    //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isPirata() {
         boolean is = false;
         if (this.isPirata) {
             is = true;
-            comprarNave();
+            comprarNavePirata();
         }
         return is;
     }
 
     //Comprobar si es Sospechoso de Fraude
+    //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isFraude() {
         boolean is = false;
         if (this.isFraude) {
-            noEntrarAlSistemaFraude(); //Tiene que ir a una sin timer
+            noEntrarAlSistema();
             is = true;
         }
         return is;
     }
 
-    //Comprar nave si eres sospechoso de Pirateria (Solo pueden comprar cargueros)
-    private boolean comprarNave() {
+    private boolean comprarNavePirata() {
         Nave n;
         boolean compra;
         Scanner sc = new Scanner(System.in);
@@ -248,7 +230,7 @@ public class Cliente {
         int s = sc.nextInt();
         switch (s) {
             case 1: {
-                n = new Carguero(); //Constructor Carguero
+                n = new Carguero();
                 compra = true;
                 break;
             }
@@ -262,7 +244,6 @@ public class Cliente {
         return compra;
     }
 
-    //Impide entrar al sistema si tienes 2 advertencias
     private boolean noEntrarAlSistema() {
         Timer timer = new Timer();
         int seconds = 432000;
@@ -281,22 +262,8 @@ public class Cliente {
         return bloqueoFinalizado;
     }
 
-    //Impide entrar al sistema si eres sospechoso de Fraude
-    //No terminado
-    private boolean noEntrarAlSistemaFraude () {
-        System.out.println("No puedes entrar al sistema");
-        return true;
-    }
-
     @Override
     public String toString() {
-        return "Cliente: " +
-                "\nNombre= " + Nombre +
-                "\nPlanetaOrigen= " + PlanetaOrigen +
-                "\nEspecie= " + Especie +
-                "\nNumero Identificacion= " + numeroIdentificacion +
-                "\nNick=" + Nick +
-                "\nEmail='" + email +
-                "\nNaves En Propiedad=" + NavesEnPropiedad;
+        return "Cliente: " + "\nNombre= " + Nombre + "\nPlanetaOrigen= " + PlanetaOrigen + "\nEspecie= " + Especie + "\nNumero Identificacion= " + numeroIdentificacion + "\nNaves En Propiedad=" + NavesEnPropiedad + "\nNick=" + Nick + "\nEmail='" + email;
     }
 }

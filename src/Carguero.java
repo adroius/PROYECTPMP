@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 //Clase Carguero hereda de NaveBuilder
 public class Carguero extends NaveBuilder {
-    int tripulantesMax = 0; //Inicializar la variable
+    int tripulantesTotales = 0; //Inicializar la variable
     int carga = 0; //Inicializar la variable
     List<Defensa> defensa; //Carguero solo puede tener 1 defensa
     List<Propulsion> prop; //Carguero tiene 1 o 2 tipos de propulsion
@@ -12,15 +12,15 @@ public class Carguero extends NaveBuilder {
 
     //Constructor Carguero
     public Carguero() {
-        this.tripulantesMax = tripulantes();
+        this.tripulantesTotales = tripulantesTotales();
         this.carga = carga();
-        this.defensa = tipoDeDefensa();
+        this.defensa = sistemaDeDefensa();
         this.prop = conjuntoDePropulsion();
     }
 
     //Cantidad de tripulantes
     @Override
-    public int tripulantes() {
+    public int tripulantesTotales() {
         System.out.println("¿Cual es la capacidad de tripulantes del carguero?");
         Scanner sc = new Scanner(System.in);
         int s = sc.nextInt();
@@ -29,7 +29,7 @@ public class Carguero extends NaveBuilder {
 
     //Lista de defensas del Carguero (Carguero solo puede tener una defensa)
     @Override
-    public List<Defensa> tipoDeDefensa() {
+    public List<Defensa> sistemaDeDefensa() {
         List<Defensa> defensa = new ArrayList<>();
         //Escoger el tipo de Defensa del Carguero
         for (int i = 1; i <= numDefensas; i++){
@@ -64,6 +64,10 @@ public class Carguero extends NaveBuilder {
     }
 
     @Override
+    public int potenciaDeAtaque() {
+        return 0;
+    }
+
     //Cargueros no tiene armas
     public List<Arma> conjuntoDeArmas() {
         return null;
@@ -92,8 +96,7 @@ public class Carguero extends NaveBuilder {
     }
 
     //El número de Defensas maximo de Carguero es 1
-    @Override
-    public int numeroDeDefensasMax() {
+    private final int numeroDeDefensasMax() {
         return 1;
     }
 
@@ -104,19 +107,16 @@ public class Carguero extends NaveBuilder {
         int c = sc.nextInt();
         return c;
     }
-    @Override
-    public List<Nave> conjuntoDeNaves(){return null;}
 
     @Override
     public String toString() {
-        return "Carguero {" +
-                "\nNumero de Tripulantes = " + tripulantesMax +
+        return "Carguero:" +
+                "\nNumero de Tripulantes = " + tripulantesTotales +
                 "\nCarga Máxima = " + carga +
                 "\nNumero de Defensas = " + numDefensas +
                 "\nDefensas = " + defensa +
                 "\nPropulsion = " + prop +
-                "\nNumero de Identificacion = " + numReg +
-                '}';
+                "\nNumero de Identificacion = " + numReg;
     }
 
 }

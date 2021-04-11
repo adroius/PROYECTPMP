@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 //Clase EstacionEspacial hereda NaveBuilder
 public class EstacionEspacial extends NaveBuilder{
-    int tripulantesMax;
+    int tripulantesTotales;
     List<Defensa> defensa; //EstacionEspacial tiene 1, 2 o 3 Defensas además de las de las naves que contiene
     List<Arma> conjuntoDeArmas; //Conjunto de Armas de las naves que contiene la EstacionEspacial
     List<Nave> conjuntoDeNaves; //Naves que contiene la EstacionEspacial (Numero Indeterminado)
@@ -13,25 +13,44 @@ public class EstacionEspacial extends NaveBuilder{
 
     //Constructor EstacionEspacial
     public EstacionEspacial() {
-        this.tripulantesMax = tripulantes();
-        this.defensa= tipoDeDefensa();
+        this.tripulantesTotales = tripulantesTotales();
+        this.numPasajerosMax = pasajerosMax();
+        this.defensa= sistemaDeDefensa();
         this.prop= conjuntoDePropulsion();
         this.conjuntoDeArmas=conjuntoDeArmas();
-        this.conjuntoDeNaves=conjuntoDeNaves();
+        this.conjuntoDeNaves=conjuntoNaves();
     }
 
     //Cantidad de tripulantes
     @Override
-    public int tripulantes() {
+    public int tripulantesTotales() {
+        System.out.println("¿Cuantos tripulantes hay en la Estacion Espacial?");
+        boolean exit = false;
+        Scanner sc = new Scanner(System.in);
+        int tripulantes = sc.nextInt();
+        while (!exit) {
+            if (tripulantes <= pasajerosMax()) {
+                exit = true;
+            }
+            else{
+                exit = false;
+                System.out.print("No es posible que haya mas tripulantes que capacidad en la estacion espacial");
+            }
+        }
+        return tripulantes;
+    }
+
+    public int pasajerosMax(){
         System.out.println("¿Cual es la capacidad de tripulantes de la Estacion Espacial?");
         Scanner sc = new Scanner(System.in);
-        int s = sc.nextInt();
-        return s;
+        int pasajeros = sc.nextInt();
+        return pasajeros;
     }
+
     //Lista de Defensas de la EstacionEspacial (Por si sola puede tener 1, 2 o 3)
     //No debería añadir también las Defensas de las naves que contiene?
     @Override
-    public List<Defensa>  tipoDeDefensa() {
+    public List<Defensa> sistemaDeDefensa() {
         List<Defensa> defensa = new ArrayList<>();
         //Preguntar cuantas Defensas tiene EstacionEspacial
         Scanner sc = new Scanner(System.in);
@@ -78,7 +97,6 @@ public class EstacionEspacial extends NaveBuilder{
 
     //EstacionEspacial por si sola no tiene Armas
     //Deberiamos poner las Armas de las naves que contiene??
-    @Override
     public List<Arma> conjuntoDeArmas() {
         List<Arma> armas = null;
         return armas;
@@ -107,41 +125,39 @@ public class EstacionEspacial extends NaveBuilder{
     }
 
     //El numero máximo de Defensas por si sola de EstacionEspacial es 3
-    @Override
-    public int numeroDeDefensasMax() {
-
+    private int numeroDeDefensasMax() {
         return 3;
     }
 
-    //Esto tiene que devolver Null???
     @Override
-    public List<Nave> conjuntoDeNaves() {
+    public int potenciaDeAtaque(){
+        return 0;
+    }
+
+    //Esto tiene que devolver Null???
+    public List<Nave> conjuntoNaves() {
         List<Nave> conjuntoDeNaves = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cuantas naves tiene la estacion espacial?");
-        int n = sc.nextInt();
-        int i;
+        int i = sc.nextInt();
         do {
-            i = n - 1;
-                conjuntoDeNaves.add(NaveBuilder.CrearNave());
-            }
-            while (i!=0);
-        System.out.println("Se ha llenado la estacion");
+            i -= 1;
+            conjuntoDeNaves.add(NaveBuilder.CrearNave());
+        } while (i!=0);
         return conjuntoDeNaves;
     }
 
     @Override
     public String toString() {
-        return "Estacion Espacial {" +
-                "\nNumero de Tripulantes = " + tripulantesMax +
+        return "Estacion Espacial: " +
+                "\nNumero de Tripulantes = " + tripulantesTotales +
                 "\nNumero de Pasajeros Máximo" + numPasajerosMax +
                 "\nNumero de Defensas = " + numDefensas +
                 "\nDefensas = " + defensa +
                 "\nArmas = " + conjuntoDeArmas +
                 "\nPropulsion = " + prop +
                 "\nNumero de Identificacion = " + numReg +
-                "\nNaves = " + conjuntoDeNaves +
-                "}";
+                "\nNaves = " + conjuntoDeNaves;
     }
 
 }
