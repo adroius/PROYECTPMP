@@ -6,7 +6,7 @@ import java.util.Scanner;
 //Clase Sistema
 public class Sistema {
     private int intentospermitidos = 2; //Se permiten dos intentos para poner bien el usuario y la contraseña
-    String usuarioEntrar = "";
+    String usuarioEntrar = ""; //Guardar el Cliente que a entrado
 
     //Constructor Sistema
     public Sistema() throws IOException {
@@ -45,6 +45,7 @@ public class Sistema {
             }
         } while (!f);
     }
+
     //Menu una vez has ingresado como Cliente
     public void menu() throws IOException {
         Scanner sc = new Scanner(System.in);
@@ -72,11 +73,12 @@ public class Sistema {
                     verOfertas();
                     break;
                 }
-                //
+                //Salir del Sistema
                 case 4 -> {
                     f = true;
                     break;
                 }
+                //Valor introducido incorrecto
                 default -> throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
@@ -86,6 +88,7 @@ public class Sistema {
         new Oferta().buscadorDeOfertas();
     }
 
+    //Crear oferta con las naves que posee el Cliente
     public void crearOferta() throws IOException {
         new Oferta().construirOferta(usuarioEntrar);
     }
@@ -167,6 +170,7 @@ public class Sistema {
         }
         return encontrado;
     }
+
     //Registrar Nuevo Cliente
     public Usuario registrarNuevoCliente() {
         List<String> fichero = new ArrayList<>();
@@ -191,15 +195,16 @@ public class Sistema {
         }
         return u;
     }
+
     //Inciar Sesion
     public boolean iniciarSesion() throws FileNotFoundException {
         Scanner sc = new Scanner(System.in);
         boolean encontrado = false;
         System.out.println("Introduzca usuario");
-        String use = sc.next();
+        String user = sc.next();
         System.out.println("Introduzca contraseña");
-        use += sc.next();
-        switch (use) {
+        user += sc.next();
+        switch (user) {
             case "dani1234":
             case "pauli1234":
             case "jani1234":
@@ -215,9 +220,9 @@ public class Sistema {
                         BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
                         String linea = "";
                         while ((linea = br.readLine()) != null) {
-                            if (linea.equalsIgnoreCase(use)) {
+                            if (linea.equalsIgnoreCase(user)) {
                                 encontrado = true;
-                                usuarioEntrar = use;
+                                usuarioEntrar = user; //Guardar el Cliente que esta utilizando el Sistema
                                 break;
                             }
                         }
