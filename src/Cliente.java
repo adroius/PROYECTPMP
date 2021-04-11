@@ -259,7 +259,7 @@ public class Cliente {
         return compra;
     }
 
-    //Cuando tienes 2 advertencias no puedes entrar al sistema en 5 días
+    //Si el Cliente tiene 2 advertencias no puede entrar al sistema en 5 días
     private boolean noEntrarAlSistemaAdvertencias() {
         Timer timer = new Timer();
         int seconds = 432000;
@@ -278,6 +278,8 @@ public class Cliente {
         return bloqueoFinalizado;
     }
 
+
+    //Si el Cliente es sospechoso de Fraude no puede entrar al sistema hasta que deje de serlo
     private void noEntrarAlSistemaFraude(){
         System.out.println("No puedes entrar al sistema");
     }
