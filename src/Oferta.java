@@ -5,14 +5,13 @@ import java.util.*;
 
 public class Oferta {
     String nIdentificacion; //Numero de identificacion de Oferta
-    List<String> Ofertas;
 
     //Constructor Oferta
     public Oferta() {
         this.nIdentificacion = numaleatorios();
     }
 
-    public String numaleatorios(){
+    private String numaleatorios(){
         int numero = (int)(Math.random()*10000+1000);
         return String.valueOf(Math.abs(numero));
     }
@@ -21,9 +20,22 @@ public class Oferta {
 
     }
 
-    public List<String> listaDeOfertas() {
-        List<String> lista = new ArrayList<>();
-        return lista;
+    public void listaDeOfertas() throws IOException {
+        List<String> fichero = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader("userOfertas.txt"));
+        String line;
+        while ((line = br.readLine()) != null) {
+            fichero.add(line);
+        }
+        for (int i = 0; i < fichero.size(); i++) {
+            if (fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial")) {
+                System.out.println(fichero.get(i));
+            } else if (fichero.get(i).contains("Numero de Identificacion")) {
+                System.out.println(fichero.get(i));
+            } else if(fichero.get(i).contains("Precio de la nave")){
+                System.out.println(fichero.get(i));
+            }
+        }
     }
 
     public void construirOferta(String usuarioEntrar) throws IOException {
@@ -63,8 +75,10 @@ public class Oferta {
         }
         System.out.println("Introduzca la matricula de la nave que quiera poner en venta:");
         Scanner sc = new Scanner(System.in);
-        String s = sc.next();
-        naves = Sistema.cogerNave(naves, s);        //ya tenemos la nave que queremos
+        String s = sc.next();//ya tenemos la nave que queremos
+        naves = Sistema.cogerNave(naves, s);
+        System.out.println("Introduzca el precio de la nave que va a poner en venta:");
+        s = sc.next();//ya tenemos el precio que queremos
         List<String> lecturaOfertas = new ArrayList<>();
         br = new BufferedReader(new FileReader("userOfertas.txt"));
         String lineas;
@@ -81,6 +95,8 @@ public class Oferta {
                         min=min+1;
                         lecturaOfertas.add(min,"Numero de oferta: "+this.nIdentificacion);
                         min=min+1;
+                        lecturaOfertas.add(min,"Precio de la nave: "+s);
+                        min=min+1;
                         for (int i = 0; i < naves.size(); i++) {
                             lecturaOfertas.add(min, naves.get(i));
                             min=min+1;
@@ -96,6 +112,7 @@ public class Oferta {
             if (!found){
                 lecturaOfertas.add(usuarioAmeter);
                 lecturaOfertas.add("Numero de oferta: "+this.nIdentificacion);
+                lecturaOfertas.add("Precio de la nave: "+s);
                 for (int i = 0; i < naves.size(); i++) {
                     lecturaOfertas.add(naves.get(i));
                 }
@@ -109,11 +126,6 @@ public class Oferta {
             }
             escritura.close();
         }
-    }
-
-    public List<String> ofertaNave(int c) {
-        List<String> lista = new ArrayList<>();
-        return lista;
     }
 
     public Date fechaLimite(int c) {

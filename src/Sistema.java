@@ -77,7 +77,11 @@ public class Sistema {
     }
 
     public void verOfertas(){
-
+        try {
+            new Oferta().listaDeOfertas();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void crearOferta() throws IOException {
@@ -161,7 +165,6 @@ public class Sistema {
         }
         return encontrado;
     }
-
     //Registrar Nuevo Cliente
     public Usuario registrarNuevoCliente() {
         List<String> fichero = new ArrayList<>();
@@ -258,4 +261,5 @@ public class Sistema {
             }
         } while (!f);
     }
+
 }
