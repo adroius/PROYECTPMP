@@ -12,19 +12,17 @@ public class Propulsion {
     }
 
     public String getNombre() {
-
         return nombre;
     }
 
     public int getVelocidad() {
-
         return velocidad;
     }
 
     @Override
     public String toString() {
-        return " Nombre = " + nombre +
-                " Velocidad = " + velocidad ;
+        return " Nombre = " + getNombre() +
+                " Velocidad = " + getVelocidad() ;
     }
 
     //Escoger el tipo de Propulsion de la nave

@@ -48,13 +48,6 @@ public class Cliente {
 
     }*/
 
-    public void crearOferta() throws FileNotFoundException {
-        Registro oferta;
-        oferta = new Registro();
-        Scanner sc = new Scanner(System.in);
-        int numBid = sc.nextInt();
-    }
-
     public boolean suscribirseAUnaOferta(int nOferta) {
         boolean suscribirse = false;
         boolean exit = false;
@@ -163,6 +156,9 @@ public class Cliente {
         if (encontrado) {
             System.out.println("Llevas " + nAdvertencias + " advertencias");
         }
+        if (nAdvertencias==2){
+            noEntrarAlSistemaPorAdvertencias();
+        }
         return nAdvertencias;
     }
 
@@ -201,9 +197,8 @@ public class Cliente {
     //Comprobar si es Sospechoso de Pirateria
     //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isPirata() {
-        boolean is = false;
-        if (this.isPirata) {
-            is = true;
+        boolean is = this.isPirata;
+        if (is) {
             comprarNavePirata();
         }
         return is;
@@ -212,10 +207,9 @@ public class Cliente {
     //Comprobar si es Sospechoso de Fraude
     //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isFraude() {
-        boolean is = false;
-        if (this.isFraude) {
+        boolean is = this.isFraude;
+        if (is) {
             noEntrarAlSistema();
-            is = true;
         }
         return is;
     }
@@ -244,7 +238,7 @@ public class Cliente {
         return compra;
     }
 
-    private boolean noEntrarAlSistema() {
+    private boolean noEntrarAlSistemaPorAdvertencias() {
         Timer timer = new Timer();
         int seconds = 432000;
         boolean bloqueoFinalizado = (seconds != 0);
@@ -258,6 +252,15 @@ public class Cliente {
             seconds -= 1;
             timer.schedule(bloqueo, 0, 1000);
 
+        }
+        return bloqueoFinalizado;
+    }
+
+    private boolean noEntrarAlSistema() {
+        boolean bloqueoFinalizado = true;
+        while (isFraude==true) {
+            bloqueoFinalizado = false;
+            System.out.println("No puedes entrar al sistema");
         }
         return bloqueoFinalizado;
     }

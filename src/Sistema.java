@@ -3,17 +3,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//Clase Sistema
 public class Sistema {
-    private int intentospermitidos = 2;
-    String usuarioEntrar = "";
+    private int intentospermitidos = 2; //Se permiten dos intentos para poner bien el usuario y la contraseña
+    String usuarioEntrar = ""; //Guardar el Cliente que a entrado
 
     //Constructor Sistema
     public Sistema() throws IOException {
         boolean f = false;
         Scanner sc = new Scanner(System.in);
-        //Menu del sistema
+        //Registrarse como nuevo Cliente o Iniciar Sesion
         do {
-            System.out.println("Bienvenido al concesionario espacial");
+            System.out.println("Bienvenido al Concesionario Espacial");
             System.out.println("1) Ingresar nuevo cliente");
             System.out.println("2) Iniciar Sesion");
             System.out.println("3) Salir");
@@ -33,6 +34,7 @@ public class Sistema {
                     f = true;
                     break;
                 }
+                //Salir del Sistema
                 case 3: {
                     f = true;
                     break;
@@ -43,7 +45,8 @@ public class Sistema {
             }
         } while (!f);
     }
-    //Menu
+
+    //Menu una vez has ingresado como Cliente
     public void menu() throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean f = false;
@@ -55,111 +58,39 @@ public class Sistema {
             System.out.println("4) Salir");
             int s = sc.nextInt();
             switch (s) {
+                //Ingresar una nueva nave propiedad del Cliente
                 case 1 -> {
                     insertarNave();
                     break;
                 }
+                //Crear una oferta con las naves que posee el Cliente
                 case 2 -> {
                     crearOferta();
                     break;
                 }
+                //Ver las ofertas publicadas en la pagina web
                 case 3 -> {
                     verOfertas();
                     break;
                 }
+                //Salir del Sistema
                 case 4 -> {
                     f = true;
                     break;
                 }
+                //Valor introducido incorrecto
                 default -> throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
     }
 
-    public void verOfertas(){
-
+    public void verOfertas() throws IOException {
+        new Oferta().buscadorDeOfertas();
     }
 
+    //Crear oferta con las naves que posee el Cliente
     public void crearOferta() throws IOException {
-        String usuarioAmeter = usuarioEntrar;
-        List<String> fichero = new ArrayList<>();
-        List<String> naves = new ArrayList<>();
-        BufferedReader br = new BufferedReader(new FileReader("userNaves.txt"));
-        String line;
-        boolean encontrado = false;
-        while ((line = br.readLine()) != null) {
-            fichero.add(line);
-        }
-        int min = 0;
-        int max = fichero.size() - 1;
-        String tope = "*";
-        if (max != 0 && pertenece(usuarioAmeter)) {
-            while (!encontrado && max != 0) {
-                if (usuarioAmeter.equals(fichero.get(min))) {
-                    min = min + 1;
-                    while (!(fichero.get(min).equals(tope))) {
-                        naves.add(fichero.get(min));
-                        min = min + 1;
-                    }
-                    encontrado = true;
-                }
-                min = min + 1;
-                max = max - 1;
-            }
-        }
-        System.out.println("Que nave desea poner en venta:");
-        for (int i = 0; i < naves.size(); i++) {
-            if (naves.get(i).contains("Caza") || naves.get(i).contains("Carguero") || naves.get(i).contains("Destructor") || naves.get(i).contains("Estacion Espacial"))
-                System.out.println(naves.get(i));
-            else if (naves.get(i).contains("Numero de Identificacion")) {
-                System.out.println(naves.get(i));
-            }
-        }
-        System.out.println("Introduzca la matricula de la nave que quiera poner en venta:");
-        Scanner sc = new Scanner(System.in);
-        String s = sc.next();
-        naves = cogerNave(naves, s);        //ya tenemos la nave que queremos
-        List<String> lecturaOfertas = new ArrayList<>();
-        br = new BufferedReader(new FileReader("userOfertas.txt"));
-        String lineas;
-        while ((lineas = br.readLine()) != null) {
-            lecturaOfertas.add(lineas);
-        }
-        min = 0;
-        max = lecturaOfertas.size();
-        boolean found=false;
-        if (pertenece(usuarioAmeter)) {
-            if (max != 0) {
-                while (!found && max != 0) {
-                    if (usuarioAmeter.equals(lecturaOfertas.get(min))) {
-                        min=min+1;
-                        for (int i = 0; i < naves.size(); i++) {
-                            lecturaOfertas.add(min, naves.get(i));
-                            min=min+1;
-                        }
-                        lecturaOfertas.add(min, "-");
-                        found = true;
-                    } else {
-                        min = min + 1;
-                        max = max - 1;
-                    }
-                }
-            }
-            if (!found){
-                lecturaOfertas.add(usuarioAmeter);
-                for (int i = 0; i < naves.size(); i++) {
-                    lecturaOfertas.add(naves.get(i));
-                }
-                lecturaOfertas.add("-");
-                lecturaOfertas.add("*");
-            }
-            FileWriter fw = new FileWriter("userOfertas.txt");
-            PrintWriter escritura = new PrintWriter(fw);
-            for (int i = 0; i < lecturaOfertas.size(); i++) {
-                escritura.println(lecturaOfertas.get(i));
-            }
-            escritura.close();
-        }
+        new Oferta().construirOferta(usuarioEntrar);
     }
 
     public void insertarNave() {
@@ -202,7 +133,7 @@ public class Sistema {
         }
     }
 
-    public List<String> cogerNave(List<String> naves, String matricula) {
+    public static List<String> cogerNave(List<String> naves, String matricula) {
         List<String> devolucion = new ArrayList<>();
         int i = 0;
         boolean encontrado = false;
@@ -228,7 +159,7 @@ public class Sistema {
         return devolucion;
     }
 
-    public boolean pertenece(String use) throws IOException {
+    public static boolean pertenece(String use) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("userNaves.txt"));
         String linea = "";
         boolean encontrado = false;
@@ -270,10 +201,10 @@ public class Sistema {
         Scanner sc = new Scanner(System.in);
         boolean encontrado = false;
         System.out.println("Introduzca usuario");
-        String use = sc.next();
+        String user = sc.next();
         System.out.println("Introduzca contraseña");
-        use += sc.next();
-        switch (use) {
+        user += sc.next();
+        switch (user) {
             case "dani1234":
             case "pauli1234":
             case "jani1234":
@@ -289,9 +220,9 @@ public class Sistema {
                         BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
                         String linea = "";
                         while ((linea = br.readLine()) != null) {
-                            if (linea.equalsIgnoreCase(use)) {
+                            if (linea.equalsIgnoreCase(user)) {
                                 encontrado = true;
-                                usuarioEntrar = use;
+                                usuarioEntrar = user; //Guardar el Cliente que esta utilizando el Sistema
                                 break;
                             }
                         }
@@ -336,4 +267,5 @@ public class Sistema {
             }
         } while (!f);
     }
+
 }
