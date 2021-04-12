@@ -1,4 +1,4 @@
-import java.io.BufferedReader;
+/*import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -82,7 +82,7 @@ public class Administrador extends Usuario {
         User.nAdvertencias += 1;
     }
 
-    private void eliminarOferta(String nOferta, Oferta offer) throws IOException {
+    /*private void eliminarOferta(String nOferta, Oferta offer) throws IOException {
         offer.buscarOfertaEspecifica(nOferta);
         BufferedReader br = new BufferedReader(new FileReader("userOferta.txt"));
         String linea=br.readLine();
@@ -90,4 +90,4 @@ public class Administrador extends Usuario {
 
         }
     }
-}
+}*/

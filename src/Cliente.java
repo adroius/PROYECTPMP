@@ -48,7 +48,7 @@ public class Cliente {
 
     }*/
 
-    public boolean suscribirseAUnaOferta(String nOferta) {
+  /*  public boolean suscribirseAUnaOferta(String nOferta) {
         boolean suscribirse = false;
         boolean exit = false;
         Scanner sc = new Scanner(System.in);
@@ -76,7 +76,7 @@ public class Cliente {
         while (!exit) ;
         return suscribirse;
     }
-
+*/
     public void escribirInfo() {
         try {
             FileWriter escribir = new FileWriter("usuarioInfo.txt");
@@ -98,7 +98,7 @@ public class Cliente {
         }
     }
 
-    public boolean modificarOferta(String nIdentificacion, String nOferta) {
+  /*  public boolean modificarOferta(String nIdentificacion, String nOferta) {
         boolean exit = false;
         Scanner sc = new Scanner(System.in);
         System.out.print("Pon su numero de identificacion");
@@ -129,7 +129,7 @@ public class Cliente {
         }
         return exit;
     }
-
+*/
 
     public int numeroAdvertencias(String nIdentificacion) {
         boolean encontrado = comprobarNIdentificacion(nIdentificacion);
