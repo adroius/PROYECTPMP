@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -57,6 +55,12 @@ public class Registro {
                 i = fichero.size();
             }
         }
+        FileWriter fw = new FileWriter("userOfertas.txt");
+        PrintWriter escritura = new PrintWriter(fw);
+        for (int i = 0; i < nave.size(); i++) {
+            escritura.println(nave.get(i));
+        }
+        escritura.close();
     }
 
     public void ejecutarCompra() throws IOException {
