@@ -6,7 +6,7 @@ import java.util.Scanner;
 //Clase Sistema
 public class Sistema {
     private int intentospermitidos = 2; //Se permiten dos intentos para poner bien el usuario y la contraseña
-    String usuarioEntrar = ""; //Guardar el Cliente que a entrado
+    public static String usuarioEntrar = ""; //Guardar el Cliente que a entrado
 
     //Constructor Sistema
     public Sistema() throws IOException {
@@ -55,7 +55,8 @@ public class Sistema {
             System.out.println("1) Registrar nave");
             System.out.println("2) Crear Oferta");
             System.out.println("3) Ver ofertas");
-            System.out.println("4) Salir");
+            System.out.println("4) Realizar compra");
+            System.out.println("5) Salir");
             int s = sc.nextInt();
             switch (s) {
                 //Ingresar una nueva nave propiedad del Cliente
@@ -75,6 +76,10 @@ public class Sistema {
                 }
                 //Salir del Sistema
                 case 4 -> {
+                    new Registro().ejecutarCompra();
+                    break;
+                }
+                case 5 -> {
                     f = true;
                     break;
                 }
