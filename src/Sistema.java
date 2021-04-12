@@ -59,27 +59,27 @@ public class Sistema {
             int s = sc.nextInt();
             switch (s) {
                 //Ingresar una nueva nave propiedad del Cliente
-                case 1 -> {
+                case 1: {
                     insertarNave();
                     break;
                 }
                 //Crear una oferta con las naves que posee el Cliente
-                case 2 -> {
+                case 2: {
                     crearOferta();
                     break;
                 }
                 //Ver las ofertas publicadas en la pagina web
-                case 3 -> {
+                case 3: {
                     verOfertas();
                     break;
                 }
                 //Salir del Sistema
-                case 4 -> {
+                case 4: {
                     f = true;
                     break;
                 }
                 //Valor introducido incorrecto
-                default -> throw new IllegalStateException("Unexpected value: " + s);
+                default: throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
     }
@@ -240,6 +240,28 @@ public class Sistema {
         }
         return encontrado;
     }
+
+     boolean comprobarNOferta(String nOferta) {
+        Scanner sc = new Scanner(System.in);
+        nOferta = sc.next();
+        boolean encontrado = false;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("ofertaInfo.txt"));
+            String linea = "";
+            while (((linea = br.readLine()) != null) && (!encontrado)) {
+                if (linea.equalsIgnoreCase(nOferta)) {
+                    encontrado = true;
+                }
+            }
+            if (!encontrado) {
+                System.out.println("Error en los datos introducidos.");
+            }
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
+        return encontrado;
+    }
+
 
     private void menuAdministrador() {
         Scanner sc = new Scanner(System.in);
