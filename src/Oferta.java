@@ -5,6 +5,8 @@ import java.util.*;
 
 public class Oferta {
     String nIdentificacion; //Numero de identificacion de Oferta
+    int valoracion;
+    String comentario;
 
     //Constructor Oferta
     public Oferta() {
@@ -137,6 +139,8 @@ public class Oferta {
         naves = Sistema.cogerNave(naves, s);
         System.out.println("Introduzca el precio de la nave que va a poner en venta:");
         s = sc.next();//ya tenemos el precio que queremos
+        System.out.println("Introduzca la fecha limite en la que caducará la oferta dd/MM/yyyy");
+        String d = sc.next();
         List<String> lecturaOfertas = new ArrayList<>();
         br = new BufferedReader(new FileReader("userOfertas.txt"));
         String lineas;
@@ -159,6 +163,8 @@ public class Oferta {
                         min = min + 1;
                         lecturaOfertas.add(min, "Precio de la nave: " + s);
                         min = min + 1;
+                        lecturaOfertas.add(min, "Fecha Limite " + d);
+                        min = min + 1;
                         lecturaOfertas.add(min, "-");
                         found = true;
                     } else {
@@ -174,6 +180,7 @@ public class Oferta {
                 }
                 lecturaOfertas.add("Numero de oferta: " + this.nIdentificacion);
                 lecturaOfertas.add("Precio de la nave: " + s);
+                lecturaOfertas.add("Fecha Limite " + d);
                 lecturaOfertas.add("-");
                 lecturaOfertas.add("*");
             }
@@ -186,10 +193,7 @@ public class Oferta {
         }
     }
 
-    public Date fechaLimite(int c) {
-        Date fecha = new Date();
-        return fecha;
-    }
+
 
     public int PrecioOfertaTotal(int c) {
 
@@ -200,16 +204,54 @@ public class Oferta {
 
         return c;
     }
-
-    public int crearVotacion(int c, int d) {
+    public int DanyoTotal(int c) {
 
         return c;
     }
 
-    public String crearComentario(int c, int d) {
-        String comentario = "";
-        return comentario;
-    }
+    public void votar(int c, Scanner sc) {
+            System.out.println("¿Cual es su valoración?");
+            c = sc.nextInt();
+            this.valoracion=c;
+            try {
+                FileWriter escribir = new FileWriter("usuarioInfo.txt");
+                escribir.write(this.valoracion);
+                escribir.close();
+            } catch (Exception e) {
+                System.out.println("Error en la valoracion");
+            }
+        }
+
+    public void comentar(Scanner sc) {
+        boolean exit = false;
+        System.out.println("¿Desea realizar un comentario?");
+        System.out.println("1) Si");
+        System.out.println("2) No");
+        int c = sc.nextInt();
+            switch (c) {
+                case 1: {
+                    exit = false;
+                    System.out.println("¿Que comentario desea realizar?");
+                    String s = sc.next();
+                    this.comentario= s;
+                    try {
+                        FileWriter escribir = new FileWriter("usuarioInfo.txt");
+                        escribir.write(this.comentario);
+                        escribir.close();
+                    } catch (Exception e) {
+                        System.out.println("Error escribiendo el comentario");
+                    }
+                    break;
+                }
+                case 2: {
+                    exit = true;
+                    break;
+                }
+                default:
+                    throw new IllegalStateException("Valor no valido");
+            }
+        while (!exit) ;
+        }
 
     public boolean buscarOfertaEspecifica(String numOferta) throws IOException {
         boolean encontrado = false;
