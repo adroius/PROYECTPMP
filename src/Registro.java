@@ -31,10 +31,9 @@ public class Registro {
                 while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
                     i--;
                 }
-                if (fichero.contains(Sistema.usuarioEntrar)) {
-                    while (!fichero.get(i).equals("-")) {
-                        nave.add(fichero.get(i));
-                    }
+                while (!fichero.get(i).equals("-")) {
+                    nave.add(fichero.get(i));
+                    i++;
                 }
                 i = fichero.size();
             }
@@ -45,22 +44,22 @@ public class Registro {
         while ((l = br.readLine()) != null) {
             fichero.add(l);
         }
-        boolean insertado=false;
+        boolean insertado = false;
         for (int i = 0; i < fichero.size(); i++) {
             if (fichero.get(i).contains(Sistema.usuarioEntrar)) {
-                insertado=true;
-                int min = i+1;
-                for (int e = 0; e < fichero.size(); e++) {
-                    fichero.add(min,nave.get(e));
+                insertado = true;
+                int min = i + 1;
+                for (int e = 0; e < nave.size(); e++) {
+                    fichero.add(min, nave.get(e));
                     min++;
                 }
-                fichero.add(min,"-");
+                fichero.add(min, "-");
                 i = fichero.size();
             }
         }
-        if(!insertado){
+        if (!insertado) {
             fichero.add(Sistema.usuarioEntrar);
-            for (int e = 0; e < fichero.size(); e++) {
+            for (int e = 0; e < nave.size(); e++) {
                 fichero.add(nave.get(e));
             }
             fichero.add("-");
@@ -88,59 +87,47 @@ public class Registro {
         while ((carrilista = br.readLine()) != null) {
             carrito.add(carrilista);
         }
+        boolean encontrado=false;
         for (int i = 0; i < carrito.size(); i++) {
             if (carrito.get(i).contains(Sistema.usuarioEntrar)) {
+                encontrado=true;
+                i++;
                 while (!carrito.get(i).contains("*")) {
                     carritoIndividual.add(carrito.get(i));
                     i++;
                 }
                 i = fichero.size();
-            } else {
-                System.out.println("Su carrito esta vacio");
             }
         }
-        for (int e = 0; e < fichero.size(); e++) {
-            if (fichero.get(e).contains(Sistema.usuarioEntrar)) {
-                e++;
-                for (int i = 0; i < carritoIndividual.size(); i++) {
-                    fichero.add(e, carritoIndividual.get(i));
+        if (!encontrado){
+            System.out.println("Su carrito esta vacio");
+        }
+        boolean found=false;
+        if (encontrado){
+            for (int e = 0; e < fichero.size(); e++) {
+                if (fichero.get(e).contains(Sistema.usuarioEntrar)) {
+                    found=true;
                     e++;
+                    for (int i = 0; i < carritoIndividual.size(); i++) {
+                        fichero.add(e, carritoIndividual.get(i));
+                        e++;
+                    }
+                    e = fichero.size();
                 }
-                e = fichero.size();
             }
-        }
-        fichero.add(Sistema.usuarioEntrar);
-        int nx=0;
-        for (int e = 0; e < carritoIndividual.size(); e++) {
-            fichero.add(nx, carritoIndividual.get(e));
-            nx++;
-        }
-        fichero.add("-");
-        fichero.add("*");
-    }
-}
-
-
-        /*br = new BufferedReader(new FileReader("registroVentas.txt"));
-        String l;
-        while ((l = br.readLine()) != null) {
-            fichero.add(l);
-        }
-        for (int i = 0; i < fichero.size(); i++) {
-            if (fichero.get(i).contains(Sistema.usuarioEntrar)) {
-                int min = i + 1;
-                for (int e = 0; e < nave.size(); e++) {
-                    fichero.add(min, nave.get(e));
-                    min++;
-                }
-                fichero.add(min, "-");
-                i = fichero.size();
-            } else {
+            if (!found){
                 fichero.add(Sistema.usuarioEntrar);
-                for (int e = 0; e < nave.size(); e++) {
-                    fichero.add(nave.get(e));
+                for (int e = 0; e < carritoIndividual.size(); e++) {
+                    fichero.add(carritoIndividual.get(e));
                 }
-                fichero.add("-");
                 fichero.add("*");
             }
-        }*/
+        }
+        FileWriter fw = new FileWriter("registroVentas.txt");
+        PrintWriter escritura = new PrintWriter(fw);
+        for (int i = 0; i < fichero.size(); i++) {
+            escritura.println(fichero.get(i));
+        }
+        escritura.close();
+    }
+}
