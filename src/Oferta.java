@@ -63,7 +63,7 @@ public class Oferta {
                 throw new IllegalStateException("Unexpected value: " + s); //Ha introducido un numero incorrecto
         }
         if (hayOferta) {
-            new Registro();
+            new Registro().crearCarritoDeNaves();
         } else {
             System.out.println("No se han encontrado ofertas");
         }
