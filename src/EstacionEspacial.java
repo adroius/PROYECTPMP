@@ -10,6 +10,7 @@ public class EstacionEspacial extends NaveBuilder{
     List<Propulsion> prop; //EstacionEspacial puede tener 1 o 2 tipos de propulsion
     int numDefensas;
     int numPasajerosMax;
+    int potencia;
 
     //Constructor EstacionEspacial
     public EstacionEspacial() {
@@ -131,7 +132,7 @@ public class EstacionEspacial extends NaveBuilder{
 
     @Override
     public int potenciaDeAtaque(){
-        return 0;
+        return potencia;
     }
 
     //Esto tiene que devolver Null???
@@ -142,7 +143,9 @@ public class EstacionEspacial extends NaveBuilder{
         int i = sc.nextInt();
         do {
             i -= 1;
-            conjuntoDeNaves.add(NaveBuilder.CrearNave());
+            Nave n = NaveBuilder.CrearNave();
+            conjuntoDeNaves.add(n);
+            potencia += n.potenciaDeAtaque();
         } while (i!=0);
         return conjuntoDeNaves;
     }
@@ -155,6 +158,7 @@ public class EstacionEspacial extends NaveBuilder{
                 "\nNumero de Defensas = " + numDefensas +
                 "\nDefensas = " + defensa +
                 "\nArmas = " + conjuntoDeArmas +
+                "\nPotencia total del conjunto de naves = " + potencia +
                 "\nPropulsion = " + prop +
                 "\nNumero de Identificacion = " + numReg +
                 "\nNaves = " + conjuntoDeNaves;

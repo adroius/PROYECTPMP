@@ -15,7 +15,7 @@ public class Cliente {
     boolean isKromagg;
     boolean isPirata;
     boolean isFraude;
-    int nAdvertencias = 0; //Inicializar las Advertencias en 0
+    int nAdvertencias = 0;
 
     //Constructor Cliente
     public Cliente() {
@@ -32,7 +32,7 @@ public class Cliente {
         System.out.println("¿Cual es su numero de identificacion?");
         s = sc.next();
         this.numeroIdentificacion = s;
-        this.NavesEnPropiedad = null; //El cliente tiene que registrar sus naves despues de registrarse
+        this.NavesEnPropiedad = null;
         System.out.println("¿Cual es su Nick?");
         s = sc.next();
         this.Nick = s;
@@ -48,17 +48,6 @@ public class Cliente {
 
     }*/
 
-
-    //Aun no terminado
-    public void crearOferta() throws FileNotFoundException {
-        Registro oferta;
-        oferta = new Registro();
-        Scanner sc = new Scanner(System.in);
-        int numBid = sc.nextInt();
-    }
-
-
-    //Aun no terminado
     public boolean suscribirseAUnaOferta(int nOferta) {
         boolean suscribirse = false;
         boolean exit = false;
@@ -79,12 +68,11 @@ public class Cliente {
                     exit = true;
                     break;
                 }
-                //El valor introducido es incorrecto
                 default:
                     throw new IllegalStateException("Valor no valido");
             }
         }
-        while (!exit);
+        while (!exit) ;
         return suscribirse;
     }
 
@@ -110,12 +98,6 @@ public class Cliente {
         return encontrado;
     }
 
-
-    //Guardar la informacion del Cliente en UsuarioInfo.txt
-        /*El formato en que se guarda es:
-        numeroIdentificacion
-        Nombre-PlanetaOrigen-Especia-Nick-email
-        */
     public void escribirInfo() {
         try {
             FileWriter escribir = new FileWriter("usuarioInfo.txt");
@@ -137,8 +119,6 @@ public class Cliente {
         }
     }
 
-
-    //Aun no terminado
     public boolean modificarOferta(String nIdentificacion, int nOferta) {
         boolean exit = false;
         Scanner sc = new Scanner(System.in);
@@ -171,16 +151,17 @@ public class Cliente {
     }
 
 
-    //Escribe por pantalla el numero de advertencias de un Cliente
     public int numeroAdvertencias(String nIdentificacion) {
         boolean encontrado = comprobarNIdentificacion(nIdentificacion);
         if (encontrado) {
             System.out.println("Llevas " + nAdvertencias + " advertencias");
         }
+        if (nAdvertencias==2){
+            noEntrarAlSistemaPorAdvertencias();
+        }
         return nAdvertencias;
     }
 
-    //Comprueba el numero de Identificacion introducido
     private boolean comprobarNIdentificacion(String nIdentificacion) {
         Scanner sc = new Scanner(System.in);
         nIdentificacion = sc.next();
@@ -202,7 +183,7 @@ public class Cliente {
         return encontrado;
     }
 
-    //Comprobar si el Cliente es de la especie Kromagg
+    //Comprobar si es de la especie Kromagg
     protected boolean isKromagg() {
         boolean is = false;
         if (this.Especie == "Kromagg" || this.Especie == "kromagg") {
@@ -213,27 +194,26 @@ public class Cliente {
         return is;
     }
 
-    //Comprobar si el Cliente es Sospechoso de Pirateria
+    //Comprobar si es Sospechoso de Pirateria
+    //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isPirata() {
-        boolean is = false;
-        if (this.isPirata) {
-            is = true;
+        boolean is = this.isPirata;
+        if (is) {
             comprarNavePirata();
         }
         return is;
     }
 
-    //Comprobar si el Cliente es Sospechoso de Fraude
+    //Comprobar si es Sospechoso de Fraude
+    //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isFraude() {
-        boolean is = false;
-        if (this.isFraude) {
-            noEntrarAlSistemaFraude();
-            is = true;
+        boolean is = this.isFraude;
+        if (is) {
+            noEntrarAlSistema();
         }
         return is;
     }
 
-    //Comprardor de naves si eres Pirata (Solo pueden comprar Cargueros)
     private boolean comprarNavePirata() {
         Nave n;
         boolean compra;
@@ -244,7 +224,7 @@ public class Cliente {
         int s = sc.nextInt();
         switch (s) {
             case 1: {
-                n = new Carguero(); //Constructor Carguero
+                n = new Carguero();
                 compra = true;
                 break;
             }
@@ -252,15 +232,13 @@ public class Cliente {
                 compra = false;
                 break;
             }
-            //El valor introducido es incorrecto
             default:
                 throw new IllegalStateException("Unexpected value: " + s);
         }
         return compra;
     }
 
-    //Si el Cliente tiene 2 advertencias no puede entrar al sistema en 5 días
-    private boolean noEntrarAlSistemaAdvertencias() {
+    private boolean noEntrarAlSistemaPorAdvertencias() {
         Timer timer = new Timer();
         int seconds = 432000;
         boolean bloqueoFinalizado = (seconds != 0);
@@ -278,21 +256,17 @@ public class Cliente {
         return bloqueoFinalizado;
     }
 
-
-    //Si el Cliente es sospechoso de Fraude no puede entrar al sistema hasta que deje de serlo
-    private void noEntrarAlSistemaFraude(){
-        System.out.println("No puedes entrar al sistema");
+    private boolean noEntrarAlSistema() {
+        boolean bloqueoFinalizado = true;
+        while (isFraude==true) {
+            bloqueoFinalizado = false;
+            System.out.println("No puedes entrar al sistema");
+        }
+        return bloqueoFinalizado;
     }
 
     @Override
     public String toString() {
-        return "Cliente: " +
-                "\nNombre= " + Nombre +
-                "\nPlanetaOrigen= " + PlanetaOrigen +
-                "\nEspecie= " + Especie +
-                "\nNumero Identificacion= " + numeroIdentificacion +
-                "\nNaves En Propiedad=" + NavesEnPropiedad +
-                "\nNick=" + Nick +
-                "\nEmail='" + email;
+        return "Cliente: " + "\nNombre= " + Nombre + "\nPlanetaOrigen= " + PlanetaOrigen + "\nEspecie= " + Especie + "\nNumero Identificacion= " + numeroIdentificacion + "\nNaves En Propiedad=" + NavesEnPropiedad + "\nNick=" + Nick + "\nEmail='" + email;
     }
 }

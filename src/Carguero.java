@@ -48,16 +48,16 @@ public class Carguero extends NaveBuilder {
             }
             Defensa d;
             switch (e) {
-                case 1 -> {
+                case 1: {
                     d = new Escudo(); //Constructor Escudo
                     defensa.add(d);
                 }
-                case 2 -> {
+                case 2: {
                     d = new Blindaje(); //Constructor Blindaje
                     defensa.add(d);
                 }
                 //El dato introducido es incorrecto
-                default -> throw new IllegalStateException("Valor incorrecto: " + e);
+                default:{ throw new IllegalStateException("Valor incorrecto: " + e);}
             }
         }
         return defensa;
