@@ -1,5 +1,5 @@
 //Clase Administrador
-public class Administrador {
+/*public class Administrador {
 
     //Constructor Administrador
     public Administrador() {
@@ -8,3 +8,4 @@ public class Administrador {
 
 
 }
+*/
