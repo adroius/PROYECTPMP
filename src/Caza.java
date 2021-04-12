@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,8 +8,8 @@ public class Caza extends NaveBuilder {
     List<Defensa> defensa; //Caza solo puede tener 1 defensa
     List<Arma> conjuntoDeArmas; //Caza tiene 2 armas
     List<Propulsion> prop; //Caza tiene 1 o 2 tipos de propulsion
-    int numDefensas = numeroDeDefensasMax(); //Max 1
-    int potencia = 0;
+    int numDefensas = numeroDeDefensasMax(); //Maximo 1
+    int potencia = 0; //Potencia total de las armas del Caza
 
     //Constructor de Caza
     public Caza() {
@@ -66,7 +63,6 @@ public class Caza extends NaveBuilder {
         return defensa;
     }
 
-
     //Lista de Armas del Caza (Caza tiene 2 tipos de Armas)
     public List<Arma> conjuntoDeArmas() {
         List<Arma> armas = new ArrayList<>();
@@ -80,6 +76,7 @@ public class Caza extends NaveBuilder {
         return armas;
     }
 
+    //Devuelve la potencia total de las Armas del Caza
     @Override
     public int potenciaDeAtaque() {
         return potencia;
@@ -111,7 +108,6 @@ public class Caza extends NaveBuilder {
     private final int numeroDeDefensasMax() {
         return 1;
     }
-
 
     @Override
     public String toString() {

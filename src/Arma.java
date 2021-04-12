@@ -3,8 +3,8 @@ import java.util.Scanner;
 //Clase Arma
 public class Arma {
 
-    String nombre = "";
-    int potencia = 0;
+    String nombre;
+    int potencia;
 
     //Constructor Arma
     public Arma() {
@@ -55,7 +55,7 @@ public class Arma {
         return v;
     }
 
-    //Guardar el tipo de Arma
+
     private boolean isPEM(String s) {
         return s == "PEM";
     }
