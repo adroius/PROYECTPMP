@@ -50,31 +50,30 @@ public class Arma {
     public static int potencia() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Introduzca la potencia del arma: ");
-        int v = sc.nextInt();
-        System.out.println("¡La potencia de su arma será " + v + " !");
-        return v;
+        int danio = sc.nextInt();
+        System.out.println("¡La potencia de su arma será " + danio + " !");
+        return danio;
     }
 
     //Guardar el tipo de Arma
-    private boolean isPEM(String s) {
-        return s == "PEM";
+    private boolean isPEM(String tipoArma) {
+        return tipoArma == "PEM";
     }
 
-    private boolean isMisilTermonuclear(String s) {
-        return s == "Misil Termonuclear";
+    private boolean isMisilTermonuclear(String tipoArma) {
+        return tipoArma == "Misil Termonuclear";
     }
 
-    private boolean isRayoLaser(String s) {
-        return s == "Rayo Laser";
+    private boolean isRayoLaser(String tipoArma) {
+        return tipoArma == "Rayo Laser";
     }
 
-    private boolean isCañonPlasma(String s) {
-        return s == "Cañon de plasma";
+    private boolean isCañonPlasma(String tipoArma) {
+        return tipoArma == "Cañon de plasma";
     }
 
     @Override
     public String toString() {
-
         return "La potencia del " + nombre + " es de " + potencia+ "GigaJulios";
     }
 }
