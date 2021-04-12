@@ -5,6 +5,7 @@ import java.util.*;
 
 public class Oferta {
     String nIdentificacion; //Numero de identificacion de Oferta
+    int precio;
 
     //Constructor Oferta
     public Oferta() {
@@ -200,6 +201,12 @@ public class Oferta {
 
         return c;
     }
+
+    public int danioTotalOferta(int c) {
+
+        return c;
+    }
+
 
     public int crearVotacion(int c, int d) {
 
