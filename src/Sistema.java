@@ -241,6 +241,7 @@ public class Sistema {
         return encontrado;
     }
 
+    //Menu de los Administradores
     private void menuAdministrador() {
         Scanner sc = new Scanner(System.in);
         boolean f = false;

@@ -55,6 +55,7 @@ public class Arma {
         return danio;
     }
 
+
     //Guardar el tipo de Arma
     private boolean isPEM(String tipoArma) {
         return tipoArma == "PEM";

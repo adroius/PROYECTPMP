@@ -23,8 +23,7 @@ public class Carguero extends NaveBuilder {
     public int tripulantesTotales() {
         System.out.println("¿Cual es la capacidad de tripulantes del carguero?");
         Scanner sc = new Scanner(System.in);
-        int s = sc.nextInt();
-        return s;
+        return sc.nextInt();
     }
 
     //Lista de defensas del Carguero (Carguero solo puede tener una defensa)
@@ -51,10 +50,12 @@ public class Carguero extends NaveBuilder {
                 case 1: {
                     d = new Escudo(); //Constructor Escudo
                     defensa.add(d);
+                    break;
                 }
                 case 2: {
                     d = new Blindaje(); //Constructor Blindaje
                     defensa.add(d);
+                    break;
                 }
                 //El dato introducido es incorrecto
                 default:{ throw new IllegalStateException("Valor incorrecto: " + e);}

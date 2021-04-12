@@ -9,7 +9,7 @@ public class Destructor extends NaveBuilder {
     List<Propulsion> prop; //Destructor tiene 1 o 2 tipos de Propulsion
     int tripulantesTotales;
     int numDefensas = numeroDeDefensasMax(); //Max 2
-    int potencia = 0;
+    int potencia; //Potencia total de las armas del Destructor
 
     //Constructor Destructor
     public Destructor() {

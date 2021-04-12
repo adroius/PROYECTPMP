@@ -151,6 +151,7 @@ public class Cliente {
     }
 
 
+    //Escribe por pantalla el numero de Advertencias del cliente y si tiene 2 impide que entre en el Sistema
     public int numeroAdvertencias(String nIdentificacion) {
         boolean encontrado = comprobarNIdentificacion(nIdentificacion);
         if (encontrado) {
@@ -162,6 +163,7 @@ public class Cliente {
         return nAdvertencias;
     }
 
+    //Comprobar que el Numero de Identificacion pertenece a un Cliente
     private boolean comprobarNIdentificacion(String nIdentificacion) {
         Scanner sc = new Scanner(System.in);
         nIdentificacion = sc.next();
@@ -183,7 +185,7 @@ public class Cliente {
         return encontrado;
     }
 
-    //Comprobar si es de la especie Kromagg
+    //Comprobar si el Cliente es de la especie Kromagg
     protected boolean isKromagg() {
         boolean is = false;
         if (this.Especie == "Kromagg" || this.Especie == "kromagg") {
@@ -195,7 +197,6 @@ public class Cliente {
     }
 
     //Comprobar si es Sospechoso de Pirateria
-    //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isPirata() {
         boolean is = this.isPirata;
         if (is) {
@@ -205,7 +206,6 @@ public class Cliente {
     }
 
     //Comprobar si es Sospechoso de Fraude
-    //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isFraude() {
         boolean is = this.isFraude;
         if (is) {
@@ -214,6 +214,7 @@ public class Cliente {
         return is;
     }
 
+    //Menu de compra de los Sospechosos de Pirateria (Solo pueden comprar Cargueros)
     private boolean comprarNavePirata() {
         Nave n;
         boolean compra;
@@ -238,7 +239,9 @@ public class Cliente {
         return compra;
     }
 
+    //No deja entrar al Sistema durante 5 días
     private boolean noEntrarAlSistemaPorAdvertencias() {
+        nAdvertencias = 0; //Reinicia el conteo de advertencias
         Timer timer = new Timer();
         int seconds = 432000;
         boolean bloqueoFinalizado = (seconds != 0);
@@ -256,9 +259,10 @@ public class Cliente {
         return bloqueoFinalizado;
     }
 
+    //No permite entrar en el Sistema si eres Sospechoso de Fraude
     private boolean noEntrarAlSistema() {
         boolean bloqueoFinalizado = true;
-        while (isFraude==true) {
+        while (isFraude) {
             bloqueoFinalizado = false;
             System.out.println("No puedes entrar al sistema");
         }

@@ -14,7 +14,7 @@ public class Blindaje extends Defensa {
         this.peso = danioQueAbsorbe() * 10; //El peso es igual al daño que Absorbe * 10
     }
 
-    //Obtener el danio que absorbe el Blindaje
+    //Obtener el danio que absorbe el Blindaje a partir del material del Blindaje
     @Override
     public int danioQueAbsorbe() {
         int dqa;
