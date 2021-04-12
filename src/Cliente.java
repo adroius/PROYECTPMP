@@ -48,11 +48,12 @@ public class Cliente {
 
     }*/
 
-    public boolean suscribirseAUnaOferta(int nOferta) {
+    public boolean suscribirseAUnaOferta(String nOferta) {
         boolean suscribirse = false;
         boolean exit = false;
         Scanner sc = new Scanner(System.in);
-        if (comprobarNOferta(nOferta)) {
+        Sistema sistem = null;
+        if (sistem.comprobarNOferta(nOferta)) {
             System.out.println("¿Quieres suscribirte a esta oferta?");
             System.out.println("1) Si");
             System.out.println("2) No");
@@ -76,28 +77,6 @@ public class Cliente {
         return suscribirse;
     }
 
-    private boolean comprobarNOferta(int nOferta) {
-        Scanner sc = new Scanner(System.in);
-        nOferta = sc.nextInt();
-        String idenOferta = String.valueOf(nOferta);
-        boolean encontrado = false;
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("ofertaInfo.txt"));
-            String linea = "";
-            while (((linea = br.readLine()) != null) && (!encontrado)) {
-                if (linea.equalsIgnoreCase(idenOferta)) {
-                    encontrado = true;
-                }
-            }
-            if (!encontrado) {
-                System.out.println("Error en los datos introducidos.");
-            }
-        } catch (IOException e) {
-            System.out.println("Error");
-        }
-        return encontrado;
-    }
-
     public void escribirInfo() {
         try {
             FileWriter escribir = new FileWriter("usuarioInfo.txt");
@@ -119,15 +98,16 @@ public class Cliente {
         }
     }
 
-    public boolean modificarOferta(String nIdentificacion, int nOferta) {
+    public boolean modificarOferta(String nIdentificacion, String nOferta) {
         boolean exit = false;
         Scanner sc = new Scanner(System.in);
         System.out.print("Pon su numero de identificacion");
         nIdentificacion = sc.next();
         if (comprobarNIdentificacion(nIdentificacion)) {
-            System.out.print("Pon su numero de identificacion");
-            nOferta = sc.nextInt();
-            if (comprobarNOferta(nOferta)) {
+            System.out.print("Pon el numero de identificacion de la oferta que deseas modificar");
+            nOferta = sc.next();
+            Sistema sistem = null;
+            if (sistem.comprobarNOferta(nOferta)) {
                 System.out.println("¿Quieres modificar esta oferta?");
                 System.out.println("1) Si");
                 System.out.println("2) No");
