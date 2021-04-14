@@ -84,7 +84,7 @@ public class Oferta {
             if (fichero.get(i).contains(c)) {
                 encontrado = true;
                 naves.add(fichero.get(i));
-                while (!fichero.get(i).contains("Numero de oferta")) {
+                while (!fichero.get(i).contains("Numero de Identificacion")) {
                     i++;
                 }
                 naves.add(fichero.get(i));
@@ -192,8 +192,6 @@ public class Oferta {
             escritura.close();
         }
     }
-
-
 
     public int PrecioOfertaTotal(int c) {
 
