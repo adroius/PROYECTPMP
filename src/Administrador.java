@@ -58,9 +58,8 @@ public class Administrador extends Usuario {
 
     public boolean ofertaValida(String nOferta, String nUser) throws IOException {
         Oferta offer = null;
-        Sistema sistem = null;
         boolean visible = true;
-        if (sistem.comprobarNOferta(nOferta)) {
+        if (offer.buscarOfertaEspecifica(nOferta)) {
             if (!ofertaComprobar(nOferta, offer)) {
                 eliminarOferta(nOferta, offer);
                 notificarVendedorConAdvertencia(nUser);
