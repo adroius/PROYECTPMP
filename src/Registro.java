@@ -89,19 +89,16 @@ public class Registro {
         }
         boolean encontrado=false;
         for (int i = 0; i < carrito.size(); i++) {
-            if (carrito.get(i).contains(Sistema.usuarioEntrar)) {
+            if (carrito.get(i).contains(Sistema.usuarioEntrar)){
+                carrito.set(i,"");
                 encontrado=true;
                 i++;
-                int min=i;
-                while (!(carrito.get(i).equals("*"))) {
+                while (!(carrito.get(i).contains("*"))) {
                     carritoIndividual.add(carrito.get(i));
-                    carrito.remove(i);
+                    carrito.set(i,"");
                     i++;
                 }
-                while(!(carrito.get(min).equals("*"))) {
-                    carrito.remove(min);
-                    min++;
-                }
+                carrito.set(i,"");
                 i = fichero.size();
             }
         }
