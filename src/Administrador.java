@@ -7,13 +7,7 @@ import java.util.List;
 
 //Clase Administrador
 public class Administrador extends Usuario {
-
     boolean isCorrecto = false;
-
-    //Constructor Administrador
-    public Administrador() {
-        this.isCorrecto = ofertaComprobar();
-    }
 
     private String obtenerNombreNave(String nOferta) throws IOException {
         List<String> fichero = new ArrayList<>();
@@ -62,32 +56,36 @@ public class Administrador extends Usuario {
         return valido;
     }
 
-    public boolean ofertaValida(String nOferta, String nUser, Cliente User) throws IOException {
+    public boolean ofertaValida(String nOferta, String nUser) throws IOException {
         Oferta offer = null;
         Sistema sistem = null;
         boolean visible = true;
         if (sistem.comprobarNOferta(nOferta)) {
             if (!ofertaComprobar(nOferta, offer)) {
                 eliminarOferta(nOferta, offer);
-                notificarVendedorConAdvertencia(nUser, User);
+                notificarVendedorConAdvertencia(nUser);
                 visible = false;
             }
         }
         return visible;
     }
 
-    private void notificarVendedorConAdvertencia(String nUser, Cliente User) {
-        User.numeroIdentificacion = nUser;
+    private void notificarVendedorConAdvertencia(String nUser) {
+        Cliente c = null;
+        c.numeroIdentificacion = nUser;
         System.out.println("Su oferta no cumple los parametros establecidos");
-        User.nAdvertencias += 1;
+        c.nAdvertencias += 1;
+        c.numeroAdvertencias(nUser);
     }
+
 
     private void eliminarOferta(String nOferta, Oferta offer) throws IOException {
         offer.buscarOfertaEspecifica(nOferta);
         BufferedReader br = new BufferedReader(new FileReader("userOferta.txt"));
-        String linea=br.readLine();
-        while (!linea = ){
-
+        String linea = "";
+        while (!((linea = br.readLine()).equals("-"))) {
+            linea.replace((br.readLine()), "");
         }
+        nOferta.replace(nOferta, "");
     }
 }
