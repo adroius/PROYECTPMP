@@ -92,9 +92,15 @@ public class Registro {
             if (carrito.get(i).contains(Sistema.usuarioEntrar)) {
                 encontrado=true;
                 i++;
-                while (!carrito.get(i).contains("*")) {
+                int min=i;
+                while (!(carrito.get(i).equals("*"))) {
                     carritoIndividual.add(carrito.get(i));
+                    carrito.remove(i);
                     i++;
+                }
+                while(!(carrito.get(min).equals("*"))) {
+                    carrito.remove(min);
+                    min++;
                 }
                 i = fichero.size();
             }
@@ -123,8 +129,15 @@ public class Registro {
                 fichero.add("*");
             }
         }
-        FileWriter fw = new FileWriter("registroVentas.txt");
+        FileWriter fw = new FileWriter("carritoDeLaCompra.txt");
         PrintWriter escritura = new PrintWriter(fw);
+        for (int i = 0; i < carrito.size(); i++) {
+            escritura.println(carrito.get(i));
+        }
+        escritura.close();
+
+        fw = new FileWriter("registroVentas.txt");
+        escritura = new PrintWriter(fw);
         for (int i = 0; i < fichero.size(); i++) {
             escritura.println(fichero.get(i));
         }
