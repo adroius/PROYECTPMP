@@ -9,23 +9,6 @@ public class Oferta {
     String comentario;
     int precio = 0;
 
-//    private String usuarioContraseña(String nombreContraseña) throws IOException {
-//        BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
-//        boolean encontrado = false;
-//        String linea = "";
-//        String nombre = "";
-//        while ((linea = br.readLine()) != null && (!encontrado)) {
-//            if (linea.contains(nombreContraseña)) {
-//                nombre = linea;
-//                encontrado = true;
-//            }
-//        }
-//        if (!encontrado) {
-//            System.out.println("Error en los datos introducidos.");
-//        }
-//        return nombre;
-//    }
-
     //Constructor Oferta
     public Oferta() {
         this.nIdentificacion = numaleatorios();
@@ -259,12 +242,14 @@ public class Oferta {
         }
         min = 0;
         max = lecturaOfertas.size();
+        String naveElegida="";
         boolean found = false;
         if (Sistema.pertenece(usuarioAmeter)) {
             if (max != 0) {
                 while (!found && max != 0) {
                     if (usuarioAmeter.equals(lecturaOfertas.get(min))) {
                         min = min + 1;
+                        naveElegida=naves.get(0);
                         for (int i = 0; i < naves.size(); i++) {
                             lecturaOfertas.add(min, naves.get(i));
                             min = min + 1;
@@ -285,6 +270,7 @@ public class Oferta {
             }
             if (!found) {
                 lecturaOfertas.add(usuarioAmeter);
+                naveElegida=naves.get(0);
                 for (int i = 0; i < naves.size(); i++) {
                     lecturaOfertas.add(naves.get(i));
                 }
@@ -306,6 +292,18 @@ public class Oferta {
                 escritura.close();
             }
         }
+            boolean validez = Administrador.ofertaValida(nIdentificacion, usuarioEntrar, precio,naveElegida);
+            if (validez) {
+                FileWriter fw = new FileWriter("userOfertas.txt");
+                PrintWriter escritura = new PrintWriter(fw);
+                for (int i = 0; i < lecturaOfertas.size(); i++) {
+                    escritura.println(lecturaOfertas.get(i));
+                }
+                escritura.close();
+            } else {
+                System.out.println("No se permite insertar esa nave.");
+            }
+            }
     }
 
 
@@ -315,7 +313,7 @@ public class Oferta {
         c = sc.nextInt();
         this.valoracion = c;
         try {
-            FileWriter escribir = new FileWriter("usuarioValoraciones.txt");
+            FileWriter escribir = new FileWriter("userInfo.txt");
             escribir.write(this.valoracion);
             escribir.close();
         } catch (Exception e) {
@@ -336,7 +334,7 @@ public class Oferta {
                 String s = sc.next();
                 this.comentario = s;
                 try {
-                    FileWriter escribir = new FileWriter("usuarioInfo.txt");
+                    FileWriter escribir = new FileWriter("userInfo.txt");
                     escribir.write(this.comentario);
                     escribir.close();
                 } catch (Exception e) {
@@ -354,7 +352,7 @@ public class Oferta {
         while (!exit) ;
     }
 
-    public boolean buscarOfertaEspecifica(String numOferta) throws IOException {
+    public static boolean buscarOfertaEspecifica(String numOferta) throws IOException {
         boolean encontrado = false;
         List<String> fichero = new ArrayList<>();
         List<String> nave = new ArrayList<>();
