@@ -46,6 +46,12 @@ public abstract class Nave {
         return nombre;
     }
 
+    //Absorcion de Danio Total de la Nave
+    public int getDefensaTotal()
+    {
+        return 0;
+    }
+
     public abstract int tripulantesTotales(); //Numero de tripulantes de la nave
 
     public abstract List<Defensa> sistemaDeDefensa(); //Lista de las defensas de la nave
