@@ -321,6 +321,7 @@ public class Oferta {
         }
     }
 
+    //Guarda el comentario echo por el comprador
     public void comentar(Scanner sc) {
         boolean exit = false;
         System.out.println("¿Desea realizar un comentario?");
@@ -352,6 +353,7 @@ public class Oferta {
         while (!exit) ;
     }
 
+    //Busca una Oferta especifica a partir del Numero de Identificacion de la Oferta
     public static boolean buscarOfertaEspecifica(String numOferta) throws IOException {
         boolean encontrado = false;
         List<String> fichero = new ArrayList<>();
@@ -380,6 +382,7 @@ public class Oferta {
         return encontrado;
     }
 
+    //Borra una Oferta del Registro
     public static void borrarOferta(String numOferta) throws IOException {
         List<String> fichero = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("userOfertas.txt"));
