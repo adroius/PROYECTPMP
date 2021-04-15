@@ -45,7 +45,7 @@ public class Cliente {
     }
 
 
- public boolean suscribirseAUnaOferta(String nOferta) {
+ public boolean suscribirseAUnaOferta(String nOferta) throws IOException {
         boolean suscribirse = false;
         boolean exit = false;
         Scanner sc = new Scanner(System.in);
