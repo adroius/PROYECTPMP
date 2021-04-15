@@ -295,27 +295,12 @@ public class Oferta {
             }
     }
 
-    public int PrecioOfertaTotal(int c) {
-
-        return c;
-    }
-
-    public int ProteccionTotal(int c) {
-
-        return c;
-    }
-
-    public int DanyoTotal(int c) {
-
-        return c;
-    }
-
     public void votar(int c, Scanner sc) {
         System.out.println("¿Cual es su valoración?");
         c = sc.nextInt();
         this.valoracion = c;
         try {
-            FileWriter escribir = new FileWriter("usuarioValoraciones.txt");
+            FileWriter escribir = new FileWriter("userInfo.txt");
             escribir.write(this.valoracion);
             escribir.close();
         } catch (Exception e) {
@@ -336,7 +321,7 @@ public class Oferta {
                 String s = sc.next();
                 this.comentario = s;
                 try {
-                    FileWriter escribir = new FileWriter("usuarioInfo.txt");
+                    FileWriter escribir = new FileWriter("userInfo.txt");
                     escribir.write(this.comentario);
                     escribir.close();
                 } catch (Exception e) {

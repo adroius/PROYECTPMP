@@ -9,6 +9,7 @@ import java.util.List;
 public class Administrador extends Usuario {
     boolean isCorrecto = false;
 
+
     private static String obtenerNombreNave(String nOferta) throws IOException {
         List<String> fichero = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("userOfertas.txt"));
