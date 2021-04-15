@@ -10,8 +10,8 @@ public class Cliente {
     protected String Especie;
     protected String numeroIdentificacion;
     List<Nave> NavesEnPropiedad;
-    private String Nick;
-    private String email;
+    protected String Nick;
+    protected String email;
     boolean isKromagg;
     boolean isPirata;
     boolean isFraude;
@@ -79,30 +79,6 @@ public class Cliente {
             while (!exit) ;
         }
         return suscribirse;
-    }
-
-    //Escribir la Informacion del Cliente
-    public void escribirInfo(String u,String c) {
-        try {
-            FileWriter escribir = new FileWriter("usuarioInfo.txt");
-            escribir.write(this.numeroIdentificacion);
-            escribir.write("\n");
-            escribir.write(u+c);
-            escribir.write("\n");
-            escribir.write(this.Nombre);
-            escribir.write("-");
-            escribir.write(this.PlanetaOrigen);
-            escribir.write("-");
-            escribir.write(this.Especie);
-            escribir.write("-");
-            escribir.write(this.Nick);
-            escribir.write("-");
-            escribir.write(this.email);
-            escribir.write("\n");
-            escribir.close();
-        } catch (Exception e) {
-            System.out.println("Error al escribir");
-        }
     }
 
     //Escribe en pantalla el numero de Advertencias del Cliente

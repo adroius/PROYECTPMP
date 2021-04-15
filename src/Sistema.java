@@ -184,23 +184,49 @@ public class Sistema {
 
     //Registrar Nuevo Cliente
     public Usuario registrarNuevoCliente() {
-        List<String> fichero = new ArrayList<>();
+        List<String> ficheroContraseña = new ArrayList<>();
+        List<String> ficheroInfo = new ArrayList<>();
         Usuario u = new Usuario();
         try {
             BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
             String line;
             while ((line = br.readLine()) != null) {
-                fichero.add(line);
+                ficheroContraseña.add(line);
             }
+            br = new BufferedReader(new FileReader("usuarioInfo.txt"));
+            while ((line = br.readLine()) != null) {
+                ficheroInfo.add(line);
+            }
+
             String s = u.user + u.contrasena;
-            fichero.add(s);
+            ficheroContraseña.add(s);
             FileWriter fw = new FileWriter("usercontraseña.txt");
             PrintWriter escritura = new PrintWriter(fw);
-            for (int i = 0; i < fichero.size(); i++) {
-                escritura.println(fichero.get(i));
+            for (int i = 0; i < ficheroContraseña.size(); i++) {
+                escritura.println(ficheroContraseña.get(i));
             }
             escritura.close();
-            u.usuario.escribirInfo(u.user, u.contrasena);
+
+            fw = new FileWriter("usuarioInfo.txt");
+            escritura = new PrintWriter(fw);
+            for (int i = 0; i < ficheroInfo.size(); i++) {
+                escritura.println(ficheroInfo.get(i));
+            }
+            escritura.write(u.usuario.numeroIdentificacion);
+            escritura.write("\n");
+            escritura.write(s);
+            escritura.write("\n");
+            escritura.write(u.usuario.Nombre);
+            escritura.write("-");
+            escritura.write(u.usuario.PlanetaOrigen);
+            escritura.write("-");
+            escritura.write(u.usuario.Especie);
+            escritura.write("-");
+            escritura.write(u.usuario.Nick);
+            escritura.write("-");
+            escritura.write(u.usuario.email);
+            escritura.write("\n");
+            escritura.close();
         } catch (Exception e) {
             System.out.println("Error al escribir");
         }
