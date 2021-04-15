@@ -74,10 +74,12 @@ public class Cliente {
         return suscribirse;
     }
 
-    public void escribirInfo() {
+    public void escribirInfo(String u,String c) {
         try {
             FileWriter escribir = new FileWriter("usuarioInfo.txt");
             escribir.write(this.numeroIdentificacion);
+            escribir.write("\n");
+            escribir.write(u+c);
             escribir.write("\n");
             escribir.write(this.Nombre);
             escribir.write("-");
@@ -165,7 +167,7 @@ public class Cliente {
     //Comprobar si el Cliente es de la especie Kromagg
     protected boolean isKromagg() {
         boolean is = false;
-        if (this.Especie == "Kromagg" || this.Especie == "kromagg") {
+        if (this.Especie.contains("Kromagg") || this.Especie.contains("kromagg")) {
             is = true;
             new Kromagg();
         }

@@ -1,17 +1,17 @@
 import java.util.Scanner;
 
 //Clase Kromagg hereda de Cliente
-public class Kromagg extends Cliente {
+public class Kromagg{
     boolean licencia; //LicenciaEspecial de los Kromagg
 
     public Kromagg() {
-        KromaggNave();
-        this.licencia = licencia();
+        this.licencia=licencia();
     }
 
     //Comprobar si tiene licencia
     //Esto no tiene ningun tipo de seguridad...
-    private boolean licencia() {
+    protected static boolean licencia() {
+        boolean l;
         Scanner sc = new Scanner(System.in);
         System.out.println("Tienes licencia?");
         System.out.println("1) Si");
@@ -19,15 +19,17 @@ public class Kromagg extends Cliente {
         int s = sc.nextInt();
         switch (s) {
             case 1: {
-                licencia = true;
-                break;
+                l= true;
             }
             case 2: {
-                licencia = false;
-                break;
+                l= false;
             }
+            break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + s);
         }
-        return licencia;
+        
+        return l;
     }
 
     //Crear nave para Kromagg

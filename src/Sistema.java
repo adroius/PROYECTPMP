@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Sistema {
     private int intentospermitidos = 2; //Se permiten dos intentos para poner bien el usuario y la contraseña
     public static String usuarioEntrar = ""; //Guardar el Cliente que a entrado
+    boolean isKromagg = false;
 
     //Constructor Sistema
     public Sistema() throws IOException {
@@ -71,7 +72,11 @@ public class Sistema {
                 }
                 //Ver las ofertas publicadas en la pagina web
                 case 3 -> {
-                    verOfertas();
+                    if (buscarSiUserIsKromagg(usuarioEntrar)) {
+                        new Oferta().buscadorDeOfertasKromggSinLicencia();
+                    } else {
+                        new Oferta().buscadorDeOfertas();
+                    }
                     break;
                 }
                 //Salir del Sistema
@@ -87,10 +92,6 @@ public class Sistema {
                 default -> throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
-    }
-
-    public void verOfertas() throws IOException {
-        new Oferta().buscadorDeOfertas();
     }
 
     //Crear oferta con las naves que posee el Cliente
@@ -194,7 +195,7 @@ public class Sistema {
                 escritura.println(fichero.get(i));
             }
             escritura.close();
-            u.usuario.escribirInfo();
+            u.usuario.escribirInfo(u.user, u.contraseña);
         } catch (Exception e) {
             System.out.println("Error al escribir");
         }
@@ -274,4 +275,23 @@ public class Sistema {
         } while (!f);
     }
 
+    public boolean buscarSiUserIsKromagg(String user) throws IOException {
+        boolean encontrado = false;
+        BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
+        String linea = "";
+        while ((linea = br.readLine()) != null) {
+            if (linea.contains(user)) {
+                linea = br.readLine();
+                if (linea.contains("Kromagg") || linea.contains("kromagg")) {
+                    encontrado =Kromagg.licencia();
+                    break;
+                }
+            }
+        }
+        if (encontrado) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
