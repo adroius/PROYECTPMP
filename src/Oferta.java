@@ -242,14 +242,14 @@ public class Oferta {
         }
         min = 0;
         max = lecturaOfertas.size();
-        String naveElegida="";
+        String naveElegida = "";
         boolean found = false;
         if (Sistema.pertenece(usuarioAmeter)) {
             if (max != 0) {
                 while (!found && max != 0) {
                     if (usuarioAmeter.equals(lecturaOfertas.get(min))) {
                         min = min + 1;
-                        naveElegida=naves.get(0);
+                        naveElegida = naves.get(0);
                         for (int i = 0; i < naves.size(); i++) {
                             lecturaOfertas.add(min, naves.get(i));
                             min = min + 1;
@@ -270,7 +270,7 @@ public class Oferta {
             }
             if (!found) {
                 lecturaOfertas.add(usuarioAmeter);
-                naveElegida=naves.get(0);
+                naveElegida = naves.get(0);
                 for (int i = 0; i < naves.size(); i++) {
                     lecturaOfertas.add(naves.get(i));
                 }
@@ -280,19 +280,7 @@ public class Oferta {
                 lecturaOfertas.add("-");
                 lecturaOfertas.add("*");
             }
-            Administrador a = null;
-            PrintWriter escritura;
-            boolean validez = Administrador.ofertaValida(nIdentificacion, usuarioEntrar);
-            if (validez) {
-                FileWriter fw = new FileWriter("userOfertas.txt");
-                escritura = new PrintWriter(fw);
-                for (int i = 0; i < lecturaOfertas.size(); i++) {
-                    escritura.println(lecturaOfertas.get(i));
-                }
-                escritura.close();
-            }
-        }
-            boolean validez = Administrador.ofertaValida(nIdentificacion, usuarioEntrar, precio,naveElegida);
+            boolean validez = Administrador.ofertaValida(nIdentificacion, usuarioEntrar, precio, naveElegida);
             if (validez) {
                 FileWriter fw = new FileWriter("userOfertas.txt");
                 PrintWriter escritura = new PrintWriter(fw);
@@ -303,9 +291,8 @@ public class Oferta {
             } else {
                 System.out.println("No se permite insertar esa nave.");
             }
-            }
+        }
     }
-
 
 
     public void votar(int c, Scanner sc) {
