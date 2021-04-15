@@ -10,7 +10,8 @@ public class Kromagg{
 
     //Comprobar si tiene licencia
     //Esto no tiene ningun tipo de seguridad...
-    private boolean licencia() {
+    protected static boolean licencia() {
+        boolean l;
         Scanner sc = new Scanner(System.in);
         System.out.println("Tienes licencia?");
         System.out.println("1) Si");
@@ -18,15 +19,17 @@ public class Kromagg{
         int s = sc.nextInt();
         switch (s) {
             case 1: {
-                this.licencia = true;
-                break;
+                l= true;
             }
             case 2: {
-                this.licencia = false;
-                break;
+                l= false;
             }
+            break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + s);
         }
-        return licencia;
+        
+        return l;
     }
 
     //Crear nave para Kromagg

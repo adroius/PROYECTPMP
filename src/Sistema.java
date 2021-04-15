@@ -282,15 +282,15 @@ public class Sistema {
             if (linea.contains(user)) {
                 linea = br.readLine();
                 if (linea.contains("Kromagg") || linea.contains("kromagg")) {
-                    encontrado = true;
+                    encontrado =Kromagg.licencia();
                     break;
                 }
             }
         }
         if (encontrado) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 }
