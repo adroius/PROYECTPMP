@@ -1,12 +1,11 @@
 import java.util.Scanner;
 
 //Clase Kromagg hereda de Cliente
-public class Kromagg extends Cliente {
+public class Kromagg{
     boolean licencia; //LicenciaEspecial de los Kromagg
 
     public Kromagg() {
-        KromaggNave();
-        this.licencia = licencia();
+        this.licencia=licencia();
     }
 
     //Comprobar si tiene licencia
@@ -19,11 +18,11 @@ public class Kromagg extends Cliente {
         int s = sc.nextInt();
         switch (s) {
             case 1: {
-                licencia = true;
+                this.licencia = true;
                 break;
             }
             case 2: {
-                licencia = false;
+                this.licencia = false;
                 break;
             }
         }
