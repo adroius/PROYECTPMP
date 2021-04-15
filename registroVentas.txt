@@ -1,18 +1,16 @@
 jani2000
-Caza
-Numero de Tripulantes = 1
-Numero de Defensas = 1
-Defensas = [Blindaje: 
-Material ='Hierro
-Danio Que Absorbe =329473
-Peso = 3294730]
-Armas = [La potencia del Misil Termonuclear es de 1GigaJulios, La potencia del Misil Termonuclear es de 1GigaJulios]
-Potencia total = 2
+Destructor
+Numero de Tripulantes1
+Numero de Defensas2
+Defensas = []
+Armas = [La potencia del Misil Termonuclear es de 1GigaJulios]
+Potencia total = 1
 Propulsion = [ Nombre = Motor FTL
+Velocidad = 1,  Nombre = Motor FTL
 Velocidad = 1]
-Numero de Identificacion = k-5902-mda
-Numero de oferta: 6701
-Precio de la nave: 12
+Numero de Identificacion = j-6625-txb
+Numero de oferta: 9684
+Precio de la nave: 125
 Fecha Limite 21
 -
 *

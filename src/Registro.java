@@ -75,7 +75,7 @@ public class Registro {
             escritura.println(fichero.get(i));
         }
         escritura.close();
-        Oferta.borrarOferta(matricula);
+        Oferta.borrarOfertaNave(matricula);
     }
 
     public int DefensaTotal() throws IOException {
@@ -237,7 +237,5 @@ public class Registro {
             escritura.println(fichero.get(i));
         }
         escritura.close();
-
-        Oferta.borrarOfertas(Sistema.usuarioEntrar);
     }
 }
