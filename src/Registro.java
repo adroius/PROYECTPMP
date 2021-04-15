@@ -16,9 +16,11 @@ public class Registro {
     }
 
     public void crearCarritoDeNaves() throws IOException {
+        String matricula="";
         System.out.println("Inserte la matricula de la nave que desea comprar:");
         Scanner sc = new Scanner(System.in);
         String s = sc.next();
+        matricula=s;
         List<String> fichero = new ArrayList<>();
         List<String> nave = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("userOfertas.txt"));
@@ -71,6 +73,7 @@ public class Registro {
             escritura.println(fichero.get(i));
         }
         escritura.close();
+        Oferta.borrarOferta(matricula);
     }
 
     public void ejecutarCompra() throws IOException {

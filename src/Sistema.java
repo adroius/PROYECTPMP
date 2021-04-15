@@ -72,7 +72,7 @@ public class Sistema {
                 }
                 //Ver las ofertas publicadas en la pagina web
                 case 3 -> {
-                    if (buscarSiUserIsKromagg(usuarioEntrar)) {
+                    if (!buscarSiUserIsKromagg(usuarioEntrar)) {
                         new Oferta().buscadorDeOfertasKromggSinLicencia();
                     } else {
                         new Oferta().buscadorDeOfertas();
@@ -201,9 +201,8 @@ public class Sistema {
         }
         return u;
     }
-
     //Inciar Sesion
-    public boolean iniciarSesion() throws FileNotFoundException {
+    public boolean iniciarSesion() throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean encontrado = false;
         System.out.println("Introduzca usuario");
@@ -247,7 +246,7 @@ public class Sistema {
         return encontrado;
     }
 
-    private void menuAdministrador() {
+    private void menuAdministrador() throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean f = false;
         do {
@@ -263,7 +262,12 @@ public class Sistema {
                     Usuario.modificarInformacionUsuario(mod);
                     break;
                 }
-                //case 2 -> Buscador();
+                case 2 : {
+                    System.out.println("¿Oferta a editar(numero de oferta)?");
+                    String id = sc.next();
+                    Oferta.modificarOferta(id);
+                    break;
+                }
                 case 3: {
                     f = true;
                     break;
@@ -284,13 +288,11 @@ public class Sistema {
                 if (linea.contains("Kromagg") || linea.contains("kromagg")) {
                     encontrado =Kromagg.licencia();
                     break;
+                } else{
+                    encontrado=true;
                 }
             }
         }
-        if (encontrado) {
-            return false;
-        } else {
-            return true;
-        }
+        return encontrado;
     }
 }

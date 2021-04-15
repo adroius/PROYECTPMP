@@ -9,26 +9,58 @@ public class Oferta {
     String comentario;
     int precio = 0;
 
-//    private String usuarioContraseña(String nombreContraseña) throws IOException {
-//        BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
-//        boolean encontrado = false;
-//        String linea = "";
-//        String nombre = "";
-//        while ((linea = br.readLine()) != null && (!encontrado)) {
-//            if (linea.contains(nombreContraseña)) {
-//                nombre = linea;
-//                encontrado = true;
-//            }
-//        }
-//        if (!encontrado) {
-//            System.out.println("Error en los datos introducidos.");
-//        }
-//        return nombre;
-//    }
-
     //Constructor Oferta
     public Oferta() {
         this.nIdentificacion = numaleatorios();
+    }
+
+    public static void modificarOferta(String id) throws IOException {
+        List<String> fichero = new ArrayList<>();
+        List<String> nave = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader("userOfertas.txt"));
+        String line;
+        while ((line = br.readLine()) != null) {
+            fichero.add(line);
+        }
+        int min = 0;
+        for (int i = 0; i < fichero.size(); i++) {
+            if (fichero.get(i).contains(id)) {
+
+                while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
+                    i--;
+                }
+                min = i;
+                while (!fichero.get(i).equals("-")) {
+                    nave.add(fichero.get(i));
+                    i++;
+                }
+                i = fichero.size();
+            }
+        }
+        Scanner sc = new Scanner(System.in);
+        String s;
+        System.out.println("Modifique cada valor debajo de su valor original:");
+        min++;
+        for (int i = 1; i < nave.size(); i++) {
+            if (nave.get(i).contains("Precio de la nave")) {
+                System.out.println(nave.get(i));
+                s = sc.next();
+                nave.set(i, "Precio de la nave " + s);
+                fichero.set(min, nave.get(i));
+            } else if (nave.get(i).contains("Fecha Limite")) {
+                System.out.println(nave.get(i));
+                s = sc.next();
+                nave.set(i, "Fecha Limite " + s);
+                fichero.set(min, nave.get(i));
+            }
+            min++;
+        }
+        FileWriter fw = new FileWriter("userOfertas.txt");
+        PrintWriter escritura = new PrintWriter(fw);
+        for (int i = 0; i < fichero.size(); i++) {
+            escritura.println(fichero.get(i));
+        }
+        escritura.close();
     }
 
     private String numaleatorios() {
@@ -147,9 +179,10 @@ public class Oferta {
                 while (!fichero.get(i).contains("Numero de Identificacion")) {
                     i++;
                 }
-                naves.add(fichero.get(i));
-                i++;
-                naves.add(fichero.get(i));
+                while (!fichero.get(i).equals("-")) {
+                    naves.add(fichero.get(i));
+                    i++;
+                }
             }
         }
         for (int i = 0; i < naves.size(); i++) {
@@ -221,7 +254,7 @@ public class Oferta {
                         }
                         lecturaOfertas.add(min, "Numero de oferta: " + this.nIdentificacion);
                         min = min + 1;
-                        lecturaOfertas.add(min, "Precio de la nave: " + s);
+                        lecturaOfertas.add(min, "Precio de la nave: " + precio);
                         min = min + 1;
                         lecturaOfertas.add(min, "Fecha Limite " + d);
                         min = min + 1;
@@ -245,18 +278,16 @@ public class Oferta {
                 lecturaOfertas.add("*");
             }
             Administrador a = null;
-            PrintWriter escritura;
             //if (a.ofertaValida(nIdentificacion, usuarioEntrar)) {
-                FileWriter fw = new FileWriter("userOfertas.txt");
-                escritura = new PrintWriter(fw);
-                for (int i = 0; i < lecturaOfertas.size(); i++) {
-                    escritura.println(lecturaOfertas.get(i));
-                }
-                escritura.close();
+            FileWriter fw = new FileWriter("userOfertas.txt");
+            PrintWriter escritura = new PrintWriter(fw);
+            for (int i = 0; i < lecturaOfertas.size(); i++) {
+                escritura.println(lecturaOfertas.get(i));
+            }
+            escritura.close();
             //
         }
     }
-
 
     public int PrecioOfertaTotal(int c) {
 
@@ -278,7 +309,7 @@ public class Oferta {
         c = sc.nextInt();
         this.valoracion = c;
         try {
-            FileWriter escribir = new FileWriter("usuarioInfo.txt");
+            FileWriter escribir = new FileWriter("usuarioValoraciones.txt");
             escribir.write(this.valoracion);
             escribir.close();
         } catch (Exception e) {
@@ -344,4 +375,33 @@ public class Oferta {
         }
         return encontrado;
     }
+
+    public static void borrarOferta(String numOferta) throws IOException {
+        List<String> fichero = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader("userOfertas.txt"));
+        String line;
+        while ((line = br.readLine()) != null) {
+            fichero.add(line);
+        }
+        for (int i = 0; i < fichero.size(); i++) {
+            if (fichero.get(i).contains(numOferta)) {
+                while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
+                    i--;
+                }
+                while (!fichero.get(i).equals("-")) {
+                    fichero.remove(i);
+                }
+                fichero.remove(i);
+                i = fichero.size();
+            }
+        }
+        FileWriter fw = new FileWriter("userOfertas.txt");
+        PrintWriter escritura = new PrintWriter(fw);
+        for (int i = 0; i < fichero.size(); i++) {
+            escritura.println(fichero.get(i));
+        }
+        escritura.close();
+
+    }
+
 }

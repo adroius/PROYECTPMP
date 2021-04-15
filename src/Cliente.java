@@ -97,39 +97,6 @@ public class Cliente {
         }
     }
 
-  /*  public boolean modificarOferta(String nIdentificacion, String nOferta) {
-        boolean exit = false;
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Pon su numero de identificacion");
-        nIdentificacion = sc.next();
-        if (comprobarNIdentificacion(nIdentificacion)) {
-            System.out.print("Pon el numero de identificacion de la oferta que deseas modificar");
-            nOferta = sc.next();
-            Sistema sistem = null;
-            if (sistem.comprobarNOferta(nOferta)) {
-                System.out.println("¿Quieres modificar esta oferta?");
-                System.out.println("1) Si");
-                System.out.println("2) No");
-                int s = sc.nextInt();
-                switch (s) {
-                    case 1: {
-                        exit = true;
-                        break;
-                    }
-                    case 2: {
-                        exit = true;
-                        break;
-                    }
-                    default:
-                        throw new IllegalStateException("Numero no valido, ponga otro numero " + s);
-                }
-            }
-            while (!exit) ;
-        }
-        return exit;
-    }
-*/
-
     public int numeroAdvertencias(String nIdentificacion) {
         boolean encontrado = comprobarNIdentificacion(nIdentificacion);
         if (encontrado) {
