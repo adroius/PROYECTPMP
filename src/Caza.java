@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,8 +8,8 @@ public class Caza extends NaveBuilder {
     List<Defensa> defensa; //Caza solo puede tener 1 defensa
     List<Arma> conjuntoDeArmas; //Caza tiene 2 armas
     List<Propulsion> prop; //Caza tiene 1 o 2 tipos de propulsion
-    int numDefensas = numeroDeDefensasMax(); //Max 1
-    int potencia = 0;
+    int numDefensas = numeroDeDefensasMax(); //Maximo 1
+    int potencia = 0; //Potencia total de las armas del Caza
 
     //Constructor de Caza
     public Caza() {
@@ -66,20 +63,20 @@ public class Caza extends NaveBuilder {
         return defensa;
     }
 
-
     //Lista de Armas del Caza (Caza tiene 2 tipos de Armas)
     public List<Arma> conjuntoDeArmas() {
         List<Arma> armas = new ArrayList<>();
         int def = 2;//Caza tiene 2 armas
-        //Escoger el tipo de Armas
         for (int i = 1; i <= def; i++) {
-            Arma a = new Arma(); //Constructor Armas
+            //Escoger el tipo de Arma
+            Arma a = new Arma();
             armas.add(a);//Añadir el arma creada a la lista de Armas
-            potencia += a.potencia;
+            potencia += a.potencia; //Sumar la potencia de todas las armas del Caza
         }
         return armas;
     }
 
+    //Devuelve la potencia total de las Armas del Caza (2 Armas)
     @Override
     public int potenciaDeAtaque() {
         return potencia;
@@ -112,7 +109,6 @@ public class Caza extends NaveBuilder {
         return 1;
     }
 
-
     @Override
     public String toString() {
         return "Caza: " +
@@ -120,7 +116,7 @@ public class Caza extends NaveBuilder {
                 "\nNumero de Defensas = " + numDefensas +
                 "\nDefensas = " + defensa +
                 "\nArmas = " + conjuntoDeArmas +
-                "\nPotencia total = " + potencia +
+                "\nPotencia Total = " + potencia +
                 "\nPropulsion = " + prop +
                 "\nNumero de Identificacion = " + numReg;
     }

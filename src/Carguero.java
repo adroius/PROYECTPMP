@@ -8,7 +8,7 @@ public class Carguero extends NaveBuilder {
     int carga = 0; //Inicializar la variable
     List<Defensa> defensa; //Carguero solo puede tener 1 defensa
     List<Propulsion> prop; //Carguero tiene 1 o 2 tipos de propulsion
-    int numDefensas=numeroDeDefensasMax(); // Max de 1
+    int numDefensas=numeroDeDefensasMax(); // Maximo 1
 
     //Constructor Carguero
     public Carguero() {
@@ -23,8 +23,7 @@ public class Carguero extends NaveBuilder {
     public int tripulantesTotales() {
         System.out.println("¿Cual es la capacidad de tripulantes del carguero?");
         Scanner sc = new Scanner(System.in);
-        int s = sc.nextInt();
-        return s;
+        return sc.nextInt();
     }
 
     //Lista de defensas del Carguero (Carguero solo puede tener una defensa)
@@ -65,14 +64,15 @@ public class Carguero extends NaveBuilder {
         return defensa;
     }
 
-    @Override
-    public int potenciaDeAtaque() {
-        return 0;
-    }
-
     //Cargueros no tiene armas
     public List<Arma> conjuntoDeArmas() {
         return null;
+    }
+
+    //Carguero no tiene armas, por lo que no tiene potencia de ataque
+    @Override
+    public int potenciaDeAtaque() {
+        return 0;
     }
 
     @Override

@@ -9,7 +9,7 @@ public class Destructor extends NaveBuilder {
     List<Propulsion> prop; //Destructor tiene 1 o 2 tipos de Propulsion
     int tripulantesTotales;
     int numDefensas = numeroDeDefensasMax(); //Max 2
-    int potencia = 0;
+    int potencia; //Potencia total de las armas del Destructor
 
     //Constructor Destructor
     public Destructor() {
@@ -78,15 +78,16 @@ public class Destructor extends NaveBuilder {
     public List<Arma> conjuntoDeArmas() {
         List<Arma> armas = new ArrayList<>();
         int arm = 1; //Destructor solo tiene 1 Arma
-        //Escoger el tipo de Arma
         for (int i = 1; i <= arm; i++) {
+            //Escoger el tipo de arma
             Arma a = new Arma();
-            armas.add(a);
-            potencia += a.potencia;
+            armas.add(a); //Añadir el arma creada a la lista de Armas
+            potencia += a.potencia; //Sumar la potencia de todas las Armas del Destructor
         }
         return armas;
     }
 
+    //Devuelve la potencia total de las Armas del Destructor (1 Arma)
     @Override
     public int potenciaDeAtaque() {
         return potencia;

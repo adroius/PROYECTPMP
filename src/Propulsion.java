@@ -11,18 +11,14 @@ public class Propulsion {
         this.velocidad = velSubLuminicaMax();
     }
 
+    //Devuelve el nombre del Tipo de Propulsion
     public String getNombre() {
         return nombre;
     }
 
+    //Devuelve la velocidad sublumínica de la Propulsion
     public int getVelocidad() {
         return velocidad;
-    }
-
-    @Override
-    public String toString() {
-        return " Nombre = " + getNombre() +
-                " Velocidad = " + getVelocidad() ;
     }
 
     //Escoger el tipo de Propulsion de la nave
@@ -72,5 +68,11 @@ public class Propulsion {
         int v = sc.nextInt();
         System.out.println("¡La velocidad maxima sera " + v + " miles de km/hora!");
         return v;
+    }
+
+    @Override
+    public String toString() {
+        return " Nombre = " + getNombre() +
+                "\nVelocidad = " + getVelocidad() ;
     }
 }
