@@ -44,9 +44,6 @@ public class Cliente {
         this.isFraude = isFraude();
     }
 
-    /*public List<Nave> navesEnVenta() {
-
-    }*/
 
   /*  public boolean suscribirseAUnaOferta(String nOferta) {
         boolean suscribirse = false;
