@@ -63,15 +63,19 @@ public class Oferta {
         escritura.close();
     }
 
+    //Crea el nIdentificacion de la oferta
     private String numaleatorios() {
         int numero = (int) (Math.random() * 10000 + 1000);
         return String.valueOf(Math.abs(numero));
     }
 
+    //Buscador de Ofertas para Kromagg sin Licencia
+    //Buscador de Cazas, Cargueros u Ofertas Especificas
     public void buscadorDeOfertasKromggSinLicencia() throws IOException {
         System.out.println("Que tipo de nave esta buscando:");
         System.out.println("1) Caza");
         System.out.println("2) Carguero");
+        System.out.println("3) Buscar a traves de numero de oferta");
         Scanner sc = new Scanner(System.in);
         int s = sc.nextInt();
         String seleccion = "";
@@ -89,9 +93,15 @@ public class Oferta {
                 hayOferta = listaDeOfertas(seleccion);
                 break;
             }
+            case 3: {
+                System.out.println("Inserte numero de oferta");
+                String st = sc.next();
+                hayOferta = buscarOfertaEspecifica(st);
+                break;
+            }
             //Valor introducido incorrecto
             default:
-                throw new IllegalStateException("Unexpected value: " + s); //Ha introducido un numero incorrecto
+                throw new IllegalStateException("Unexpected value: " + s);
         }
         if (hayOferta) {
             System.out.println("Desea realizar alguna compra:");
@@ -105,6 +115,7 @@ public class Oferta {
         }
     }
 
+    //Buscador de Ofertas para todas las naves y Ofertas Especificas
     public void buscadorDeOfertas() throws IOException {
         System.out.println("Que tipo de nave esta buscando:");
         System.out.println("1) Caza");
@@ -149,7 +160,7 @@ public class Oferta {
             }
             //Valor introducido incorrecto
             default:
-                throw new IllegalStateException("Unexpected value: " + s); //Ha introducido un numero incorrecto
+                throw new IllegalStateException("Unexpected value: " + s);
         }
         if (hayOferta) {
             System.out.println("Desea realizar alguna compra:");
@@ -163,6 +174,7 @@ public class Oferta {
         }
     }
 
+    //Muestra las ofertas guardadas en registro
     public boolean listaDeOfertas(String c) throws IOException {
         boolean encontrado = false;
         List<String> fichero = new ArrayList<>();
@@ -191,6 +203,7 @@ public class Oferta {
         return encontrado;
     }
 
+    //Crea una Oferta de Naves registradas por el Cliente
     public void construirOferta(String usuarioEntrar) throws IOException {
         String usuarioAmeter = usuarioEntrar;
         List<String> fichero = new ArrayList<>();
@@ -294,7 +307,7 @@ public class Oferta {
         }
     }
 
-
+    //Guarda la valoracion echa por el comprador
     public void votar(int c, Scanner sc) {
         System.out.println("¿Cual es su valoración?");
         c = sc.nextInt();
