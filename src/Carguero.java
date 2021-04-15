@@ -120,7 +120,7 @@ public class Carguero extends NaveBuilder {
 
     @Override
     public String toString() {
-        return "Carguero:" +
+        return "Carguero" +
                 "\nNumero de Tripulantes = " + tripulantesTotales +
                 "\nCarga Máxima = " + carga +
                 "\nNumero de Defensas = " + numDefensas +
