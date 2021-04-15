@@ -188,23 +188,21 @@ public class Registro {
         boolean encontrado = false;
         for (int i = 0; i < carrito.size(); i++) {
             if (carrito.get(i).contains(Sistema.usuarioEntrar)) {
-                carrito.set(i, "");
-                encontrado = true;
-                i++;
+                carrito.remove(i);
                 int borrador=i;
-                while (!(carrito.get(i).contains("*"))) {
-                    carritoIndividual.add(carrito.get(i));
+                encontrado = true;
+                while (!(carrito.get(borrador).contains("*"))) {
+                    carritoIndividual.add(carrito.get(borrador));
                     carrito.remove(borrador);
-                    i++;
                 }
-                carrito.set(i, "");
+                carrito.remove(borrador);
                 i = fichero.size();
             }
         }
         if (!encontrado) {
             System.out.println("Su carrito esta vacio");
         }
-        List<String> listaBorrar=new ArrayList<>();
+        String id;
         boolean found = false;
         if (encontrado) {
             for (int e = 0; e < fichero.size(); e++) {
@@ -212,9 +210,6 @@ public class Registro {
                     found = true;
                     e++;
                     for (int i = 0; i < carritoIndividual.size(); i++) {
-                        if (carritoIndividual.get(i).contains("Numero de oferta")) {
-                            listaBorrar.add(carritoIndividual.get(i));
-                        }
                         fichero.add(e, carritoIndividual.get(i));
                         e++;
                     }
@@ -242,8 +237,7 @@ public class Registro {
             escritura.println(fichero.get(i));
         }
         escritura.close();
-        for(int i=0;i<=listaBorrar.size();i++){
-            Oferta.borrarOferta(listaBorrar.get(i));
-        }
+
+        Oferta.borrarOfertas(Sistema.usuarioEntrar);
     }
 }

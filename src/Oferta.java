@@ -383,6 +383,30 @@ public class Oferta {
     }
 
     //Borra una Oferta del Registro
+    public static void borrarOfertas(String numOferta) throws IOException {
+        List<String> fichero = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader("userOfertas.txt"));
+        String line;
+        while ((line = br.readLine()) != null) {
+            fichero.add(line);
+        }
+        for (int i = 0; i < fichero.size(); i++) {
+            if (fichero.get(i).contains(numOferta)) {
+                while (!fichero.get(i).equals("*")) {
+                    fichero.remove(i);
+                }
+                fichero.remove(i);
+                i = fichero.size();
+            }
+        }
+        FileWriter fw = new FileWriter("userOfertas.txt");
+        PrintWriter escritura = new PrintWriter(fw);
+        for (int i = 0; i < fichero.size(); i++) {
+            escritura.println(fichero.get(i));
+        }
+        escritura.close();
+    }
+
     public static void borrarOferta(String numOferta) throws IOException {
         List<String> fichero = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("userOfertas.txt"));
@@ -409,5 +433,4 @@ public class Oferta {
         }
         escritura.close();
     }
-
 }
