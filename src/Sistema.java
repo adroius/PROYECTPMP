@@ -197,7 +197,6 @@ public class Sistema {
             while ((line = br.readLine()) != null) {
                 ficheroInfo.add(line);
             }
-
             String s = u.user + u.contrasena;
             ficheroContraseña.add(s);
             FileWriter fw = new FileWriter("usercontraseña.txt");

@@ -230,78 +230,82 @@ public class Oferta {
                 max = max - 1;
             }
         }
-        System.out.println("Que nave desea poner en venta:");
-        for (int i = 0; i < naves.size(); i++) {
-            if (naves.get(i).contains("Caza") || naves.get(i).contains("Carguero") || naves.get(i).contains("Destructor") || naves.get(i).contains("Estacion Espacial"))
-                System.out.println(naves.get(i));
-            else if (naves.get(i).contains("Numero de Identificacion")) {
-                System.out.println(naves.get(i));
+        if (naves.size() == 0) {
+            System.out.println("No tiene naves para poner en venta.");
+        } else {
+            System.out.println("Que nave desea poner en venta:");
+            for (int i = 0; i < naves.size(); i++) {
+                if (naves.get(i).contains("Caza") || naves.get(i).contains("Carguero") || naves.get(i).contains("Destructor") || naves.get(i).contains("Estacion Espacial"))
+                    System.out.println(naves.get(i));
+                else if (naves.get(i).contains("Numero de Identificacion")) {
+                    System.out.println(naves.get(i));
+                }
             }
-        }
-        System.out.println("Introduzca la matricula de la nave que quiera poner en venta:");
-        Scanner sc = new Scanner(System.in);
-        String s = sc.next();//ya tenemos la nave que queremos
-        naves = Sistema.cogerNave(naves, s);
-        System.out.println("Introduzca el precio de la nave que va a poner en venta:");
-        precio = sc.nextInt();//ya tenemos el precio que queremos
-        System.out.println("Introduzca la fecha limite en la que caducará la oferta dd/MM/yyyy");
-        String d = sc.next();
-        List<String> lecturaOfertas = new ArrayList<>();
-        br = new BufferedReader(new FileReader("userOfertas.txt"));
-        String lineas;
-        while ((lineas = br.readLine()) != null) {
-            lecturaOfertas.add(lineas);
-        }
-        min = 0;
-        max = lecturaOfertas.size();
-        String naveElegida = "";
-        boolean found = false;
-        if (Sistema.pertenece(usuarioAmeter)) {
-            if (max != 0) {
-                while (!found && max != 0) {
-                    if (usuarioAmeter.equals(lecturaOfertas.get(min))) {
-                        min = min + 1;
-                        naveElegida = naves.get(0);
-                        for (int i = 0; i < naves.size(); i++) {
-                            lecturaOfertas.add(min, naves.get(i));
+            System.out.println("Introduzca la matricula de la nave que quiera poner en venta:");
+            Scanner sc = new Scanner(System.in);
+            String s = sc.next();//ya tenemos la nave que queremos
+            naves = Sistema.cogerNave(naves, s);
+            System.out.println("Introduzca el precio de la nave que va a poner en venta:");
+            precio = sc.nextInt();//ya tenemos el precio que queremos
+            System.out.println("Introduzca la fecha limite en la que caducará la oferta dd/MM/yyyy");
+            String d = sc.next();
+            List<String> lecturaOfertas = new ArrayList<>();
+            br = new BufferedReader(new FileReader("userOfertas.txt"));
+            String lineas;
+            while ((lineas = br.readLine()) != null) {
+                lecturaOfertas.add(lineas);
+            }
+            min = 0;
+            max = lecturaOfertas.size();
+            String naveElegida = "";
+            boolean found = false;
+            if (Sistema.pertenece(usuarioAmeter)) {
+                if (max != 0) {
+                    while (!found && max != 0) {
+                        if (usuarioAmeter.equals(lecturaOfertas.get(min))) {
                             min = min + 1;
+                            naveElegida = naves.get(0);
+                            for (int i = 0; i < naves.size(); i++) {
+                                lecturaOfertas.add(min, naves.get(i));
+                                min = min + 1;
+                            }
+                            lecturaOfertas.add(min, "Numero de oferta: " + this.nIdentificacion);
+                            min = min + 1;
+                            lecturaOfertas.add(min, "Precio de la nave: " + precio);
+                            min = min + 1;
+                            lecturaOfertas.add(min, "Fecha Limite " + d);
+                            min = min + 1;
+                            lecturaOfertas.add(min, "-");
+                            found = true;
+                        } else {
+                            min = min + 1;
+                            max = max - 1;
                         }
-                        lecturaOfertas.add(min, "Numero de oferta: " + this.nIdentificacion);
-                        min = min + 1;
-                        lecturaOfertas.add(min, "Precio de la nave: " + precio);
-                        min = min + 1;
-                        lecturaOfertas.add(min, "Fecha Limite " + d);
-                        min = min + 1;
-                        lecturaOfertas.add(min, "-");
-                        found = true;
-                    } else {
-                        min = min + 1;
-                        max = max - 1;
                     }
                 }
-            }
-            if (!found) {
-                lecturaOfertas.add(usuarioAmeter);
-                naveElegida = naves.get(0);
-                for (int i = 0; i < naves.size(); i++) {
-                    lecturaOfertas.add(naves.get(i));
+                if (!found) {
+                    lecturaOfertas.add(usuarioAmeter);
+                    naveElegida = naves.get(0);
+                    for (int i = 0; i < naves.size(); i++) {
+                        lecturaOfertas.add(naves.get(i));
+                    }
+                    lecturaOfertas.add("Numero de oferta: " + this.nIdentificacion);
+                    lecturaOfertas.add("Precio de la nave: " + precio);
+                    lecturaOfertas.add("Fecha Limite " + d);
+                    lecturaOfertas.add("-");
+                    lecturaOfertas.add("*");
                 }
-                lecturaOfertas.add("Numero de oferta: " + this.nIdentificacion);
-                lecturaOfertas.add("Precio de la nave: " + precio);
-                lecturaOfertas.add("Fecha Limite " + d);
-                lecturaOfertas.add("-");
-                lecturaOfertas.add("*");
-            }
-            boolean validez = Administrador.ofertaValida(nIdentificacion, usuarioEntrar, precio, naveElegida);
-            if (validez) {
-                FileWriter fw = new FileWriter("userOfertas.txt");
-                PrintWriter escritura = new PrintWriter(fw);
-                for (int i = 0; i < lecturaOfertas.size(); i++) {
-                    escritura.println(lecturaOfertas.get(i));
+                boolean validez = Administrador.ofertaValida(nIdentificacion, usuarioEntrar, precio, naveElegida);
+                if (validez) {
+                    FileWriter fw = new FileWriter("userOfertas.txt");
+                    PrintWriter escritura = new PrintWriter(fw);
+                    for (int i = 0; i < lecturaOfertas.size(); i++) {
+                        escritura.println(lecturaOfertas.get(i));
+                    }
+                    escritura.close();
+                } else {
+                    System.out.println("No se permite insertar esa nave.");
                 }
-                escritura.close();
-            } else {
-                System.out.println("No se permite insertar esa nave.");
             }
         }
     }
