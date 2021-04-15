@@ -74,6 +74,7 @@ public class Cliente {
         return suscribirse;
     }
 
+    //Escribir la Informacion del Cliente
     public void escribirInfo(String u,String c) {
         try {
             FileWriter escribir = new FileWriter("usuarioInfo.txt");
@@ -97,7 +98,8 @@ public class Cliente {
         }
     }
 
-    public int numeroAdvertencias(String nIdentificacion) {
+    //Escribe en pantalla el numero de Advertencias del Cliente
+    public void numeroAdvertencias(String nIdentificacion) {
         boolean encontrado = comprobarNIdentificacion(nIdentificacion);
         if (encontrado) {
             System.out.println("Llevas " + nAdvertencias + " advertencias");
@@ -105,16 +107,14 @@ public class Cliente {
         if (nAdvertencias==2){
             noEntrarAlSistemaPorAdvertencias();
         }
-        return nAdvertencias;
     }
 
+    //Comprueba que uno de los Clientes registrados tiene el Numero de Identificacion introducido
     private boolean comprobarNIdentificacion(String nIdentificacion) {
-        Scanner sc = new Scanner(System.in);
-        nIdentificacion = sc.next();
         boolean encontrado = false;
         try {
             BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
-            String linea = "";
+            String linea;
             while ((linea = br.readLine()) != null && (!encontrado)) {
                 if (linea.contains(nIdentificacion)) {
                     encontrado = true;
@@ -140,7 +140,6 @@ public class Cliente {
     }
 
     //Comprobar si es Sospechoso de Pirateria
-    //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isPirata() {
         boolean is = this.isPirata;
         if (is) {
@@ -150,15 +149,15 @@ public class Cliente {
     }
 
     //Comprobar si es Sospechoso de Fraude
-    //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isFraude() {
         boolean is = this.isFraude;
         if (is) {
-            noEntrarAlSistema();
+            noEntrarAlSistemaFraude();
         }
         return is;
     }
 
+    //Menu de Compra para los Sospechosos de Pirateria (Solo pueden comprar Cargueros)
     private boolean comprarNavePirata() {
         Nave n;
         boolean compra;
@@ -183,6 +182,7 @@ public class Cliente {
         return compra;
     }
 
+    //Impide entrar al Sistema durante 5 días si el Cliente tiene 2 advertencias
     private boolean noEntrarAlSistemaPorAdvertencias() {
         Timer timer = new Timer();
         int seconds = 432000;
@@ -198,10 +198,12 @@ public class Cliente {
             timer.schedule(bloqueo, 0, 1000);
 
         }
+        nAdvertencias = 0; //Devuelve el numero de Advertencias a 0
         return bloqueoFinalizado;
     }
 
-    private boolean noEntrarAlSistema() {
+    //Impide entrar al Sistema mientras el Cliente sea Sospechoso de Pirateria
+    private boolean noEntrarAlSistemaFraude() {
         boolean bloqueoFinalizado = true;
         while (isFraude==true) {
             bloqueoFinalizado = false;
@@ -212,6 +214,12 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente: " + "\nNombre= " + Nombre + "\nPlanetaOrigen= " + PlanetaOrigen + "\nEspecie= " + Especie + "\nNumero Identificacion= " + numeroIdentificacion + "\nNaves En Propiedad=" + NavesEnPropiedad + "\nNick=" + Nick + "\nEmail='" + email;
+        return "Cliente: " + "\nNombre= " + Nombre +
+                "\nPlanetaOrigen= " + PlanetaOrigen +
+                "\nEspecie= " + Especie +
+                "\nNumero Identificacion= " + numeroIdentificacion +
+                "\nNaves En Propiedad=" + NavesEnPropiedad +
+                "\nNick=" + Nick +
+                "\nEmail='" + email;
     }
 }

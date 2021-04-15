@@ -8,6 +8,7 @@ public class Sistema {
     private int intentospermitidos = 2; //Se permiten dos intentos para poner bien el usuario y la contraseña
     public static String usuarioEntrar = ""; //Guardar el Cliente que a entrado
     boolean isKromagg = false;
+
     //Constructor Sistema
     public Sistema() throws IOException {
         boolean f = false;
@@ -45,6 +46,7 @@ public class Sistema {
             }
         } while (!f);
     }
+
     //Menu una vez has ingresado como Cliente
     public void menu() throws IOException {
         Scanner sc = new Scanner(System.in);
@@ -91,6 +93,7 @@ public class Sistema {
             }
         } while (!f);
     }
+
     //Crear oferta con las naves que posee el Cliente
     public void crearOferta() throws IOException {
         new Oferta().construirOferta(usuarioEntrar);
@@ -173,6 +176,7 @@ public class Sistema {
         }
         return encontrado;
     }
+
     //Registrar Nuevo Cliente
     public Usuario registrarNuevoCliente() {
         List<String> fichero = new ArrayList<>();
@@ -197,6 +201,7 @@ public class Sistema {
         }
         return u;
     }
+
     //Inciar Sesion
     public boolean iniciarSesion() throws IOException {
         Scanner sc = new Scanner(System.in);

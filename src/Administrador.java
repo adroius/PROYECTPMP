@@ -29,6 +29,13 @@ public class Administrador extends Usuario {
         return nombre;
     }
 
+    //Comprobar si el precio de las ofertas es valido
+    /*
+    Caza <= 1000
+    Carguero <=500
+    Destructor <= 1500
+    Estacion Espacial <= 2000
+     */
     private static boolean ofertaComprobar(String nOferta, int precio, String nave) throws IOException {
         boolean valido = false;
         switch (nave) {
@@ -58,6 +65,9 @@ public class Administrador extends Usuario {
         return valido;
     }
 
+    //Comprobar que la oferta es valida
+    //Valida -> Permite mostrarla a los clientes
+    //Na valida -> Borra la oferta y se manda una advertencia al vendedor
     public static boolean ofertaValida(String nOferta, String nUser, int precio, String nave) throws IOException {
         boolean visible = true;
             if (!ofertaComprobar(nOferta, precio,nave)) {
