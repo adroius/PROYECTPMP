@@ -83,7 +83,12 @@ public class Oferta {
                 throw new IllegalStateException("Unexpected value: " + s); //Ha introducido un numero incorrecto
         }
         if (hayOferta) {
-            new Registro();
+            System.out.println("Desea realizar alguna compra:");
+            System.out.println("1) si");
+            System.out.println("2) no");
+            s = sc.nextInt();
+            if (s == 1)
+                new Registro();
         } else {
             System.out.println("No se han encontrado ofertas");
         }
@@ -102,7 +107,7 @@ public class Oferta {
             if (fichero.get(i).contains(c)) {
                 encontrado = true;
                 naves.add(fichero.get(i));
-                while (!fichero.get(i).contains("Numero de oferta")) {
+                while (!fichero.get(i).contains("Numero de Identificacion")) {
                     i++;
                 }
                 naves.add(fichero.get(i));
@@ -236,7 +241,7 @@ public class Oferta {
         c = sc.nextInt();
         this.valoracion = c;
         try {
-            FileWriter escribir  = new FileWriter("usuarioInfo.txt");
+            FileWriter escribir = new FileWriter("usuarioInfo.txt");
             escribir.write(this.valoracion);
             escribir.close();
         } catch (Exception e) {

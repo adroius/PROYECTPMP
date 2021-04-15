@@ -3,6 +3,10 @@ import java.util.Scanner;
 public class Kromagg extends Cliente {
     boolean licencia; //LicenciaEspecial de los Kromagg
 
+    public Kromagg() {
+        KromaggNave();
+    }
+
     //Comprobar si tiene licencia
     //Esto no tiene ningun tipo de seguridad...
     private boolean licencia() {

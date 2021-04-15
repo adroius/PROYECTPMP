@@ -165,8 +165,7 @@ public class Cliente {
         boolean is = false;
         if (this.Especie == "Kromagg" || this.Especie == "kromagg") {
             is = true;
-            Kromagg p = new Kromagg();
-            p.KromaggNave();
+            new Kromagg();
         }
         return is;
     }
