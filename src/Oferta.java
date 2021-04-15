@@ -36,6 +36,43 @@ public class Oferta {
         return String.valueOf(Math.abs(numero));
     }
 
+    public void buscadorDeOfertasKromggSinLicencia() throws IOException {
+        System.out.println("Que tipo de nave esta buscando:");
+        System.out.println("1) Caza");
+        System.out.println("2) Carguero");
+        Scanner sc = new Scanner(System.in);
+        int s = sc.nextInt();
+        String seleccion = "";
+        boolean hayOferta;
+        switch (s) {
+            case 1: {
+                System.out.println("Ha seleccionada Caza");
+                seleccion = "Caza";
+                hayOferta = listaDeOfertas(seleccion);
+                break;
+            }
+            case 2: {
+                System.out.println("Ha seleccionada Carguero");
+                seleccion = "Carguero";
+                hayOferta = listaDeOfertas(seleccion);
+                break;
+            }
+            //Valor introducido incorrecto
+            default:
+                throw new IllegalStateException("Unexpected value: " + s); //Ha introducido un numero incorrecto
+        }
+        if (hayOferta) {
+            System.out.println("Desea realizar alguna compra:");
+            System.out.println("1) si");
+            System.out.println("2) no");
+            s = sc.nextInt();
+            if (s == 1)
+                new Registro().crearCarritoDeNaves();
+        } else {
+            System.out.println("No se han encontrado ofertas");
+        }
+    }
+
     public void buscadorDeOfertas() throws IOException {
         System.out.println("Que tipo de nave esta buscando:");
         System.out.println("1) Caza");
@@ -88,7 +125,7 @@ public class Oferta {
             System.out.println("2) no");
             s = sc.nextInt();
             if (s == 1)
-                new Registro();
+                new Registro().crearCarritoDeNaves();
         } else {
             System.out.println("No se han encontrado ofertas");
         }
@@ -207,6 +244,7 @@ public class Oferta {
                 lecturaOfertas.add("-");
                 lecturaOfertas.add("*");
             }
+            Administrador a = null;
             PrintWriter escritura;
             boolean validez = Administrador.ofertaValida(nIdentificacion, usuarioEntrar);
             if (validez) {
@@ -231,6 +269,10 @@ public class Oferta {
         return c;
     }
 
+    public int DanyoTotal(int c) {
+
+        return c;
+    }
 
     public void votar(int c, Scanner sc) {
         System.out.println("¿Cual es su valoración?");
