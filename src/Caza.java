@@ -67,16 +67,16 @@ public class Caza extends NaveBuilder {
     public List<Arma> conjuntoDeArmas() {
         List<Arma> armas = new ArrayList<>();
         int def = 2;//Caza tiene 2 armas
-        //Escoger el tipo de Armas
         for (int i = 1; i <= def; i++) {
-            Arma a = new Arma(); //Constructor Armas
+            //Escoger el tipo de Arma
+            Arma a = new Arma();
             armas.add(a);//Añadir el arma creada a la lista de Armas
-            potencia += a.potencia;
+            potencia += a.potencia; //Sumar la potencia de todas las armas del Caza
         }
         return armas;
     }
 
-    //Devuelve la potencia total de las Armas del Caza
+    //Devuelve la potencia total de las Armas del Caza (2 Armas)
     @Override
     public int potenciaDeAtaque() {
         return potencia;
@@ -116,7 +116,7 @@ public class Caza extends NaveBuilder {
                 "\nNumero de Defensas = " + numDefensas +
                 "\nDefensas = " + defensa +
                 "\nArmas = " + conjuntoDeArmas +
-                "\nPotencia total = " + potencia +
+                "\nPotencia Total = " + potencia +
                 "\nPropulsion = " + prop +
                 "\nNumero de Identificacion = " + numReg;
     }

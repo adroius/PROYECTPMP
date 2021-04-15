@@ -19,8 +19,8 @@ public class Sistema {
             System.out.println("1) Ingresar nuevo cliente");
             System.out.println("2) Iniciar Sesion");
             System.out.println("3) Salir");
-            int s = sc.nextInt();
-            switch (s) {
+            int elec = sc.nextInt();
+            switch (elec) {
                 //Registrar Nuevo Cliente
                 case 1: {
                     registrarNuevoCliente();
@@ -42,7 +42,7 @@ public class Sistema {
                 }
                 //Valor introducido incorrecto
                 default:
-                    throw new IllegalStateException("Unexpected value: " + s);
+                    throw new IllegalStateException("Unexpected value: " + elec);
             }
         } while (!f);
     }
@@ -50,7 +50,7 @@ public class Sistema {
     //Menu una vez has ingresado como Cliente
     public void menu() throws IOException {
         Scanner sc = new Scanner(System.in);
-        boolean f = false;
+        boolean salir = false;
         do {
             System.out.println("¿Que es lo que quiere realizar?");
             System.out.println("1) Registrar nave");
@@ -61,17 +61,17 @@ public class Sistema {
             int s = sc.nextInt();
             switch (s) {
                 //Ingresar una nueva nave propiedad del Cliente
-                case 1 -> {
+                case 1: {
                     insertarNave();
                     break;
                 }
                 //Crear una oferta con las naves que posee el Cliente
-                case 2 -> {
+                case 2: {
                     crearOferta();
                     break;
                 }
                 //Ver las ofertas publicadas en la pagina web
-                case 3 -> {
+                case 3: {
                     if (buscarSiUserIsKromagg(usuarioEntrar)) {
                         new Oferta().buscadorDeOfertasKromggSinLicencia();
                     } else {
@@ -79,19 +79,20 @@ public class Sistema {
                     }
                     break;
                 }
-                //Salir del Sistema
-                case 4 -> {
+                //Comprar una nave
+                case 4: {
                     new Registro().ejecutarCompra();
                     break;
                 }
-                case 5 -> {
-                    f = true;
+                //Salir del Sistema
+                case 5: {
+                    salir = true;
                     break;
                 }
                 //Valor introducido incorrecto
-                default -> throw new IllegalStateException("Unexpected value: " + s);
+                default: throw new IllegalStateException("Unexpected value: " + s);
             }
-        } while (!f);
+        } while (!salir);
     }
 
     //Crear oferta con las naves que posee el Cliente
@@ -187,7 +188,7 @@ public class Sistema {
             while ((line = br.readLine()) != null) {
                 fichero.add(line);
             }
-            String s = u.user + u.contraseña;
+            String s = u.user + u.contrasena;
             fichero.add(s);
             FileWriter fw = new FileWriter("usercontraseña.txt");
             PrintWriter escritura = new PrintWriter(fw);
@@ -195,7 +196,7 @@ public class Sistema {
                 escritura.println(fichero.get(i));
             }
             escritura.close();
-            u.usuario.escribirInfo(u.user, u.contraseña);
+            u.usuario.escribirInfo(u.user, u.contrasena);
         } catch (Exception e) {
             System.out.println("Error al escribir");
         }

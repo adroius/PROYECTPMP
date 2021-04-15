@@ -7,43 +7,32 @@ import java.util.Scanner;
 public class Usuario {
     Cliente usuario;
     String user;
-    String contraseña;
+    String contrasena;
 
     //Constructor Usuario
     public Usuario() {
         this.usuario = client();
         this.user = user();
-        this.contraseña = contraseña();
+        this.contrasena = contrasena();
     }
 
     //Introducir Usuario
     private String user() {
         System.out.println("Introduzca usuario");
         Scanner sc = new Scanner(System.in);
-        String s = sc.next();
-        return s;
+        return sc.next();
     }
 
     //Introducir contraseña
-    private String contraseña() {
+    private String contrasena() {
         System.out.println("Introduzca contraseña");
         Scanner sc = new Scanner(System.in);
-        String s = sc.next();
-        return s;
+        return sc.next();
     }
 
     //Crear nuevo Cliente
     private Cliente client() {
-        Cliente s = new Cliente();
-        return s;
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario {" + usuario +
-                "User ='" + user + '\'' +
-                "Contraseña ='" + contraseña + '\'' +
-                '}';
+        return new Cliente();
     }
 
     //Modificar Informacion del Usuario
@@ -58,6 +47,7 @@ public class Usuario {
                 }
                 int max = fichero.size()-1;
                 int min=0;
+                //Guardar la informacion del Cliente modificada
                 do{
                     if (id.equals(fichero.get(min))){
                         System.out.println(fichero.get(min+1));
@@ -92,5 +82,12 @@ public class Usuario {
         } catch (IOException e) {
             System.out.println("Error");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario:" + usuario +
+                "\nUser = " + user +
+                "\nContraseña = " + contrasena;
     }
 }
