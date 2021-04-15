@@ -246,14 +246,14 @@ public class Oferta {
             }
             Administrador a = null;
             PrintWriter escritura;
-            if (a.ofertaValida(nIdentificacion, usuarioEntrar)) {
+            //if (a.ofertaValida(nIdentificacion, usuarioEntrar)) {
                 FileWriter fw = new FileWriter("userOfertas.txt");
                 escritura = new PrintWriter(fw);
                 for (int i = 0; i < lecturaOfertas.size(); i++) {
                     escritura.println(lecturaOfertas.get(i));
                 }
                 escritura.close();
-            }
+            //
         }
     }
 
