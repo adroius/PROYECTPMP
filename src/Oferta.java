@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.*;
 
 //Clase Oferta
-
 public class Oferta {
     String nIdentificacion; //Numero de identificacion de Oferta
     int valoracion;

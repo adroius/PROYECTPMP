@@ -38,30 +38,25 @@ public abstract class Nave {
         return palabra;
     }
 
-    public String propietario(){
-        String nombre;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Quien es el propietario?");
-        nombre = sc.next();
-        return nombre;
-    }
-
     //Absorcion de Danio Total de la Nave
     public int getDefensaTotal()
     {
         return 0;
     }
 
-    public abstract int tripulantesTotales(); //Numero de tripulantes de la nave
+    //Numero de tripulantes de la nave
+    public abstract int tripulantesTotales();
 
-    public abstract List<Defensa> sistemaDeDefensa(); //Lista de las defensas de la nave
+    //Lista de las defensas de la nave
+    public abstract List<Defensa> sistemaDeDefensa();
 
-
-    public int potenciaDeAtaque() //Lista de las armas de la nave
+    //Lista de las armas de la nave
+    public int potenciaDeAtaque()
     {
         return 0;
     }
 
-    public abstract List<Propulsion> conjuntoDePropulsion(); //Lista de tipos de propulsion de la nave
+    //Lista de tipos de propulsion de la nave
+    public abstract List<Propulsion> conjuntoDePropulsion();
 
 }
