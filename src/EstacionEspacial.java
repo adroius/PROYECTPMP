@@ -8,10 +8,10 @@ public class EstacionEspacial extends NaveBuilder{
     List<Arma> conjuntoDeArmas; //Conjunto de Armas de las naves que contiene la EstacionEspacial
     List<Nave> conjuntoDeNaves; //Naves que contiene la EstacionEspacial (Numero Indeterminado)
     List<Propulsion> prop; //EstacionEspacial puede tener 1 o 2 tipos de propulsion
-    int numDefensas;
-    int numPasajerosMax;
-    int potencia = 0;
     int defensaTotal = 0;
+    int numDefensas; //Numero de Defensas de la Estacion Espacial
+    int numPasajerosMax; //Numero de Pasajeros Maximo de la Estacion Espacial
+    int potencia = 0; //Potencia total de las armas de la Estacion Espacial
 
     //Constructor EstacionEspacial
     public EstacionEspacial() {
@@ -23,7 +23,7 @@ public class EstacionEspacial extends NaveBuilder{
         this.conjuntoDeNaves=conjuntoNaves();
     }
 
-    //Cantidad de tripulantes
+    //Introducir la cantidad de tripulantes de la Estacion Espacial
     @Override
     public int tripulantesTotales() {
         System.out.println("¿Cuantos tripulantes hay en la Estacion Espacial?");
@@ -42,15 +42,14 @@ public class EstacionEspacial extends NaveBuilder{
         return tripulantes;
     }
 
+    //Introducir la cantidad de Pasajeros Maximos puede llevar la Estacion Espacial
     public int pasajerosMax(){
-        System.out.println("¿Cual es la capacidad de tripulantes de la Estacion Espacial?");
+        System.out.println("¿Cual es la capacidad de pasajeros de la Estacion Espacial?");
         Scanner sc = new Scanner(System.in);
-        int pasajeros = sc.nextInt();
-        return pasajeros;
+        return sc.nextInt();
     }
 
-    //Lista de Defensas de la EstacionEspacial (Por si sola puede tener 1, 2 o 3)
-    //No debería añadir también las Defensas de las naves que contiene?
+    //Lista de Defensas de la Estacion Espacial (Por si sola puede tener 1, 2 o 3)
     @Override
     public List<Defensa> sistemaDeDefensa() {
         List<Defensa> defensa = new ArrayList<>();
@@ -106,18 +105,18 @@ public class EstacionEspacial extends NaveBuilder{
         return armas;
     }
 
-    //Lista de tipos de Propulsion de EstacionEspacial (1 o 2)
+    //Lista de tipos de Propulsion de Estacion Espacial (1 o 2)
     @Override
     public List<Propulsion> conjuntoDePropulsion() {
         List<Propulsion> prop = new ArrayList<>();
         //Preguntar cuantos tipos de Propulsion tiene la EstacionEspacial (1 o 2)
         Scanner sc = new Scanner(System.in);
-        System.out.println("¿Cuantas propulsiones va a querer?");
+        System.out.println("¿Cuantas propulsiones tiene la Estacion Espacial?");
         int p = sc.nextInt();
         //Comprobar que el numero de tipos de Propulsion es correcto
         while (p > 2 || p < 1){
             System.out.println("La capacidad de la nave para portar propulsiones es limitada");
-            System.out.println("¿Cuantas propulsiones va a querer (1 o 2)?");
+            System.out.println("¿Cuantas propulsiones tiene la Estacion Espacial (1 o 2)?");
             p = sc.nextInt();
         }
         //Añadir los tipos de Propulsion
@@ -128,11 +127,13 @@ public class EstacionEspacial extends NaveBuilder{
         return prop;
     }
 
-    //El numero máximo de Defensas por si sola de EstacionEspacial es 3
+    //El numero máximo de Defensas por si sola de la Estacion Espacial es 3
     private int numeroDeDefensasMax() {
         return 3;
     }
 
+    /*Devuelve la Potencia de Ataque de la Estacion Espacial
+    (Potencia Total de las naves que contiene la Estacion Espacial)*/
     @Override
     public int getDefensaTotal(){
         return defensaTotal;
@@ -143,18 +144,18 @@ public class EstacionEspacial extends NaveBuilder{
         return potencia;
     }
 
-    //Esto tiene que devolver Null???
+    //Crear las naves que contiene la Estacion Espacial
     public List<Nave> conjuntoNaves() {
         List<Nave> conjuntoDeNaves = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
-        System.out.println("¿Cuantas naves tiene la estacion espacial?");
-        int i = sc.nextInt();
-        do {
-            i -= 1;
-            Nave n = NaveBuilder.CrearNave();
-            conjuntoDeNaves.add(n);
-            potencia += n.potenciaDeAtaque();
-        } while (i!=0);
+        System.out.println("¿Cuantas naves tiene la Estacion Espacial?");
+        int nNaves = sc.nextInt();
+        for (int i = 1; i <= nNaves; i++) {
+            Nave nave = NaveBuilder.CrearNave();
+            conjuntoDeNaves.add(nave);
+            //Añadir la potencia de ataque de las naves a la potencia de Ataque de la Estacion Espacial
+            potencia += nave.potenciaDeAtaque();
+        }
         return conjuntoDeNaves;
     }
 

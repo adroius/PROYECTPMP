@@ -24,8 +24,7 @@ public class Carguero extends NaveBuilder {
     public int tripulantesTotales() {
         System.out.println("¿Cual es la capacidad de tripulantes del carguero?");
         Scanner sc = new Scanner(System.in);
-        int s = sc.nextInt();
-        return s;
+        return sc.nextInt();
     }
 
     //Lista de defensas del Carguero (Carguero solo puede tener una defensa)
@@ -73,14 +72,15 @@ public class Carguero extends NaveBuilder {
         return defensaTotal;
     }
 
-    @Override
-    public int potenciaDeAtaque() {
-        return 0;
-    }
-
     //Cargueros no tiene armas
     public List<Arma> conjuntoDeArmas() {
         return null;
+    }
+
+    //Carguero no tiene armas, por lo que no tiene potencia de ataque
+    @Override
+    public int potenciaDeAtaque() {
+        return 0;
     }
 
     @Override

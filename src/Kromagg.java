@@ -20,11 +20,12 @@ public class Kromagg{
         switch (s) {
             case 1: {
                 l= true;
+                break;
             }
             case 2: {
                 l= false;
+                break;
             }
-            break;
             default:
                 throw new IllegalStateException("Unexpected value: " + s);
         }

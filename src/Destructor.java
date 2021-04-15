@@ -83,9 +83,10 @@ public class Destructor extends NaveBuilder {
         int arm = 1; //Destructor solo tiene 1 Arma
         //Escoger el tipo de Arma
         for (int i = 1; i <= arm; i++) {
+            //Escoger el tipo de arma
             Arma a = new Arma();
-            armas.add(a);
-            potencia += a.potencia;
+            armas.add(a); //Añadir el arma creada a la lista de Armas
+            potencia += a.potencia; //Sumar la potencia de todas las Armas del Destructor
         }
         return armas;
     }
@@ -95,6 +96,7 @@ public class Destructor extends NaveBuilder {
         return defensaTotal;
     }
 
+    //Devuelve la potencia total de las Armas del Destructor (1 Arma)
     @Override
     public int potenciaDeAtaque() {
         return potencia;

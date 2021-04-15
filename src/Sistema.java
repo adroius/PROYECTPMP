@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Sistema {
     private int intentospermitidos = 2; //Se permiten dos intentos para poner bien el usuario y la contraseña
     public static String usuarioEntrar = ""; //Guardar el Cliente que a entrado
+    boolean isKromagg = false;
 
     //Constructor Sistema
     private Sistema() throws IOException {
@@ -71,7 +72,11 @@ public class Sistema {
                 }
                 //Ver las ofertas publicadas en la pagina web
                 case 3: {
-                    verOfertas();
+                    if (buscarSiUserIsKromagg(usuarioEntrar)) {
+                        new Oferta().buscadorDeOfertasKromggSinLicencia();
+                    } else {
+                        new Oferta().buscadorDeOfertas();
+                    }
                     break;
                 }
                 //Salir del Sistema
@@ -186,7 +191,7 @@ public class Sistema {
             while ((line = br.readLine()) != null) {
                 fichero.add(line);
             }
-            String s = u.user + u.contraseña;
+            String s = u.user + u.contrasena;
             fichero.add(s);
             FileWriter fw = new FileWriter("usercontraseña.txt");
             PrintWriter escritura = new PrintWriter(fw);
@@ -194,7 +199,7 @@ public class Sistema {
                 escritura.println(fichero.get(i));
             }
             escritura.close();
-            u.usuario.escribirInfo();
+            u.usuario.escribirInfo(u.user, u.contrasena);
         } catch (Exception e) {
             System.out.println("Error al escribir");
         }
@@ -202,7 +207,7 @@ public class Sistema {
     }
 
     //Inciar Sesion
-    public boolean iniciarSesion() throws FileNotFoundException {
+    public boolean iniciarSesion() throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean encontrado = false;
         System.out.println("Introduzca usuario");
@@ -246,7 +251,7 @@ public class Sistema {
         return encontrado;
     }
 
-    private void menuAdministrador() {
+    private void menuAdministrador() throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean f = false;
         do {
@@ -262,7 +267,12 @@ public class Sistema {
                     Usuario.modificarInformacionUsuario(mod);
                     break;
                 }
-                //case 2 -> Buscador();
+                case 2 : {
+                    System.out.println("¿Oferta a editar(numero de oferta)?");
+                    String id = sc.next();
+                    Oferta.modificarOferta(id);
+                    break;
+                }
                 case 3: {
                     f = true;
                     break;
@@ -273,8 +283,23 @@ public class Sistema {
         } while (!f);
     }
 
+    public boolean buscarSiUserIsKromagg(String user) throws IOException {
+        boolean encontrado = false;
+        BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
+        String linea = "";
+        while ((linea = br.readLine()) != null) {
+            if (linea.contains(user)) {
+                linea = br.readLine();
+                if (linea.contains("Kromagg") || linea.contains("kromagg")) {
+                    encontrado = Kromagg.licencia();
+                    break;
+                } else {
+                    encontrado = true;
+                }
+            }
+        }
+        return encontrado;
+    }
     public void getSistema() throws IOException {
         new Sistema();
     }
-
-}

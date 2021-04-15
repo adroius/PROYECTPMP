@@ -76,9 +76,10 @@ public class Caza extends NaveBuilder {
         int def = 2;//Caza tiene 2 armas
         //Escoger el tipo de Armas
         for (int i = 1; i <= def; i++) {
-            Arma a = new Arma(); //Constructor Armas
+            //Escoger el tipo de Arma
+            Arma a = new Arma();
             armas.add(a);//Añadir el arma creada a la lista de Armas
-            potencia += a.potencia;
+            potencia += a.potencia; //Sumar la potencia de todas las armas del Caza
         }
         return armas;
     }
