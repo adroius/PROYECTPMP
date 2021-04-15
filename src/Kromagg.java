@@ -19,11 +19,11 @@ public class Kromagg{
         int s = sc.nextInt();
         switch (s) {
             case 1: {
-                l= true;
+                l= false;
                 break;
             }
             case 2: {
-                l= false;
+                l= true;
                 break;
             }
             default:

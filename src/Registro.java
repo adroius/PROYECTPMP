@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -108,7 +109,6 @@ public class Registro {
         return defensaTotal;
     }
 
-
     public int PrecioTotal() throws IOException {
         List<String> fichero = new ArrayList<>();
         List<String> carrito = new ArrayList<>();
@@ -171,7 +171,6 @@ public class Registro {
         return danyoTotal;
     }
 
-
     public void ejecutarCompra() throws IOException {
         List<String> fichero = new ArrayList<>();
         List<String> carrito = new ArrayList<>();
@@ -192,9 +191,10 @@ public class Registro {
                 carrito.set(i, "");
                 encontrado = true;
                 i++;
+                int borrador=i;
                 while (!(carrito.get(i).contains("*"))) {
                     carritoIndividual.add(carrito.get(i));
-                    carrito.set(i, "");
+                    carrito.remove(borrador);
                     i++;
                 }
                 carrito.set(i, "");
@@ -204,6 +204,7 @@ public class Registro {
         if (!encontrado) {
             System.out.println("Su carrito esta vacio");
         }
+        List<String> listaBorrar=new ArrayList<>();
         boolean found = false;
         if (encontrado) {
             for (int e = 0; e < fichero.size(); e++) {
@@ -211,6 +212,9 @@ public class Registro {
                     found = true;
                     e++;
                     for (int i = 0; i < carritoIndividual.size(); i++) {
+                        if (carritoIndividual.get(i).contains("Numero de oferta")) {
+                            listaBorrar.add(carritoIndividual.get(i));
+                        }
                         fichero.add(e, carritoIndividual.get(i));
                         e++;
                     }
@@ -238,6 +242,8 @@ public class Registro {
             escritura.println(fichero.get(i));
         }
         escritura.close();
-        Oferta.borrarOferta(nIdentificacion);
+        for(int i=0;i<=listaBorrar.size();i++){
+            Oferta.borrarOferta(listaBorrar.get(i));
+        }
     }
 }

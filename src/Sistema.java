@@ -10,7 +10,7 @@ public class Sistema {
     boolean isKromagg = false;
 
     //Constructor Sistema
-    private Sistema() throws IOException {
+    protected Sistema() throws IOException {
         boolean f = false;
         Scanner sc = new Scanner(System.in);
         //Registrarse como nuevo Cliente o Iniciar Sesion
@@ -295,7 +295,8 @@ public class Sistema {
                     encontrado = Kromagg.licencia();
                     break;
                 } else {
-                    encontrado = true;
+                    encontrado = false;
+                    break;
                 }
             }
         }
