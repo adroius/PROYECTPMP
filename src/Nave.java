@@ -56,10 +56,6 @@ public abstract class Nave {
 
     public abstract List<Defensa> sistemaDeDefensa(); //Lista de las defensas de la nave
 
-    public int getDefensaTotal() //Lista de las armas de la nave
-    {
-        return 0;
-    }
 
     public int potenciaDeAtaque() //Lista de las armas de la nave
     {

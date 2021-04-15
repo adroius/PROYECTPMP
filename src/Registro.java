@@ -238,5 +238,6 @@ public class Registro {
             escritura.println(fichero.get(i));
         }
         escritura.close();
+        Oferta.borrarOferta(nIdentificacion);
     }
 }
