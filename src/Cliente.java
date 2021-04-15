@@ -45,41 +45,46 @@ public class Cliente {
     }
 
 
- public boolean suscribirseAUnaOferta(String nOferta) throws IOException {
+    public boolean suscribirseAUnaOferta() throws IOException {
+        String nOferta = "";
         boolean suscribirse = false;
         boolean exit = false;
         Scanner sc = new Scanner(System.in);
         Oferta offer = null;
-        if (offer.buscarOfertaEspecifica(nOferta)) {
-            System.out.println("¿Quieres suscribirte a esta oferta?");
-            System.out.println("1) Si");
-            System.out.println("2) No");
-            int s = sc.nextInt();
-            switch (s) {
-                case 1: {
-                    suscribirse = true;
-                    exit = true;
-                    break;
+        System.out.println("Digame el numero de identificacion de la oferta a la que deseas suscribirte, si no deseas suscribirte a ninguna oferta escriba 'No'. ");
+        nOferta = sc.next();
+        if (nOferta.equals("No") || nOferta.equals("no") || nOferta.equals("NO")){
+            suscribirse=false;
+        } else{
+            if (offer.buscarOfertaEspecifica(nOferta)) {
+                System.out.println("¿Quieres suscribirte a esta oferta?");
+                System.out.println("1) Si");
+                System.out.println("2) No");
+                int s = sc.nextInt();
+                switch (s) {
+                    case 1: {
+                        suscribirse = true;
+                        exit = true;
+                        break;
+                    }
+                    case 2: {
+                        suscribirse = false;
+                        exit = true;
+                        break;
+                    }
+                    default:
+                        throw new IllegalStateException("Valor no valido");
                 }
-                case 2: {
-                    suscribirse = false;
-                    exit = true;
-                    break;
-                }
-                default:
-                    throw new IllegalStateException("Valor no valido");
             }
+            while (!exit) ;
         }
-        while (!exit) ;
         return suscribirse;
     }
 
-    public void escribirInfo(String u,String c) {
+    public void escribirInfo() {
         try {
             FileWriter escribir = new FileWriter("usuarioInfo.txt");
             escribir.write(this.numeroIdentificacion);
-            escribir.write("\n");
-            escribir.write(u+c);
             escribir.write("\n");
             escribir.write(this.Nombre);
             escribir.write("-");
@@ -96,39 +101,6 @@ public class Cliente {
             System.out.println("Error al escribir");
         }
     }
-
-  /*  public boolean modificarOferta(String nIdentificacion, String nOferta) {
-        boolean exit = false;
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Pon su numero de identificacion");
-        nIdentificacion = sc.next();
-        if (comprobarNIdentificacion(nIdentificacion)) {
-            System.out.print("Pon el numero de identificacion de la oferta que deseas modificar");
-            nOferta = sc.next();
-            Sistema sistem = null;
-            if (sistem.comprobarNOferta(nOferta)) {
-                System.out.println("¿Quieres modificar esta oferta?");
-                System.out.println("1) Si");
-                System.out.println("2) No");
-                int s = sc.nextInt();
-                switch (s) {
-                    case 1: {
-                        exit = true;
-                        break;
-                    }
-                    case 2: {
-                        exit = true;
-                        break;
-                    }
-                    default:
-                        throw new IllegalStateException("Numero no valido, ponga otro numero " + s);
-                }
-            }
-            while (!exit) ;
-        }
-        return exit;
-    }
-*/
 
     public int numeroAdvertencias(String nIdentificacion) {
         boolean encontrado = comprobarNIdentificacion(nIdentificacion);
@@ -164,9 +136,8 @@ public class Cliente {
 
     //Comprobar si es de la especie Kromagg
     protected boolean isKromagg() {
-        boolean is = false;
-        if (this.Especie.contains("Kromagg") || this.Especie.contains("kromagg")) {
-            is = true;
+        boolean is = (this.Especie == "Kromagg" || this.Especie == "kromagg");
+        if (is) {
             new Kromagg();
         }
         return is;
@@ -193,7 +164,7 @@ public class Cliente {
     }
 
     private boolean comprarNavePirata() {
-        Nave n;
+        Nave n = null;
         boolean compra;
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Quieres comprar un carguero?");
@@ -245,6 +216,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente: " + "\nNombre= " + Nombre + "\nPlanetaOrigen= " + PlanetaOrigen + "\nEspecie= " + Especie + "\nNumero Identificacion= " + numeroIdentificacion + "\nNaves En Propiedad=" + NavesEnPropiedad + "\nNick=" + Nick + "\nEmail='" + email;
+        return "Cliente: " + "\nNombre= " + Nombre + "\nPlanetaOrigen= " + PlanetaOrigen + "\nEspecie= " + Especie + "\nNumero Identificacion= " + numeroIdentificacion + "\nNaves En Propiedad=" + /*NavesEnPropiedad + "\nNick=" + */ Nick + "\nEmail='" + email;
     }
 }

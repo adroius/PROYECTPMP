@@ -7,10 +7,9 @@ import java.util.Scanner;
 public class Sistema {
     private int intentospermitidos = 2; //Se permiten dos intentos para poner bien el usuario y la contraseña
     public static String usuarioEntrar = ""; //Guardar el Cliente que a entrado
-    boolean isKromagg = false;
 
     //Constructor Sistema
-    public Sistema() throws IOException {
+    private Sistema() throws IOException {
         boolean f = false;
         Scanner sc = new Scanner(System.in);
         //Registrarse como nuevo Cliente o Iniciar Sesion
@@ -61,37 +60,37 @@ public class Sistema {
             int s = sc.nextInt();
             switch (s) {
                 //Ingresar una nueva nave propiedad del Cliente
-                case 1 -> {
+                case 1: {
                     insertarNave();
                     break;
                 }
                 //Crear una oferta con las naves que posee el Cliente
-                case 2 -> {
+                case 2: {
                     crearOferta();
                     break;
                 }
                 //Ver las ofertas publicadas en la pagina web
-                case 3 -> {
-                    if (buscarSiUserIsKromagg(usuarioEntrar)) {
-                        new Oferta().buscadorDeOfertasKromggSinLicencia();
-                    } else {
-                        new Oferta().buscadorDeOfertas();
-                    }
+                case 3: {
+                    verOfertas();
                     break;
                 }
                 //Salir del Sistema
-                case 4 -> {
+                case 4: {
                     new Registro().ejecutarCompra();
                     break;
                 }
-                case 5 -> {
+                case 5: {
                     f = true;
                     break;
                 }
                 //Valor introducido incorrecto
-                default -> throw new IllegalStateException("Unexpected value: " + s);
+                default: throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
+    }
+
+    public void verOfertas() throws IOException {
+        new Oferta().buscadorDeOfertas();
     }
 
     //Crear oferta con las naves que posee el Cliente
@@ -195,7 +194,7 @@ public class Sistema {
                 escritura.println(fichero.get(i));
             }
             escritura.close();
-            u.usuario.escribirInfo(u.user, u.contraseña);
+            u.usuario.escribirInfo();
         } catch (Exception e) {
             System.out.println("Error al escribir");
         }
@@ -274,23 +273,8 @@ public class Sistema {
         } while (!f);
     }
 
-    public boolean buscarSiUserIsKromagg(String user) throws IOException {
-        boolean encontrado = false;
-        BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
-        String linea = "";
-        while ((linea = br.readLine()) != null) {
-            if (linea.contains(user)) {
-                linea = br.readLine();
-                if (linea.contains("Kromagg") || linea.contains("kromagg")) {
-                    encontrado =Kromagg.licencia();
-                    break;
-                }
-            }
-        }
-        if (encontrado) {
-            return false;
-        } else {
-            return true;
-        }
+    public void getSistema() throws IOException {
+        new Sistema();
     }
+
 }

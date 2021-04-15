@@ -47,6 +47,7 @@ public abstract class Nave {
     }
 
     public abstract int tripulantesTotales(); //Numero de tripulantes de la nave
+
     public abstract List<Defensa> sistemaDeDefensa(); //Lista de las defensas de la nave
 
     public int getDefensaTotal() //Lista de las armas de la nave
