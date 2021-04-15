@@ -8,7 +8,6 @@ public class Sistema {
     private int intentospermitidos = 2; //Se permiten dos intentos para poner bien el usuario y la contraseña
     public static String usuarioEntrar = ""; //Guardar el Cliente que a entrado
     boolean isKromagg = false;
-
     //Constructor Sistema
     public Sistema() throws IOException {
         boolean f = false;
@@ -46,7 +45,6 @@ public class Sistema {
             }
         } while (!f);
     }
-
     //Menu una vez has ingresado como Cliente
     public void menu() throws IOException {
         Scanner sc = new Scanner(System.in);
@@ -93,7 +91,6 @@ public class Sistema {
             }
         } while (!f);
     }
-
     //Crear oferta con las naves que posee el Cliente
     public void crearOferta() throws IOException {
         new Oferta().construirOferta(usuarioEntrar);
@@ -176,7 +173,6 @@ public class Sistema {
         }
         return encontrado;
     }
-
     //Registrar Nuevo Cliente
     public Usuario registrarNuevoCliente() {
         List<String> fichero = new ArrayList<>();
@@ -187,7 +183,7 @@ public class Sistema {
             while ((line = br.readLine()) != null) {
                 fichero.add(line);
             }
-            String s = u.user + u.contraseña;
+            String s = u.user + u.contrasena;
             fichero.add(s);
             FileWriter fw = new FileWriter("usercontraseña.txt");
             PrintWriter escritura = new PrintWriter(fw);
@@ -195,7 +191,7 @@ public class Sistema {
                 escritura.println(fichero.get(i));
             }
             escritura.close();
-            u.usuario.escribirInfo(u.user, u.contraseña);
+            u.usuario.escribirInfo(u.user, u.contrasena);
         } catch (Exception e) {
             System.out.println("Error al escribir");
         }

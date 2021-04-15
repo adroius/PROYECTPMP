@@ -242,12 +242,14 @@ public class Oferta {
         }
         min = 0;
         max = lecturaOfertas.size();
+        String naveElegida="";
         boolean found = false;
         if (Sistema.pertenece(usuarioAmeter)) {
             if (max != 0) {
                 while (!found && max != 0) {
                     if (usuarioAmeter.equals(lecturaOfertas.get(min))) {
                         min = min + 1;
+                        naveElegida=naves.get(0);
                         for (int i = 0; i < naves.size(); i++) {
                             lecturaOfertas.add(min, naves.get(i));
                             min = min + 1;
@@ -268,6 +270,7 @@ public class Oferta {
             }
             if (!found) {
                 lecturaOfertas.add(usuarioAmeter);
+                naveElegida=naves.get(0);
                 for (int i = 0; i < naves.size(); i++) {
                     lecturaOfertas.add(naves.get(i));
                 }
@@ -278,15 +281,18 @@ public class Oferta {
                 lecturaOfertas.add("*");
             }
             Administrador a = null;
-            //if (a.ofertaValida(nIdentificacion, usuarioEntrar)) {
-            FileWriter fw = new FileWriter("userOfertas.txt");
-            PrintWriter escritura = new PrintWriter(fw);
-            for (int i = 0; i < lecturaOfertas.size(); i++) {
-                escritura.println(lecturaOfertas.get(i));
+            boolean validez = Administrador.ofertaValida(nIdentificacion, usuarioEntrar, precio,naveElegida);
+            if (validez) {
+                FileWriter fw = new FileWriter("userOfertas.txt");
+                PrintWriter escritura = new PrintWriter(fw);
+                for (int i = 0; i < lecturaOfertas.size(); i++) {
+                    escritura.println(lecturaOfertas.get(i));
+                }
+                escritura.close();
+            } else {
+                System.out.println("No se permite insertar esa nave.");
             }
-            escritura.close();
-            //
-        }
+            }
     }
 
     public int PrecioOfertaTotal(int c) {
@@ -348,7 +354,7 @@ public class Oferta {
         while (!exit) ;
     }
 
-    public boolean buscarOfertaEspecifica(String numOferta) throws IOException {
+    public static boolean buscarOfertaEspecifica(String numOferta) throws IOException {
         boolean encontrado = false;
         List<String> fichero = new ArrayList<>();
         List<String> nave = new ArrayList<>();
