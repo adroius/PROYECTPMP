@@ -9,6 +9,7 @@ public class Carguero extends NaveBuilder {
     List<Defensa> defensa; //Carguero solo puede tener 1 defensa
     List<Propulsion> prop; //Carguero tiene 1 o 2 tipos de propulsion
     int numDefensas=numeroDeDefensasMax(); // Max de 1
+    int defensaTotal = 0;
 
     //Constructor Carguero
     public Carguero() {
@@ -51,11 +52,13 @@ public class Carguero extends NaveBuilder {
                 case 1: {
                     d = new Escudo(); //Constructor Escudo
                     defensa.add(d);
+                    defensaTotal += d.danioQueAbsorbe();
                     break;
                 }
                 case 2: {
                     d = new Blindaje(); //Constructor Blindaje
                     defensa.add(d);
+                    defensaTotal += d.danioQueAbsorbe();
                     break;
                 }
                 //El dato introducido es incorrecto
@@ -63,6 +66,11 @@ public class Carguero extends NaveBuilder {
             }
         }
         return defensa;
+    }
+
+    @Override
+    public int getDefensaTotal(){
+        return defensaTotal;
     }
 
     @Override

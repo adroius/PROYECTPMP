@@ -10,6 +10,7 @@ public class Destructor extends NaveBuilder {
     int tripulantesTotales;
     int numDefensas = numeroDeDefensasMax(); //Max 2
     int potencia = 0;
+    int defensaTotal = 0;
 
     //Constructor Destructor
     public Destructor() {
@@ -62,10 +63,12 @@ public class Destructor extends NaveBuilder {
                 case 1:
                     d = new Escudo();
                     defensa.add(d);
+                    defensaTotal += d.danioQueAbsorbe();
                     break;
                 case 2:
                     d = new Blindaje();
                     defensa.add(d);
+                    defensaTotal += d.danioQueAbsorbe();
                     break;
                 default:
                     throw new IllegalStateException("Valor incorrecto: " + e);
@@ -85,6 +88,11 @@ public class Destructor extends NaveBuilder {
             potencia += a.potencia;
         }
         return armas;
+    }
+
+    @Override
+    public int getDefensaTotal(){
+        return defensaTotal;
     }
 
     @Override

@@ -207,9 +207,9 @@ public class Oferta {
                 lecturaOfertas.add("-");
                 lecturaOfertas.add("*");
             }
-            Administrador a = null;
             PrintWriter escritura;
-            if (a.ofertaValida(nIdentificacion, usuarioEntrar)) {
+            boolean validez = Administrador.ofertaValida(nIdentificacion, usuarioEntrar);
+            if (validez) {
                 FileWriter fw = new FileWriter("userOfertas.txt");
                 escritura = new PrintWriter(fw);
                 for (int i = 0; i < lecturaOfertas.size(); i++) {
@@ -231,10 +231,6 @@ public class Oferta {
         return c;
     }
 
-    public int DanyoTotal(int c) {
-
-        return c;
-    }
 
     public void votar(int c, Scanner sc) {
         System.out.println("¿Cual es su valoración?");

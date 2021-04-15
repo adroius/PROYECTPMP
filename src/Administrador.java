@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,9 +6,23 @@ import java.util.List;
 
 //Clase Administrador
 public class Administrador extends Usuario {
+
     boolean isCorrecto = false;
 
-    private String obtenerNombreNave(String nOferta) throws IOException {
+    public static boolean ofertaValida(String nOferta, String nUser) throws IOException {
+        Oferta offer = null;
+        boolean visible = true;
+        if (offer.buscarOfertaEspecifica(nOferta)) {
+            if (!ofertaComprobar(nOferta, offer)) {
+                eliminarOferta(nOferta, offer);
+                notificarVendedorConAdvertencia(nUser);
+                visible = false;
+            }
+        }
+        return visible;
+    }
+
+    private static String obtenerNombreNave(String nOferta) throws IOException {
         List<String> fichero = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("userOfertas.txt"));
         String nombre = "";
@@ -29,7 +42,7 @@ public class Administrador extends Usuario {
         return nombre;
     }
 
-    private boolean ofertaComprobar(String nOferta, Oferta offer) throws IOException {
+    private static boolean ofertaComprobar(String nOferta, Oferta offer) throws IOException {
         boolean valido = false;
         switch (obtenerNombreNave(nOferta)) {
             case "Caza":
@@ -48,7 +61,7 @@ public class Administrador extends Usuario {
                 }
                 break;
             case "Estacion Espacial":
-                if (offer.precio <= 1000) {
+                if (offer.precio <= 2000) {
                     valido = true;
                 }
                 break;
@@ -56,20 +69,7 @@ public class Administrador extends Usuario {
         return valido;
     }
 
-    public boolean ofertaValida(String nOferta, String nUser) throws IOException {
-        Oferta offer = null;
-        boolean visible = true;
-        if (offer.buscarOfertaEspecifica(nOferta)) {
-            if (!ofertaComprobar(nOferta, offer)) {
-                eliminarOferta(nOferta, offer);
-                notificarVendedorConAdvertencia(nUser);
-                visible = false;
-            }
-        }
-        return visible;
-    }
-
-    private void notificarVendedorConAdvertencia(String nUser) {
+    private static void notificarVendedorConAdvertencia(String nUser) {
         Cliente c = null;
         c.numeroIdentificacion = nUser;
         System.out.println("Su oferta no cumple los parametros establecidos");
@@ -78,7 +78,7 @@ public class Administrador extends Usuario {
     }
 
 
-    private void eliminarOferta(String nOferta, Oferta offer) throws IOException {
+    private static void eliminarOferta(String nOferta, Oferta offer) throws IOException {
         offer.buscarOfertaEspecifica(nOferta);
         BufferedReader br = new BufferedReader(new FileReader("userOferta.txt"));
         String linea = "";

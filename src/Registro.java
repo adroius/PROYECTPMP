@@ -73,6 +73,101 @@ public class Registro {
         escritura.close();
     }
 
+    public int DefensaTotal() throws IOException {
+        List<String> fichero = new ArrayList<>();
+        List<String> carrito = new ArrayList<>();
+        int defensaTotal = 0;
+        Nave n= null;
+        BufferedReader br = new BufferedReader(new FileReader("carritoDeLaCompra.txt"));
+        String carrilista;
+        while ((carrilista = br.readLine()) != null) {
+            carrito.add(carrilista);
+        }
+        boolean encontrado = false;
+        for (int i = 0; i < carrito.size(); i++) {
+            if (carrito.get(i).contains(Sistema.usuarioEntrar)) {
+                carrito.set(i, "");
+                encontrado = true;
+                i++;
+                while (!(carrito.get(i).contains("*"))) {
+                    carrito.set(i, "");
+                    if ((carrito.get(i).contains("Defensa de la nave:"))) {
+                        defensaTotal += n.getDefensaTotal();
+                    }
+                    i++;
+                }
+                carrito.set(i, "");
+                i = fichero.size();
+            }
+        }
+        System.out.print("Su aguante total es " + defensaTotal);
+        return defensaTotal;
+    }
+
+
+    public int PrecioTotal() throws IOException {
+        List<String> fichero = new ArrayList<>();
+        List<String> carrito = new ArrayList<>();
+        int precioTotal = 0;
+        Oferta offer= null;
+        BufferedReader br = new BufferedReader(new FileReader("carritoDeLaCompra.txt"));
+        String carrilista;
+        while ((carrilista = br.readLine()) != null) {
+            carrito.add(carrilista);
+        }
+        boolean encontrado = false;
+        for (int i = 0; i < carrito.size(); i++) {
+            if (carrito.get(i).contains(Sistema.usuarioEntrar)) {
+                carrito.set(i, "");
+                encontrado = true;
+                i++;
+                while (!(carrito.get(i).contains("*"))) {
+                    carrito.set(i, "");
+                    if ((carrito.get(i).contains("Precio de la nave:"))) {
+                        precioTotal += offer.precio;
+                    }
+                    i++;
+                }
+                carrito.set(i, "");
+                i = fichero.size();
+            }
+        }
+        System.out.print("Su precio total es " + precioTotal);
+        return precioTotal;
+    }
+
+    public int DanyoTotal() throws IOException {
+        List<String> fichero = new ArrayList<>();
+        List<String> carrito = new ArrayList<>();
+        int danyoTotal = 0;
+        Nave n = null;
+        BufferedReader br = new BufferedReader(new FileReader("carritoDeLaCompra.txt"));
+        String carrilista;
+        while ((carrilista = br.readLine()) != null) {
+            carrito.add(carrilista);
+        }
+        boolean encontrado = false;
+        for (int i = 0; i < carrito.size(); i++) {
+            if (carrito.get(i).contains(Sistema.usuarioEntrar)) {
+                carrito.set(i, "");
+                encontrado = true;
+                i++;
+                while (!(carrito.get(i).contains("*"))) {
+                    carrito.set(i, "");
+                    if ((carrito.get(i).contains("Potencia total"))) {
+                        danyoTotal += n.potenciaDeAtaque();
+                    }
+                    i++;
+                }
+                carrito.set(i, "");
+                i = fichero.size();
+            }
+        }
+        System.out.print("Su potencia total es " + danyoTotal);
+        return danyoTotal;
+    }
+
+
     public void ejecutarCompra() throws IOException {
         List<String> fichero = new ArrayList<>();
         List<String> carrito = new ArrayList<>();
@@ -87,29 +182,29 @@ public class Registro {
         while ((carrilista = br.readLine()) != null) {
             carrito.add(carrilista);
         }
-        boolean encontrado=false;
+        boolean encontrado = false;
         for (int i = 0; i < carrito.size(); i++) {
-            if (carrito.get(i).contains(Sistema.usuarioEntrar)){
-                carrito.set(i,"");
-                encontrado=true;
+            if (carrito.get(i).contains(Sistema.usuarioEntrar)) {
+                carrito.set(i, "");
+                encontrado = true;
                 i++;
                 while (!(carrito.get(i).contains("*"))) {
                     carritoIndividual.add(carrito.get(i));
-                    carrito.set(i,"");
+                    carrito.set(i, "");
                     i++;
                 }
-                carrito.set(i,"");
+                carrito.set(i, "");
                 i = fichero.size();
             }
         }
-        if (!encontrado){
+        if (!encontrado) {
             System.out.println("Su carrito esta vacio");
         }
-        boolean found=false;
-        if (encontrado){
+        boolean found = false;
+        if (encontrado) {
             for (int e = 0; e < fichero.size(); e++) {
                 if (fichero.get(e).contains(Sistema.usuarioEntrar)) {
-                    found=true;
+                    found = true;
                     e++;
                     for (int i = 0; i < carritoIndividual.size(); i++) {
                         fichero.add(e, carritoIndividual.get(i));
@@ -118,7 +213,7 @@ public class Registro {
                     e = fichero.size();
                 }
             }
-            if (!found){
+            if (!found) {
                 fichero.add(Sistema.usuarioEntrar);
                 for (int e = 0; e < carritoIndividual.size(); e++) {
                     fichero.add(carritoIndividual.get(e));

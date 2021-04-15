@@ -13,6 +13,7 @@ public class Caza extends NaveBuilder {
     List<Propulsion> prop; //Caza tiene 1 o 2 tipos de propulsion
     int numDefensas = numeroDeDefensasMax(); //Max 1
     int potencia = 0;
+    int defensaTotal = 0;
 
     //Constructor de Caza
     public Caza() {
@@ -53,10 +54,12 @@ public class Caza extends NaveBuilder {
                 case 1:
                     d = new Escudo(); //Constructor Escudo
                     defensa.add(d);
+                    defensaTotal += d.danioQueAbsorbe();
                     break;
                 case 2:
                     d = new Blindaje(); //Constructor Blindaje
                     defensa.add(d);
+                    defensaTotal += d.danioQueAbsorbe();
                     break;
                 //El valor introducido no es correcto
                 default:
@@ -78,6 +81,11 @@ public class Caza extends NaveBuilder {
             potencia += a.potencia;
         }
         return armas;
+    }
+
+    @Override
+    public int getDefensaTotal(){
+        return defensaTotal;
     }
 
     @Override

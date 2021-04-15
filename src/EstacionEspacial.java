@@ -10,7 +10,8 @@ public class EstacionEspacial extends NaveBuilder{
     List<Propulsion> prop; //EstacionEspacial puede tener 1 o 2 tipos de propulsion
     int numDefensas;
     int numPasajerosMax;
-    int potencia;
+    int potencia = 0;
+    int defensaTotal = 0;
 
     //Constructor EstacionEspacial
     public EstacionEspacial() {
@@ -83,10 +84,12 @@ public class EstacionEspacial extends NaveBuilder{
                 case 1:
                     d = new Escudo(); //Constructor Escudo
                     defensa.add(d);
+                    defensaTotal += d.danioQueAbsorbe();
                     break;
                 case 2:
                     d = new Blindaje(); //Constructor Blindaje
                     defensa.add(d);
+                    defensaTotal += d.danioQueAbsorbe();
                     break;
                 //El dato introducido es incorrecto
                 default:
@@ -128,6 +131,11 @@ public class EstacionEspacial extends NaveBuilder{
     //El numero máximo de Defensas por si sola de EstacionEspacial es 3
     private int numeroDeDefensasMax() {
         return 3;
+    }
+
+    @Override
+    public int getDefensaTotal(){
+        return defensaTotal;
     }
 
     @Override
