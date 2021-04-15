@@ -11,11 +11,13 @@ public class Registro {
         this.nIdentificacion = numaleatorios();
     }
 
+    //Crea el nIdentificacion del Registro
     private String numaleatorios() {
         int numero = (int) (Math.random() * 10000 + 1000);
         return String.valueOf(Math.abs(numero));
     }
 
+    //Lista de Ofertas que el Cliente desea comprar
     public void crearCarritoDeNaves() throws IOException {
         String matricula="";
         System.out.println("Inserte la matricula de la nave que desea comprar:");
@@ -77,6 +79,7 @@ public class Registro {
         Oferta.borrarOferta(matricula);
     }
 
+    //Danio Absorbido Total de las Naves en el Carrito de la Compra
     public int DefensaTotal() throws IOException {
         List<String> fichero = new ArrayList<>();
         List<String> carrito = new ArrayList<>();
@@ -108,7 +111,7 @@ public class Registro {
         return defensaTotal;
     }
 
-
+    //Precio total de las Ofertas en el Carrito de la Compra
     public int PrecioTotal() throws IOException {
         List<String> fichero = new ArrayList<>();
         List<String> carrito = new ArrayList<>();
@@ -140,6 +143,7 @@ public class Registro {
         return precioTotal;
     }
 
+    //Potencia total de las Naves en el Carrito de la Compra
     public int DanyoTotal() throws IOException {
         List<String> fichero = new ArrayList<>();
         List<String> carrito = new ArrayList<>();
@@ -171,7 +175,7 @@ public class Registro {
         return danyoTotal;
     }
 
-
+    //Comprar las Ofertas en el Carrito
     public void ejecutarCompra() throws IOException {
         List<String> fichero = new ArrayList<>();
         List<String> carrito = new ArrayList<>();
@@ -238,6 +242,6 @@ public class Registro {
             escritura.println(fichero.get(i));
         }
         escritura.close();
-        Oferta.borrarOferta(nIdentificacion);
+        Oferta.borrarOferta(nIdentificacion); //Borra las Ofertas que se han Comprado
     }
 }

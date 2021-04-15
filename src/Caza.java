@@ -12,8 +12,8 @@ public class Caza extends NaveBuilder {
     List<Arma> conjuntoDeArmas; //Caza tiene 2 armas
     List<Propulsion> prop; //Caza tiene 1 o 2 tipos de propulsion
     int numDefensas = numeroDeDefensasMax(); //Max 1
-    int potencia = 0;
-    int defensaTotal = 0;
+    int potencia = 0; //Potencia Total de las Armas del Caza
+    int defensaTotal = 0; //Danio que Absobe total del Caza
 
     //Constructor de Caza
     public Caza() {

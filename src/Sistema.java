@@ -252,6 +252,7 @@ public class Sistema {
         return encontrado;
     }
 
+    //Menu de Administrador (Editar Clientes y Ofertas)
     private void menuAdministrador() throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean f = false;
@@ -284,6 +285,7 @@ public class Sistema {
         } while (!f);
     }
 
+    //Busca en fichero si el Cliente es de la especie Kromagg
     public boolean buscarSiUserIsKromagg(String user) throws IOException {
         boolean encontrado = false;
         BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
@@ -292,7 +294,7 @@ public class Sistema {
             if (linea.contains(user)) {
                 linea = br.readLine();
                 if (linea.contains("Kromagg") || linea.contains("kromagg")) {
-                    encontrado = Kromagg.licencia();
+                    encontrado = Kromagg.licencia(); //Comprobar si el Cliente tiene Licencia
                     break;
                 } else {
                     encontrado = true;

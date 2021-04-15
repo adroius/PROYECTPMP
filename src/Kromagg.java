@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-//Clase Kromagg hereda de Cliente
+//Clase Kromagg
 public class Kromagg{
     boolean licencia; //LicenciaEspecial de los Kromagg
 

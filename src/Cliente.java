@@ -44,7 +44,7 @@ public class Cliente {
         this.isFraude = isFraude();
     }
 
-
+    //Suscribirse a una Oferta Especifica
     public boolean suscribirseAUnaOferta() throws IOException {
         String nOferta = "";
         boolean suscribirse = false;
@@ -147,7 +147,6 @@ public class Cliente {
     }
 
     //Comprobar si es Sospechoso de Pirateria
-    //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isPirata() {
         boolean is = this.isPirata;
         if (is) {
@@ -157,7 +156,6 @@ public class Cliente {
     }
 
     //Comprobar si es Sospechoso de Fraude
-    //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isFraude() {
         boolean is = this.isFraude;
         if (is) {
