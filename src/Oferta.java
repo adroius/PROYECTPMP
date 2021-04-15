@@ -407,7 +407,6 @@ public class Oferta {
             escritura.println(fichero.get(i));
         }
         escritura.close();
-
     }
 
 }
