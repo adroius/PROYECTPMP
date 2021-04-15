@@ -244,6 +244,7 @@ public class Oferta {
             System.out.println("Introduzca la matricula de la nave que quiera poner en venta:");
             Scanner sc = new Scanner(System.in);
             String s = sc.next();//ya tenemos la nave que queremos
+            String mat=s;
             naves = Sistema.cogerNave(naves, s);
             System.out.println("Introduzca el precio de la nave que va a poner en venta:");
             precio = sc.nextInt();//ya tenemos el precio que queremos
@@ -307,6 +308,7 @@ public class Oferta {
                     System.out.println("No se permite insertar esa nave.");
                 }
             }
+            borrarOferta(mat);
         }
     }
 
@@ -412,7 +414,7 @@ public class Oferta {
 
     public static void borrarOferta(String numOferta) throws IOException {
         List<String> fichero = new ArrayList<>();
-        BufferedReader br = new BufferedReader(new FileReader("userOfertas.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("userNaves.txt"));
         String line;
         while ((line = br.readLine()) != null) {
             fichero.add(line);
@@ -429,7 +431,7 @@ public class Oferta {
                 i = fichero.size();
             }
         }
-        FileWriter fw = new FileWriter("userOfertas.txt");
+        FileWriter fw = new FileWriter("userNaves.txt");
         PrintWriter escritura = new PrintWriter(fw);
         for (int i = 0; i < fichero.size(); i++) {
             escritura.println(fichero.get(i));

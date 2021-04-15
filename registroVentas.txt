@@ -1,4 +1,4 @@
-adrian2000
+jani2000
 Caza
 Numero de Tripulantes = 1
 Numero de Defensas = 1
@@ -11,8 +11,8 @@ Potencia total = 2
 Propulsion = [ Nombre = Motor FTL
 Velocidad = 1]
 Numero de Identificacion = k-5902-mda
-Numero de oferta: 4023
-Precio de la nave: 23
-Fecha Limite 2
+Numero de oferta: 6701
+Precio de la nave: 12
+Fecha Limite 21
 -
 *
