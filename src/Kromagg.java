@@ -1,7 +1,13 @@
 import java.util.Scanner;
+
 //Clase Kromagg hereda de Cliente
 public class Kromagg extends Cliente {
     boolean licencia; //LicenciaEspecial de los Kromagg
+
+    public Kromagg() {
+        KromaggNave();
+        this.licencia = licencia();
+    }
 
     //Comprobar si tiene licencia
     //Esto no tiene ningun tipo de seguridad...
@@ -27,11 +33,12 @@ public class Kromagg extends Cliente {
     //Crear nave para Kromagg
     public NaveBuilder KromaggNave() {
         NaveBuilder n = null;
-            if (licencia()) {
-                n.CrearNave(); //Con Licencia puede comprar cualquier nave
-            } else {
-                n.CrearNaveEspecial(); //Sin Licencia solo pueden comprar Cargueros y Cazas
-            }
-            return n;
+        boolean license = licencia();
+        if (license) {
+            n.CrearNave(); //Con Licencia puede comprar cualquier nave
+        } else {
+            n.CrearNaveEspecial(); //Sin Licencia solo pueden comprar Cargueros y Cazas
         }
+        return n;
     }
+}

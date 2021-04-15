@@ -44,16 +44,13 @@ public class Cliente {
         this.isFraude = isFraude();
     }
 
-    /*public List<Nave> navesEnVenta() {
 
-    }*/
-
-  /*  public boolean suscribirseAUnaOferta(String nOferta) {
+ public boolean suscribirseAUnaOferta(String nOferta) throws IOException {
         boolean suscribirse = false;
         boolean exit = false;
         Scanner sc = new Scanner(System.in);
-        Sistema sistem = null;
-        if (sistem.comprobarNOferta(nOferta)) {
+        Oferta offer = null;
+        if (offer.buscarOfertaEspecifica(nOferta)) {
             System.out.println("¿Quieres suscribirte a esta oferta?");
             System.out.println("1) Si");
             System.out.println("2) No");
@@ -76,7 +73,7 @@ public class Cliente {
         while (!exit) ;
         return suscribirse;
     }
-*/
+
     public void escribirInfo() {
         try {
             FileWriter escribir = new FileWriter("usuarioInfo.txt");
@@ -170,8 +167,7 @@ public class Cliente {
         boolean is = false;
         if (this.Especie == "Kromagg" || this.Especie == "kromagg") {
             is = true;
-            Kromagg p = new Kromagg();
-            p.KromaggNave();
+            new Kromagg();
         }
         return is;
     }
