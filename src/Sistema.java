@@ -89,7 +89,8 @@ public class Sistema {
                     break;
                 }
                 //Valor introducido incorrecto
-                default: throw new IllegalStateException("Unexpected value: " + s);
+                default:
+                    throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
     }
@@ -267,7 +268,7 @@ public class Sistema {
                     Usuario.modificarInformacionUsuario(mod);
                     break;
                 }
-                case 2 : {
+                case 2: {
                     System.out.println("¿Oferta a editar(numero de oferta)?");
                     String id = sc.next();
                     Oferta.modificarOferta(id);
@@ -300,6 +301,8 @@ public class Sistema {
         }
         return encontrado;
     }
+
     public void getSistema() throws IOException {
         new Sistema();
     }
+}

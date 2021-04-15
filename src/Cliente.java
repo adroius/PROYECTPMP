@@ -147,6 +147,7 @@ public class Cliente {
     }
 
     //Comprobar si es Sospechoso de Pirateria
+    //Hay que hacer este metodo cuando hagamos la base de datos
     private boolean isPirata() {
         boolean is = this.isPirata;
         if (is) {
