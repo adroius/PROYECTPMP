@@ -1,26 +1,28 @@
+package Test;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RegistroTest {
+class PropulsionTest {
 
     @Test
-    void crearCarritoDeNaves() {
+    void getNombre() {
     }
 
     @Test
-    void defensaTotal() {
+    void getVelocidad() {
     }
 
     @Test
-    void precioTotal() {
+    void nombre() {
     }
 
     @Test
-    void danyoTotal() {
+    void velSubLuminicaMax() {
     }
 
     @Test
-    void ejecutarCompra() {
+    void testToString() {
     }
 }

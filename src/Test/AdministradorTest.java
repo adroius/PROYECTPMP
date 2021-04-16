@@ -1,14 +1,12 @@
+package Test;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class KromaggTest {
+class AdministradorTest {
 
     @Test
-    void licencia() {
-    }
-
-    @Test
-    void kromaggNave() {
+    void ofertaValida() {
     }
 }

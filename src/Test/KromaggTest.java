@@ -1,18 +1,16 @@
+package Test;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ArmaTest {
+class KromaggTest {
 
     @Test
-    void nombre() {
+    void licencia() {
     }
 
     @Test
-    void potencia() {
-    }
-
-    @Test
-    void testToString() {
+    void kromaggNave() {
     }
 }

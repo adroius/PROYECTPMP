@@ -1,15 +1,21 @@
+package Test;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BlindajeTest {
+class ClienteTest {
 
     @Test
-    void danioQueAbsorbe() {
+    void suscribirseAUnaOferta() {
     }
 
     @Test
-    void materialEscogido() {
+    void numeroAdvertencias() {
+    }
+
+    @Test
+    void isKromagg() {
     }
 
     @Test

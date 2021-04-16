@@ -1,10 +1,12 @@
+package Test;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AdministradorTest {
+class DefensaTest {
 
     @Test
-    void ofertaValida() {
+    void danioQueAbsorbe() {
     }
 }

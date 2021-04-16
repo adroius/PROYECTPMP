@@ -1,8 +1,10 @@
+package Test;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CargueroTest {
+class CazaTest {
 
     @Test
     void tripulantesTotales() {
@@ -13,11 +15,11 @@ class CargueroTest {
     }
 
     @Test
-    void getDefensaTotal() {
+    void conjuntoDeArmas() {
     }
 
     @Test
-    void conjuntoDeArmas() {
+    void getDefensaTotal() {
     }
 
     @Test
@@ -26,10 +28,6 @@ class CargueroTest {
 
     @Test
     void conjuntoDePropulsion() {
-    }
-
-    @Test
-    void carga() {
     }
 
     @Test
