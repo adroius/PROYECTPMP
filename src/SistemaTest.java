@@ -22,7 +22,7 @@ class SistemaTest {
         }
     }
 
-    @Test
+    /*@Test
     void verOfertas() {
     }
 
@@ -56,6 +56,5 @@ class SistemaTest {
 
     @Test
     void getSistema() {
-    }
-
+    }*/
 }
