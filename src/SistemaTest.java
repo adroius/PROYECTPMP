@@ -1,44 +1,61 @@
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 class SistemaTest {
 
-    @org.junit.jupiter.api.Test
-    void menu() {
+    private Sistema s;
+
+    @BeforeEach
+    void setUp() throws IOException {
+        s=new Sistema();
+        System.out.println("Comienza la ejecucion...");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
+    void menuConValorBasura() {
+        try {
+            s.menu();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void verOfertas() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void crearOferta() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void insertarNave() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void cogerNave() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void pertenece() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void registrarNuevoCliente() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void iniciarSesion() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void buscarSiUserIsKromagg() {
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getSistema() {
     }
+
 }
