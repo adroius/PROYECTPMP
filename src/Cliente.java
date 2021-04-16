@@ -45,72 +45,59 @@ public class Cliente {
     }
 
     //Suscribirse a una Oferta Especifica
-    public boolean suscribirseAUnaOferta() throws IOException {
-        String nOferta = "";
+    public static boolean suscribirseAUnaOferta(String nOferta) throws IOException {
         boolean suscribirse = false;
-        boolean exit = false;
-        Scanner sc = new Scanner(System.in);
         Oferta offer = null;
-        System.out.println("Digame el numero de identificacion de la oferta a la que deseas suscribirte, si no deseas suscribirte a ninguna oferta escriba 'No'. ");
-        nOferta = sc.next();
-        if (nOferta.equals("No") || nOferta.equals("no") || nOferta.equals("NO")) {
-            suscribirse = false;
-        } else {
-            if (offer.buscarOfertaEspecifica(nOferta)) {
-                System.out.println("¿Quieres suscribirte a esta oferta?");
-                System.out.println("1) Si");
-                System.out.println("2) No");
-                int s = sc.nextInt();
-                switch (s) {
-                    case 1: {
-                        suscribirse = true;
-                        try {
-                            FileWriter escribir = new FileWriter("suscriptoresOferta.txt");
-                            System.out.println("Escribe tu numero de identificacion");
-                            String nIdentificacion = sc.next();
-                            BufferedReader br = new BufferedReader(new FileReader("suscriptoresOferta.txt"));
-                            String line;
-                            boolean encontrado = (br.readLine() == nIdentificacion);
-                            boolean ofertaEnElFichero = false;
-                            boolean fin = ((line = br.readLine()) == null);
-                            while (!fin && !ofertaEnElFichero){
-                                ofertaEnElFichero = (br.readLine() == nOferta);
-                            }
-                            if (!ofertaEnElFichero){
-                                escribir.write(nOferta);
-                                offer.suscriptores += 1;
-                                escribir.write(nIdentificacion);
-                                escribir.write("-");
-                            } else {
-                                while ((line = br.readLine()) != "-" && !encontrado) {
-                                    encontrado = (br.readLine() == nIdentificacion);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("¿Quieres suscribirte a esta oferta?");
+        System.out.println("1) Si");
+        System.out.println("2) No");
+        int s = sc.nextInt();
+        switch (s) {
+            case 1: {
+                suscribirse = true;
+                try {
+                    FileWriter escribir = new FileWriter("suscriptoresOferta.txt");
+                    System.out.println("Escribe tu numero de identificacion");
+                    String nIdentificacion = sc.next();
+                    BufferedReader br = new BufferedReader(new FileReader("suscriptoresOferta.txt"));
+                    String line;
+                    boolean encontrado = false;
+                    boolean ofertaEnElFichero = false;
+                    boolean fin = ((line = br.readLine()) == null);
+                    while (!fin && !ofertaEnElFichero) {
+                        ofertaEnElFichero = (br.readLine() == nOferta);
+                    }
+                    if (!ofertaEnElFichero) {
+                        escribir.write(nOferta);
+                        offer.suscriptores += 1;
+                        escribir.write(nIdentificacion);
+                        escribir.write("-");
+                    } else {
+                        while ((line = br.readLine()) != "-" && !encontrado) {
+                            encontrado = (br.readLine() == nIdentificacion);
 
-                                }
-                                if (encontrado){
-                                    System.out.print("Ya estas suscrito a esta oferta");
-                                } else{
-                                    offer.suscriptores += 1;
-                                    escribir.write(nIdentificacion);
-                                    escribir.write("-");
-                                }
-                            }
-                            escribir.close();
-                        } catch (Exception e) {
-                            System.out.println("Error al suscribirte");
                         }
-                        exit = true;
-                        break;
+                        if (encontrado) {
+                            System.out.print("Ya estas suscrito a esta oferta");
+                        } else {
+                            offer.suscriptores += 1;
+                            escribir.write(nIdentificacion);
+                            escribir.write("-");
+                        }
                     }
-                    case 2: {
-                        suscribirse = false;
-                        exit = true;
-                        break;
-                    }
-                    default:
-                        throw new IllegalStateException("Valor no valido");
+                    escribir.close();
+                } catch (Exception e) {
+                    System.out.println("Error al suscribirte");
                 }
+                break;
             }
-            while (!exit) ;
+            case 2: {
+                suscribirse = false;
+                break;
+            }
+            default:
+                throw new IllegalStateException("Valor no valido");
         }
         return suscribirse;
     }

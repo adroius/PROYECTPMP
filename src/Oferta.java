@@ -7,6 +7,7 @@ public class Oferta {
     int valoracion;
     String comentario;
     int precio = 0;
+    int suscriptores = 0;
 
     //Constructor Oferta
     public Oferta() {
@@ -276,6 +277,8 @@ public class Oferta {
                             min = min + 1;
                             lecturaOfertas.add(min, "Fecha Limite " + d);
                             min = min + 1;
+                            lecturaOfertas.add(min, "Suscriptores " + suscriptores);
+                            min = min + 1;
                             lecturaOfertas.add(min, "-");
                             found = true;
                         } else {
@@ -293,6 +296,7 @@ public class Oferta {
                     lecturaOfertas.add("Numero de oferta: " + this.nIdentificacion);
                     lecturaOfertas.add("Precio de la nave: " + precio);
                     lecturaOfertas.add("Fecha Limite " + d);
+                    lecturaOfertas.add("Suscriptores " + suscriptores);
                     lecturaOfertas.add("-");
                     lecturaOfertas.add("*");
                 }
@@ -313,12 +317,12 @@ public class Oferta {
     }
 
     //Guarda la valoracion echa por el comprador y por el vendedor
-    public void votar(int c, Scanner sc) {
+    public void votar(Scanner sc) {
         System.out.println("¿Cual es su valoración?");
-        c = sc.nextInt();
+        int c = sc.nextInt();
         this.valoracion = c;
         try {
-            FileWriter escribir = new FileWriter("userInfo.txt");
+            FileWriter escribir = new FileWriter("usuarioVotacionYComentario.txt");
             escribir.write(this.valoracion);
             escribir.close();
         } catch (Exception e) {
@@ -340,7 +344,7 @@ public class Oferta {
                 String s = sc.next();
                 this.comentario = s;
                 try {
-                    FileWriter escribir = new FileWriter("userInfo.txt");
+                    FileWriter escribir = new FileWriter("usuarioVotacionYComentario.txt");
                     escribir.write(this.comentario);
                     escribir.close();
                 } catch (Exception e) {
@@ -370,6 +374,7 @@ public class Oferta {
         }
         for (int i = 0; i < fichero.size(); i++) {
             if (fichero.get(i).contains(numOferta)) {
+                Cliente.suscribirseAUnaOferta(numOferta);
                 encontrado = true;
                 while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
                     i--;
