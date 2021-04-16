@@ -53,9 +53,9 @@ public class Cliente {
         Oferta offer = null;
         System.out.println("Digame el numero de identificacion de la oferta a la que deseas suscribirte, si no deseas suscribirte a ninguna oferta escriba 'No'. ");
         nOferta = sc.next();
-        if (nOferta.equals("No") || nOferta.equals("no") || nOferta.equals("NO")){
-            suscribirse=false;
-        } else{
+        if (nOferta.equals("No") || nOferta.equals("no") || nOferta.equals("NO")) {
+            suscribirse = false;
+        } else {
             if (offer.buscarOfertaEspecifica(nOferta)) {
                 System.out.println("¿Quieres suscribirte a esta oferta?");
                 System.out.println("1) Si");
@@ -64,6 +64,40 @@ public class Cliente {
                 switch (s) {
                     case 1: {
                         suscribirse = true;
+                        try {
+                            FileWriter escribir = new FileWriter("suscriptoresOferta.txt");
+                            System.out.println("Escribe tu numero de identificacion");
+                            String nIdentificacion = sc.next();
+                            BufferedReader br = new BufferedReader(new FileReader("suscriptoresOferta.txt"));
+                            String line;
+                            boolean encontrado = (br.readLine() == nIdentificacion);
+                            boolean ofertaEnElFichero = false;
+                            boolean fin = ((line = br.readLine()) == null);
+                            while (!fin && !ofertaEnElFichero){
+                                ofertaEnElFichero = (br.readLine() == nOferta);
+                            }
+                            if (!ofertaEnElFichero){
+                                escribir.write(nOferta);
+                                offer.suscriptores += 1;
+                                escribir.write(nIdentificacion);
+                                escribir.write("-");
+                            } else {
+                                while ((line = br.readLine()) != "-" && !encontrado) {
+                                    encontrado = (br.readLine() == nIdentificacion);
+
+                                }
+                                if (encontrado){
+                                    System.out.print("Ya estas suscrito a esta oferta");
+                                } else{
+                                    offer.suscriptores += 1;
+                                    escribir.write(nIdentificacion);
+                                    escribir.write("-");
+                                }
+                            }
+                            escribir.close();
+                        } catch (Exception e) {
+                            System.out.println("Error al suscribirte");
+                        }
                         exit = true;
                         break;
                     }
@@ -87,7 +121,7 @@ public class Cliente {
         if (encontrado) {
             System.out.println("Llevas " + nAdvertencias + " advertencias");
         }
-        if (nAdvertencias==2){
+        if (nAdvertencias == 2) {
             noEntrarAlSistemaPorAdvertencias();
         }
     }
@@ -188,7 +222,7 @@ public class Cliente {
     //Impide entrar al Sistema mientras el Cliente sea Sospechoso de Pirateria
     private boolean noEntrarAlSistemaFraude() {
         boolean bloqueoFinalizado = true;
-        while (isFraude==true) {
+        while (isFraude == true) {
             bloqueoFinalizado = false;
             System.out.println("No puedes entrar al sistema");
         }
