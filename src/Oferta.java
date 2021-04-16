@@ -312,7 +312,7 @@ public class Oferta {
         }
     }
 
-    //Guarda la valoracion echa por el comprador
+    //Guarda la valoracion echa por el comprador y por el vendedor
     public void votar(int c, Scanner sc) {
         System.out.println("¿Cual es su valoración?");
         c = sc.nextInt();
@@ -326,7 +326,7 @@ public class Oferta {
         }
     }
 
-    //Guarda el comentario echo por el comprador
+    //Guarda el comentario echo por el comprador y por el vendedor
     public void comentar(Scanner sc) {
         boolean exit = false;
         System.out.println("¿Desea realizar un comentario?");
