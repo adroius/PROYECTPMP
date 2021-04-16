@@ -1,14 +1,16 @@
+package Proyecto;
+
 import java.io.*;
 import java.util.*;
 
-//Clase Oferta
+//Clase Proyecto.Oferta
 public class Oferta {
-    String nIdentificacion; //Numero de identificacion de Oferta
+    String nIdentificacion; //Numero de identificacion de Proyecto.Oferta
     int valoracion;
     String comentario;
     int precio = 0;
 
-    //Constructor Oferta
+    //Constructor Proyecto.Oferta
     public Oferta() {
         this.nIdentificacion = numaleatorios();
     }
@@ -25,7 +27,7 @@ public class Oferta {
         for (int i = 0; i < fichero.size(); i++) {
             if (fichero.get(i).contains(id)) {
 
-                while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
+                while (!(fichero.get(i).contains("Proyecto.Caza") || fichero.get(i).contains("Proyecto.Carguero") || fichero.get(i).contains("Proyecto.Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
                     i--;
                 }
                 min = i;
@@ -68,12 +70,12 @@ public class Oferta {
         return String.valueOf(Math.abs(numero));
     }
 
-    //Buscador de Ofertas para Kromagg sin Licencia
+    //Buscador de Ofertas para Proyecto.Kromagg sin Licencia
     //Buscador de Cazas, Cargueros u Ofertas Especificas
     public void buscadorDeOfertasKromggSinLicencia() throws IOException {
         System.out.println("Que tipo de nave esta buscando:");
-        System.out.println("1) Caza");
-        System.out.println("2) Carguero");
+        System.out.println("1) Proyecto.Caza");
+        System.out.println("2) Proyecto.Carguero");
         System.out.println("3) Buscar a traves de numero de oferta");
         Scanner sc = new Scanner(System.in);
         int s = sc.nextInt();
@@ -81,14 +83,14 @@ public class Oferta {
         boolean hayOferta;
         switch (s) {
             case 1: {
-                System.out.println("Ha seleccionada Caza");
-                seleccion = "Caza";
+                System.out.println("Ha seleccionada Proyecto.Caza");
+                seleccion = "Proyecto.Caza";
                 hayOferta = listaDeOfertas(seleccion);
                 break;
             }
             case 2: {
-                System.out.println("Ha seleccionada Carguero");
-                seleccion = "Carguero";
+                System.out.println("Ha seleccionada Proyecto.Carguero");
+                seleccion = "Proyecto.Carguero";
                 hayOferta = listaDeOfertas(seleccion);
                 break;
             }
@@ -117,9 +119,9 @@ public class Oferta {
     //Buscador de Ofertas para todas las naves y Ofertas Especificas
     public void buscadorDeOfertas() throws IOException {
         System.out.println("Que tipo de nave esta buscando:");
-        System.out.println("1) Caza");
-        System.out.println("2) Destructor");
-        System.out.println("3) Carguero");
+        System.out.println("1) Proyecto.Caza");
+        System.out.println("2) Proyecto.Destructor");
+        System.out.println("3) Proyecto.Carguero");
         System.out.println("4) Estacion espacial");
         System.out.println("5) Buscar a traves de numero de oferta");
         Scanner sc = new Scanner(System.in);
@@ -128,20 +130,20 @@ public class Oferta {
         boolean hayOferta;
         switch (s) {
             case 1: {
-                System.out.println("Ha seleccionada Caza");
-                seleccion = "Caza";
+                System.out.println("Ha seleccionada Proyecto.Caza");
+                seleccion = "Proyecto.Caza";
                 hayOferta = listaDeOfertas(seleccion);
                 break;
             }
             case 2: {
-                System.out.println("Ha seleccionada Destructor");
-                seleccion = "Destructor";
+                System.out.println("Ha seleccionada Proyecto.Destructor");
+                seleccion = "Proyecto.Destructor";
                 hayOferta = listaDeOfertas(seleccion);
                 break;
             }
             case 3: {
-                System.out.println("Ha seleccionada Carguero");
-                seleccion = "Carguero";
+                System.out.println("Ha seleccionada Proyecto.Carguero");
+                seleccion = "Proyecto.Carguero";
                 hayOferta = listaDeOfertas(seleccion);
                 break;
             }
@@ -202,7 +204,7 @@ public class Oferta {
         return encontrado;
     }
 
-    //Crea una Oferta de Naves registradas por el Cliente
+    //Crea una Proyecto.Oferta de Naves registradas por el Proyecto.Cliente
     public void construirOferta(String usuarioEntrar) throws IOException {
         String usuarioAmeter = usuarioEntrar;
         List<String> fichero = new ArrayList<>();
@@ -235,7 +237,7 @@ public class Oferta {
         } else {
             System.out.println("Que nave desea poner en venta:");
             for (int i = 0; i < naves.size(); i++) {
-                if (naves.get(i).contains("Caza") || naves.get(i).contains("Carguero") || naves.get(i).contains("Destructor") || naves.get(i).contains("Estacion Espacial"))
+                if (naves.get(i).contains("Proyecto.Caza") || naves.get(i).contains("Proyecto.Carguero") || naves.get(i).contains("Proyecto.Destructor") || naves.get(i).contains("Estacion Espacial"))
                     System.out.println(naves.get(i));
                 else if (naves.get(i).contains("Numero de Identificacion")) {
                     System.out.println(naves.get(i));
@@ -358,7 +360,7 @@ public class Oferta {
         while (!exit) ;
     }
 
-    //Busca una Oferta especifica a partir del Numero de Identificacion de la Oferta
+    //Busca una Proyecto.Oferta especifica a partir del Numero de Identificacion de la Proyecto.Oferta
     public static boolean buscarOfertaEspecifica(String numOferta) throws IOException {
         boolean encontrado = false;
         List<String> fichero = new ArrayList<>();
@@ -371,7 +373,7 @@ public class Oferta {
         for (int i = 0; i < fichero.size(); i++) {
             if (fichero.get(i).contains(numOferta)) {
                 encontrado = true;
-                while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
+                while (!(fichero.get(i).contains("Proyecto.Caza") || fichero.get(i).contains("Proyecto.Carguero") || fichero.get(i).contains("Proyecto.Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
                     i--;
                 }
                 while (!fichero.get(i).equals("-")) {
@@ -387,7 +389,7 @@ public class Oferta {
         return encontrado;
     }
 
-    //Borra una Oferta del Registro
+    //Borra una Proyecto.Oferta del Proyecto.Registro
     public static void borrarOfertaNave(String numOferta) throws IOException {
         List<String> fichero = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("userOfertas.txt"));
@@ -397,7 +399,7 @@ public class Oferta {
         }
         for (int i = 0; i < fichero.size(); i++) {
             if (fichero.get(i).contains(numOferta)) {
-                while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
+                while (!(fichero.get(i).contains("Proyecto.Caza") || fichero.get(i).contains("Proyecto.Carguero") || fichero.get(i).contains("Proyecto.Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
                     i--;
                 }
                 while (!fichero.get(i).equals("-")) {
@@ -424,7 +426,7 @@ public class Oferta {
         }
         for (int i = 0; i < fichero.size(); i++) {
             if (fichero.get(i).contains(numOferta)) {
-                while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
+                while (!(fichero.get(i).contains("Proyecto.Caza") || fichero.get(i).contains("Proyecto.Carguero") || fichero.get(i).contains("Proyecto.Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
                     i--;
                 }
                 while (!fichero.get(i).equals("-")) {

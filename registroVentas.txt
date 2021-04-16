@@ -1,11 +1,11 @@
 jani2000
-Destructor
+Proyecto.Destructor
 Numero de Tripulantes1
 Numero de Defensas2
 Defensas = []
 Armas = [La potencia del Misil Termonuclear es de 1GigaJulios]
 Potencia total = 1
-Propulsion = [ Nombre = Motor FTL
+Proyecto.Propulsion = [ Nombre = Motor FTL
 Velocidad = 1,  Nombre = Motor FTL
 Velocidad = 1]
 Numero de Identificacion = j-6625-txb

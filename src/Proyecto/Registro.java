@@ -1,5 +1,6 @@
+package Proyecto;
+
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,7 +8,7 @@ import java.util.Scanner;
 public class Registro {
     String nIdentificacion;
 
-    //Constructor Registro
+    //Constructor Proyecto.Registro
     public Registro() {
         this.nIdentificacion = numaleatorios();
     }
@@ -32,7 +33,7 @@ public class Registro {
         }
         for (int i = 0; i < fichero.size(); i++) {
             if (fichero.get(i).contains(s)) {
-                while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
+                while (!(fichero.get(i).contains("Proyecto.Caza") || fichero.get(i).contains("Proyecto.Carguero") || fichero.get(i).contains("Proyecto.Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
                     i--;
                 }
                 while (!fichero.get(i).equals("-")) {
@@ -96,7 +97,7 @@ public class Registro {
                 i++;
                 while (!(carrito.get(i).contains("*"))) {
                     carrito.set(i, "");
-                    if ((carrito.get(i).contains("Defensa de la nave:"))) {
+                    if ((carrito.get(i).contains("Proyecto.Defensa de la nave:"))) {
                         defensaTotal += n.getDefensaTotal();
                     }
                     i++;

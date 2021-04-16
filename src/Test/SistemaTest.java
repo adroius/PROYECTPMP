@@ -1,27 +1,33 @@
 package Test;
 
+import Proyecto.Sistema;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-
 class SistemaTest {
 
-    private Sistema s;
+    //private Proyecto.Sistema s=null;
 
     @BeforeEach
     void setUp() throws IOException {
-        s=new Sistema();
+        //s=new Proyecto.Sistema();
         System.out.println("Comienza la ejecucion...");
     }
 
     @Test
-    void menuConValorBasura() {
+    void getSistema() {
         try {
-            s.menu();
+            Sistema s=new Sistema();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Disabled
+    void menuConValorBasura() {
+
     }
 
     /*@Test
@@ -54,9 +60,6 @@ class SistemaTest {
 
     @Test
     void buscarSiUserIsKromagg() {
-    }
-
-    @Test
-    void getSistema() {
     }*/
+
 }

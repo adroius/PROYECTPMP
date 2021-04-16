@@ -1,14 +1,14 @@
 adrian2000
-Caza
+Proyecto.Caza
 Numero de Tripulantes = 1
 Numero de Defensas = 1
-Defensas = [Blindaje: 
+Defensas = [Proyecto.Blindaje:
 Material ='Hierro
 Danio Que Absorbe =329473
 Peso = 3294730]
 Armas = [La potencia del Misil Termonuclear es de 1GigaJulios, La potencia del Misil Termonuclear es de 1GigaJulios]
 Potencia total = 2
-Propulsion = [ Nombre = Motor FTL
+Proyecto.Propulsion = [ Nombre = Motor FTL
 Velocidad = 1]
 Numero de Identificacion = k-5902-mda
 Numero de oferta: 6701

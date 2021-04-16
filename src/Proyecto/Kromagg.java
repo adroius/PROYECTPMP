@@ -1,8 +1,10 @@
+package Proyecto;
+
 import java.util.Scanner;
 
-//Clase Kromagg
+//Clase Proyecto.Kromagg
 public class Kromagg{
-    boolean licencia; //LicenciaEspecial de los Kromagg
+    boolean licencia; //LicenciaEspecial de los Proyecto.Kromagg
 
     public Kromagg() {
         this.licencia=licencia();
@@ -33,7 +35,7 @@ public class Kromagg{
         return l;
     }
 
-    //Crear nave para Kromagg
+    //Crear nave para Proyecto.Kromagg
     public NaveBuilder KromaggNave() {
         NaveBuilder n = null;
         boolean license = licencia();

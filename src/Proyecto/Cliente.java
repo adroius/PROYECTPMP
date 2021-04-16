@@ -1,3 +1,5 @@
+package Proyecto;
+
 import java.io.*;
 import java.util.List;
 import java.util.Scanner;
@@ -17,7 +19,7 @@ public class Cliente {
     boolean isFraude;
     int nAdvertencias = 0;
 
-    //Constructor Cliente
+    //Constructor Proyecto.Cliente
     public Cliente() {
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cual es su nombre?");
@@ -44,7 +46,7 @@ public class Cliente {
         this.isFraude = isFraude();
     }
 
-    //Suscribirse a una Oferta Especifica
+    //Suscribirse a una Proyecto.Oferta Especifica
     public boolean suscribirseAUnaOferta() throws IOException {
         String nOferta = "";
         boolean suscribirse = false;
@@ -81,7 +83,7 @@ public class Cliente {
         return suscribirse;
     }
 
-    //Escribe en pantalla el numero de Advertencias del Cliente
+    //Escribe en pantalla el numero de Advertencias del Proyecto.Cliente
     public void numeroAdvertencias(String nIdentificacion) {
         boolean encontrado = comprobarNIdentificacion(nIdentificacion);
         if (encontrado) {
@@ -112,10 +114,10 @@ public class Cliente {
         return encontrado;
     }
 
-    //Comprobar si es de la especie Kromagg
+    //Comprobar si es de la especie Proyecto.Kromagg
     protected boolean isKromagg() {
         boolean is = false;
-        if (this.Especie.contains("Kromagg") || this.Especie.contains("kromagg")) {
+        if (this.Especie.contains("Proyecto.Kromagg") || this.Especie.contains("kromagg")) {
             is = true;
             new Kromagg();
         }
@@ -165,7 +167,7 @@ public class Cliente {
         return compra;
     }
 
-    //Impide entrar al Sistema durante 5 días si el Cliente tiene 2 advertencias
+    //Impide entrar al Proyecto.Sistema durante 5 días si el Proyecto.Cliente tiene 2 advertencias
     private boolean noEntrarAlSistemaPorAdvertencias() {
         Timer timer = new Timer();
         int seconds = 432000;
@@ -185,7 +187,7 @@ public class Cliente {
         return bloqueoFinalizado;
     }
 
-    //Impide entrar al Sistema mientras el Cliente sea Sospechoso de Pirateria
+    //Impide entrar al Proyecto.Sistema mientras el Proyecto.Cliente sea Sospechoso de Pirateria
     private boolean noEntrarAlSistemaFraude() {
         boolean bloqueoFinalizado = true;
         while (isFraude==true) {
@@ -197,7 +199,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente: " + "\nNombre= " + Nombre +
+        return "Proyecto.Cliente: " + "\nNombre= " + Nombre +
                 "\nPlanetaOrigen= " + PlanetaOrigen +
                 "\nEspecie= " + Especie +
                 "\nNumero Identificacion= " + numeroIdentificacion +

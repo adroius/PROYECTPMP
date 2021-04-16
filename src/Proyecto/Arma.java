@@ -1,12 +1,14 @@
+package Proyecto;
+
 import java.util.Scanner;
 
-//Clase Arma
+//Clase Proyecto.Arma
 public class Arma {
 
     String nombre;
     int potencia;
 
-    //Constructor Arma
+    //Constructor Proyecto.Arma
     public Arma() {
         this.nombre = nombre();
         this.potencia = potencia();
@@ -21,7 +23,7 @@ public class Arma {
         System.out.println("2) Rayo Laser");
         System.out.println("3) Cañon de plasma");
         int modelo = sc.nextInt();
-        //Seleccion del tipo de Arma de la nave
+        //Seleccion del tipo de Proyecto.Arma de la nave
         switch (modelo) {
             case 0:
                 nombre = "PEM";
@@ -56,7 +58,7 @@ public class Arma {
     }
 
 
-    //Guardar el tipo de Arma
+    //Guardar el tipo de Proyecto.Arma
     private boolean isPEM(String tipoArma) {
         return tipoArma == "PEM";
     }
