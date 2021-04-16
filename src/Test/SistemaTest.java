@@ -20,6 +20,7 @@ class SistemaTest {
     void getSistema() {
         try {
             Sistema s=new Sistema();
+            System.out.println(2);
         } catch (IOException e) {
             e.printStackTrace();
         }
