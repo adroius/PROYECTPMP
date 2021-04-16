@@ -1,19 +1,21 @@
+package Proyecto;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-//Clase EstacionEspacial hereda NaveBuilder
+//Clase Proyecto.EstacionEspacial hereda Proyecto.NaveBuilder
 public class EstacionEspacial extends NaveBuilder{
     int tripulantesTotales;
-    List<Defensa> defensa; //EstacionEspacial tiene 1, 2 o 3 Defensas además de las de las naves que contiene
-    List<Arma> conjuntoDeArmas; //Conjunto de Armas de las naves que contiene la EstacionEspacial
-    List<Nave> conjuntoDeNaves; //Naves que contiene la EstacionEspacial (Numero Indeterminado)
-    List<Propulsion> prop; //EstacionEspacial puede tener 1 o 2 tipos de propulsion
+    List<Defensa> defensa; //Proyecto.EstacionEspacial tiene 1, 2 o 3 Defensas además de las de las naves que contiene
+    List<Arma> conjuntoDeArmas; //Conjunto de Armas de las naves que contiene la Proyecto.EstacionEspacial
+    List<Nave> conjuntoDeNaves; //Naves que contiene la Proyecto.EstacionEspacial (Numero Indeterminado)
+    List<Propulsion> prop; //Proyecto.EstacionEspacial puede tener 1 o 2 tipos de propulsion
     int defensaTotal = 0;
     int numDefensas; //Numero de Defensas de la Estacion Espacial
     int numPasajerosMax; //Numero de Pasajeros Maximo de la Estacion Espacial
     int potencia = 0; //Potencia total de las armas de la Estacion Espacial
 
-    //Constructor EstacionEspacial
+    //Constructor Proyecto.EstacionEspacial
     public EstacionEspacial() {
         this.tripulantesTotales = tripulantesTotales();
         this.numPasajerosMax = pasajerosMax();
@@ -53,7 +55,7 @@ public class EstacionEspacial extends NaveBuilder{
     @Override
     public List<Defensa> sistemaDeDefensa() {
         List<Defensa> defensa = new ArrayList<>();
-        //Preguntar cuantas Defensas tiene EstacionEspacial
+        //Preguntar cuantas Defensas tiene Proyecto.EstacionEspacial
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cuantas defensas tiene?");
         int def = sc.nextInt();
@@ -64,29 +66,29 @@ public class EstacionEspacial extends NaveBuilder{
         }
         numDefensas = def;
         Defensa d;
-        //Escoger el tipo de Defensa que tiene EstacionEspacial
+        //Escoger el tipo de Proyecto.Defensa que tiene Proyecto.EstacionEspacial
         for (int i = 1; i <= numDefensas; i++){
             System.out.println("Introduzca el tipo de defensa: ");
-            System.out.println("1) Escudo");
-            System.out.println("2) Blindaje");
+            System.out.println("1) Proyecto.Escudo");
+            System.out.println("2) Proyecto.Blindaje");
             int ef = sc.nextInt();
             //Comprobar que el valor introducido es correcto
             while (ef < 1 || ef > 2 )
                 {
                    System.out.println ("El valor es incorrecto");
                    System.out.println ("Vuelva a introducir el valor:");
-                    System.out.println("1) Escudo");
-                    System.out.println("2) Blindaje");
+                    System.out.println("1) Proyecto.Escudo");
+                    System.out.println("2) Proyecto.Blindaje");
                     ef = sc.nextInt();
                 }
             switch (ef) {
                 case 1:
-                    d = new Escudo(); //Constructor Escudo
+                    d = new Escudo(); //Constructor Proyecto.Escudo
                     defensa.add(d);
                     defensaTotal += d.danioQueAbsorbe();
                     break;
                 case 2:
-                    d = new Blindaje(); //Constructor Blindaje
+                    d = new Blindaje(); //Constructor Proyecto.Blindaje
                     defensa.add(d);
                     defensaTotal += d.danioQueAbsorbe();
                     break;
@@ -98,28 +100,28 @@ public class EstacionEspacial extends NaveBuilder{
         return defensa;
     }
 
-    //EstacionEspacial por si sola no tiene Armas
+    //Proyecto.EstacionEspacial por si sola no tiene Armas
     //Deberiamos poner las Armas de las naves que contiene??
     public List<Arma> conjuntoDeArmas() {
         List<Arma> armas = null;
         return armas;
     }
 
-    //Lista de tipos de Propulsion de Estacion Espacial (1 o 2)
+    //Lista de tipos de Proyecto.Propulsion de Estacion Espacial (1 o 2)
     @Override
     public List<Propulsion> conjuntoDePropulsion() {
         List<Propulsion> prop = new ArrayList<>();
-        //Preguntar cuantos tipos de Propulsion tiene la EstacionEspacial (1 o 2)
+        //Preguntar cuantos tipos de Proyecto.Propulsion tiene la Proyecto.EstacionEspacial (1 o 2)
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cuantas propulsiones tiene la Estacion Espacial?");
         int p = sc.nextInt();
-        //Comprobar que el numero de tipos de Propulsion es correcto
+        //Comprobar que el numero de tipos de Proyecto.Propulsion es correcto
         while (p > 2 || p < 1){
             System.out.println("La capacidad de la nave para portar propulsiones es limitada");
             System.out.println("¿Cuantas propulsiones tiene la Estacion Espacial (1 o 2)?");
             p = sc.nextInt();
         }
-        //Añadir los tipos de Propulsion
+        //Añadir los tipos de Proyecto.Propulsion
         for (int i = 1; i <= p; i++){
             Propulsion a=new Propulsion();
             prop.add(a);
@@ -168,7 +170,7 @@ public class EstacionEspacial extends NaveBuilder{
                 "\nDefensas = " + defensa +
                 "\nArmas = " + conjuntoDeArmas +
                 "\nPotencia total del conjunto de naves = " + potencia +
-                "\nPropulsion = " + prop +
+                "\nProyecto.Propulsion = " + prop +
                 "\nNumero de Identificacion = " + numReg +
                 "\nNaves = " + conjuntoDeNaves;
     }

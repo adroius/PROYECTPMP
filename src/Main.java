@@ -1,3 +1,5 @@
+import Proyecto.*;
+
 import java.io.*;
 
 public class Main {

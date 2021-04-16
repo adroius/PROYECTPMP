@@ -1,27 +1,29 @@
+package Proyecto;
+
 import java.util.Scanner;
 
-//Clase Propulsion
+//Clase Proyecto.Propulsion
 public class Propulsion {
     String nombre;
     int velocidad;  //Velocidad sublumínica  Miles de Km/h
 
-    //Constructor Propulsion
+    //Constructor Proyecto.Propulsion
     public Propulsion() {
         this.nombre = nombre();
         this.velocidad = velSubLuminicaMax();
     }
 
-    //Devuelve el nombre del Tipo de Propulsion
+    //Devuelve el nombre del Tipo de Proyecto.Propulsion
     public String getNombre() {
         return nombre;
     }
 
-    //Devuelve la velocidad sublumínica de la Propulsion
+    //Devuelve la velocidad sublumínica de la Proyecto.Propulsion
     public int getVelocidad() {
         return velocidad;
     }
 
-    //Escoger el tipo de Propulsion de la nave
+    //Escoger el tipo de Proyecto.Propulsion de la nave
     public String nombre(){
         String nombre;
         Scanner sc = new Scanner(System.in);
