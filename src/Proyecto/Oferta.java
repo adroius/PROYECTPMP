@@ -5,6 +5,7 @@ import java.util.*;
 
 //Clase Proyecto.Oferta
 public class Oferta {
+    public int suscriptores;
     String nIdentificacion; //Numero de identificacion de Proyecto.Oferta
     int valoracion;
     String comentario;
@@ -13,6 +14,7 @@ public class Oferta {
     //Constructor Proyecto.Oferta
     public Oferta() {
         this.nIdentificacion = numaleatorios();
+        this.suscriptores=0;
     }
 
     public static void modificarOferta(String id) throws IOException {
