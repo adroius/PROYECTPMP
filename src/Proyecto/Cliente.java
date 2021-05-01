@@ -1,10 +1,7 @@
 package Proyecto;
 
 import java.io.*;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Cliente {
     protected String Nombre;
@@ -112,6 +109,35 @@ public class Cliente {
         }
         if (nAdvertencias == 2) {
             noEntrarAlSistemaPorAdvertencias();
+        }
+    }
+
+
+    //Queda pasarle el usuario y poco más
+    public static void verNotificaciones(String user) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("usernotificaciones.txt"));
+        Scanner sc = new Scanner(System.in);
+        String line;
+        List<String> fichero = new ArrayList<>();
+        System.out.println("¿Deseas ver una notificación?");
+        System.out.println("1) Si");
+        System.out.println("2) No");
+        int respuesta = sc.nextInt();
+        switch (respuesta) {
+            case 1: {
+                while (br.readLine() != user && br.readLine() != null){
+                }
+                while ((line = br.readLine()) != "-"){
+                    System.out.println(line);
+                    fichero.remove(line);
+                }
+                }
+                break;
+            case 2: {
+                break;
+            }
+            default:
+                throw new IllegalStateException("Valor no valido: ");
         }
     }
 
