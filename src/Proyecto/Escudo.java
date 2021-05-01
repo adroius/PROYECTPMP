@@ -2,18 +2,18 @@ package Proyecto;
 
 import java.util.Scanner;
 
-//Clase Proyecto.Escudo hereda de Proyecto.Defensa
+//Clase Escudo hereda de Defensa
 public class Escudo extends Defensa{
-    int energiaR; //Energia necesaria para el Proyecto.Escudo
-    int danioQueAb; //Danio que Absobe el Proyecto.Escudo
+    int energiaR; //Energia necesaria para el Escudo
+    int danioQueAb; //Danio que Absobe el Escudo
 
-    //Constructor Proyecto.Escudo
+    //Constructor Escudo
     public Escudo() {
         this.energiaR = energiaRequerida();
         this.danioQueAb= danioQueAbsorbe();
     }
 
-    //Energía Requerida para el Proyecto.Escudo
+    //Energía Requerida para el Escudo
     public int energiaRequerida(){
         //Preguntar la Energía Requerida
         System.out.println("¿Que energia quiere que su escudo consuma?");
@@ -24,7 +24,7 @@ public class Escudo extends Defensa{
         return s;
     }
 
-    //Danio que Absorbe el Proyecto.Escudo
+    //Danio que Absorbe el Escudo
     public int danioQueAbsorbe() {
         int e=this.energiaR*10;
         System.out.println("La energia que conseguira repeler sera de "+ e);
@@ -33,7 +33,7 @@ public class Escudo extends Defensa{
 
     @Override
     public String toString() {
-        return "Proyecto.Escudo: Energia requerida= " + energiaR +
+        return "Escudo: Energia requerida= " + energiaR +
                 "\nDaño Absorbido= " + danioQueAb;
     }
 

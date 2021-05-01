@@ -2,11 +2,11 @@ package Proyecto;
 
 import java.util.Scanner;
 
-//Clase Proyecto.Blindaje hereda de Proyecto.Defensa
+//Clase Blindaje hereda de Defensa
 public class Blindaje extends Defensa {
-    private String material; //Material del Proyecto.Blindaje
-    private int danioAbsorbe; //Danio que Absorbe el Proyecto.Blindaje
-    private int peso; //Peso del Proyecto.Blindaje
+    private String material; //Material del Blindaje
+    private int danioAbsorbe; //Danio que Absorbe el Blindaje
+    private int peso; //Peso del Blindaje
 
     //Constructor Proyecto.Blindaje
     public Blindaje() {
@@ -16,11 +16,11 @@ public class Blindaje extends Defensa {
         this.peso = danioQueAbsorbe() * 10; //El peso es igual al daño que Absorbe * 10
     }
 
-    //Obtener el danio que absorbe el Proyecto.Blindaje a partir del material del Proyecto.Blindaje
+    //Obtener el danio que absorbe el Blindaje a partir del material del Blindaje
     @Override
     public int danioQueAbsorbe() {
         int dqa;
-        //Dependiendo del material del Proyecto.Blindaje absorbera una cantidad de danio
+        //Dependiendo del material del Blindaje absorbera una cantidad de danio
         switch (material) {
             case "Adamantium": {
                 dqa = 1832732;
@@ -54,7 +54,7 @@ public class Blindaje extends Defensa {
         return dqa;
     }
 
-    //Indicar material del Proyecto.Blindaje
+    //Indicar material del Blindaje
     public String materialEscogido() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Que blindaje quiere elegir:");
@@ -112,7 +112,7 @@ public class Blindaje extends Defensa {
     @Override
     public String toString() {
 
-        return ("Proyecto.Blindaje: " +
+        return ("  Blindaje: " +
                 "\nMaterial ='" + material +
                 "\nDanio Que Absorbe =" + danioAbsorbe +
                 "\nPeso = " + peso);

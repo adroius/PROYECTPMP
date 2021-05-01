@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Registro {
     String nIdentificacion;
 
-    //Constructor Proyecto.Registro
+    //Constructor Registro
     public Registro() {
         this.nIdentificacion = numaleatorios();
     }
@@ -16,6 +16,33 @@ public class Registro {
     private String numaleatorios() {
         int numero = (int) (Math.random() * 10000 + 1000);
         return String.valueOf(Math.abs(numero));
+    }
+
+    private Cliente Comprador(String nUser){
+        Cliente c = (Comprador(nUser).numeroIdentificacion == nUser);
+        return Comprador(nUser);
+    }
+
+    private Cliente Vendedor(String nUser) throws IOException {
+        List<String> fichero = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader("userOfertas.txt"));
+        String line;
+        while ((line = br.readLine()) != null) {
+            fichero.add(line);
+        }
+        for (int i = 0; i < fichero.size(); i++) {
+            if (fichero.get(i).contains(s)) {
+                while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
+                    i--;
+                }
+                while (!fichero.get(i).equals("-")) {
+                    nave.add(fichero.get(i));
+                    i++;
+                }
+                i = fichero.size();
+            }
+        }
+        return v;
     }
 
     public void crearCarritoDeNaves() throws IOException {
@@ -33,7 +60,7 @@ public class Registro {
         }
         for (int i = 0; i < fichero.size(); i++) {
             if (fichero.get(i).contains(s)) {
-                while (!(fichero.get(i).contains("Proyecto.Caza") || fichero.get(i).contains("Proyecto.Carguero") || fichero.get(i).contains("Proyecto.Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
+                while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
                     i--;
                 }
                 while (!fichero.get(i).equals("-")) {
@@ -97,7 +124,7 @@ public class Registro {
                 i++;
                 while (!(carrito.get(i).contains("*"))) {
                     carrito.set(i, "");
-                    if ((carrito.get(i).contains("Proyecto.Defensa de la nave:"))) {
+                    if ((carrito.get(i).contains("Defensa de la nave:"))) {
                         defensaTotal += n.getDefensaTotal();
                     }
                     i++;

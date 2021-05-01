@@ -5,20 +5,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-//Clase Proyecto.Usuario
+//Clase Usuario
 public class Usuario {
     Cliente usuario;
     String user;
     String contrasena;
 
-    //Constructor Proyecto.Usuario
+    //Constructor Usuario
     public Usuario() {
         this.usuario = client();
         this.user = user();
         this.contrasena = contrasena();
     }
 
-    //Introducir Proyecto.Usuario
+    //Introducir Usuario
     private String user() {
         System.out.println("Introduzca usuario");
         Scanner sc = new Scanner(System.in);
@@ -32,12 +32,12 @@ public class Usuario {
         return sc.next();
     }
 
-    //Crear nuevo Proyecto.Cliente
+    //Crear nuevo Cliente
     private Cliente client() {
         return new Cliente();
     }
 
-    //Modificar Informacion del Proyecto.Usuario
+    //Modificar Informacion del Usuario
     public static void modificarInformacionUsuario(String id) {
         boolean encontrado = false;
         List<String> fichero=new ArrayList<>();
@@ -49,7 +49,7 @@ public class Usuario {
                 }
                 int max = fichero.size()-1;
                 int min=0;
-                //Guardar la informacion del Proyecto.Cliente modificada
+                //Guardar la informacion del Cliente modificada
                 do{
                     if (id.equals(fichero.get(min))){
                         System.out.println(fichero.get(min+1));
@@ -88,7 +88,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Proyecto.Usuario:" + usuario +
+        return "   Usuario:" + usuario +
                 "\nUser = " + user +
                 "\nContraseña = " + contrasena;
     }

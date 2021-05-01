@@ -2,13 +2,13 @@ package Proyecto;
 
 import java.util.Scanner;
 
-//Clase Proyecto.Arma
+//Clase Arma
 public class Arma {
 
     String nombre;
     int potencia;
 
-    //Constructor Proyecto.Arma
+    //Constructor Arma
     public Arma() {
         this.nombre = nombre();
         this.potencia = potencia();
@@ -58,7 +58,7 @@ public class Arma {
     }
 
 
-    //Guardar el tipo de Proyecto.Arma
+    //Guardar el tipo de arma
     private boolean isPEM(String tipoArma) {
         return tipoArma == "PEM";
     }

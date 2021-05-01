@@ -3,15 +3,15 @@ package Proyecto;
 import java.util.List;
 
 public abstract class Nave {
-    String numReg;//Numero de Proyecto.Registro de la nave
+    String numReg;//Numero de Registro de la nave
     //Tiene un formato LNNNNLLL (L = letra, N = número)
 
-    //Constructor Proyecto.Nave
+    //Constructor Nave
     public Nave() {
         this.numReg=crearMatricula();
     }
 
-    //Crear el numero de Proyecto.Registro (Formato LNNNNLLL)
+    //Crear el numero de Registro (Formato LNNNNLLL)
     public String crearMatricula(){
         String s="";
         s+=generarPalabra(1);
@@ -22,13 +22,13 @@ public abstract class Nave {
         return s;
     }
 
-    //Parte numerica del Numero de Proyecto.Registro
+    //Parte numerica del Numero de Registro
     public String numaleatorios(){
         int numero = (int)(Math.random()*10000+1000);
         return String.valueOf(Math.abs(numero));
     }
 
-    //Parte literal del Numero de Proyecto.Registro
+    //Parte literal del Numero de Registro
     public String generarPalabra(int cantidad){
         String palabra = "";
         for (int i=0; i<cantidad; i++){
@@ -39,7 +39,7 @@ public abstract class Nave {
         return palabra;
     }
 
-    //Absorcion de Danio Total de la Proyecto.Nave
+    //Absorcion de Danio Total de la Nave
     public int getDefensaTotal()
     {
         return 0;

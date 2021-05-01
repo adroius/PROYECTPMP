@@ -5,17 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-//Clase Proyecto.Sistema
+//Clase Sistema
 public class Sistema {
     private int intentospermitidos = 2; //Se permiten dos intentos para poner bien el usuario y la contraseña
-    public static String usuarioEntrar = ""; //Guardar el Proyecto.Cliente que a entrado
+    public static String usuarioEntrar = ""; //Guardar el Cliente que a entrado
     boolean isKromagg = false;
 
-    //Constructor Proyecto.Sistema
+    //Constructor Sistema
     public Sistema() throws IOException {
         boolean f = false;
         Scanner sc = new Scanner(System.in);
-        //Registrarse como nuevo Proyecto.Cliente o Iniciar Sesion
+        //Registrarse como nuevo Cliente o Iniciar Sesion
         do {
             System.out.println("Bienvenido al Concesionario Espacial");
             System.out.println("1) Ingresar nuevo cliente");
@@ -23,13 +23,13 @@ public class Sistema {
             System.out.println("3) Salir");
             int s = sc.nextInt();
             switch (s) {
-                //Registrar Nuevo Proyecto.Cliente
+                //Registrar Nuevo Cliente
                 case 1: {
                     registrarNuevoCliente();
                     f = false;
                     break;
                 }
-                //Inciar Sesion en el Proyecto.Sistema
+                //Inciar Sesion en el Sistema
                 case 2: {
                     if (iniciarSesion()) {
                         menu();
@@ -37,7 +37,7 @@ public class Sistema {
                     f = true;
                     break;
                 }
-                //Salir del Proyecto.Sistema
+                //Salir del Sistema
                 case 3: {
                     f = true;
                     break;
@@ -49,25 +49,26 @@ public class Sistema {
         } while (!f);
     }
 
-    //Menu una vez has ingresado como Proyecto.Cliente
+    //Menu una vez has ingresado como Cliente
     public void menu() throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean f = false;
         do {
             System.out.println("¿Que es lo que quiere realizar?");
             System.out.println("1) Registrar nave");
-            System.out.println("2) Crear Proyecto.Oferta");
+            System.out.println("2) Crear Oferta");
             System.out.println("3) Ver ofertas");
             System.out.println("4) Realizar compra");
-            System.out.println("5) Salir");
+            System.out.println("5) Ver notificaciones");
+            System.out.println("6) Salir");
             int s = sc.nextInt();
             switch (s) {
-                //Ingresar una nueva nave propiedad del Proyecto.Cliente
+                //Ingresar una nueva nave propiedad del Cliente
                 case 1: {
                     insertarNave();
                     break;
                 }
-                //Crear una oferta con las naves que posee el Proyecto.Cliente
+                //Crear una oferta con las naves que posee el Cliente
                 case 2: {
                     crearOferta();
                     break;
@@ -75,18 +76,22 @@ public class Sistema {
                 //Ver las ofertas publicadas en la pagina web
                 case 3: {
                     if (buscarSiUserIsKromagg(usuarioEntrar)) {
-                        new Oferta().buscadorDeOfertasKromggSinLicencia();
+                        new Oferta().buscadorDeOfertasKromaggSinLicencia();
                     } else {
                         new Oferta().buscadorDeOfertas();
                     }
                     break;
                 }
-                //Salir del Proyecto.Sistema
+                //Salir del Sistema
                 case 4: {
                     new Registro().ejecutarCompra();
                     break;
                 }
                 case 5: {
+                    new ;
+                    break;
+                }
+                case 6: {
                     f = true;
                     break;
                 }
@@ -101,7 +106,7 @@ public class Sistema {
         new Oferta().buscadorDeOfertas();
     }
 
-    //Crear oferta con las naves que posee el Proyecto.Cliente
+    //Crear oferta con las naves que posee el Cliente
     public void crearOferta() throws IOException {
         new Oferta().construirOferta(usuarioEntrar);
     }
@@ -151,7 +156,7 @@ public class Sistema {
         int i = 0;
         boolean encontrado = false;
         while (!encontrado) {
-            if (naves.get(i).contains("Proyecto.Caza") || naves.get(i).contains("Proyecto.Carguero") || naves.get(i).contains("Proyecto.Destructor") || naves.get(i).contains("Estacion Espacial")) {
+            if (naves.get(i).contains("Caza") || naves.get(i).contains("Carguero") || naves.get(i).contains("Destructor") || naves.get(i).contains("Estacion Espacial")) {
                 while (!(naves.get(i).equals("-"))) {
                     devolucion.add(naves.get(i));
                     i = i + 1;
@@ -184,7 +189,7 @@ public class Sistema {
         return encontrado;
     }
 
-    //Registrar Nuevo Proyecto.Cliente
+    //Registrar Nuevo Cliente
     public Usuario registrarNuevoCliente() {
         List<String> ficheroContraseña = new ArrayList<>();
         List<String> ficheroInfo = new ArrayList<>();
@@ -260,7 +265,7 @@ public class Sistema {
                         while ((linea = br.readLine()) != null) {
                             if (linea.equalsIgnoreCase(user)) {
                                 encontrado = true;
-                                usuarioEntrar = user; //Guardar el Proyecto.Cliente que esta utilizando el Proyecto.Sistema
+                                usuarioEntrar = user; //Guardar el Cliente que esta utilizando el Sistema
                                 break;
                             }
                         }
@@ -279,25 +284,25 @@ public class Sistema {
         return encontrado;
     }
 
-    //Menu de Proyecto.Administrador (Editar Clientes y Ofertas)
+    //Menu de Administrador (Editar Clientes y Ofertas)
     private void menuAdministrador() throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean f = false;
         do {
             System.out.println("¿Que es lo que quiere realizar?");
-            System.out.println("1) Editar informacion Proyecto.Cliente");
+            System.out.println("1) Editar informacion Cliente");
             System.out.println("2) Editar informacion Ofertas");
             System.out.println("3) Salir");
             int s = sc.nextInt();
             switch (s) {
                 case 1: {
-                    System.out.println("¿Proyecto.Usuario a editar?");
+                    System.out.println("¿PUsuario a editar?");
                     String mod = sc.next();
                     Usuario.modificarInformacionUsuario(mod);
                     break;
                 }
                 case 2: {
-                    System.out.println("¿Proyecto.Oferta a editar(numero de oferta)?");
+                    System.out.println("¿Oferta a editar(numero de oferta)?");
                     String id = sc.next();
                     Oferta.modificarOferta(id);
                     break;
@@ -312,7 +317,7 @@ public class Sistema {
         } while (!f);
     }
 
-    //Busca en fichero si el Proyecto.Cliente es de la especie Proyecto.Kromagg
+    //Busca en fichero si el Cliente es de la especie Kromagg
     public boolean buscarSiUserIsKromagg(String user) throws IOException {
         boolean encontrado = false;
         BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
@@ -320,8 +325,8 @@ public class Sistema {
         while ((linea = br.readLine()) != null) {
             if (linea.contains(user)) {
                 linea = br.readLine();
-                if (linea.contains("Proyecto.Kromagg") || linea.contains("kromagg")) {
-                    encontrado = Kromagg.licencia(); //Comprobar si el Proyecto.Cliente tiene Licencia
+                if (linea.contains("Kromagg") || linea.contains("kromagg")) {
+                    encontrado = Kromagg.licencia(); //Comprobar si el Cliente tiene Licencia
                     break;
                 } else {
                     encontrado = false;
