@@ -48,7 +48,7 @@ public class Administrador extends Usuario {
                     FileWriter fw = new FileWriter("userOfertas.txt");
                     PrintWriter escritura = new PrintWriter(fw);
                     for (int i = 0; i < fichero.size(); i++) {
-                        escritura.println(fichero.get(i));
+                        escritura.write(fichero.get(i));
                     }
                     escritura.close();
                 }
@@ -128,8 +128,8 @@ public class Administrador extends Usuario {
                 if (i == 1) {
                     user = line;
                 }
+                fichero2.remove(line);
             }
-            fichero2.remove(line);
         }
         return user;
     }

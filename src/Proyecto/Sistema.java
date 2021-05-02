@@ -143,7 +143,7 @@ public class Sistema {
             FileWriter fw = new FileWriter("userNaves.txt");
             PrintWriter escritura = new PrintWriter(fw);
             for (int i = 0; i < fichero.size(); i++) {
-                escritura.println(fichero.get(i));
+                escritura.write(fichero.get(i));
             }
             escritura.close();
         } catch (IOException e) {
