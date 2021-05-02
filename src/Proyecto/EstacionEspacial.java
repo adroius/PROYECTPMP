@@ -52,7 +52,6 @@ public class EstacionEspacial extends NaveBuilder{
     }
 
     //Lista de Defensas de la Estacion Espacial (Por si sola puede tener 1, 2 o 3)
-    @Override
     public List<Defensa> sistemaDeDefensa() {
         List<Defensa> defensa = new ArrayList<>();
         //Preguntar cuantas Defensas tiene EstacionEspacial
@@ -83,12 +82,12 @@ public class EstacionEspacial extends NaveBuilder{
                 }
             switch (ef) {
                 case 1:
-                    d = new Escudo(); //Constructor Escudo
+                    d = new Escudo(ef); //Constructor Escudo
                     defensa.add(d);
                     defensaTotal += d.danioQueAbsorbe();
                     break;
                 case 2:
-                    d = new Blindaje(); //Constructor Blindaje
+                    d = new Blindaje(ef); //Constructor Blindaje
                     defensa.add(d);
                     defensaTotal += d.danioQueAbsorbe();
                     break;
@@ -123,7 +122,7 @@ public class EstacionEspacial extends NaveBuilder{
         }
         //Añadir los tipos de Propulsion
         for (int i = 1; i <= p; i++){
-            Propulsion a=new Propulsion();
+            Propulsion a=new Propulsion(i);
             prop.add(a);
         }
         return prop;

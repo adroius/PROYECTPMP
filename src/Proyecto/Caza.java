@@ -23,11 +23,13 @@ public class Caza extends NaveBuilder {
         this.conjuntoDeArmas = conjuntoDeArmas();
     }
 
+
     //Cantidad de tripulantes (Caza solo puede tener 1 tripulante)
     public int tripulantesTotales() {
         System.out.println("La capacidad es de solo un tripulante.");
         return 1;
     }
+
 
     //Lista de defensas del Caza (Caza solo puede tener 1 defensa)
     public List<Defensa> sistemaDeDefensa() {
@@ -51,12 +53,12 @@ public class Caza extends NaveBuilder {
             Defensa d;
             switch (e) {
                 case 1:
-                    d = new Escudo(); //Constructor Escudo
+                    d = new Escudo(e); //Constructor Escudo
                     defensa.add(d);
                     defensaTotal += d.danioQueAbsorbe();
                     break;
                 case 2:
-                    d = new Blindaje(); //Constructor Blindaje
+                    d = new Blindaje(e); //Constructor Blindaje
                     defensa.add(d);
                     defensaTotal += d.danioQueAbsorbe();
                     break;
@@ -109,7 +111,7 @@ public class Caza extends NaveBuilder {
         }
         //Añadir los tipos de Propulsion
         for (int i = 1; i <= p; i++) {
-            Propulsion a = new Propulsion();
+            Propulsion a = new Propulsion(i);
             prop.add(a);
         }
         return prop;

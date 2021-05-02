@@ -88,7 +88,7 @@ public class Sistema {
                     break;
                 }
                 case 5: {
-                    new Cliente.;
+                    new Cliente();
                     break;
                 }
                 case 6: {

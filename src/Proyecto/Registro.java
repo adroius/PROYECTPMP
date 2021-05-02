@@ -18,8 +18,8 @@ public class Registro {
         return String.valueOf(Math.abs(numero));
     }
 
-    private Cliente Comprador(String nUser){
-        Cliente c = (Comprador(nUser).numeroIdentificacion == nUser);
+    /*private Cliente Comprador(String nUser){
+        Cliente c = (Comprador(nUser).numeroIdentificacion.equals(nUser));
         return Comprador(nUser);
     }
 
@@ -43,7 +43,7 @@ public class Registro {
             }
         }
         return v;
-    }
+    }   */
 
     public void crearCarritoDeNaves() throws IOException {
         String matricula="";

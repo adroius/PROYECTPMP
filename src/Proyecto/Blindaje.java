@@ -1,7 +1,5 @@
 package Proyecto;
 
-import java.util.Scanner;
-
 //Clase Blindaje hereda de Defensa
 public class Blindaje extends Defensa {
     private String material; //Material del Blindaje
@@ -9,9 +7,9 @@ public class Blindaje extends Defensa {
     private int peso; //Peso del Blindaje
 
     //Constructor Proyecto.Blindaje
-    public Blindaje() {
+    public Blindaje(int c) {
         super();
-        this.material = materialEscogido();
+        this.material = materialEscogido(c);
         this.danioAbsorbe = danioQueAbsorbe();
         this.peso = danioQueAbsorbe() * 10; //El peso es igual al daño que Absorbe * 10
     }
@@ -48,36 +46,15 @@ public class Blindaje extends Defensa {
             }
             //Si el valor recogido es incorrecto
             default:
-                throw new IllegalStateException("Unexpected value: " + materialEscogido());
-
+                throw new IllegalStateException("Unexpected value: ");
         }
         return dqa;
     }
 
     //Indicar material del Blindaje
-    public String materialEscogido() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Que blindaje quiere elegir:");
-        System.out.println("0) Adamantium");
-        System.out.println("1) Hierro");
-        System.out.println("2) Plata");
-        System.out.println("3) Platino");
-        System.out.println("4) Oro");
-        System.out.println("5) Diamante");
-        int valorObtenido = sc.nextInt();
+    public String materialEscogido(int c) {
         String nombre;
-        while (valorObtenido < 0 || valorObtenido > 5){
-            System.out.println("El valor introducido es incorrecto.");
-            System.out.println("Vuelva a introducir el valor:");
-            System.out.println("0) Adamantium");
-            System.out.println("1) Hierro");
-            System.out.println("2) Plata");
-            System.out.println("3) Platino");
-            System.out.println("4) Oro");
-            System.out.println("5) Diamante");
-            valorObtenido = sc.nextInt();
-        }
-        switch (valorObtenido) {
+        switch (c) {
             case 0: {
                 nombre = "Adamantium";
                 break;
@@ -104,7 +81,7 @@ public class Blindaje extends Defensa {
             }
             //El valor introducido es incorrecto
             default:
-                throw new IllegalStateException("Unexpected value: " + valorObtenido);
+                throw new IllegalStateException("Unexpected value: " + c);
         }
         return nombre;
     }

@@ -1,15 +1,13 @@
 package Proyecto;
 
-import java.util.Scanner;
-
 //Clase Propulsion
 public class Propulsion {
     String nombre;
     int velocidad;  //Velocidad sublumínica  Miles de Km/h
 
     //Constructor Propulsion
-    public Propulsion() {
-        this.nombre = nombre();
+    public Propulsion(int e) {
+        this.nombre = nombre(e);
         this.velocidad = velSubLuminicaMax();
     }
 
@@ -24,19 +22,10 @@ public class Propulsion {
     }
 
     //Escoger el tipo de Propulsion de la nave
-    public String nombre(){
+    public String nombre(int e){
         String nombre;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Que propulsion quiere elegir:");
-        System.out.println("0) Compresor de Traza");
-        System.out.println("1) Motor FTL");
-        System.out.println("2) Vela Solar");
-        System.out.println("3) MotorCurvatura");
-        System.out.println("4) Motor Ionico");
-        int modelo = sc.nextInt();
-
         //Deberiamos hacer un bucle para comprobar que el valor introducido es correcto
-        switch (modelo) {
+        switch (e) {
             case 0: {
                 nombre = "Compresor de Traza";
                 break;
@@ -58,18 +47,16 @@ public class Propulsion {
                 break;
             }
             //Valor introducido erroneo
-            default: throw new IllegalStateException("Unexpected value: " + modelo);
+            default: throw new IllegalStateException("Unexpected value: " + e);
         }
         return nombre;
     }
 
     //Introducir la velocidad sublumínica en Miles de Km / hora
     public int velSubLuminicaMax(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Introduzca la velocidad sublumínica maxima de la nave: ");
-        int v = sc.nextInt();
-        System.out.println("¡La velocidad maxima sera " + v + " miles de km/hora!");
-        return v;
+        int numero = (int)(Math.random()*10000+1000);
+        System.out.println("¡La velocidad maxima sera " +  numero + " miles de km/hora!");
+        return numero;
     }
 
     @Override

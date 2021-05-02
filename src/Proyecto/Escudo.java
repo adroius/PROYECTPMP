@@ -1,27 +1,20 @@
 package Proyecto;
 
-import java.util.Scanner;
-
 //Clase Escudo hereda de Defensa
 public class Escudo extends Defensa{
     int energiaR; //Energia necesaria para el Escudo
     int danioQueAb; //Danio que Absobe el Escudo
 
     //Constructor Escudo
-    public Escudo() {
-        this.energiaR = energiaRequerida();
+    public Escudo(int e) {
+        this.energiaR = energiaRequerida(e);
         this.danioQueAb= danioQueAbsorbe();
     }
 
     //Energía Requerida para el Escudo
-    public int energiaRequerida(){
+    public int energiaRequerida(int e){
         //Preguntar la Energía Requerida
-        System.out.println("¿Que energia quiere que su escudo consuma?");
-        System.out.println("'Cuanto mas consuma mas daño soportará'");
-        Scanner sc = new Scanner(System.in);
-        int s = sc.nextInt();
-        System.out.println("La energia de su escudo para funcionar sera de "+ s);
-        return s;
+        return e;
     }
 
     //Danio que Absorbe el Escudo

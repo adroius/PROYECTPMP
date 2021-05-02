@@ -32,8 +32,6 @@ public class Destructor extends NaveBuilder {
         return (s);
     }
 
-
-    @Override
     //Lista de Defensas del Destructor (Destructor puede tener 1 o 2 defensas)
     public List<Defensa> sistemaDeDefensa() {
         List<Defensa> defensa = new ArrayList<>();
@@ -63,12 +61,12 @@ public class Destructor extends NaveBuilder {
             }
             switch (ef) {
                 case 1:
-                    d = new Escudo();
+                    d = new Escudo(ef);
                     defensa.add(d);
                     defensaTotal += d.danioQueAbsorbe();
                     break;
                 case 2:
-                    d = new Blindaje();
+                    d = new Blindaje(ef);
                     defensa.add(d);
                     defensaTotal += d.danioQueAbsorbe();
                     break;
@@ -120,7 +118,7 @@ public class Destructor extends NaveBuilder {
         }
         //Añadir los tipos de Propulsion
         for (int i = 1; i <= p; i++) {
-            Propulsion a = new Propulsion(); //Constructor Propulsion
+            Propulsion a = new Propulsion(i); //Constructor Propulsion
             prop.add(a);
         }
         return prop;

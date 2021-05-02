@@ -1,6 +1,7 @@
 package Proyecto;
 
 import java.util.List;
+import java.util.Scanner;
 
 public abstract class Nave {
     String numReg;//Numero de Registro de la nave
@@ -9,6 +10,12 @@ public abstract class Nave {
     //Constructor Nave
     public Nave() {
         this.numReg=crearMatricula();
+    }
+
+    public int numeroIntroducido(){
+        Scanner sc = new Scanner(System.in);
+        int s = sc.nextInt();
+        return s;
     }
 
     //Crear el numero de Registro (Formato LNNNNLLL)
@@ -49,7 +56,7 @@ public abstract class Nave {
     public abstract int tripulantesTotales();
 
     //Lista de las defensas de la nave
-    public abstract List<Defensa> sistemaDeDefensa();
+    //public abstract List<Defensa> sistemaDeDefensa(int c);
 
     //Lista de las armas de la nave
     public int potenciaDeAtaque()
