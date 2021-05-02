@@ -89,6 +89,7 @@ public class Sistema {
                 }
                 case 5: {
                     new Cliente();
+                    Cliente.verNotificaciones(usuarioEntrar);
                     break;
                 }
                 case 6: {
