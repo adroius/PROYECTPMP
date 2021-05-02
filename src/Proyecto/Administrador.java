@@ -79,22 +79,41 @@ public class Administrador extends Usuario {
     }
 
     private static void notificarVendedorConAdvertencia(String nUser) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("usernotificaciones.txt"));
-        String line = "Su oferta no cumple los parametros establecidos";
+        List<String> f = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
         String line2 = "";
-        FileWriter fw = new FileWriter("usernotificaciones.txt");
-        PrintWriter escritura = new PrintWriter(fw);
-        while ((line2 = br.readLine()) != nUser) ;
-        if (line2 == nUser){
-            br.readLine();
+        while ((line2 = br.readLine()) != null) {
+            f.add(line2);
         }
-        escritura.println(line);
-        BufferedReader br2 = new BufferedReader(new FileReader("usuarioInfo.txt"));
-        while (br2.readLine() != nUser) ;
-        while((line2 = br2.readLine()) != "'");
-        FileWriter fw2 = new FileWriter("usuarioInfo.txt");
-        PrintWriter escrituraAdvertencia = new PrintWriter(fw2);
-        escrituraAdvertencia.println(line2+1);
+        for (int i=0;i<=f.size();i++){
+            if (f.get(i).contains(nUser)){
+                f.set(i+2,f.get(i+2)+1);
+            }
+        }
+        FileWriter fw = new FileWriter("usuarioInfo.txt");
+        PrintWriter escrit = new PrintWriter(fw);
+        for (int i=0;i<=f.size();i++){
+            escrit.write(f.get(i));
+        }
+        escrit.close();
+        BufferedReader br2 = new BufferedReader(new FileReader("usernotificaciones.txt"));
+        f.clear();
+        String line3;
+        while ((line3 = br2.readLine()) != null) {
+            f.add(line3);
+        }
+        String line = "Su oferta no cumple los parametros establecidos";
+        for (int i=0;i<=f.size();i++){
+            if (f.get(i).contains(nUser)){
+                f.add(i+1,line);
+            }
+        }
+        fw = new FileWriter("usernotificaciones.txt");
+        escrit = new PrintWriter(fw);
+        for (int i=0;i<=f.size();i++){
+            escrit.write(f.get(i));
+        }
+        escrit.close();
     }
 
     private static String eliminarOferta() throws IOException {
