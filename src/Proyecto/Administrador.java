@@ -71,7 +71,7 @@ public class Administrador extends Usuario {
         boolean visible = true;
         String user = "";
         if (!ofertaComprobar()) {
-            user = eliminarOferta();
+            eliminarOferta();
             notificarVendedorConAdvertencia(user);
             visible = false;
         }
@@ -116,21 +116,30 @@ public class Administrador extends Usuario {
         escrit.close();
     }
 
-    private static String eliminarOferta() throws IOException {
-        List<String> fichero2 = new ArrayList<>();
-        BufferedReader br2 = new BufferedReader(new FileReader("userComprobar.txt"));
-        int i = 0;
-        String user = "";
+    private static void eliminarOferta(String numOferta) throws IOException {
+        List<String> fichero = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader("userComprobar.txt"));
         String line;
-        while ((line = br2.readLine()) != "-") {
-            if (!line.equals("*")) {
-                i++;
-                if (i == 1) {
-                    user = line;
-                }
-            }
-            fichero2.remove(line);
+        while ((line = br.readLine()) != null) {
+            fichero.add(line);
         }
-        return user;
+        for (int i = 0; i < fichero.size(); i++) {
+            if (fichero.get(i).contains(numOferta)) {
+                while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
+                    i--;
+                }
+                while (!fichero.get(i).equals("-")) {
+                    fichero.remove(i);
+                }
+                fichero.remove(i);
+                i = fichero.size();
+            }
+        }
+        FileWriter fw = new FileWriter("userComprobar.txt");
+        PrintWriter escritura = new PrintWriter(fw);
+        for (int i = 0; i < fichero.size(); i++) {
+            escritura.println(fichero.get(i));
+        }
+        escritura.close();
     }
 }
