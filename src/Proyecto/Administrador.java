@@ -28,7 +28,7 @@ public class Administrador extends Usuario {
         Scanner sc = new Scanner(System.in);
         String line;
         List<String> fichero = new ArrayList<>();
-        while ((line = br.readLine()) != "-"){
+        while ((line = br.readLine()) != "-") {
             System.out.println(line);
         }
         System.out.println("¿La oferta es válida?");
@@ -39,10 +39,10 @@ public class Administrador extends Usuario {
             case 1: {
                 valido = true;
                 BufferedReader br3 = new BufferedReader(new FileReader("userOferta.txt"));
-                while (br3.readLine() != null){
+                while (br3.readLine() != null) {
                 }
-                if (br3.readLine() == null){
-                    while ((line = br2.readLine()) != "-"){
+                if (br3.readLine() == null) {
+                    while ((line = br2.readLine()) != "-") {
                         fichero.remove(line);
                     }
                     FileWriter fw = new FileWriter("userOfertas.txt");
@@ -70,22 +70,33 @@ public class Administrador extends Usuario {
     public static boolean ofertaValida() throws IOException {
         boolean visible = true;
         String user = "";
-            if (!ofertaComprobar()) {
-                user = eliminarOferta();
-                notificarVendedorConAdvertencia(user);
-                visible = false;
-            }
+        if (!ofertaComprobar()) {
+            user = eliminarOferta();
+            notificarVendedorConAdvertencia(user);
+            visible = false;
+        }
         return visible;
     }
 
-    private static void notificarVendedorConAdvertencia(String nUser) {
-        Cliente c = null;
-        c.numeroIdentificacion = nUser;
-        System.out.println("Su oferta no cumple los parametros establecidos");
-        c.nAdvertencias += 1;
-        c.numeroAdvertencias(nUser);
+    private static void notificarVendedorConAdvertencia(String nUser) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("usernotificaciones.txt"));
+        String line = "Su oferta no cumple los parametros establecidos";
+        String line2 = "";
+        FileWriter fw = new FileWriter("usernotificaciones.txt");
+        PrintWriter escritura = new PrintWriter(fw);
+        while ((line2 = br.readLine()) != nUser) ;
+        if (line2 == nUser){
+            br.readLine();
+        }
+        escritura.println(line);
+        BufferedReader br2 = new BufferedReader(new FileReader("usuarioInfo.txt"));
+        while (br2.readLine() != nUser) ;
+        while((line2 = br2.readLine()) != "'");
+        FileWriter fw2 = new FileWriter("usuarioInfo.txt");
+        PrintWriter escrituraAdvertencia = new PrintWriter(fw2);
+        escrituraAdvertencia.println(line2+1);
     }
-    
+
     private static String eliminarOferta() throws IOException {
         List<String> fichero2 = new ArrayList<>();
         BufferedReader br2 = new BufferedReader(new FileReader("userComprobar.txt"));
@@ -93,9 +104,9 @@ public class Administrador extends Usuario {
         String user = "";
         String line;
         while ((line = br2.readLine()) != "-") {
-            if (!line.equals("*")){
+            if (!line.equals("*")) {
                 i++;
-                if (i == 1){
+                if (i == 1) {
                     user = line;
                 }
             }
