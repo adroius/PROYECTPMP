@@ -89,6 +89,7 @@ public class Sistema {
                 }
                 case 5: {
                     new Cliente();
+                    Cliente.verNotificaciones(usuarioEntrar);
                     break;
                 }
                 case 6: {
@@ -100,10 +101,6 @@ public class Sistema {
                     throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
-    }
-
-    public void verOfertas() throws IOException {
-        new Oferta().buscadorDeOfertas();
     }
 
     //Crear oferta con las naves que posee el Cliente
@@ -143,7 +140,7 @@ public class Sistema {
             FileWriter fw = new FileWriter("userNaves.txt");
             PrintWriter escritura = new PrintWriter(fw);
             for (int i = 0; i < fichero.size(); i++) {
-                escritura.println(fichero.get(i));
+                escritura.write(fichero.get(i));
             }
             escritura.close();
         } catch (IOException e) {
@@ -159,7 +156,7 @@ public class Sistema {
             if (naves.get(i).contains("Caza") || naves.get(i).contains("Carguero") || naves.get(i).contains("Destructor") || naves.get(i).contains("Estacion Espacial")) {
                 while (!(naves.get(i).equals("-"))) {
                     devolucion.add(naves.get(i));
-                    i = i + 1;
+                    i++;
                 }
                 int last = devolucion.size();
                 String r = devolucion.get(last - 1);
@@ -171,7 +168,7 @@ public class Sistema {
                     encontrado = true;
                 }
             } else {
-                i = i + 1;
+                i++;
             }
         }
         return devolucion;
