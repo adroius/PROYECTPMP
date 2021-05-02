@@ -103,10 +103,6 @@ public class Sistema {
         } while (!f);
     }
 
-    public void verOfertas() throws IOException {
-        new Oferta().buscadorDeOfertas();
-    }
-
     //Crear oferta con las naves que posee el Cliente
     public void crearOferta() throws IOException {
         new Oferta().construirOferta(usuarioEntrar);
@@ -160,7 +156,7 @@ public class Sistema {
             if (naves.get(i).contains("Caza") || naves.get(i).contains("Carguero") || naves.get(i).contains("Destructor") || naves.get(i).contains("Estacion Espacial")) {
                 while (!(naves.get(i).equals("-"))) {
                     devolucion.add(naves.get(i));
-                    i = i + 1;
+                    i++;
                 }
                 int last = devolucion.size();
                 String r = devolucion.get(last - 1);
@@ -172,7 +168,7 @@ public class Sistema {
                     encontrado = true;
                 }
             } else {
-                i = i + 1;
+                i++;
             }
         }
         return devolucion;
