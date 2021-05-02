@@ -9,4 +9,19 @@ class AdministradorTest {
     @Test
     void ofertaValida() {
     }
+
+    @Test
+    void ofertaComprobar(){
+
+    }
+
+    @Test
+    void notificarVendedorConAdvertencia(){
+
+    }
+
+    @Test
+    void eliminarOferta(){
+
+    }
 }

@@ -18,7 +18,8 @@ class CargueroTest {
 
     @BeforeEach
     void setUp(){
-    Nave = new Carguero(60,100,1,1,1,1);
+        int propArray[] =new int[]{1, 2};
+    Nave = new Carguero(60,100,1,1,1, propArray);
     }
 
     @Test
@@ -39,8 +40,12 @@ class CargueroTest {
     }
 
     @Test
+    //No importan los numero que entroduzcamos, debe devolver null
     void conjuntoDeArmas() {
-        List<Arma> resultado = Nave.conjuntoDeArmas();
+
+        int numero = 2;
+        int tipo[] = new int[] {1, 3};
+        List<Arma> resultado = Nave.conjuntoDeArmas(numero, tipo);
 
         assertEquals(null, resultado);
     }

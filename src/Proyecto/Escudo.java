@@ -6,15 +6,15 @@ public class Escudo extends Defensa{
     int danioQueAb; //Danio que Absobe el Escudo
 
     //Constructor Escudo
-    public Escudo(int e) {
-        this.energiaR = energiaRequerida(e);
+    public Escudo(int energia) {
+        this.energiaR = energiaRequerida(energia);
         this.danioQueAb= danioQueAbsorbe();
     }
 
     //Energía Requerida para el Escudo
-    public int energiaRequerida(int e){
+    public int energiaRequerida(int energia){
         //Preguntar la Energía Requerida
-        return e;
+        return energia;
     }
 
     //Danio que Absorbe el Escudo

@@ -11,7 +11,7 @@ public class Administrador extends Usuario {
 
 
     public Administrador() throws IOException {
-        this.ofertaValida();
+        ofertaValida();
     }
 
     //Comprobar si el precio de las ofertas es valido
@@ -78,6 +78,7 @@ public class Administrador extends Usuario {
         return visible;
     }
 
+    //Notificar una Advertencia al Vendedor
     private static void notificarVendedorConAdvertencia(String nUser) {
         Cliente c = null;
         c.numeroIdentificacion = nUser;
@@ -85,7 +86,8 @@ public class Administrador extends Usuario {
         c.nAdvertencias += 1;
         c.numeroAdvertencias(nUser);
     }
-    
+
+    //Elimina una oferta del fichero
     private static String eliminarOferta() throws IOException {
         List<String> fichero2 = new ArrayList<>();
         BufferedReader br2 = new BufferedReader(new FileReader("userComprobar.txt"));

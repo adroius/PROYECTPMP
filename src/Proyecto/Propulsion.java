@@ -6,8 +6,8 @@ public class Propulsion {
     int velocidad;  //Velocidad sublumínica  Miles de Km/h
 
     //Constructor Propulsion
-    public Propulsion(int e) {
-        this.nombre = nombre(e);
+    public Propulsion(int tipo) {
+        this.nombre = nombre(tipo);
         this.velocidad = velSubLuminicaMax();
     }
 
@@ -22,10 +22,10 @@ public class Propulsion {
     }
 
     //Escoger el tipo de Propulsion de la nave
-    public String nombre(int e){
+    public String nombre(int tipo){
         String nombre;
         //Deberiamos hacer un bucle para comprobar que el valor introducido es correcto
-        switch (e) {
+        switch (tipo) {
             case 0: {
                 nombre = "Compresor de Traza";
                 break;
@@ -47,7 +47,7 @@ public class Propulsion {
                 break;
             }
             //Valor introducido erroneo
-            default: throw new IllegalStateException("Unexpected value: " + e);
+            default: throw new IllegalStateException("Unexpected value: " + tipo);
         }
         return nombre;
     }

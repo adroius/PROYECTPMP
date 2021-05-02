@@ -9,21 +9,14 @@ public class Arma {
     int potencia;
 
     //Constructor Arma
-    public Arma() {
-        this.nombre = nombre();
+    public Arma(int modelo) {
+        this.nombre = nombre(modelo);
         this.potencia = potencia();
     }
 
     //Nombre del arma de la nave
-    public String nombre() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Que arma quiere elegir:");
-        System.out.println("0) PEM");
-        System.out.println("1) Misil Termonuclear");
-        System.out.println("2) Rayo Laser");
-        System.out.println("3) Cañon de plasma");
-        int modelo = sc.nextInt();
-        //Seleccion del tipo de Proyecto.Arma de la nave
+    public String nombre(int modelo) {
+        //Seleccion del tipo de Arma de la nave
         switch (modelo) {
             case 0:
                 nombre = "PEM";
@@ -48,7 +41,7 @@ public class Arma {
         return nombre;
     }
 
-    //Introducir la potencia del arma
+    //Introducir la potencia del Arma
     public static int potencia() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Introduzca la potencia del arma: ");
@@ -77,6 +70,7 @@ public class Arma {
 
     @Override
     public String toString() {
+
         return "La potencia del " + nombre + " es de " + potencia+ "GigaJulios";
     }
 }
