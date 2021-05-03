@@ -206,14 +206,14 @@ public class Sistema {
             FileWriter fw = new FileWriter("usercontraseña.txt");
             PrintWriter escritura = new PrintWriter(fw);
             for (int i = 0; i < ficheroContraseña.size(); i++) {
-                escritura.println(ficheroContraseña.get(i));
+                escritura.write(ficheroContraseña.get(i));
             }
             escritura.close();
 
             fw = new FileWriter("usuarioInfo.txt");
             escritura = new PrintWriter(fw);
             for (int i = 0; i < ficheroInfo.size(); i++) {
-                escritura.println(ficheroInfo.get(i));
+                escritura.write(ficheroInfo.get(i));
             }
             escritura.write(u.usuario.numeroIdentificacion);
             escritura.write("\n");
