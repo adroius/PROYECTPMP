@@ -2,7 +2,6 @@ package Proyecto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 //Clase Carguero hereda de NaveBuilder
 public class Carguero extends NaveBuilder {
@@ -108,7 +107,7 @@ public class Carguero extends NaveBuilder {
             System.out.println("3) Platino");
             System.out.println("4) Oro");
             System.out.println("5) Diamante");
-            //falta poner aqui otra vez la c
+            blindajeMenu();
         }
         return c;
     }
