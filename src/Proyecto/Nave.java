@@ -14,8 +14,7 @@ public abstract class Nave {
 
     public int numeroIntroducido(){
         Scanner sc = new Scanner(System.in);
-        int s = sc.nextInt();
-        return s;
+        return sc.nextInt();
     }
 
     //Crear el numero de Registro (Formato LNNNNLLL)
@@ -53,18 +52,21 @@ public abstract class Nave {
     }
 
     //Numero de tripulantes de la nave
-    public abstract int tripulantesTotales();
+    public abstract int tripulantesTotales(int tripulantes);
 
     //Lista de las defensas de la nave
-    //public abstract List<Defensa> sistemaDeDefensa(int c);
+    public abstract List<Defensa> sistemaDeDefensa(int tipoDef, int varIntroducir);
 
-    //Lista de las armas de la nave
+    //Danio que producen las armas de la nave
     public int potenciaDeAtaque()
     {
         return 0;
     }
 
+    //Lista de Armas de la nave
+    public abstract List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArmas[]);
+
     //Lista de tipos de propulsion de la nave
-    public abstract List<Propulsion> conjuntoDePropulsion();
+    public abstract List<Propulsion> conjuntoDePropulsion(int cantidadProp, int tipoProp[]);
 
 }

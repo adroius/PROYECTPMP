@@ -10,115 +10,225 @@ public class Destructor extends NaveBuilder {
     List<Defensa> conjuntoDefensa; //Destructor tiene 1 o 2 Defensas
     List<Propulsion> prop; //Destructor tiene 1 o 2 tipos de Propulsion
     int tripulantesTotales;
-    int numDefensas = numeroDeDefensasMax(); //Max 2
+    int numDefensas; //Max 2
     int potencia = 0;
     int defensaTotal = 0;
 
-    //Constructor Destructor
+    //Constructor Destructor introduciendo datos por pantalla
     public Destructor() {
         super();
-        this.tripulantesTotales = tripulantesTotales();
-        this.prop = conjuntoDePropulsion(); //
-        this.conjuntoDeArmas = conjuntoDeArmas();
-        this.conjuntoDefensa = sistemaDeDefensa();
+        //Capacidad de tripulantes de Destructor
+        System.out.println("¿Cual es la capacidad de tripulantes del Destructor?");
+        int var = numeroIntroducido();
+        this.tripulantesTotales = tripulantesTotales(var);
+
+        //Sistema de Defensa de Destructor (1 o 2)
+        int cantidad = cantidadDefensaMenu();
+        numDefensas = cantidad;
+        for (int i = 0; i < cantidad; i++){
+            var = sistemaDefensaMenu();
+            int def;
+            if (var == 1) {
+                def = EscudoMenu();
+            }else {
+                def = BlindajeMenu();
+            }
+            this.conjuntoDefensa = sistemaDeDefensa(var, def);
+        }
+
+        //Sistema de Propulsion de Destructor (1 o 2)
+        var = conjuntoDePropulsionCantidadMenu();
+        int tipoProp[] = new int[2];
+        for (int i = 0; i < var; i++){
+            tipoProp[i] = conjuntoDePropulsionTipomenu();
+        }
+        this.prop = conjuntoDePropulsion(var, tipoProp);
+
+        //Conjunto de Armas de Destructor (Min 1)
+        int cantidadArmas = cantidadArmasMenu();
+        int tipoArma[] = new int[2];
+        for (int i = 0; i < cantidadArmas; i++) {
+            tipoArma[i] = ArmasMenu();
+        }
+        this.conjuntoDeArmas = conjuntoDeArmas(cantidadArmas, tipoArma);
+    }
+
+    //Constructor Destructor sin introducir datos por pantalla
+    public Destructor(int tripulantes, int cantidadDef, int tipoDef, int cantidadProp,
+                      int tipoProp[], int cantidadArmas, int tipoArma[]) {
+        this.tripulantesTotales = tripulantesTotales(tripulantes);
+        this.conjuntoDefensa = sistemaDeDefensa(cantidadDef, tipoDef);
+        this.prop = conjuntoDePropulsion(cantidadProp, tipoProp);
+        this.conjuntoDeArmas = conjuntoDeArmas(cantidadArmas, tipoArma);
     }
 
     //Cantidad de tripulantes
     @Override
-    public int tripulantesTotales() {
-        System.out.println("¿Cual es la capacidad de tripulantes del Destructor?");
-        Scanner sc = new Scanner(System.in);
-        int s = sc.nextInt();
-        return (s);
+    public int tripulantesTotales(int tripulantes) {
+        return tripulantes;
     }
 
-    //Lista de Defensas del Destructor (Destructor puede tener 1 o 2 defensas)
-    public List<Defensa> sistemaDeDefensa() {
-        List<Defensa> defensa = new ArrayList<>();
+    //Sistema de Defensas de Destructor (1 o 2)
+    //Introducir la cantidad de Defensas
+    public int cantidadDefensaMenu(){
         //Escoger numero de Defensas de Destructor
-        Scanner sc = new Scanner(System.in);
         System.out.println("¿Cuantas defensas tiene?");
-        int e = sc.nextInt();
+        int cantidad = numeroIntroducido();
         //Comprobar que el numero de Defensas es correcto
-        while (e > numeroDeDefensasMax() || e < 1) {
+        while (cantidad > numeroDeDefensasMax() || cantidad < 1) {
             System.out.println("Puede tener como maximo dos defensas, ¿Cuantas posee?(1 o 2)");
-            e = sc.nextInt();
+            cantidad = numeroIntroducido();
         }
-        Defensa d;
-        //Escoger los tipos de defensas de Destructor
-        //Hay que hacer un bucle para asegurar que el valor introducido es correcto
-        for (int i = 1; i < e; i++) {
+        return cantidad;
+    }
+    //Introducir el tipo de Defensa
+    public int sistemaDefensaMenu(){
+        int var = 0;
+        for (int i = 1; i <= numDefensas; i++) {
             System.out.println("Introduzca el tipo de defensa: ");
             System.out.println("1) Escudo");
             System.out.println("2) Blindaje");
-            int ef = sc.nextInt();
-            while (ef < 1 || ef > 2) {
-                System.out.println("El valor es incorrecto.");
-                System.out.println("Vuelva a introducir el valor: ");
+            var = numeroIntroducido();
+            //Comprobar si el valor introducido es correcto
+            while (var > 2 || var < 1) {
+                System.out.println("Valor introducido incorrecto: ");
+                System.out.println("Vuelva a introducirlo: ");
                 System.out.println("1) Escudo");
                 System.out.println("2) Blindaje");
-                ef = sc.nextInt();
+                var = numeroIntroducido();
             }
-            switch (ef) {
-                case 1:
-                    d = new Escudo(ef);
-                    defensa.add(d);
-                    defensaTotal += d.danioQueAbsorbe();
-                    break;
-                case 2:
-                    d = new Blindaje(ef);
-                    defensa.add(d);
-                    defensaTotal += d.danioQueAbsorbe();
-                    break;
-                default:
-                    throw new IllegalStateException("Valor incorrecto: " + e);
+        }
+        return var;
+    }
+    //Introducir energía del Escudo
+    public int EscudoMenu(){
+        System.out.println("¿Que energia quiere que su escudo consuma?");
+        System.out.println("'Cuanto mas consuma mas daño soportará'");
+        int energia = numeroIntroducido();
+        System.out.println("La energia de su escudo para funcionar sera de "+ energia);
+
+        return energia;
+    }
+    //Introducir material del Blindaje
+    public int BlindajeMenu(){
+        int material = 0;
+        System.out.println("Que blindaje quiere elegir:");
+        System.out.println("0) Adamantium");
+        System.out.println("1) Hierro");
+        System.out.println("2) Plata");
+        System.out.println("3) Platino");
+        System.out.println("4) Oro");
+        System.out.println("5) Diamante");
+        material = numeroIntroducido();
+        String nombre;
+        while (material < 0 || material > 5){
+            System.out.println("El valor introducido es incorrecto.");
+            System.out.println("Vuelva a introducir el valor:");
+            System.out.println("0) Adamantium");
+            System.out.println("1) Hierro");
+            System.out.println("2) Plata");
+            System.out.println("3) Platino");
+            System.out.println("4) Oro");
+            System.out.println("5) Diamante");
+            material = numeroIntroducido();
+        }
+        return material;
+    }
+    //Lista de Defensas del Destructor (Destructor puede tener 1 o 2 defensas)
+    public List<Defensa> sistemaDeDefensa(int tipoDef, int varIntroducir) {
+        List<Defensa> defensa = new ArrayList<>();
+        Defensa d;
+        switch (tipoDef) {
+            case 1: {
+                d = new Escudo(varIntroducir); //Constructor Escudo
+                defensa.add(d);
+                defensaTotal += d.danioQueAbsorbe();
+                break;
             }
+            case 2: {
+                d = new Blindaje(varIntroducir); //Constructor Blindaje
+                defensa.add(d);
+                defensaTotal += d.danioQueAbsorbe();
+                break;
+            }
+            //El dato introducido es incorrecto
+            default:{ throw new IllegalStateException("Valor incorrecto: " + tipoDef);}
         }
         return defensa;
     }
-
-    //Lista de Armas del Destructor (Destructor solo tiene 1 Arma)
-    public List<Arma> conjuntoDeArmas() {
-        List<Arma> armas = new ArrayList<>();
-        int arm = 1; //Destructor solo tiene 1 Arma
-        //Escoger el tipo de Arma
-        for (int i = 1; i <= arm; i++) {
-            //Escoger el tipo de arma
-            Arma a = new Arma();
-            armas.add(a); //Añadir el arma creada a la lista de Armas
-            potencia += a.potencia; //Sumar la potencia de todas las Armas del Destructor
-        }
-        return armas;
-    }
-
+    //Danio total que absorbe la defensa de Destructor
     @Override
     public int getDefensaTotal(){
         return defensaTotal;
     }
 
-    //Devuelve la potencia total de las Armas del Destructor (1 Arma)
+    //Conjunto de Armas de Destructor
+    //Introducir la cantidad de Armas de Destructor (Min 1)
+    public int cantidadArmasMenu() {
+        System.out.println("¿Cuantas Armas va a querer?");
+        int cantidad = numeroIntroducido();
+        //Comprobar que el numero de Armas es correcto
+        while (cantidad < 1) {
+            System.out.println("El Destructor tiene que tener al menos un arma.");
+            System.out.println("¿Cuantas Armas va a querer?");
+        }
+        return cantidad;
+    }
+    public int ArmasMenu(){
+        System.out.println("Que arma quiere elegir:");
+        System.out.println("0) PEM");
+        System.out.println("1) Misil Termonuclear");
+        System.out.println("2) Rayo Laser");
+        System.out.println("3) Cañon de plasma");
+        int modelo = numeroIntroducido();
+        return modelo;
+    }
+    //Lista de Armas del Destructor (Destructor solo tiene 1 Arma)
+    public List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArma[]) {
+        List<Arma> armas = new ArrayList<>();
+        for (int i = 0; i < numeroArmas; i++) {
+            //Escoger el tipo de Arma
+            Arma a = new Arma(tipoArma[i]);
+            armas.add(a);//Añadir el arma creada a la lista de Armas
+            potencia += a.potencia; //Sumar la potencia de todas las armas del Caza
+        }
+        return armas;
+    }
     @Override
     public int potenciaDeAtaque() {
         return potencia;
     }
 
+    //Sistema de Propulsion de Destructor (1 o 2)
+    //Cantidad de tipos de Propulsion
+    private int conjuntoDePropulsionCantidadMenu(){
+        System.out.println("¿Cuantas propulsiones va a querer?");
+        int cantidad = numeroIntroducido();
+        //Comprobar que el numero de tipos de Propulsion es correcto
+        while (cantidad > 2 || cantidad <= 0) {
+            System.out.println("La capacidad de la nave para portar propulsiones es limitada");
+            System.out.println("¿Cuantas propulsiones va a querer (1 o 2)?");
+        }
+        return cantidad;
+    }
+    //Escoger el tipo de Propulsion
+    private int conjuntoDePropulsionTipomenu() {
+        int tipoprop = 0;
+        System.out.println("Que propulsion quiere elegir:");
+        System.out.println("0) Compresor de Traza");
+        System.out.println("1) Motor FTL");
+        System.out.println("2) Vela Solar");
+        System.out.println("3) MotorCurvatura");
+        System.out.println("4) Motor Ionico");
+        tipoprop = numeroIntroducido();
+        return tipoprop;
+    }
     //Lista de tipos de Propulsion del Destructor (1 o 2)
     @Override
-    public List<Propulsion> conjuntoDePropulsion() {
+    public List<Propulsion> conjuntoDePropulsion(int cantidadProp, int tipoProp[]) {
         List<Propulsion> prop = new ArrayList<>();
-        //Preguntar cuantos tipos de Propulsion tiene el Destructor (1 o 2)
-        Scanner sc = new Scanner(System.in);
-        System.out.println("¿Cuantas propulsiones va a querer?");
-        int p = sc.nextInt();
-        //Comprobar que el numero de tipos de Propulsion es correcto
-        while (p > 2 || p < 1) {
-            System.out.println("La capacidad de la nave para portar propulsiones es limitada");
-            System.out.println("¿Cuantas propulsiones va a querer(1 o 2)?");
-            p = sc.nextInt();
-        }
-        //Añadir los tipos de Propulsion
-        for (int i = 1; i <= p; i++) {
-            Propulsion a = new Propulsion(i); //Constructor Propulsion
+        for(int i = 0; i < cantidadProp; i++) {
+            Propulsion a = new Propulsion(tipoProp[i]);
             prop.add(a);
         }
         return prop;

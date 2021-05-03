@@ -11,7 +11,7 @@ public class Administrador extends Usuario {
 
 
     public Administrador() throws IOException {
-        this.ofertaValida();
+        ofertaValida();
     }
 
     //Comprobar si el precio de las ofertas es valido
