@@ -18,32 +18,31 @@ public class Registro {
         return String.valueOf(Math.abs(numero));
     }
 
-    /*private Cliente Comprador(String nUser){
-        Cliente c = (Comprador(nUser).numeroIdentificacion.equals(nUser));
-        return Comprador(nUser);
+    private String Comprador(){
+        return Sistema.usuarioEntrar;
     }
 
-    private Cliente Vendedor(String nUser) throws IOException {
-        List<String> fichero = new ArrayList<>();
-        BufferedReader br = new BufferedReader(new FileReader("userOfertas.txt"));
-        String line;
-        while ((line = br.readLine()) != null) {
-            fichero.add(line);
-        }
-        for (int i = 0; i < fichero.size(); i++) {
-            if (fichero.get(i).contains(s)) {
-                while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
-                    i--;
-                }
-                while (!fichero.get(i).equals("-")) {
-                    nave.add(fichero.get(i));
-                    i++;
-                }
-                i = fichero.size();
-            }
-        }
-        return v;
-    }   */
+//    private List<String> Vendedor() throws IOException {
+//        List<String> fichero = new ArrayList<>();
+//        BufferedReader br = new BufferedReader(new FileReader("carritoDeLaCompra.txt"));
+//        String line;
+//        while ((line = br.readLine()) != null) {
+//            fichero.add(line);
+//        }
+//        for (int i = 0; i < fichero.size(); i++) {
+//            if (fichero.get(i).contains(s)) {
+//                while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
+//                    i--;
+//                }
+//                while (!fichero.get(i).equals("-")) {
+//                    nave.add(fichero.get(i));
+//                    i++;
+//                }
+//                i = fichero.size();
+//            }
+//        }
+//        return v;
+//    }
 
     public void crearCarritoDeNaves() throws IOException {
         String matricula="";

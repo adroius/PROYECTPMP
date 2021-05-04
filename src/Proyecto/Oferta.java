@@ -325,18 +325,23 @@ public class Oferta {
                     while ((line = br.readLine()) != null) {
                         fichero.add(line);
                     }
-                    System.out.println("¿Cual es su valoración?");
+                    System.out.println("¿Cual es su valoración sobre 10?");
                     valoracion = sc.nextInt();
+                    while (valoracion > 10 || valoracion < 0) {
+                        System.out.println("Su valoración no está en los parámentros del sistema");
+                        valoracion = sc.nextInt();
+                    }
                     fichero.add(String.valueOf(valoracion));
                     FileWriter fw = new FileWriter("usuarioVotacionYComentario.txt");
                     PrintWriter escribir = new PrintWriter(fw);
-                    escribir.write(Sistema.usuarioEntrar + ":");
-                    for (int i = 0; i < fichero.size(); i++){
-                        escribir.write(fichero.get(i));
+                    escribir.println(Sistema.usuarioEntrar + ":");
+                    for (int i = 0; i < fichero.size(); i++) {
+                        escribir.println(fichero.get(i));
                     }
                     System.out.println("¿A que usuario deseas valorar?");
                     line = sc.next();
-                    escribir.write("Valora a este usuario: " + line);
+                    escribir.println("Valora a este usuario: " + line);
+                    escribir.println("-");
                     escribir.close();
                 } catch (Exception e) {
                     System.out.println("Error en la valoración");
@@ -354,7 +359,6 @@ public class Oferta {
     //Guarda el comentario realizado por el comprador y por el vendedor
     public void comentar() {
         Scanner sc = new Scanner(System.in);
-        boolean exit;
         System.out.println("¿Desea realizar un comentario?");
         System.out.println("1) Si");
         System.out.println("2) No");
@@ -373,28 +377,25 @@ public class Oferta {
                     fichero.add(line);
                     FileWriter fw = new FileWriter("usuarioVotacionYComentario.txt");
                     PrintWriter escribir = new PrintWriter(fw);
-                    escribir.write(Sistema.usuarioEntrar + ":");
-                    for (int i = 0; i < fichero.size(); i++){
-                        escribir.write(fichero.get(i));
+                    escribir.println(Sistema.usuarioEntrar + ":");
+                    for (int i = 0; i < fichero.size(); i++) {
+                        escribir.println(fichero.get(i));
                     }
                     System.out.println("¿A que usuario deseas comentar?");
                     line = sc.next();
-                    escribir.write("Comenta a este usuario: " + line);
+                    escribir.println("Comenta a este usuario: " + line);
+                    escribir.println("-");
                     escribir.close();
                 } catch (Exception e) {
                     System.out.println("Error en la valoración");
                 }
-                exit = true;
-                break;
             }
             case 2: {
-                exit = true;
                 break;
             }
             default:
                 throw new IllegalStateException("Valor no valido");
         }
-        while (!exit) ;
     }
 
     //Busca una Oferta especifica a partir del Numero de Identificacion de la Oferta
