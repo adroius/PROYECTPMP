@@ -52,8 +52,8 @@ public class EstacionEspacial extends NaveBuilder{
     }
 
     //Constructor EstacionEspacial sin introducir datos por pantalla
-    public EstacionEspacial(int tripulantes, int pasajerosMaximos, int cantidadDef, int tipoDef,
-                            int cantidadProp, int tipoProp[]){
+    public EstacionEspacial(int tripulantes, int pasajerosMaximos, int cantidadDef,
+                            int tipoDef, int cantidadProp, int tipoProp[]){
 
         this.numPasajerosMax = pasajerosMax(pasajerosMaximos);
         this.tripulantesTotales = tripulantesTotales(tripulantes);
@@ -109,8 +109,6 @@ public class EstacionEspacial extends NaveBuilder{
         System.out.println("¿Que energia quiere que su escudo consuma?");
         System.out.println("'Cuanto mas consuma mas daño soportará'");
         int energia = numeroIntroducido();
-        System.out.println("La energia de su escudo para funcionar sera de "+ energia);
-
         return energia;
     }
     //Introducir material del Blindaje

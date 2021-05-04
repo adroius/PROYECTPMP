@@ -15,6 +15,12 @@ class EstacionEspacialTest {
 
     EstacionEspacial Nave;
 
+    @BeforeEach
+    void setUp(){
+        int tipoProp[] = new int[] {1, 2};
+        Nave = new EstacionEspacial(100,400, 3, 2, 2, tipoProp);
+    }
+
     @Test
     void tripulantesTotales() {
         int tripulantes = 50;
@@ -34,7 +40,10 @@ class EstacionEspacialTest {
     }
 
     @Test
+    //No importa lo que introduzcamos debe devolver null
     void conjuntoDeArmas() {
+        int tipoArma[] = new int[] {1, 5};
+        List<Arma> resultado = Nave.conjuntoDeArmas(3, tipoArma);
     }
 
     @Test

@@ -60,7 +60,7 @@ public class Caza extends NaveBuilder {
     //Cantidad de tripulantes (Caza solo puede tener 1 tripulante)
     public int tripulantesTotales(int tripulantes) {
         System.out.println("La capacidad es de solo un tripulante.");
-        return tripulantes;
+        return 1;
     }
 
     public int sistemaDefensaMenu(){
@@ -86,8 +86,6 @@ public class Caza extends NaveBuilder {
         System.out.println("¿Que energia quiere que su escudo consuma?");
         System.out.println("'Cuanto mas consuma mas daño soportará'");
         int energia = numeroIntroducido();
-        System.out.println("La energia de su escudo para funcionar sera de "+ energia);
-
         return energia;
     }
 
