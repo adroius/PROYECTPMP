@@ -13,15 +13,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class CazaTest {
     Caza Nave;
 
+    @BeforeEach
+    void setUp() {
+        int tipoProp[] = new int[]{1,3};
+        int tipoArma[]= new int[]{1,4};
+        Nave = new Caza(4, 2, 2, tipoProp, tipoArma);
+    }
+
     @Test
     void tripulantesTotales() {
 
         int resultado = Nave.tripulantesTotales(1);
         assertEquals(1, resultado);
-
-        resultado = Nave.tripulantesTotales(6);
-        assertEquals(1, resultado);
-
 
     }
 

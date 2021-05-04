@@ -60,7 +60,7 @@ public class Caza extends NaveBuilder {
     //Cantidad de tripulantes (Caza solo puede tener 1 tripulante)
     public int tripulantesTotales(int tripulantes) {
         System.out.println("La capacidad es de solo un tripulante.");
-        return tripulantes;
+        return 1;
     }
 
     public int sistemaDefensaMenu(){

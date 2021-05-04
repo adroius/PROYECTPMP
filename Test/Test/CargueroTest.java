@@ -19,7 +19,7 @@ class CargueroTest {
     @BeforeEach
     void setUp(){
         int propArray[] =new int[]{1, 2};
-    Nave = new Carguero(60,100,1,1,1, propArray);
+        Nave = new Carguero(60,100,1,1,1, propArray);
     }
 
     @Test

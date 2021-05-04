@@ -52,8 +52,8 @@ public class EstacionEspacial extends NaveBuilder{
     }
 
     //Constructor EstacionEspacial sin introducir datos por pantalla
-    public EstacionEspacial(int tripulantes, int pasajerosMaximos, int cantidadDef, int tipoDef,
-                            int cantidadProp, int tipoProp[]){
+    public EstacionEspacial(int tripulantes, int pasajerosMaximos, int cantidadDef,
+                            int tipoDef, int cantidadProp, int tipoProp[]){
 
         this.numPasajerosMax = pasajerosMax(pasajerosMaximos);
         this.tripulantesTotales = tripulantesTotales(tripulantes);
