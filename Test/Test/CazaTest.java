@@ -22,8 +22,9 @@ class CazaTest {
 
     @Test
     void tripulantesTotales() {
-        int resultado = Nave.tripulantesTotales(1);
-        assertEquals(1, resultado);
+        int tripulantes = 1;
+        int resultado = Nave.tripulantesTotales(tripulantes);
+        assertEquals(1, tripulantes);
     }
 
     @Test

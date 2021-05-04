@@ -86,8 +86,6 @@ public class Caza extends NaveBuilder {
         System.out.println("¿Que energia quiere que su escudo consuma?");
         System.out.println("'Cuanto mas consuma mas daño soportará'");
         int energia = numeroIntroducido();
-        System.out.println("La energia de su escudo para funcionar sera de "+ energia);
-
         return energia;
     }
 

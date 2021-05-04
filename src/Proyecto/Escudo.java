@@ -19,9 +19,9 @@ public class Escudo extends Defensa{
 
     //Danio que Absorbe el Escudo
     public int danioQueAbsorbe() {
-        int e=this.energiaR*10;
-        System.out.println("La energia que conseguira repeler sera de "+ e);
-        return e;
+        int energia = this.energiaR*10;
+        System.out.println("La energia que conseguira repeler sera de "+ energia);
+        return energia;
     }
 
     @Override
