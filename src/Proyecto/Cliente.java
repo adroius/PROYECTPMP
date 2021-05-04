@@ -14,7 +14,7 @@ public class Cliente {
     boolean isKromagg;
     boolean isPirata;
     boolean isFraude;
-    int nAdvertencias = 0;
+    static int nAdvertencias = 0;
 
     //Constructor Cliente
     public Cliente() {
@@ -45,7 +45,7 @@ public class Cliente {
 
     //Suscribirse a una Oferta Especifica
     public static boolean suscribirseAUnaOferta(String nOferta) throws IOException {
-        boolean suscribirse = false;
+        boolean suscribirse;
         Oferta offer = null;
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Quieres suscribirte a esta oferta?");
@@ -60,10 +60,9 @@ public class Cliente {
                     System.out.println("Escribe tu numero de identificacion");
                     String nIdentificacion = sc.next();
                     BufferedReader br = new BufferedReader(new FileReader("suscriptoresOferta.txt"));
-                    String line;
                     boolean encontrado = false;
                     boolean ofertaEnElFichero = false;
-                    boolean fin = ((line = br.readLine()) == null);
+                    boolean fin = (br.readLine() == null);
                     while (!fin && !ofertaEnElFichero) {
                         ofertaEnElFichero = (br.readLine() == nOferta);
                     }
@@ -73,7 +72,7 @@ public class Cliente {
                         escribir.write(nIdentificacion);
                         escribir.write("-");
                     } else {
-                        while ((line = br.readLine()) != "-" && !encontrado) {
+                        while (br.readLine() != "-" && !encontrado) {
                             encontrado = (br.readLine() == nIdentificacion);
 
                         }
@@ -102,7 +101,7 @@ public class Cliente {
     }
 
     //Escribe en pantalla el numero de Advertencias del Cliente
-    public void numeroAdvertencias(String nIdentificacion) {
+    public static void numeroAdvertencias(String nIdentificacion) {
         boolean encontrado = comprobarNIdentificacion(nIdentificacion);
         if (encontrado) {
             System.out.println("Llevas " + nAdvertencias + " advertencias");
@@ -112,27 +111,28 @@ public class Cliente {
         }
     }
 
-
     //Queda pasarle el usuario y poco más
     public static void verNotificaciones(String user) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("usernotificaciones.txt"));
         Scanner sc = new Scanner(System.in);
         String line;
-        List<String> fichero = new ArrayList<>();
         System.out.println("¿Deseas ver una notificación?");
         System.out.println("1) Si");
         System.out.println("2) No");
         int respuesta = sc.nextInt();
         switch (respuesta) {
             case 1: {
-                while (br.readLine() != user && br.readLine() != null){
+                while (br.readLine() != user && br.readLine() != null) {
                 }
-                while ((line = br.readLine()) != "-"){
+                FileWriter fw = new FileWriter("usernotificaciones.txt");
+                PrintWriter escribir = new PrintWriter(fw);
+                while ((line = br.readLine()) != "-") {
                     System.out.println(line);
-                    fichero.remove(line);
+                    escribir.println("");
                 }
-                }
-                break;
+                escribir.close();
+            }
+            break;
             case 2: {
                 break;
             }
@@ -142,7 +142,7 @@ public class Cliente {
     }
 
     //Comprueba que uno de los Clientes registrados tiene el Numero de Identificacion introducido
-    private boolean comprobarNIdentificacion(String nIdentificacion) {
+    private static boolean comprobarNIdentificacion(String nIdentificacion) {
         boolean encontrado = false;
         try {
             BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
@@ -215,7 +215,7 @@ public class Cliente {
     }
 
     //Impide entrar al Sistema durante 5 días si el Cliente tiene 2 advertencias
-    private boolean noEntrarAlSistemaPorAdvertencias() {
+    private static boolean noEntrarAlSistemaPorAdvertencias() {
         Timer timer = new Timer();
         int seconds = 432000;
         boolean bloqueoFinalizado = (seconds != 0);

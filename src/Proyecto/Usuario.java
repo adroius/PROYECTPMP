@@ -25,6 +25,10 @@ public class Usuario {
         return sc.next();
     }
 
+    public String getUser(){
+        return this.user;
+    }
+
     //Introducir contraseña
     private String contrasena() {
         System.out.println("Introduzca contraseña");
@@ -40,44 +44,44 @@ public class Usuario {
     //Modificar Informacion del Usuario
     public static void modificarInformacionUsuario(String id) {
         boolean encontrado = false;
-        List<String> fichero=new ArrayList<>();
+        List<String> fichero = new ArrayList<>();
         try {
-                BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
-                String line;
-                while ((line = br.readLine()) != null) {
-                    fichero.add(line);
+            BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
+            String line;
+            while ((line = br.readLine()) != null) {
+                fichero.add(line);
+            }
+            int max = fichero.size() - 1;
+            int min = 0;
+            //Guardar la informacion del Cliente modificada
+            do {
+                if (id.equals(fichero.get(min))) {
+                    System.out.println(fichero.get(min + 1));
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println("¿Cual es su nombre?");
+                    String s = sc.next();
+                    s += ("-");
+                    System.out.println("¿Cual es su Planeta de Origen?");
+                    s += sc.next();
+                    s += ("-");
+                    System.out.println("¿Cual es su Especie?");
+                    s += sc.next();
+                    s += ("-");
+                    System.out.println("¿Cual es su Nick?");
+                    s += sc.next();
+                    s += ("-");
+                    System.out.println("¿Cual es su email?");
+                    s += sc.next();
+                    fichero.set(min + 1, s);
+                    encontrado = true;
+                } else {
+                    min = min + 1;
+                    max = max - 1;
                 }
-                int max = fichero.size()-1;
-                int min=0;
-                //Guardar la informacion del Cliente modificada
-                do{
-                    if (id.equals(fichero.get(min))){
-                        System.out.println(fichero.get(min+1));
-                        Scanner sc = new Scanner(System.in);
-                        System.out.println("¿Cual es su nombre?");
-                        String s = sc.next();
-                        s += ("-");
-                        System.out.println("¿Cual es su Planeta de Origen?");
-                        s += sc.next();
-                        s += ("-");
-                        System.out.println("¿Cual es su Especie?");
-                        s += sc.next();
-                        s += ("-");
-                        System.out.println("¿Cual es su Nick?");
-                        s += sc.next();
-                        s += ("-");
-                        System.out.println("¿Cual es su email?");
-                        s += sc.next();
-                        fichero.set(min+1,s);
-                        encontrado=true;
-                    } else {
-                        min = min + 1;
-                        max = max - 1;
-                    }
-                } while(!encontrado || max<=0);
+            } while (!encontrado || max <= 0);
             FileWriter fw = new FileWriter("usuarioInfo.txt");
             PrintWriter escritura = new PrintWriter(fw);
-            for(int i=0;i<fichero.size();i++){
+            for (int i = 0; i < fichero.size(); i++) {
                 escritura.println(fichero.get(i));
             }
             escritura.close();
