@@ -18,38 +18,53 @@ public class Registro {
         return String.valueOf(Math.abs(numero));
     }
 
-    private String Comprador(){
+    private String Comprador() {
         return Sistema.usuarioEntrar;
     }
 
-//    private List<String> Vendedor() throws IOException {
-//        List<String> fichero = new ArrayList<>();
-//        BufferedReader br = new BufferedReader(new FileReader("carritoDeLaCompra.txt"));
-//        String line;
-//        while ((line = br.readLine()) != null) {
-//            fichero.add(line);
-//        }
-//        for (int i = 0; i < fichero.size(); i++) {
-//            if (fichero.get(i).contains(s)) {
-//                while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
-//                    i--;
-//                }
-//                while (!fichero.get(i).equals("-")) {
-//                    nave.add(fichero.get(i));
-//                    i++;
-//                }
-//                i = fichero.size();
-//            }
-//        }
-//        return v;
-//    }
+    public String Vendedor() throws IOException {
+        List<String> fichero = new ArrayList<>();
+        List<String> matriculas = new ArrayList<>();
+        String usuarios = "";
+        BufferedReader br = new BufferedReader(new FileReader("userOfertas.txt"));
+        BufferedReader br2 = new BufferedReader(new FileReader("carritoDeLaCompra.txt"));
+        String line;
+        String line2;
+        while ((line2 = br2.readLine()) != null) {
+            if (line2.contains("Numero de Identificacion =")) {
+                matriculas.add(line2);
+            }
+        }
+        while ((line = br.readLine()) != null) {
+            fichero.add(line);
+        }
+        for (int j = 0; j < matriculas.size(); j++) {
+            for (int i = 0; i < fichero.size(); i++) {
+                if (fichero.get(i).contains(matriculas.get(j))) {
+                    while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
+                        i--;
+                    }
+                    i--;
+                    usuarios += fichero.get(i);
+                    usuarios += " - ";
+                    usuarios += matriculas.get(j);
+                    usuarios += "\n";
+                    while (!fichero.get(i).equals("*")) {
+                        i++;
+                    }
+                    i = fichero.size();
+                }
+            }
+        }
+        return usuarios;
+    }
 
     public void crearCarritoDeNaves() throws IOException {
-        String matricula="";
+        String matricula = "";
         System.out.println("Inserte la matricula de la nave que desea comprar:");
         Scanner sc = new Scanner(System.in);
         String s = sc.next();
-        matricula=s;
+        matricula = s;
         List<String> fichero = new ArrayList<>();
         List<String> nave = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("userOfertas.txt"));
@@ -109,7 +124,7 @@ public class Registro {
         List<String> fichero = new ArrayList<>();
         List<String> carrito = new ArrayList<>();
         int defensaTotal = 0;
-        Nave n= null;
+        Nave n = null;
         BufferedReader br = new BufferedReader(new FileReader("carritoDeLaCompra.txt"));
         String carrilista;
         while ((carrilista = br.readLine()) != null) {
@@ -140,7 +155,7 @@ public class Registro {
         List<String> fichero = new ArrayList<>();
         List<String> carrito = new ArrayList<>();
         int precioTotal = 0;
-        Oferta offer= null;
+        Oferta offer = null;
         BufferedReader br = new BufferedReader(new FileReader("carritoDeLaCompra.txt"));
         String carrilista;
         while ((carrilista = br.readLine()) != null) {
@@ -216,7 +231,7 @@ public class Registro {
         for (int i = 0; i < carrito.size(); i++) {
             if (carrito.get(i).contains(Sistema.usuarioEntrar)) {
                 carrito.remove(i);
-                int borrador=i;
+                int borrador = i;
                 encontrado = true;
                 while (!(carrito.get(borrador).contains("*"))) {
                     carritoIndividual.add(carrito.get(borrador));

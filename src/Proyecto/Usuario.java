@@ -25,6 +25,10 @@ public class Usuario {
         return sc.next();
     }
 
+    public String getUser(){
+        return this.user;
+    }
+
     //Introducir contraseña
     private String contrasena() {
         System.out.println("Introduzca contraseña");
