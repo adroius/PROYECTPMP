@@ -8,7 +8,8 @@ import java.util.Scanner;
 //Clase Sistema
 public class Sistema {
     private int intentospermitidos = 2; //Se permiten dos intentos para poner bien el usuario y la contraseña
-    public static String usuarioEntrar = ""; //Guardar el Cliente que a entrado
+    public static String usuarioEntrar = "";
+    public static String usuarioSolo = "";//Guardar el Cliente que a entrado
     boolean isKromagg = false;
 
     //Constructor Sistema
@@ -234,6 +235,23 @@ public class Sistema {
             System.out.println("Error al escribir");
         }
         return u;
+    }
+
+    public static String cogerUsuario(String usuario) throws IOException {
+        String infouser="";
+        String usuarioSoloEso = "";
+        String user="";
+        BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
+        String linea = "";
+        while ((linea = br.readLine()) != null) {
+            if (linea.contains(usuario)) {
+                linea = br.readLine();
+                usuarioSoloEso=linea;
+            }
+        }
+        String[] arrSplit_2 = usuarioSoloEso.split("-");
+        user=arrSplit_2[0];
+        return user;
     }
 
     //Inciar Sesion
