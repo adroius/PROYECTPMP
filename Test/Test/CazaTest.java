@@ -15,17 +15,15 @@ class CazaTest {
 
     @BeforeEach
     void setUp() {
-        int tipoProp[] = new int[]{1,3};
-        int tipoArma[]= new int[]{1,4};
+        int tipoProp[] = new int[]{1,2};
+        int tipoArma[]= new int[]{1,2};
         Nave = new Caza(4, 2, 2, tipoProp, tipoArma);
     }
 
     @Test
     void tripulantesTotales() {
-
         int resultado = Nave.tripulantesTotales(1);
         assertEquals(1, resultado);
-
     }
 
     @Test
