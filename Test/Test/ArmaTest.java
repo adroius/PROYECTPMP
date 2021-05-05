@@ -25,18 +25,21 @@ class ArmaTest {
         assertEquals("Cañon de Plasma", arma.nombre(3));
     }
 
-    //No puedo crear arma.nombre(-1) y arma.nombre(4) porque salta IllegalStateException
- /*   @Test
+
+    @Test
     void nombreMenorDeCero() {
-        String resultado = arma.nombre(-1);
-        assertThrows(IllegalStateException.class);
+        assertThrows(IllegalStateException.class, ()->{
+            arma.nombre(-1);
+
+        });
     }
     @Test
     void nombreMayorDeTres() {
-        String resultado = arma.nombre(4);
-        assertThrows(IllegalStateException.class);
+        assertThrows(IllegalStateException.class, ()->{
+            arma.nombre(4);
+        });
     }
-*/
+
     @Test
     void potencia() {
         int potencia = 200;
