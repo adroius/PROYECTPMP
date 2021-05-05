@@ -10,7 +10,7 @@ class PropulsionTest {
 
     @BeforeEach
     void setUp(){
-      propulsion = new Propulsion(1);
+      propulsion = new Propulsion(2);
     }
 
     @Test
@@ -68,7 +68,7 @@ class PropulsionTest {
 
     @Test
     void testToString() {
-        //propulsion(1)
+        //propulsion(2)
         assertEquals(" Nombre = " + propulsion.getNombre() +
                             "\nVelocidad = " + propulsion.getVelocidad(),
                     propulsion.toString());
