@@ -341,7 +341,7 @@ public class Sistema {
             if (linea.contains(user)) {
                 linea = br.readLine();
                 if (linea.contains("Kromagg") || linea.contains("kromagg")) {
-                    encontrado = Kromagg.licencia(); //Comprobar si el Cliente tiene Licencia
+                    encontrado = Kromagg.getLicencia(); //Comprobar si el Cliente tiene Licencia
                     break;
                 } else {
                     encontrado = false;
