@@ -17,18 +17,24 @@ class CazaTest {
     void setUp() {
         int tipoProp[] = new int[]{1,2};
         int tipoArma[]= new int[]{1,2};
-        Nave = new Caza(4, 2, 2, tipoProp, tipoArma);
+        int potenciaArma[] = new int[] {100, 200};
+        Nave = new Caza(1, 2, 2, tipoProp, tipoArma, potenciaArma);
     }
 
     @Test
     void tripulantesTotales() {
-        int tripulantes = 1;
-        int resultado = Nave.tripulantesTotales(tripulantes);
-        assertEquals(1, tripulantes);
+        //Introducir 1
+        int resultado = Nave.tripulantesTotales(1);
+        assertEquals(1, resultado);
+
+        //Introducir cualquier numero excepto 1
+        resultado = Nave.tripulantesTotales(3);
+        assertEquals(1,resultado);
     }
 
     @Test
     void sistemaDeDefensa() {
+
     }
 
     @Test

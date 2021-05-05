@@ -141,7 +141,7 @@ public class Carguero extends NaveBuilder {
     }
 
     //Cargueros no tiene armas
-    public List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArma[]) {
+    public List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArma[], int potenciaArmas[]) {
         return null;
     }
 

@@ -41,19 +41,21 @@ public class Caza extends NaveBuilder {
         //Conjunto de Armas de Caza (2)
         int cantidadArmas = 2;
         int tipoArma[] = new int[2];
+        int potenciaArma[] = new int[2];
         for (int i = 0; i < cantidadArmas; i++) {
             tipoArma[i] = ArmasMenu();
+            potenciaArma[i] = potenciaArmaMenu();
         }
-        this.conjuntoDeArmas = conjuntoDeArmas(cantidadArmas, tipoArma);
+        this.conjuntoDeArmas = conjuntoDeArmas(cantidadArmas, tipoArma, potenciaArma);
     }
 
     //Constructor de Caza sin introducir datos por pantalla
     public Caza(int cantidadDef, int tipoDef, int cantidadProp,
-                int tipoProp[], int tipoArma[]){
+                int tipoProp[], int tipoArma[], int potenciaArma[]){
         this.tripulantesTotales = tripulantesTotales(1);
         this.defensa = sistemaDeDefensa(cantidadDef, tipoDef);
         this.prop = conjuntoDePropulsion(cantidadProp, tipoProp);
-        this.conjuntoDeArmas = conjuntoDeArmas(2, tipoArma);
+        this.conjuntoDeArmas = conjuntoDeArmas(2, tipoArma,potenciaArma);
     }
 
 
@@ -153,13 +155,21 @@ public class Caza extends NaveBuilder {
         int modelo = numeroIntroducido();
         return modelo;
     }
+
+    public static int potenciaArmaMenu() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Introduzca la potencia del arma: ");
+        int danio = sc.nextInt();
+        System.out.println("¡La potencia de su arma será " + danio + " !");
+        return danio;
+    }
     //Lista de Armas del Caza (Caza tiene 2 tipos de Armas)
-    public List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArma[]) {
+    public List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArma[], int potenciaArma[]) {
         List<Arma> armas = new ArrayList<>();
         //Escoger el tipo de Armas
         for (int i = 0; i < numeroArmas; i++) {
             //Escoger el tipo de Arma
-            Arma a = new Arma(tipoArma[i]);
+            Arma a = new Arma(tipoArma[i], potenciaArma[i]);
             armas.add(a);//Añadir el arma creada a la lista de Armas
             potencia += a.potencia; //Sumar la potencia de todas las armas del Caza
         }
@@ -181,6 +191,7 @@ public class Caza extends NaveBuilder {
         while (cantidad > 2 || cantidad <= 0) {
             System.out.println("La capacidad de la nave para portar propulsiones es limitada");
             System.out.println("¿Cuantas propulsiones va a querer (1 o 2)?");
+            cantidad = numeroIntroducido();
         }
         return cantidad;
     }

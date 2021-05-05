@@ -44,8 +44,9 @@ class CargueroTest {
     void conjuntoDeArmas() {
 
         int numero = 2;
-        int tipo[] = new int[] {1, 3};
-        List<Arma> resultado = Nave.conjuntoDeArmas(numero, tipo);
+        int tipoArma[] = new int[] {1, 3};
+        int potenciaArma[] = new int[]{100, 200};
+        List<Arma> resultado = Nave.conjuntoDeArmas(numero, tipoArma, potenciaArma);
 
         assertEquals(null, resultado);
     }

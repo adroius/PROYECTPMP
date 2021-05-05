@@ -46,20 +46,22 @@ public class Destructor extends NaveBuilder {
 
         //Conjunto de Armas de Destructor (Min 1)
         int cantidadArmas = cantidadArmasMenu();
-        int tipoArma[] = new int[2];
+        int tipoArma[] = new int[cantidadArmas];
+        int potenciaArma[] = new int[cantidadArmas];
         for (int i = 0; i < cantidadArmas; i++) {
             tipoArma[i] = ArmasMenu();
+            potenciaArma[i] = potenciaArmaMenu();
         }
-        this.conjuntoDeArmas = conjuntoDeArmas(cantidadArmas, tipoArma);
+        this.conjuntoDeArmas = conjuntoDeArmas(cantidadArmas, tipoArma, potenciaArma);
     }
 
     //Constructor Destructor sin introducir datos por pantalla
     public Destructor(int tripulantes, int cantidadDef, int tipoDef, int cantidadProp,
-                      int tipoProp[], int cantidadArmas, int tipoArma[]) {
+                      int tipoProp[], int cantidadArmas, int tipoArma[], int potenciaArmas[]) {
         this.tripulantesTotales = tripulantesTotales(tripulantes);
         this.conjuntoDefensa = sistemaDeDefensa(cantidadDef, tipoDef);
         this.prop = conjuntoDePropulsion(cantidadProp, tipoProp);
-        this.conjuntoDeArmas = conjuntoDeArmas(cantidadArmas, tipoArma);
+        this.conjuntoDeArmas = conjuntoDeArmas(cantidadArmas, tipoArma, potenciaArmas);
     }
 
     //Cantidad de tripulantes
@@ -181,12 +183,19 @@ public class Destructor extends NaveBuilder {
         int modelo = numeroIntroducido();
         return modelo;
     }
+    public static int potenciaArmaMenu() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Introduzca la potencia del arma: ");
+        int danio = sc.nextInt();
+        System.out.println("¡La potencia de su arma será " + danio + " !");
+        return danio;
+    }
     //Lista de Armas del Destructor (Destructor solo tiene 1 Arma)
-    public List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArma[]) {
+    public List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArma[], int potenciaArma[]) {
         List<Arma> armas = new ArrayList<>();
         for (int i = 0; i < numeroArmas; i++) {
             //Escoger el tipo de Arma
-            Arma a = new Arma(tipoArma[i]);
+            Arma a = new Arma(tipoArma[i], potenciaArma[i]);
             armas.add(a);//Añadir el arma creada a la lista de Armas
             potencia += a.potencia; //Sumar la potencia de todas las armas del Caza
         }
