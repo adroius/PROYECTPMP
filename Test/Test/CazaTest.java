@@ -22,14 +22,15 @@ class CazaTest {
     }
 
     @Test
-    void tripulantesTotales() {
-        //Introducir 1
+    void tripulantesTotalesIntroducirUno() {
         int resultado = Nave.tripulantesTotales(1);
         assertEquals(1, resultado);
+    }
 
-        //Introducir cualquier numero excepto 1
-        resultado = Nave.tripulantesTotales(3);
-        assertEquals(1,resultado);
+    @Test
+    void tripulantesTotalesNoIntroducirUno(){
+        int resultado = Nave.tripulantesTotales(5);
+        assertEquals(1, resultado);
     }
 
     @Test

@@ -31,7 +31,7 @@ public class Arma {
                 isRayoLaser(nombre);
                 break;
             case 3:
-                nombre = "Cañon de plasma";
+                nombre = "Cañon de Plasma";
                 isCañonPlasma(nombre);
                 break;
             default:
@@ -67,7 +67,6 @@ public class Arma {
 
     @Override
     public String toString() {
-
-        return "La potencia del " + nombre + " es de " + potencia+ "GigaJulios";
+        return "La potencia del " + nombre + " es de " + potencia+ " GigaJulios";
     }
 }

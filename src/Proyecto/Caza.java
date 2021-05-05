@@ -153,6 +153,16 @@ public class Caza extends NaveBuilder {
         System.out.println("2) Rayo Laser");
         System.out.println("3) Cañon de plasma");
         int modelo = numeroIntroducido();
+
+        while (modelo > 3 || modelo < 0){
+            System.out.println("El numero introducido es incorrecto");
+            System.out.println("Que arma quiere elegir:");
+            System.out.println("0) PEM");
+            System.out.println("1) Misil Termonuclear");
+            System.out.println("2) Rayo Laser");
+            System.out.println("3) Cañon de plasma");
+            modelo = numeroIntroducido();
+        }
         return modelo;
     }
 
