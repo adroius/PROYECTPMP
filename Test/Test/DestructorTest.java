@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DestructorTest {
 
-    Destructor Nave;
+    private Destructor Nave;
 
     @Test
     void tripulantesTotales() {

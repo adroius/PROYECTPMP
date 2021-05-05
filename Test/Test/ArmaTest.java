@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArmaTest {
-    Arma arma;
+    private Arma arma;
 
     @BeforeEach
     void setUp() {

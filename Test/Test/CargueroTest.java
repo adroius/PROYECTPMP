@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CargueroTest {
 
-    Carguero Nave;
+    private Carguero Nave;
 
     @BeforeEach
     void setUp(){

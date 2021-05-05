@@ -2,8 +2,8 @@ package Proyecto;
 
 //Clase Escudo hereda de Defensa
 public class Escudo extends Defensa{
-    int energiaR; //Energia necesaria para el Escudo
-    int danioQueAb; //Danio que Absobe el Escudo
+    private int energiaR; //Energia necesaria para el Escudo
+    private int danioQueAb; //Danio que Absobe el Escudo
 
     //Constructor Escudo
     public Escudo(int energia) {

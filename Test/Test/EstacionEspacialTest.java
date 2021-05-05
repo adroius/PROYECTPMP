@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class EstacionEspacialTest {
 
-    EstacionEspacial Nave;
+    private EstacionEspacial Nave;
 
     @BeforeEach
     void setUp(){
