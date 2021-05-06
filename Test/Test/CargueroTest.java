@@ -47,6 +47,7 @@ class CargueroTest {
     }
 
     //me no entender porque me dan error estos test, cuando miro los resultados expected y reultado son iguales.........
+    //Creo que tiene algo que ver con el assertEquals...
     @Test
     void sistemaDeDefensaEscudo() {
         List<Defensa> resultado = Nave.sistemaDeDefensa(1, 100);
