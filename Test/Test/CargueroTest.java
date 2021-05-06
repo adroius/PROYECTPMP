@@ -9,6 +9,8 @@ import Proyecto.Propulsion;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,10 +33,36 @@ class CargueroTest {
     }
 
     @Test
-    void sistemaDeDefensa() {
-
-
+    void sistemaDeDefensaCantMenorUno() {
+        assertThrows(IllegalStateException.class, ()->{
+           Nave.sistemaDeDefensa(0, 1);
+        });
     }
+
+    @Test
+    void sistemaDeDefensaCantMayorDos() {
+        assertThrows(IllegalStateException.class, ()->{
+            Nave.sistemaDeDefensa(3, 1);
+        });
+    }
+
+    //me no entender porque me dan error estos test, cuando miro los resultados expected y reultado son iguales.........
+    @Test
+    void sistemaDeDefensaEscudo() {
+        List<Defensa> resultado = Nave.sistemaDeDefensa(1, 100);
+        List<Defensa> expected = new ArrayList<>();
+        expected.add(new Escudo(100));
+        assertEquals(expected, resultado);
+    }
+
+    @Test
+    void sistemaDeDefensaBlindaje() {
+        List<Defensa> resultado = Nave.sistemaDeDefensa(2, 3);
+        List<Defensa> expected = new ArrayList<>();
+        expected.add(new Blindaje(3));
+        assertEquals(expected, resultado);
+    }
+
     @Test
     void sistemaDeDefensaMenorUno(){
         assertThrows(IllegalStateException.class, ()->{
@@ -90,15 +118,16 @@ class CargueroTest {
         });
     }
 
-    @Test
-    void conjuntoDePropulsion() {
+    //@Test
+    //Maldito Random
+/*    void conjuntoDePropulsionCantUno() {
+        int tipoProp[] = new int[]{0};
+        List<Propulsion> resultado = Nave.conjuntoDePropulsion(1, tipoProp);
+        List<Propulsion> expected = new ArrayList();
+        expected.add(new Propulsion(0));
+        assertEquals(expected, resultado);
     }
-
-    @Test
-    void numeroDeDefensasMax(){
-
-    }
-
+*/
     @Test
     void carga() {
         int carga = 5000;
