@@ -179,6 +179,9 @@ public class Carguero extends NaveBuilder {
     //Lista de tipos de Propulsion del Carguero (1 o 2)
     public List<Propulsion> conjuntoDePropulsion(int cantidadProp, int tipoPropArray[]) {
         List<Propulsion> prop = new ArrayList<>();
+        if (cantidadProp > 2 || cantidadProp < 1) {
+            throw new IllegalStateException("Tiene 1 o 2 tipos de propulsion");
+        }
         //Añadir los tipos de Propulsion
         for (int i = 0; i < cantidadProp; i++) {
             Propulsion a = new Propulsion(tipoPropArray[i]);

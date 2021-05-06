@@ -76,12 +76,27 @@ class CargueroTest {
     }
 
     @Test
+    void conjuntoDePropulsionCantidadMenorUno() {
+        int tipoProp[] = new int[] {1,2};
+        assertThrows(IllegalStateException.class, ()->{
+            Nave.conjuntoDePropulsion(0,tipoProp);
+        });
+    }
+    @Test
+    void conjuntoDePropulsionCantidadMayorDos() {
+        int tipoProp[] = new int[] {1,2};
+        assertThrows(IllegalStateException.class, ()->{
+            Nave.conjuntoDePropulsion(3,tipoProp);
+        });
+    }
+
+    @Test
     void conjuntoDePropulsion() {
     }
 
     @Test
     void numeroDeDefensasMax(){
-        //Es privado en la Clase Carguero (Tengo que mirar como se hace)
+
     }
 
     @Test
