@@ -1,9 +1,10 @@
 import Proyecto.Sistema;
-import Proyecto.Carguero;
+
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Carguero nave = new Carguero();
+        String s="a1234";
+        System.out.println(Sistema.cogerUsuario(s));
     }
 }
