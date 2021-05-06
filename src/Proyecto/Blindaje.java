@@ -51,6 +51,10 @@ public class Blindaje extends Defensa {
         return dqa;
     }
 
+    public int getDanioQueAbsorbe(){
+        return danioAbsorbe;
+    }
+
     //Indicar material del Blindaje
     public String materialEscogido(int numero) {
         String nombre;

@@ -23,6 +23,9 @@ public class Escudo extends Defensa{
         System.out.println("La energia que conseguira repeler sera de "+ energia);
         return energia;
     }
+    public int getDanioQueAbsorbe(){
+        return this.danioQueAb;
+    }
 
     @Override
     public String toString() {

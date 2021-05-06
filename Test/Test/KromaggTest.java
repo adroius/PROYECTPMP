@@ -20,10 +20,22 @@ class KromaggTest {
         assertFalse(kromagg.licencia(2));
     }
 
+    @Test
+    void licenciaMenorUno(){
+        assertThrows(IllegalStateException.class, ()->{
+           kromagg.licencia(0);
+        });
+    }
+
+    @Test
+    void licenciaMayorDos(){
+        assertThrows(IllegalStateException.class, ()->{
+            kromagg.licencia(3);
+        });
+    }
 
     @Test
     void kromaggNave() {
-
     }
 
 }

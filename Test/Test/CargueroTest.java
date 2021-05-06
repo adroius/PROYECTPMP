@@ -33,10 +33,27 @@ class CargueroTest {
     @Test
     void sistemaDeDefensa() {
 
+
+    }
+    @Test
+    void sistemaDeDefensaMenorUno(){
+        assertThrows(IllegalStateException.class, ()->{
+           Nave.sistemaDeDefensa(0, 100);
+        });
+    }
+
+    @Test
+    void sistemaDeDefensaMayorDos(){
+        assertThrows(IllegalStateException.class, ()->{
+            Nave.sistemaDeDefensa(3, 100);
+        });
     }
 
     @Test
     void getDefensaTotal() {
+        int tipoProp[] = new int[]{1,1};
+        Nave = new Carguero(2,200, 1, 100, 2, tipoProp);
+        assertEquals(1000, Nave.getDefensaTotal());
     }
 
     @Test

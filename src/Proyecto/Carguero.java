@@ -24,7 +24,7 @@ public class Carguero extends NaveBuilder {
         var = numeroIntroducido();
         this.carga = carga(var);
 
-        //Sistemas de Defensa de Carguero (Tiene 1 tipo de Defensa)
+        //Sistemas de Defensa de Carguero (1 Defensa)
         var = sistemaDeDefensamenu();
         int def = 0;
         if (var==1){
@@ -44,11 +44,12 @@ public class Carguero extends NaveBuilder {
     }
 
     //Constructor Carguero sin introducir datos por pantalla
-    public Carguero(int tripulantes, int carga,int cantidadDef,int tipodef,
+    public Carguero(int tripulantes, int carga,int tipoDef ,int varIntroDef,
                     int cantidadProp,int tipoProp[]) {
+
         this.tripulantesTotales = tripulantesTotales(tripulantes);
         this.carga = carga(carga);
-        this.defensa = sistemaDeDefensa(cantidadDef,tipodef);
+        this.defensa = sistemaDeDefensa(tipoDef, varIntroDef);
         this.prop = conjuntoDePropulsion(cantidadProp,tipoProp);
     }
 
@@ -120,13 +121,13 @@ public class Carguero extends NaveBuilder {
                 case 1: {
                     d = new Escudo(varIntroducir); //Constructor Escudo
                     defensa.add(d);
-                    defensaTotal += d.danioQueAbsorbe();
+                    defensaTotal += d.getDanioQueAbsorbe();
                     break;
                 }
                 case 2: {
                     d = new Blindaje(varIntroducir); //Constructor Blindaje
                     defensa.add(d);
-                    defensaTotal += d.danioQueAbsorbe();
+                    defensaTotal += d.getDanioQueAbsorbe();
                     break;
                 }
                 //El dato introducido es incorrecto
