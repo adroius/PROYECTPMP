@@ -11,24 +11,31 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CazaTest {
-    Caza Nave;
+    private Caza Nave;
 
     @BeforeEach
     void setUp() {
         int tipoProp[] = new int[]{1,2};
         int tipoArma[]= new int[]{1,2};
-        Nave = new Caza(4, 2, 2, tipoProp, tipoArma);
+        int potenciaArma[] = new int[] {100, 200};
+        Nave = new Caza(1, 2, 2, tipoProp, tipoArma, potenciaArma);
     }
 
     @Test
-    void tripulantesTotales() {
-        int tripulantes = 1;
-        int resultado = Nave.tripulantesTotales(tripulantes);
-        assertEquals(1, tripulantes);
+    void tripulantesTotalesIntroducirUno() {
+        int resultado = Nave.tripulantesTotales(1);
+        assertEquals(1, resultado);
+    }
+
+    @Test
+    void tripulantesTotalesNoIntroducirUno(){
+        int resultado = Nave.tripulantesTotales(5);
+        assertEquals(1, resultado);
     }
 
     @Test
     void sistemaDeDefensa() {
+
     }
 
     @Test

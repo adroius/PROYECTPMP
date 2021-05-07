@@ -4,46 +4,59 @@ import java.util.Scanner;
 
 //Clase Kromagg
 public class Kromagg{
-    boolean licencia; //LicenciaEspecial de los Kromagg
 
+    protected static boolean licencia; //LicenciaEspecial de los Kromagg
+    //Constructor Kromagg introduciendo datos por pantalla
     public Kromagg() {
-        this.licencia=licencia();
+        int numero = licenciaMenu();
+        licencia = licencia(numero);
+    }
+    //Constructor Kromagg sin introducir datos por pantalla
+    public Kromagg(int numero){
+        licencia = licencia(numero);
     }
 
     //Comprobar si tiene licencia
     //Esto no tiene ningun tipo de seguridad...
-    protected static boolean licencia() {
-        boolean l;
+    protected int licenciaMenu(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Tienes licencia?");
         System.out.println("1) Si");
         System.out.println("2) No");
-        int s = sc.nextInt();
-        switch (s) {
+        return sc.nextInt();
+    }
+
+    public boolean licencia (int numero) {
+        boolean confirmacion;
+        switch (numero) {
             case 1: {
-                l= false;
+                confirmacion = true;
                 break;
             }
             case 2: {
-                l= true;
+                confirmacion = false;
                 break;
             }
             default:
-                throw new IllegalStateException("Unexpected value: " + s);
+                throw new IllegalStateException("Unexpected value: " + numero);
         }
         
-        return l;
+        return confirmacion;
+    }
+
+    protected static boolean getLicencia(){
+        return licencia;
     }
 
     //Crear nave para Kromagg
     public NaveBuilder KromaggNave() {
-        NaveBuilder n = null;
-        boolean license = licencia();
+        NaveBuilder nave = null;
+        boolean license = getLicencia();
         if (license) {
-            n.CrearNave(); //Con Licencia puede comprar cualquier nave
+            nave.CrearNave(); //Con Licencia puede comprar cualquier nave
         } else {
-            n.CrearNaveEspecial(); //Sin Licencia solo pueden comprar Cargueros y Cazas
+            nave.CrearNaveEspecial(); //Sin Licencia solo pueden comprar Cargueros y Cazas
         }
-        return n;
+        return nave;
     }
 }

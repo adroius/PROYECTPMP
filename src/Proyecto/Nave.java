@@ -64,7 +64,7 @@ public abstract class Nave {
     }
 
     //Lista de Armas de la nave
-    public abstract List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArmas[]);
+    public abstract List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArmas[], int potenciaArmas[]);
 
     //Lista de tipos de propulsion de la nave
     public abstract List<Propulsion> conjuntoDePropulsion(int cantidadProp, int tipoProp[]);

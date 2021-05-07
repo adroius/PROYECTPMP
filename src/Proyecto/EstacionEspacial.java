@@ -161,7 +161,7 @@ public class EstacionEspacial extends NaveBuilder{
 
 
     //Estacion Espacial no tiene Armas
-    public List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArmas[]) {
+    public List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArmas[], int potenciaArmas[]) {
         return null;
     }
 

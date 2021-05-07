@@ -24,7 +24,6 @@ public class Propulsion {
     //Escoger el tipo de Propulsion de la nave
     public String nombre(int tipo){
         String nombre;
-        //Deberiamos hacer un bucle para comprobar que el valor introducido es correcto
         switch (tipo) {
             case 0: {
                 nombre = "Compresor de Traza";

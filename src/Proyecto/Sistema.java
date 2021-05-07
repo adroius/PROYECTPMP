@@ -230,6 +230,8 @@ public class Sistema {
             escritura.write("-");
             escritura.write(u.usuario.email);
             escritura.write("\n");
+            escritura.println(u.usuario.nAdvertencias);
+            escritura.println("*");
             escritura.close();
         } catch (Exception e) {
             System.out.println("Error al escribir");
@@ -341,7 +343,7 @@ public class Sistema {
             if (linea.contains(user)) {
                 linea = br.readLine();
                 if (linea.contains("Kromagg") || linea.contains("kromagg")) {
-                    encontrado = Kromagg.licencia(); //Comprobar si el Cliente tiene Licencia
+                    encontrado = Kromagg.getLicencia(); //Comprobar si el Cliente tiene Licencia
                     break;
                 } else {
                     encontrado = false;

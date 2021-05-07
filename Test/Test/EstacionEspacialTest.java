@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class EstacionEspacialTest {
 
-    EstacionEspacial Nave;
+    private EstacionEspacial Nave;
 
     @BeforeEach
     void setUp(){
@@ -43,7 +43,8 @@ class EstacionEspacialTest {
     //No importa lo que introduzcamos debe devolver null
     void conjuntoDeArmas() {
         int tipoArma[] = new int[] {1, 5};
-        List<Arma> resultado = Nave.conjuntoDeArmas(3, tipoArma);
+        int potenciaArma[] = new int[] {200, 100};
+        List<Arma> resultado = Nave.conjuntoDeArmas(3, tipoArma,potenciaArma);
     }
 
     @Test

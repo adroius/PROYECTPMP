@@ -6,10 +6,10 @@ public class Blindaje extends Defensa {
     private int danioAbsorbe; //Danio que Absorbe el Blindaje
     private int peso; //Peso del Blindaje
 
-    //Constructor Proyecto.Blindaje
-    public Blindaje(int c) {
+    //Constructor Blindaje
+    public Blindaje(int material) {
         super();
-        this.material = materialEscogido(c);
+        this.material = materialEscogido(material);
         this.danioAbsorbe = danioQueAbsorbe();
         this.peso = danioQueAbsorbe() * 10; //El peso es igual al daño que Absorbe * 10
     }
@@ -51,10 +51,14 @@ public class Blindaje extends Defensa {
         return dqa;
     }
 
+    public int getDanioQueAbsorbe(){
+        return danioAbsorbe;
+    }
+
     //Indicar material del Blindaje
-    public String materialEscogido(int c) {
+    public String materialEscogido(int numero) {
         String nombre;
-        switch (c) {
+        switch (numero) {
             case 0: {
                 nombre = "Adamantium";
                 break;
@@ -81,7 +85,7 @@ public class Blindaje extends Defensa {
             }
             //El valor introducido es incorrecto
             default:
-                throw new IllegalStateException("Unexpected value: " + c);
+                throw new IllegalStateException("Unexpected value: " + numero);
         }
         return nombre;
     }

@@ -2,8 +2,8 @@ package Proyecto;
 
 //Clase Escudo hereda de Defensa
 public class Escudo extends Defensa{
-    int energiaR; //Energia necesaria para el Escudo
-    int danioQueAb; //Danio que Absobe el Escudo
+    private int energiaR; //Energia necesaria para el Escudo
+    private int danioQueAb; //Danio que Absobe el Escudo
 
     //Constructor Escudo
     public Escudo(int energia) {
@@ -22,6 +22,9 @@ public class Escudo extends Defensa{
         int energia = this.energiaR*10;
         System.out.println("La energia que conseguira repeler sera de "+ energia);
         return energia;
+    }
+    public int getDanioQueAbsorbe(){
+        return this.danioQueAb;
     }
 
     @Override
