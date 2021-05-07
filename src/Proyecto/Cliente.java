@@ -211,7 +211,7 @@ public class Cliente {
     }
 
     //Impide entrar al Sistema durante 5 días si el Cliente tiene 2 advertencias
-    private static boolean noEntrarAlSistemaPorAdvertencias() {
+    public static boolean noEntrarAlSistemaPorAdvertencias() {
         Timer timer = new Timer();
         int seconds = 432000;
         boolean bloqueoFinalizado = (seconds != 0);

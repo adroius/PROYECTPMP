@@ -33,7 +33,9 @@ public class Sistema {
                 //Inciar Sesion en el Sistema
                 case 2: {
                     if (iniciarSesion()) {
-                        menu();
+                        if (comprobarAd()){
+                            menu();
+                        }
                     }
                     f = true;
                     break;
@@ -48,6 +50,29 @@ public class Sistema {
                     throw new IllegalStateException("Unexpected value: " + s);
             }
         } while (!f);
+    }
+
+    public boolean comprobarAd() throws IOException {
+        List<String> fi = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
+        String line2 = "";
+        int numeroAdvertencia = 0;
+        while ((line2 = br.readLine()) != null) {
+            fi.add(line2);
+        }
+        for (int i = 0; i < fi.size(); i++) {
+            if (fi.get(i).contains(usuarioEntrar)) {
+                numeroAdvertencia = Integer.parseInt(fi.get(i + 3));
+                break;
+            }
+        }
+        if (numeroAdvertencia >= 2){
+            System.out.println("Ha excedido en el numero de advertencias.");
+            Cliente.noEntrarAlSistemaPorAdvertencias();
+            return false;
+        } else{
+            return true;
+        }
     }
 
     //Menu una vez has ingresado como Cliente
