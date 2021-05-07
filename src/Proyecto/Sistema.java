@@ -62,7 +62,7 @@ public class Sistema {
         }
         for (int i = 0; i < fi.size(); i++) {
             if (fi.get(i).contains(usuarioEntrar)) {
-                numeroAdvertencia = Integer.parseInt(fi.get(i + 3));
+                numeroAdvertencia = Integer.parseInt(fi.get(i + 2));
                 break;
             }
         }
@@ -115,7 +115,7 @@ public class Sistema {
                 }
                 case 5: {
                     new Cliente();
-                    Cliente.verNotificaciones(usuarioEntrar);
+                    Cliente.verNotificaciones(cogerUsuario(usuarioEntrar));
                     break;
                 }
                 case 6: {
