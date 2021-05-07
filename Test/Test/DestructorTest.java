@@ -1,9 +1,6 @@
 package Test;
 
-import Proyecto.Arma;
-import Proyecto.Destructor;
-import Proyecto.Defensa;
-import Proyecto.Propulsion;
+import Proyecto.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class DestructorTest {
 
     private Destructor Nave;
-
+    @BeforeEach
+    void setUp(){
+        int TArray[] =new int[]{1, 2};
+        Nave = new Destructor(60,3,1,2,TArray,2,TArray,TArray);
+    }
     @Test
     void tripulantesTotales() {
         int tripulantes = 30;
@@ -24,11 +25,37 @@ class DestructorTest {
     }
 
     @Test
-    void sistemaDeDefensa() {
+    void sistemaDeDefensaCantMenorUno() {
+        assertThrows(IllegalStateException.class, ()->{
+            Nave.sistemaDeDefensa(0, 1);
+        });
     }
-
     @Test
-    void conjuntoDeArmas() {
+    void sistemaDeDefensaCantMayorDos() {
+        assertThrows(IllegalStateException.class, ()->{
+            Nave.sistemaDeDefensa(3, 1);
+        });
+    }
+    @Test
+    void conjuntoDePropulsionCantidadMenorUno() {
+        int TArray[] = new int[] {1,2};
+        assertThrows(IllegalStateException.class, ()->{
+            Nave.conjuntoDePropulsion(0,TArray);
+        });
+    }
+    @Test
+    void conjuntoDePropulsionCantidadMayorDos() {
+        int TArray[] = new int[] {1,2};
+        assertThrows(IllegalStateException.class, ()->{
+            Nave.conjuntoDePropulsion(3,TArray);
+        });
+    }
+    @Test
+    void conjuntoDeArmasCantidadMenorUno() {
+        int TArray[] = new int[] {1,2};
+        assertThrows(IllegalStateException.class, ()->{
+            Nave.conjuntoDeArmas(0,TArray,TArray);
+        });
     }
 
     @Test
