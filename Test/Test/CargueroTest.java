@@ -9,7 +9,6 @@ import Proyecto.Propulsion;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,8 +19,9 @@ class CargueroTest {
 
     @BeforeEach
     void setUp(){
-        int propArray[] =new int[]{1, 2};
-        Nave = new Carguero(60,100,1,1,1, propArray);
+        int propArray[] =new int[]{1};
+        Nave = new Carguero(100,100,1,100,
+                            1, propArray);
     }
 
     @Test
@@ -33,27 +33,11 @@ class CargueroTest {
     }
 
     @Test
-    void sistemaDeDefensaCantMenorUno() {
-        assertThrows(IllegalStateException.class, ()->{
-           Nave.sistemaDeDefensa(0, 1);
-        });
-    }
-
-    @Test
-    void sistemaDeDefensaCantMayorDos() {
-        assertThrows(IllegalStateException.class, ()->{
-            Nave.sistemaDeDefensa(3, 1);
-        });
-    }
-
-    //me no entender porque me dan error estos test, cuando miro los resultados expected y reultado son iguales.........
-    //Creo que tiene algo que ver con el assertEquals...
-    @Test
     void sistemaDeDefensaEscudo() {
         List<Defensa> resultado = Nave.sistemaDeDefensa(1, 100);
         List<Defensa> expected = new ArrayList<>();
         expected.add(new Escudo(100));
-        assertEquals(expected, resultado);
+        assertEquals(expected.toString(), resultado.toString());
     }
 
     @Test
@@ -61,18 +45,18 @@ class CargueroTest {
         List<Defensa> resultado = Nave.sistemaDeDefensa(2, 3);
         List<Defensa> expected = new ArrayList<>();
         expected.add(new Blindaje(3));
-        assertEquals(expected, resultado);
+        assertEquals(expected.toString(), resultado.toString());
     }
 
     @Test
-    void sistemaDeDefensaMenorUno(){
+    void sistemaDeDefensaTipoMenorUno(){
         assertThrows(IllegalStateException.class, ()->{
            Nave.sistemaDeDefensa(0, 100);
         });
     }
 
     @Test
-    void sistemaDeDefensaMayorDos(){
+    void sistemaDeDefensaTipoMayorDos(){
         assertThrows(IllegalStateException.class, ()->{
             Nave.sistemaDeDefensa(3, 100);
         });
@@ -119,16 +103,22 @@ class CargueroTest {
         });
     }
 
-    //@Test
-    //Maldito Random
-/*    void conjuntoDePropulsionCantUno() {
+    @Test
+    //Comprobar que la lista de Propulsion tiene los elementos que debe
+    void conjuntoDePropulsionCantUno() {
         int tipoProp[] = new int[]{0};
         List<Propulsion> resultado = Nave.conjuntoDePropulsion(1, tipoProp);
-        List<Propulsion> expected = new ArrayList();
-        expected.add(new Propulsion(0));
-        assertEquals(expected, resultado);
+        assertEquals(1, resultado.size());
     }
-*/
+
+    @Test
+        //Comprobar que la lista de Propulsion tiene los elementos que debe
+    void conjuntoDePropulsionCantDos() {
+        int tipoProp[] = new int[]{0, 2};
+        List<Propulsion> resultado = Nave.conjuntoDePropulsion(2, tipoProp);
+        assertEquals(2, resultado.size());
+    }
+
     @Test
     void carga() {
         int carga = 5000;
@@ -137,7 +127,4 @@ class CargueroTest {
         assertEquals(carga, resultado);
     }
 
-    @Test
-    void testToString() {
-    }
 }

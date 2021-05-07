@@ -112,8 +112,8 @@ public class Carguero extends NaveBuilder {
         return c;
     }
 
-    //Lista de defensas del Carguero (Carguero solo puede tener una defensa)
-        public List<Defensa> sistemaDeDefensa(int tipoDef,int varIntroducir) {
+    //Lista de defensas del Carguero (Carguero tiene 1 defensa)
+    public List<Defensa> sistemaDeDefensa(int tipoDef,int varIntroducir) {
         List<Defensa> defensa = new ArrayList<>();
         //Escoger el tipo de Defensa del Carguero
             Defensa d;
@@ -202,7 +202,7 @@ public class Carguero extends NaveBuilder {
 
     @Override
     public String toString() {
-        return "   Carguero" +
+        return "Carguero" +
                 "\nNumero de Tripulantes = " + tripulantesTotales +
                 "\nCarga Máxima = " + carga +
                 "\nNumero de Defensas = " + numDefensas +
