@@ -101,14 +101,10 @@ public class Cliente {
     }
 
     //Escribe en pantalla el numero de Advertencias del Cliente
-    public static int numeroAdvertencias(String nIdentificacion) {
-        boolean encontrado = comprobarNIdentificacion(nIdentificacion);
-        if (encontrado) {
-            if (nAdvertencias == 2) {
+    public static void comprobarAdvertencias(String ad) {
+            if (Integer.parseInt(ad)>= 2) {
                 noEntrarAlSistemaPorAdvertencias();
             }
-        }
-        return nAdvertencias;
     }
 
     //Queda pasarle el usuario y poco más
@@ -228,7 +224,6 @@ public class Cliente {
         while (bloqueoFinalizado) {
             seconds -= 1;
             timer.schedule(bloqueo, 0, 1000);
-
         }
         nAdvertencias = 0; //Devuelve el numero de Advertencias a 0
         return bloqueoFinalizado;
