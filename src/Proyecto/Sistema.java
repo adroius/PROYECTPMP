@@ -230,6 +230,8 @@ public class Sistema {
             escritura.write("-");
             escritura.write(u.usuario.email);
             escritura.write("\n");
+            escritura.println(u.usuario.nAdvertencias);
+            escritura.println("*");
             escritura.close();
         } catch (Exception e) {
             System.out.println("Error al escribir");

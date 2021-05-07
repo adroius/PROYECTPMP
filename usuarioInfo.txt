@@ -1,6 +1,10 @@
 a
 a1234
 adrian-a-a-a-a
-a
+0
+*
+a2
 adr1234
 adri-a-a-a-a
+0
+*

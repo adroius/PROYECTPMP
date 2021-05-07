@@ -101,14 +101,14 @@ public class Cliente {
     }
 
     //Escribe en pantalla el numero de Advertencias del Cliente
-    public static void numeroAdvertencias(String nIdentificacion) {
+    public static int numeroAdvertencias(String nIdentificacion) {
         boolean encontrado = comprobarNIdentificacion(nIdentificacion);
         if (encontrado) {
-            System.out.println("Llevas " + nAdvertencias + " advertencias");
+            if (nAdvertencias == 2) {
+                noEntrarAlSistemaPorAdvertencias();
+            }
         }
-        if (nAdvertencias == 2) {
-            noEntrarAlSistemaPorAdvertencias();
-        }
+        return nAdvertencias;
     }
 
     //Queda pasarle el usuario y poco más

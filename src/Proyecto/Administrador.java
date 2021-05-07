@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 //Clase Administrador
 public class Administrador extends Usuario {
 
     //Comprobar que la oferta es valida
     //Valida -> Permite mostrarla a los clientes
     //Na valida -> Borra la oferta y se manda una advertencia al vendedor
+
+
     public boolean ofertaValida() throws IOException {
         boolean visible = true;
         String user = "";
@@ -77,6 +80,8 @@ public class Administrador extends Usuario {
         List<String> fichero = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("userComprobar.txt"));
         BufferedReader br2 = new BufferedReader(new FileReader("userComprobar.txt"));
+        FileWriter fw2 = new FileWriter("userComprobar.txt");
+        PrintWriter escritura2 = new PrintWriter(fw2);
         String user = "";
         String line;
         String line2;
@@ -85,8 +90,6 @@ public class Administrador extends Usuario {
             fichero.add(line);
         }
         while ((line2 = br2.readLine()) != null && line2 != "-") {
-            FileWriter fw2 = new FileWriter("userComprobar.txt");
-            PrintWriter escritura2 = new PrintWriter(fw2);
             i++;
             if (i == 0 && !line2.equals("*")) {
                 user = fichero.get(i);
@@ -96,9 +99,9 @@ public class Administrador extends Usuario {
                     user = fichero.get(i);
                 }
             }
-//                escritura2.println("");
-            escritura2.close();
+//            escritura2.println("");
         }
+        escritura2.close();
         return user;
     }
 
@@ -111,7 +114,9 @@ public class Administrador extends Usuario {
         }
         for (int i = 0; i < f.size(); i++) {
             if (f.get(i).contains(nUser)) {
-                f.set(i + 2, f.get(i + 2) + 1);
+                int numeroAdvertencia = Integer.parseInt(f.get(i + 3));
+                numeroAdvertencia++;
+                f.set(i + 3, String.valueOf(numeroAdvertencia));
             }
         }
         FileWriter fw = new FileWriter("usuarioInfo.txt");
@@ -138,7 +143,7 @@ public class Administrador extends Usuario {
             escrit.println(f.get(i));
         }
         escrit.close();
-        Cliente.numeroAdvertencias(nUser);
+        System.out.println("Llevas " + Cliente.numeroAdvertencias(nUser) + " advertencias.");
     }
 
 
