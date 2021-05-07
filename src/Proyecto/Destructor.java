@@ -193,6 +193,8 @@ public class Destructor extends NaveBuilder {
     //Lista de Armas del Destructor (Destructor solo tiene 1 Arma)
     public List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArma[], int potenciaArma[]) {
         List<Arma> armas = new ArrayList<>();
+        if (numeroArmas<1)
+            throw new IllegalStateException("Unexpected value: ");
         for (int i = 0; i < numeroArmas; i++) {
             //Escoger el tipo de Arma
             Arma a = new Arma(tipoArma[i], potenciaArma[i]);
@@ -200,6 +202,7 @@ public class Destructor extends NaveBuilder {
             potencia += a.potencia; //Sumar la potencia de todas las armas del Caza
         }
         return armas;
+
     }
     @Override
     public int potenciaDeAtaque() {
