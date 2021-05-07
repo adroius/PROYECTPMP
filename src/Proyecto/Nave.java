@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public abstract class Nave {
-    public String numReg;//Numero de Registro de la nave
+    String numReg;//Numero de Registro de la nave
     //Tiene un formato LNNNNLLL (L = letra, N = número)
 
     //Constructor Nave

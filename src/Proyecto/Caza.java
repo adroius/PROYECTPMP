@@ -50,10 +50,10 @@ public class Caza extends NaveBuilder {
     }
 
     //Constructor de Caza sin introducir datos por pantalla
-    public Caza(int cantidadDef, int tipoDef, int cantidadProp,
+    public Caza(int tipoDef, int varIntroDef, int cantidadProp,
                 int tipoProp[], int tipoArma[], int potenciaArma[]){
         this.tripulantesTotales = tripulantesTotales(1);
-        this.defensa = sistemaDeDefensa(cantidadDef, tipoDef);
+        this.defensa = sistemaDeDefensa(tipoDef, varIntroDef);
         this.prop = conjuntoDePropulsion(cantidadProp, tipoProp);
         this.conjuntoDeArmas = conjuntoDeArmas(2, tipoArma,potenciaArma);
     }
@@ -173,9 +173,13 @@ public class Caza extends NaveBuilder {
         System.out.println("¡La potencia de su arma será " + danio + " !");
         return danio;
     }
+
     //Lista de Armas del Caza (Caza tiene 2 tipos de Armas)
     public List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArma[], int potenciaArma[]) {
         List<Arma> armas = new ArrayList<>();
+        if (numeroArmas != 2){
+            throw new IllegalStateException("Caza tiene 2 armas...");
+        }
         //Escoger el tipo de Armas
         for (int i = 0; i < numeroArmas; i++) {
             //Escoger el tipo de Arma
@@ -217,10 +221,14 @@ public class Caza extends NaveBuilder {
         tipoprop = numeroIntroducido();
         return tipoprop;
     }
+
     //Lista de tipos de Propulsion del Caza (1 o 2)
     @Override
     public List<Propulsion> conjuntoDePropulsion(int cantidadProp, int tipoProp[]) {
         List<Propulsion> prop = new ArrayList<>();
+        if (cantidadProp > 2 || cantidadProp < 1) {
+            throw new IllegalStateException("Tiene 1 o 2 tipos de propulsion");
+        }
         //Añadir los tipos de Propulsion
         for (int i = 0; i < cantidadProp; i++) {
             Propulsion a = new Propulsion(tipoProp[i]);
