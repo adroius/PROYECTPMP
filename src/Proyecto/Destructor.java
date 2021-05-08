@@ -237,6 +237,8 @@ public class Destructor extends NaveBuilder {
     @Override
     public List<Propulsion> conjuntoDePropulsion(int cantidadProp, int tipoProp[]) {
         List<Propulsion> prop = new ArrayList<>();
+        if (cantidadProp<1 || cantidadProp>2)
+            throw new IllegalStateException("Unexpected value: ");
         for(int i = 0; i < cantidadProp; i++) {
             Propulsion a = new Propulsion(tipoProp[i]);
             prop.add(a);

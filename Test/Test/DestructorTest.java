@@ -15,7 +15,7 @@ class DestructorTest {
     @BeforeEach
     void setUp(){
         int TArray[] =new int[]{1, 2};
-        Nave = new Destructor(60,3,1,2,TArray,2,TArray,TArray);
+        Nave = new Destructor(60,2,1,2,TArray,2,TArray,TArray);
     }
     @Test
     void tripulantesTotales() {
@@ -57,18 +57,23 @@ class DestructorTest {
             Nave.conjuntoDeArmas(0,TArray,TArray);
         });
     }
-
     @Test
-    void getDefensaTotal() {
+    void tipoArma() {
+        int TArray[] = new int[] {1,2};
+        assertThrows(IllegalStateException.class, ()->{
+            Nave.conjuntoDeArmas(0,TArray,TArray);
+        });
     }
+//    @Test
+//    void getDefensaTotal() {
+//    }
 
-    @Test
-    void potenciaDeAtaque() {
-    }
-
-    @Test
-    void conjuntoDePropulsion() {
-    }
+//    @Test
+//    void potenciaDeAtaque() {
+//        int resultado = Nave.potenciaDeAtaque();
+//
+//        assertEquals(0, resultado);
+//    }
 
     @Test
     void testToString() {
