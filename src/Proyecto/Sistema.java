@@ -101,7 +101,7 @@ public class Sistema {
                 }
                 //Ver las ofertas publicadas en la pagina web
                 case 3: {
-                    if (buscarSiUserIsKromagg(usuarioEntrar)) {
+                    if (buscarSiUserIsKromagg(usuarioEntrar) && !Kromagg.licencia(Kromagg.licenciaMenu())) {
                         new Oferta().buscadorDeOfertasKromaggSinLicencia();
                     } else {
                         new Oferta().buscadorDeOfertas();
@@ -213,9 +213,10 @@ public class Sistema {
     }
 
     //Registrar Nuevo Cliente
-    public Usuario registrarNuevoCliente() {
+    public Usuario registrarNuevoCliente() throws IOException {
         List<String> ficheroContraseña = new ArrayList<>();
         List<String> ficheroInfo = new ArrayList<>();
+        List<String> ficheroInfoAux = new ArrayList<>();
         Usuario u = new Usuario();
         try {
             BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
@@ -251,6 +252,8 @@ public class Sistema {
             escritura.write("-");
             escritura.write(u.usuario.Especie);
             escritura.write("-");
+            escritura.write("No tiene licencia kromagg");
+            escritura.write("-");
             escritura.write(u.usuario.Nick);
             escritura.write("-");
             escritura.write(u.usuario.email);
@@ -258,6 +261,32 @@ public class Sistema {
             escritura.println(u.usuario.nAdvertencias);
             escritura.println("*");
             escritura.close();
+            BufferedReader br2 = new BufferedReader(new FileReader("usuarioInfo.txt"));
+            while ((line = br2.readLine()) != null) {
+                ficheroInfoAux.add(line);
+            }
+            if (buscarSiUserIsKromagg(s)){
+                int i=1;
+                while ((line = br.readLine()) != null) {
+                    if (line.contains(s)) {
+                        line = br.readLine();
+                        if (line.contains("Kromagg") || line.contains("kromagg")) {
+                            String[] palabras = line.split("-");
+                            palabras[3]=Nave.numaleatorios();
+                            String aux=(palabras[0]+"-"+palabras[1]+"-"+palabras[2]+"-"+palabras[3]+"-"+palabras[4]+"-"+palabras[5]);
+                            ficheroInfoAux.set(i, aux);
+                            break;
+                        }
+                    }
+                    i++;
+                }
+            }
+            FileWriter fw2 = new FileWriter("usuarioInfo.txt");
+            PrintWriter escritura2 = new PrintWriter(fw2);
+            for (int i = 0; i < ficheroInfoAux.size(); i++) {
+                escritura2.println(ficheroInfoAux.get(i));
+            }
+            escritura2.close();
         } catch (Exception e) {
             System.out.println("Error al escribir");
         }
@@ -373,7 +402,7 @@ public class Sistema {
             if (linea.contains(user)) {
                 linea = br.readLine();
                 if (linea.contains("Kromagg") || linea.contains("kromagg")) {
-                    encontrado = Kromagg.getLicencia(); //Comprobar si el Cliente tiene Licencia
+                    encontrado = true; //Comprobar si el Cliente tiene Licencia
                     break;
                 } else {
                     encontrado = false;

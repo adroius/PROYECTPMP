@@ -18,7 +18,7 @@ public class Kromagg{
 
     //Comprobar si tiene licencia
     //Esto no tiene ningun tipo de seguridad...
-    protected int licenciaMenu(){
+    protected static int licenciaMenu(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Tienes licencia?");
         System.out.println("1) Si");
@@ -26,7 +26,7 @@ public class Kromagg{
         return sc.nextInt();
     }
 
-    public boolean licencia (int numero) {
+    public static boolean licencia(int numero) {
         boolean confirmacion;
         switch (numero) {
             case 1: {
@@ -47,6 +47,8 @@ public class Kromagg{
     protected static boolean getLicencia(){
         return licencia;
     }
+
+
 
     //Crear nave para Kromagg
     public NaveBuilder KromaggNave() {

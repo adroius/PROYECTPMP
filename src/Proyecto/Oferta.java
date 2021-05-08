@@ -315,15 +315,8 @@ public class Oferta {
     }
 
     //Guarda la valoracion echa por el comprador y por el vendedor
-    public void votar() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("¿Desea realizar una valoración?");
-        System.out.println("1) Si");
-        System.out.println("2) No");
-        int c = sc.nextInt();
-        switch (c) {
-            case 1: {
-                try {
+    public static void votar() throws IOException {
+        Scanner sc=new Scanner(System.in);
                     List<String> fichero = new ArrayList<>();
                     BufferedReader br = new BufferedReader(new FileReader("usuarioVotacionYComentario.txt"));
                     String line;
@@ -349,59 +342,31 @@ public class Oferta {
                     escribir.println("Valora a este usuario: " + line);
                     escribir.println("-");
                     escribir.close();
-                } catch (Exception e) {
-                    System.out.println("Error en la valoración");
-                }
-                break;
-            }
-            case 2: {
-                break;
-            }
-            default:
-                throw new IllegalStateException("Valor no valido");
         }
-    }
 
     //Guarda el comentario realizado por el comprador y por el vendedor
-    public void comentar() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("¿Desea realizar un comentario?");
-        System.out.println("1) Si");
-        System.out.println("2) No");
-        int c = sc.nextInt();
-        switch (c) {
-            case 1: {
-                try {
-                    List<String> fichero = new ArrayList<>();
-                    BufferedReader br = new BufferedReader(new FileReader("usuarioVotacionYComentario.txt"));
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        fichero.add(line);
-                    }
-                    System.out.println("¿Cual es su comentario?");
-                    line = sc.next();
-                    fichero.add(line);
-                    FileWriter fw = new FileWriter("usuarioVotacionYComentario.txt");
-                    PrintWriter escribir = new PrintWriter(fw);
-                    escribir.println(Sistema.usuarioEntrar + ":");
-                    for (int i = 0; i < fichero.size(); i++) {
-                        escribir.println(fichero.get(i));
-                    }
-                    System.out.println("¿A que usuario deseas comentar?");
-                    line = sc.next();
-                    escribir.println("Comenta a este usuario: " + line);
-                    escribir.println("-");
-                    escribir.close();
-                } catch (Exception e) {
-                    System.out.println("Error en la valoración");
-                }
-            }
-            case 2: {
-                break;
-            }
-            default:
-                throw new IllegalStateException("Valor no valido");
+    public static void comentar() throws IOException {
+        Scanner sc=new Scanner(System.in);
+        List<String> fichero = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader("usuarioVotacionYComentario.txt"));
+        String line;
+        while ((line = br.readLine()) != null) {
+            fichero.add(line);
         }
+        System.out.println("¿Cual es su comentario?");
+        line = sc.next();
+        fichero.add(line);
+        FileWriter fw = new FileWriter("usuarioVotacionYComentario.txt");
+        PrintWriter escribir = new PrintWriter(fw);
+        escribir.println(Sistema.usuarioEntrar + ":");
+        for (int i = 0; i < fichero.size(); i++) {
+            escribir.println(fichero.get(i));
+        }
+        System.out.println("¿A que usuario deseas comentar?");
+        line = sc.next();
+        escribir.println("Comenta a este usuario: " + line);
+        escribir.println("-");
+        escribir.close();
     }
 
     //Busca una Oferta especifica a partir del Numero de Identificacion de la Oferta

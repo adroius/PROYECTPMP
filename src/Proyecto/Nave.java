@@ -29,7 +29,7 @@ public abstract class Nave {
     }
 
     //Parte numerica del Numero de Registro
-    public String numaleatorios(){
+    public static String numaleatorios(){
         int numero = (int)(Math.random()*10000+1000);
         return String.valueOf(Math.abs(numero));
     }
