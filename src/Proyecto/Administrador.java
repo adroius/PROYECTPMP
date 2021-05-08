@@ -9,7 +9,9 @@ import java.util.Scanner;
 //Clase Administrador
 public class Administrador extends Usuario {
 
-    //Comprobar que la oferta es valida
+    public Administrador() {
+    }
+//Comprobar que la oferta es valida
     //Valida -> Permite mostrarla a los clientes
     //Na valida -> Borra la oferta y se manda una advertencia al vendedor
 

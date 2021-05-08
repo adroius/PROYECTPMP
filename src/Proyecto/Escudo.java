@@ -29,8 +29,8 @@ public class Escudo extends Defensa{
 
     @Override
     public String toString() {
-        return "Escudo: Energia requerida= " + energiaR +
-                "\nDaño Absorbido= " + danioQueAb;
+        return "Escudo: Energia requerida = " + energiaR +
+                "\nDaño Absorbido = " + danioQueAb;
     }
 
 }

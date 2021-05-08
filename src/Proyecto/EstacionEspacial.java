@@ -53,14 +53,20 @@ public class EstacionEspacial extends NaveBuilder{
 
     //Constructor EstacionEspacial sin introducir datos por pantalla
     public EstacionEspacial(int tripulantes, int pasajerosMaximos, int cantidadDef,
-                            int tipoDef, int cantidadProp, int tipoProp[]){
+                            int tipoDef[], int varIntroDef[], int cantidadProp, int tipoProp[]){
 
+        if (cantidadDef < 1 || cantidadDef > 3){
+            throw new IllegalStateException("Estacion Espacial tiene entre 1 y 3 defensas");
+        }
         this.numPasajerosMax = pasajerosMax(pasajerosMaximos);
         this.tripulantesTotales = tripulantesTotales(tripulantes);
-        this.defensa= sistemaDeDefensa(cantidadDef, tipoDef);
+        for (int i = 0; i < cantidadDef; i++) {
+            this.defensa = sistemaDeDefensa(tipoDef[i], varIntroDef[i]);
+        }
         this.prop= conjuntoDePropulsion(cantidadProp, tipoProp);
         this.conjuntoDeNaves=conjuntoNaves();
     }
+
     //Introducir la cantidad de tripulantes de la Estacion Espacial
     @Override
     public int tripulantesTotales(int tripulantes) {

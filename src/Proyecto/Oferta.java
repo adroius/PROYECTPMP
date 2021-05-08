@@ -304,6 +304,12 @@ public class Oferta {
                     lecturaOfertas.add("*");
                 }
             }
+            FileWriter fw = new FileWriter("userComprobar.txt");
+            PrintWriter escribir = new PrintWriter(fw);
+            for (int i = 0; i < lecturaOfertas.size(); i++) {
+                escribir.println(lecturaOfertas.get(i));
+            }
+            escribir.close();
             borrarOferta(mat);
         }
     }

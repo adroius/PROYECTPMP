@@ -62,7 +62,7 @@ public class Sistema {
         }
         for (int i = 0; i < fi.size(); i++) {
             if (fi.get(i).contains(usuarioEntrar)) {
-                numeroAdvertencia = Integer.parseInt(fi.get(i + 3));
+                numeroAdvertencia = Integer.parseInt(fi.get(i + 2));
                 break;
             }
         }
@@ -115,7 +115,7 @@ public class Sistema {
                 }
                 case 5: {
                     new Cliente();
-                    Cliente.verNotificaciones(usuarioEntrar);
+                    Cliente.verNotificaciones(cogerUsuario(usuarioEntrar));
                     break;
                 }
                 case 6: {
@@ -166,7 +166,7 @@ public class Sistema {
             FileWriter fw = new FileWriter("userNaves.txt");
             PrintWriter escritura = new PrintWriter(fw);
             for (int i = 0; i < fichero.size(); i++) {
-                escritura.write(fichero.get(i));
+                escritura.println(fichero.get(i));
             }
             escritura.close();
         } catch (IOException e) {
@@ -334,7 +334,8 @@ public class Sistema {
             System.out.println("¿Que es lo que quiere realizar?");
             System.out.println("1) Editar informacion Cliente");
             System.out.println("2) Editar informacion Ofertas");
-            System.out.println("3) Salir");
+            System.out.println("3) Validar ofertas");
+            System.out.println("4) Salir");
             int s = sc.nextInt();
             switch (s) {
                 case 1: {
@@ -350,6 +351,10 @@ public class Sistema {
                     break;
                 }
                 case 3: {
+                    new Administrador();
+                    break;
+                }
+                case 4: {
                     f = true;
                     break;
                 }
