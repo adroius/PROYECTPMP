@@ -138,24 +138,24 @@ public class Cliente {
     }
 
     //Comprueba que uno de los Clientes registrados tiene el Numero de Identificacion introducido
-    private static boolean comprobarNIdentificacion(String nIdentificacion) {
-        boolean encontrado = false;
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
-            String linea;
-            while ((linea = br.readLine()) != null && (!encontrado)) {
-                if (linea.contains(nIdentificacion)) {
-                    encontrado = true;
-                }
-            }
-            if (!encontrado) {
-                System.out.println("Error en los datos introducidos.");
-            }
-        } catch (IOException e) {
-            System.out.println("Error");
-        }
-        return encontrado;
-    }
+//    private static boolean comprobarNIdentificacion(String nIdentificacion) {
+//        boolean encontrado = false;
+//        try {
+//            BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
+//            String linea;
+//            while ((linea = br.readLine()) != null && (!encontrado)) {
+//                if (linea.contains(nIdentificacion)) {
+//                    encontrado = true;
+//                }
+//            }
+//            if (!encontrado) {
+//                System.out.println("Error en los datos introducidos.");
+//            }
+//        } catch (IOException e) {
+//            System.out.println("Error");
+//        }
+//        return encontrado;
+//    }
 
     //Comprobar si es de la especie Kromagg
     protected boolean isKromagg() {
