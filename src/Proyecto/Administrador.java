@@ -167,32 +167,30 @@ public class Administrador extends Usuario {
     public static void mandarNotificaciones(String tipoNave) throws IOException{
         String line;
         String line2;
+        String lineuser;
         List<String> fichero = new ArrayList<>();
+        List<String> ficheroUser = new ArrayList<>();
         BufferedReader br3 = new BufferedReader(new FileReader("usernotificaciones.txt"));
         while((line = br3.readLine()) != null){
             fichero.add(line);
         }
-
-
         BufferedReader br = new BufferedReader(new FileReader("suscriptoresOferta.txt"));
         while ( (line = br.readLine())  != null){
             if(line.equals(tipoNave)){
-
                 while ((line = br.readLine())  != null && !line.equals("*")){
                     BufferedReader br2 = new BufferedReader(new FileReader("usernotificaciones.txt"));
-                    while ( (line2 = br2.readLine())  != null){
-                        for (int i=0 ; i< fichero.size(); i++){
-                            if(line2.equals(fichero.get(i))){
-                               fichero.add(i+1,"Nueva oferta de "+tipoNave);
+                    while ( (line2 = br2.readLine())  != null && line2.equals(line)){
+                        while ((line2 = br2.readLine())  != "*"){
+                            for (int i=0 ; i< fichero.size(); i++){
+                                if(line2.equals(fichero.get(i))){
+                                    fichero.add(i+1,"Nueva oferta de "+tipoNave);
+                                }
                             }
                         }
-
                     }
                     br.readLine();
                 }
             }
-
-
         }
         FileWriter fw = new FileWriter("usernotificaciones.txt");
         PrintWriter escrit = new PrintWriter(fw);
