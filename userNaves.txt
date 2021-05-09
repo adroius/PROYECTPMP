@@ -1,17 +1,6 @@
 alba1234
 *
 dani12
-   Caza
-Numero de Tripulantes = 1
-Numero de Defensas = 1
-Defensas = [Escudo: Energia requerida = 1
-Daño Absorbido = 10]
-Armas = [La potencia del Misil Termonuclear es de 1 GigaJulios, La potencia del Misil Termonuclear es de 1 GigaJulios]
-Potencia total = 2
-Propulsion = [ Nombre = Motor FTL
-Velocidad = 4443]
-Numero de Identificacion = a-6337-ics
--
 *
 j1
 Estacion Espacial
@@ -40,4 +29,6 @@ Numero de Identificacion = l-7073-mjj]
 aa
 *
 pavire1234
+*
+uo123
 *

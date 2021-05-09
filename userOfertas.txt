@@ -1,18 +1,8 @@
-pavire1234
-   Caza
-Numero de Tripulantes = 1
+Caza
 Numero de Defensas = 1
-Defensas = [Escudo: Energia requerida = 1
 Daño Absorbido = 10]
-Armas = [La potencia del Rayo Laser es de 1 GigaJulios, La potencia del Misil Termonuclear es de 1 GigaJulios]
 Potencia total = 2
-Propulsion = [ Nombre = Motor Curvatura
-Velocidad = 4534,  Nombre = Motor FTL
-Velocidad = 3990]
-Numero de Identificacion = p-10220-mti
-Numero de oferta: 8348
-Precio de la nave: 1234
-Fecha Limite: 21/88/8675
-Suscriptores: 0
--
+Velocidad = 7014]
+Numero de oferta: 9229
+Fecha Limite: 1
 *
