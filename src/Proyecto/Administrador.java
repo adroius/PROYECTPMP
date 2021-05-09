@@ -155,6 +155,4 @@ public class Administrador extends Usuario {
         System.out.println("Llevas " + String.valueOf(numeroAdvertencia) + " advertencias.");
         Cliente.comprobarAdvertencias(String.valueOf(numeroAdvertencia));
     }
-
-
 }

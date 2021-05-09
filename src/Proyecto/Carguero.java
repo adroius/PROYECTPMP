@@ -53,7 +53,6 @@ public class Carguero extends NaveBuilder {
         this.prop = conjuntoDePropulsion(cantidadProp,tipoProp);
     }
 
-
     //Cantidad de tripulantes
     @Override
     public int tripulantesTotales(int tripulantes) {
