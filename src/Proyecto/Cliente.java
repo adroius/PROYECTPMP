@@ -47,7 +47,7 @@ public class Cliente {
     public static boolean suscribirseAUnaOferta(String tipoNave) throws IOException {
         boolean suscribirse;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Â¿Quieres suscribirte a esta oferta?");
+        System.out.println("¿Quieres suscribirte a esta oferta?");
         System.out.println("1) Si");
         System.out.println("2) No");
         int s = sc.nextInt();
@@ -63,8 +63,12 @@ public class Cliente {
                     while ((line = br.readLine()) != null){
                         fichero.add(line);
                     }
-                    while (br.readLine() != null && !ofertaEnElFichero) {
-                        ofertaEnElFichero = (br.readLine() == tipoNave);
+                    BufferedReader br2 = new BufferedReader(new FileReader("suscriptoresOferta.txt"));
+                    while (br2.readLine() != null && !ofertaEnElFichero) {
+                        if(br2.readLine() == tipoNave){
+                            ofertaEnElFichero = true;
+                            break;
+                        }
                     }
                     if (!ofertaEnElFichero) {
                         fichero.add(tipoNave);
