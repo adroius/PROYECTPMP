@@ -47,18 +47,3 @@ public class Kromagg{
     protected static boolean getLicencia(){
         return licencia;
     }
-
-
-
-    //Crear nave para Kromagg
-//    public NaveBuilder KromaggNave() {
-//        NaveBuilder nave = null;
-//        boolean license = getLicencia();
-//        if (license) {
-//            nave.CrearNave(); //Con Licencia puede comprar cualquier nave
-//        } else {
-//            nave.CrearNaveEspecial(); //Sin Licencia solo pueden comprar Cargueros y Cazas
-//        }
-//        return nave;
-//    }
-}

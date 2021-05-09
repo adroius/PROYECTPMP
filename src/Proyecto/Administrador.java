@@ -15,7 +15,6 @@ public class Administrador extends Usuario {
     //Valida -> Permite mostrarla a los clientes
     //Na valida -> Borra la oferta y se manda una advertencia al vendedor
 
-
     public boolean ofertaValida() throws IOException {
         boolean visible = true;
         String user = "";
