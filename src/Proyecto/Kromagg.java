@@ -17,7 +17,6 @@ public class Kromagg{
     }
 
     //Comprobar si tiene licencia
-    //Esto no tiene ningun tipo de seguridad...
     protected static int licenciaMenu(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Tienes licencia?");
@@ -47,3 +46,4 @@ public class Kromagg{
     protected static boolean getLicencia(){
         return licencia;
     }
+}

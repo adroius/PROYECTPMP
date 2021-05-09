@@ -115,7 +115,7 @@ public class Administrador extends Usuario {
         List<String> f = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
         String line2 = "";
-        int numeroAdvertencia=0;
+        int numeroAdvertencia = 0;
         while ((line2 = br.readLine()) != null) {
             f.add(line2);
         }

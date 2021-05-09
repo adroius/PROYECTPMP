@@ -63,6 +63,7 @@ class DestructorTest {
         int resultado = Nave.potenciaDeAtaque();
         assertEquals(1400 ,resultado);
     }
+
     @Test
     void conjuntoDePropulsionCantidadMenorUno() {
         int TArray[] = new int[] {1,2};
@@ -84,6 +85,7 @@ class DestructorTest {
             Nave.conjuntoDeArmas(0,TArray,TArray);
         });
     }
+
     @Test
     void tipoArma() {
         int TArray[] = new int[] {1,2};
