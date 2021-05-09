@@ -29,7 +29,7 @@ public abstract class Nave {
     }
 
     //Parte numerica del Numero de Registro
-    public String numaleatorios(){
+    public static String numaleatorios(){
         int numero = (int)(Math.random()*10000+1000);
         return String.valueOf(Math.abs(numero));
     }
@@ -64,7 +64,7 @@ public abstract class Nave {
     }
 
     //Lista de Armas de la nave
-    public abstract List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArmas[]);
+    public abstract List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArmas[], int potenciaArmas[]);
 
     //Lista de tipos de propulsion de la nave
     public abstract List<Propulsion> conjuntoDePropulsion(int cantidadProp, int tipoProp[]);

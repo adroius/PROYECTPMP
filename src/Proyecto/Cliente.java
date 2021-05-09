@@ -101,14 +101,10 @@ public class Cliente {
     }
 
     //Escribe en pantalla el numero de Advertencias del Cliente
-    public static void numeroAdvertencias(String nIdentificacion) {
-        boolean encontrado = comprobarNIdentificacion(nIdentificacion);
-        if (encontrado) {
-            System.out.println("Llevas " + nAdvertencias + " advertencias");
-        }
-        if (nAdvertencias == 2) {
-            noEntrarAlSistemaPorAdvertencias();
-        }
+    public static void comprobarAdvertencias(String ad) {
+            if (Integer.parseInt(ad)>= 2) {
+                noEntrarAlSistemaPorAdvertencias();
+            }
     }
 
     //Queda pasarle el usuario y poco más
@@ -140,27 +136,6 @@ public class Cliente {
                 throw new IllegalStateException("Valor no valido: ");
         }
     }
-
-    //Comprueba que uno de los Clientes registrados tiene el Numero de Identificacion introducido
-    private static boolean comprobarNIdentificacion(String nIdentificacion) {
-        boolean encontrado = false;
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
-            String linea;
-            while ((linea = br.readLine()) != null && (!encontrado)) {
-                if (linea.contains(nIdentificacion)) {
-                    encontrado = true;
-                }
-            }
-            if (!encontrado) {
-                System.out.println("Error en los datos introducidos.");
-            }
-        } catch (IOException e) {
-            System.out.println("Error");
-        }
-        return encontrado;
-    }
-
     //Comprobar si es de la especie Kromagg
     protected boolean isKromagg() {
         boolean is = false;
@@ -215,7 +190,7 @@ public class Cliente {
     }
 
     //Impide entrar al Sistema durante 5 días si el Cliente tiene 2 advertencias
-    private static boolean noEntrarAlSistemaPorAdvertencias() {
+    public static boolean noEntrarAlSistemaPorAdvertencias() {
         Timer timer = new Timer();
         int seconds = 432000;
         boolean bloqueoFinalizado = (seconds != 0);
@@ -228,7 +203,6 @@ public class Cliente {
         while (bloqueoFinalizado) {
             seconds -= 1;
             timer.schedule(bloqueo, 0, 1000);
-
         }
         nAdvertencias = 0; //Devuelve el numero de Advertencias a 0
         return bloqueoFinalizado;

@@ -262,14 +262,12 @@ public class Oferta {
             }
             min = 0;
             max = lecturaOfertas.size();
-            String naveElegida = "";
             boolean found = false;
             if (Sistema.pertenece(usuarioAmeter)) {
                 if (max != 0) {
                     while (!found && max != 0) {
                         if (usuarioAmeter.equals(lecturaOfertas.get(min))) {
                             min = min + 1;
-                            naveElegida = naves.get(0);
                             for (int i = 0; i < naves.size(); i++) {
                                 lecturaOfertas.add(min, naves.get(i));
                                 min = min + 1;
@@ -292,7 +290,6 @@ public class Oferta {
                 }
                 if (!found) {
                     lecturaOfertas.add(usuarioAmeter);
-                    naveElegida = naves.get(0);
                     for (int i = 0; i < naves.size(); i++) {
                         lecturaOfertas.add(naves.get(i));
                     }
@@ -304,20 +301,19 @@ public class Oferta {
                     lecturaOfertas.add("*");
                 }
             }
+            FileWriter fw = new FileWriter("userComprobar.txt");
+            PrintWriter escribir = new PrintWriter(fw);
+            for (int i = 0; i < lecturaOfertas.size(); i++) {
+                escribir.println(lecturaOfertas.get(i));
+            }
+            escribir.close();
             borrarOferta(mat);
         }
     }
 
     //Guarda la valoracion echa por el comprador y por el vendedor
-    public void votar() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("¿Desea realizar una valoración?");
-        System.out.println("1) Si");
-        System.out.println("2) No");
-        int c = sc.nextInt();
-        switch (c) {
-            case 1: {
-                try {
+    public static void votar() throws IOException {
+        Scanner sc=new Scanner(System.in);
                     List<String> fichero = new ArrayList<>();
                     BufferedReader br = new BufferedReader(new FileReader("usuarioVotacionYComentario.txt"));
                     String line;
@@ -325,6 +321,7 @@ public class Oferta {
                     while ((line = br.readLine()) != null) {
                         fichero.add(line);
                     }
+                    fichero.add(Sistema.usuarioEntrar + ":");
                     System.out.println("¿Cual es su valoración sobre 10?");
                     valoracion = sc.nextInt();
                     while (valoracion > 10 || valoracion < 0) {
@@ -334,7 +331,6 @@ public class Oferta {
                     fichero.add(String.valueOf(valoracion));
                     FileWriter fw = new FileWriter("usuarioVotacionYComentario.txt");
                     PrintWriter escribir = new PrintWriter(fw);
-                    escribir.println(Sistema.usuarioEntrar + ":");
                     for (int i = 0; i < fichero.size(); i++) {
                         escribir.println(fichero.get(i));
                     }
@@ -343,59 +339,32 @@ public class Oferta {
                     escribir.println("Valora a este usuario: " + line);
                     escribir.println("-");
                     escribir.close();
-                } catch (Exception e) {
-                    System.out.println("Error en la valoración");
-                }
-                break;
-            }
-            case 2: {
-                break;
-            }
-            default:
-                throw new IllegalStateException("Valor no valido");
         }
-    }
 
     //Guarda el comentario realizado por el comprador y por el vendedor
-    public void comentar() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("¿Desea realizar un comentario?");
-        System.out.println("1) Si");
-        System.out.println("2) No");
-        int c = sc.nextInt();
-        switch (c) {
-            case 1: {
-                try {
-                    List<String> fichero = new ArrayList<>();
-                    BufferedReader br = new BufferedReader(new FileReader("usuarioVotacionYComentario.txt"));
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        fichero.add(line);
-                    }
-                    System.out.println("¿Cual es su comentario?");
-                    line = sc.next();
-                    fichero.add(line);
-                    FileWriter fw = new FileWriter("usuarioVotacionYComentario.txt");
-                    PrintWriter escribir = new PrintWriter(fw);
-                    escribir.println(Sistema.usuarioEntrar + ":");
-                    for (int i = 0; i < fichero.size(); i++) {
-                        escribir.println(fichero.get(i));
-                    }
-                    System.out.println("¿A que usuario deseas comentar?");
-                    line = sc.next();
-                    escribir.println("Comenta a este usuario: " + line);
-                    escribir.println("-");
-                    escribir.close();
-                } catch (Exception e) {
-                    System.out.println("Error en la valoración");
-                }
-            }
-            case 2: {
-                break;
-            }
-            default:
-                throw new IllegalStateException("Valor no valido");
+    public static void comentar() throws IOException {
+        Scanner sc=new Scanner(System.in);
+        List<String> fichero = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader("usuarioVotacionYComentario.txt"));
+        String line;
+        while ((line = br.readLine()) != null) {
+            fichero.add(line);
         }
+        fichero.add(Sistema.usuarioEntrar + ":");
+        System.out.println("¿Cual es su comentario?");
+        line = sc.nextLine();
+        System.out.println(line);
+        fichero.add(line);
+        System.out.println("¿A que usuario deseas comentar?");
+        line = sc.next();
+        FileWriter fw = new FileWriter("usuarioVotacionYComentario.txt");
+        PrintWriter escribir = new PrintWriter(fw);
+        for (int i = 0; i < fichero.size(); i++) {
+            escribir.println(fichero.get(i));
+        }
+        escribir.println("Comenta a este usuario: " + line);
+        escribir.println("-");
+        escribir.close();
     }
 
     //Busca una Oferta especifica a partir del Numero de Identificacion de la Oferta

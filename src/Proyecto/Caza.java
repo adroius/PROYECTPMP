@@ -41,19 +41,21 @@ public class Caza extends NaveBuilder {
         //Conjunto de Armas de Caza (2)
         int cantidadArmas = 2;
         int tipoArma[] = new int[2];
+        int potenciaArma[] = new int[2];
         for (int i = 0; i < cantidadArmas; i++) {
             tipoArma[i] = ArmasMenu();
+            potenciaArma[i] = potenciaArmaMenu();
         }
-        this.conjuntoDeArmas = conjuntoDeArmas(cantidadArmas, tipoArma);
+        this.conjuntoDeArmas = conjuntoDeArmas(cantidadArmas, tipoArma, potenciaArma);
     }
 
     //Constructor de Caza sin introducir datos por pantalla
-    public Caza(int cantidadDef, int tipoDef, int cantidadProp,
-                int tipoProp[], int tipoArma[]){
+    public Caza(int tipoDef, int varIntroDef, int cantidadProp,
+                int tipoProp[], int tipoArma[], int potenciaArma[]){
         this.tripulantesTotales = tripulantesTotales(1);
-        this.defensa = sistemaDeDefensa(cantidadDef, tipoDef);
+        this.defensa = sistemaDeDefensa(tipoDef, varIntroDef);
         this.prop = conjuntoDePropulsion(cantidadProp, tipoProp);
-        this.conjuntoDeArmas = conjuntoDeArmas(2, tipoArma);
+        this.conjuntoDeArmas = conjuntoDeArmas(2, tipoArma,potenciaArma);
     }
 
 
@@ -151,15 +153,37 @@ public class Caza extends NaveBuilder {
         System.out.println("2) Rayo Laser");
         System.out.println("3) Cañon de plasma");
         int modelo = numeroIntroducido();
+
+        while (modelo > 3 || modelo < 0){
+            System.out.println("El numero introducido es incorrecto");
+            System.out.println("Que arma quiere elegir:");
+            System.out.println("0) PEM");
+            System.out.println("1) Misil Termonuclear");
+            System.out.println("2) Rayo Laser");
+            System.out.println("3) Cañon de plasma");
+            modelo = numeroIntroducido();
+        }
         return modelo;
     }
+
+    public static int potenciaArmaMenu() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Introduzca la potencia del arma: ");
+        int danio = sc.nextInt();
+        System.out.println("¡La potencia de su arma será " + danio + " !");
+        return danio;
+    }
+
     //Lista de Armas del Caza (Caza tiene 2 tipos de Armas)
-    public List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArma[]) {
+    public List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArma[], int potenciaArma[]) {
         List<Arma> armas = new ArrayList<>();
+        if (numeroArmas != 2){
+            throw new IllegalStateException("Caza tiene 2 armas...");
+        }
         //Escoger el tipo de Armas
         for (int i = 0; i < numeroArmas; i++) {
             //Escoger el tipo de Arma
-            Arma a = new Arma(tipoArma[i]);
+            Arma a = new Arma(tipoArma[i], potenciaArma[i]);
             armas.add(a);//Añadir el arma creada a la lista de Armas
             potencia += a.potencia; //Sumar la potencia de todas las armas del Caza
         }
@@ -181,6 +205,7 @@ public class Caza extends NaveBuilder {
         while (cantidad > 2 || cantidad <= 0) {
             System.out.println("La capacidad de la nave para portar propulsiones es limitada");
             System.out.println("¿Cuantas propulsiones va a querer (1 o 2)?");
+            cantidad = numeroIntroducido();
         }
         return cantidad;
     }
@@ -196,10 +221,14 @@ public class Caza extends NaveBuilder {
         tipoprop = numeroIntroducido();
         return tipoprop;
     }
+
     //Lista de tipos de Propulsion del Caza (1 o 2)
     @Override
     public List<Propulsion> conjuntoDePropulsion(int cantidadProp, int tipoProp[]) {
         List<Propulsion> prop = new ArrayList<>();
+        if (cantidadProp > 2 || cantidadProp < 1) {
+            throw new IllegalStateException("Tiene 1 o 2 tipos de propulsion");
+        }
         //Añadir los tipos de Propulsion
         for (int i = 0; i < cantidadProp; i++) {
             Propulsion a = new Propulsion(tipoProp[i]);

@@ -12,7 +12,6 @@ Numero de oferta: 10253
 Precio de la nave 165
 Fecha Limite 11/04/2021
 -
-*
 Caza:
 Numero de Tripulantes = 1
 Numero de Defensas = 1
@@ -25,4 +24,5 @@ Numero de Identificacion = j-3210-hfg
 Numero de oferta: 10253
 Precio de la nave 165
 Fecha Limite 11/04/2021
+-
 *

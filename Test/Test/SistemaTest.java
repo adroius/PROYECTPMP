@@ -26,12 +26,12 @@ class SistemaTest {
         }
     }
 
-    @Disabled
+    @Test
     void menuConValorBasura() {
 
     }
 
-    /*@Test
+    @Test
     void verOfertas() {
     }
 
@@ -55,12 +55,13 @@ class SistemaTest {
     void registrarNuevoCliente() {
     }
 
+
     @Test
     void iniciarSesion() {
     }
 
     @Test
     void buscarSiUserIsKromagg() {
-    }*/
+    }
 
 }

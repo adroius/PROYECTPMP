@@ -9,9 +9,9 @@ public class Arma {
     int potencia;
 
     //Constructor Arma
-    public Arma(int modelo) {
+    public Arma(int modelo, int potencia) {
         this.nombre = nombre(modelo);
-        this.potencia = potencia();
+        this.potencia = potencia(potencia);
     }
 
     //Nombre del arma de la nave
@@ -31,7 +31,7 @@ public class Arma {
                 isRayoLaser(nombre);
                 break;
             case 3:
-                nombre = "Cañon de plasma";
+                nombre = "Cañon de Plasma";
                 isCañonPlasma(nombre);
                 break;
             default:
@@ -42,12 +42,9 @@ public class Arma {
     }
 
     //Introducir la potencia del Arma
-    public static int potencia() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Introduzca la potencia del arma: ");
-        int danio = sc.nextInt();
-        System.out.println("¡La potencia de su arma será " + danio + " !");
-        return danio;
+    public static int potencia(int potencia) {
+        System.out.println("¡La potencia de su arma será " + potencia + " !");
+        return potencia;
     }
 
 
@@ -70,7 +67,6 @@ public class Arma {
 
     @Override
     public String toString() {
-
-        return "La potencia del " + nombre + " es de " + potencia+ "GigaJulios";
+        return "La potencia del " + nombre + " es de " + potencia+ " GigaJulios";
     }
 }

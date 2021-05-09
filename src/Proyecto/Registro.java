@@ -120,97 +120,84 @@ public class Registro {
         Oferta.borrarOfertaNave(matricula);
     }
 
-    public int DefensaTotal() throws IOException {
-        List<String> fichero = new ArrayList<>();
+    public String DefensaTotal() throws IOException {
         List<String> carrito = new ArrayList<>();
         int defensaTotal = 0;
-        Nave n = null;
         BufferedReader br = new BufferedReader(new FileReader("carritoDeLaCompra.txt"));
         String carrilista;
         while ((carrilista = br.readLine()) != null) {
             carrito.add(carrilista);
         }
-        boolean encontrado = false;
         for (int i = 0; i < carrito.size(); i++) {
-            if (carrito.get(i).contains(Sistema.usuarioEntrar)) {
-                carrito.set(i, "");
-                encontrado = true;
-                i++;
-                while (!(carrito.get(i).contains("*"))) {
-                    carrito.set(i, "");
-                    if ((carrito.get(i).contains("Defensa de la nave:"))) {
-                        defensaTotal += n.getDefensaTotal();
+            if (carrito.get(i).equals(Comprador())) {
+                while (!carrito.get(i).equals("*") && !carrito.get(i).equals(null)) {
+                    if (carrito.get(i).contains("DaÃ±o Absorbido= ")) {
+                        String potencia = carrito.get(i);
+                        String[] parts = potencia.split("= ");
+                        String[] part = parts[1].split("]");
+                        String part2 = part[0];
+                        defensaTotal += Integer.parseInt(part2);
                     }
                     i++;
                 }
-                carrito.set(i, "");
-                i = fichero.size();
             }
+
         }
-        System.out.print("Su aguante total es " + defensaTotal);
-        return defensaTotal;
+        String line = "Su defensa total es " + defensaTotal;
+        return line;
     }
 
-    public int PrecioTotal() throws IOException {
-        List<String> fichero = new ArrayList<>();
+
+    public String PrecioTotal() throws IOException {
         List<String> carrito = new ArrayList<>();
         int precioTotal = 0;
-        Oferta offer = null;
         BufferedReader br = new BufferedReader(new FileReader("carritoDeLaCompra.txt"));
         String carrilista;
         while ((carrilista = br.readLine()) != null) {
             carrito.add(carrilista);
         }
-        boolean encontrado = false;
         for (int i = 0; i < carrito.size(); i++) {
-            if (carrito.get(i).contains(Sistema.usuarioEntrar)) {
-                carrito.set(i, "");
-                encontrado = true;
-                i++;
-                while (!(carrito.get(i).contains("*"))) {
-                    carrito.set(i, "");
-                    if ((carrito.get(i).contains("Precio de la nave:"))) {
-                        precioTotal += offer.precio;
+            if (carrito.get(i).equals(Comprador())) {
+                while (!carrito.get(i).equals("*") && !carrito.get(i).equals(null)) {
+                    if (carrito.get(i).contains("Precio de la nave ")) {
+                        String potencia = carrito.get(i);
+                        String[] parts = potencia.split("nave ");
+                        String part2 = parts[1];
+                        precioTotal += Integer.parseInt(part2);
                     }
                     i++;
                 }
-                carrito.set(i, "");
-                i = fichero.size();
             }
+
         }
-        System.out.print("Su precio total es " + precioTotal);
-        return precioTotal;
+        String line = "Su precio total es " + precioTotal;
+        return line;
     }
 
-    public int DanyoTotal() throws IOException {
-        List<String> fichero = new ArrayList<>();
+
+    public String DanyoTotal() throws IOException {
         List<String> carrito = new ArrayList<>();
         int danyoTotal = 0;
-        Nave n = null;
         BufferedReader br = new BufferedReader(new FileReader("carritoDeLaCompra.txt"));
         String carrilista;
         while ((carrilista = br.readLine()) != null) {
             carrito.add(carrilista);
         }
-        boolean encontrado = false;
         for (int i = 0; i < carrito.size(); i++) {
-            if (carrito.get(i).contains(Sistema.usuarioEntrar)) {
-                carrito.set(i, "");
-                encontrado = true;
-                i++;
-                while (!(carrito.get(i).contains("*"))) {
-                    carrito.set(i, "");
-                    if ((carrito.get(i).contains("Potencia total"))) {
-                        danyoTotal += n.potenciaDeAtaque();
+            if (carrito.get(i).equals(Comprador())) {
+                while (!carrito.get(i).equals("*") && !carrito.get(i).equals(null)) {
+                    if (carrito.get(i).contains("Potencia total =")) {
+                        String potencia = carrito.get(i);
+                        String[] parts = potencia.split("= ");
+                        String part2 = parts[1];
+                        danyoTotal += Integer.parseInt(part2);
                     }
                     i++;
                 }
-                carrito.set(i, "");
-                i = fichero.size();
             }
         }
-        System.out.print("Su potencia total es " + danyoTotal);
-        return danyoTotal;
+        String line = "Su potencia total es " + danyoTotal;
+        return line;
     }
 
     public void ejecutarCompra() throws IOException {
@@ -248,21 +235,31 @@ public class Registro {
         boolean found = false;
         if (encontrado) {
             for (int e = 0; e < fichero.size(); e++) {
-                if (fichero.get(e).contains(Sistema.usuarioEntrar)) {
+                if (fichero.get(e).contains(Comprador())) {
                     found = true;
                     e++;
                     for (int i = 0; i < carritoIndividual.size(); i++) {
                         fichero.add(e, carritoIndividual.get(i));
                         e++;
                     }
+                    fichero.add(PrecioTotal());
+                    fichero.add(DefensaTotal());
+                    fichero.add(DanyoTotal());
+                    fichero.add(Vendedor());
+                    fichero.add("-");
                     e = fichero.size();
                 }
             }
             if (!found) {
-                fichero.add(Sistema.usuarioEntrar);
+                fichero.add(Comprador());
                 for (int e = 0; e < carritoIndividual.size(); e++) {
                     fichero.add(carritoIndividual.get(e));
                 }
+                fichero.add(PrecioTotal());
+                fichero.add(DefensaTotal());
+                fichero.add(DanyoTotal());
+                fichero.add(Vendedor());
+                fichero.add("-");
                 fichero.add("*");
             }
         }
@@ -279,5 +276,21 @@ public class Registro {
             escritura.println(fichero.get(i));
         }
         escritura.close();
+        System.out.println("¿Desea realizar una votacion?");
+        System.out.println("1) Si");
+        System.out.println("2) No");
+        Scanner sc=new Scanner(System.in);
+        int e=sc.nextInt();
+        if (e == 1) {
+            Oferta.votar();
+        }
+        System.out.println("¿Desea realizar una comentario?");
+        System.out.println("1) Si");
+        System.out.println("2) No");
+        e=sc.nextInt();
+        if (e == 1) {
+            Oferta.comentar();
+        }
+
     }
 }

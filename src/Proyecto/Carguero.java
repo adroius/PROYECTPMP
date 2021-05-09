@@ -24,7 +24,7 @@ public class Carguero extends NaveBuilder {
         var = numeroIntroducido();
         this.carga = carga(var);
 
-        //Sistemas de Defensa de Carguero (Tiene 1 tipo de Defensa)
+        //Sistemas de Defensa de Carguero (1 Defensa)
         var = sistemaDeDefensamenu();
         int def = 0;
         if (var==1){
@@ -44,14 +44,14 @@ public class Carguero extends NaveBuilder {
     }
 
     //Constructor Carguero sin introducir datos por pantalla
-    public Carguero(int tripulantes, int carga,int cantidadDef,int tipodef,
+    public Carguero(int tripulantes, int carga,int tipoDef ,int varIntroDef,
                     int cantidadProp,int tipoProp[]) {
+
         this.tripulantesTotales = tripulantesTotales(tripulantes);
         this.carga = carga(carga);
-        this.defensa = sistemaDeDefensa(cantidadDef,tipodef);
+        this.defensa = sistemaDeDefensa(tipoDef, varIntroDef);
         this.prop = conjuntoDePropulsion(cantidadProp,tipoProp);
     }
-
 
     //Cantidad de tripulantes
     @Override
@@ -111,8 +111,8 @@ public class Carguero extends NaveBuilder {
         return c;
     }
 
-    //Lista de defensas del Carguero (Carguero solo puede tener una defensa)
-        public List<Defensa> sistemaDeDefensa(int tipoDef,int varIntroducir) {
+    //Lista de defensas del Carguero (Carguero tiene 1 defensa)
+    public List<Defensa> sistemaDeDefensa(int tipoDef,int varIntroducir) {
         List<Defensa> defensa = new ArrayList<>();
         //Escoger el tipo de Defensa del Carguero
             Defensa d;
@@ -120,13 +120,13 @@ public class Carguero extends NaveBuilder {
                 case 1: {
                     d = new Escudo(varIntroducir); //Constructor Escudo
                     defensa.add(d);
-                    defensaTotal += d.danioQueAbsorbe();
+                    defensaTotal += d.getDanioQueAbsorbe();
                     break;
                 }
                 case 2: {
                     d = new Blindaje(varIntroducir); //Constructor Blindaje
                     defensa.add(d);
-                    defensaTotal += d.danioQueAbsorbe();
+                    defensaTotal += d.getDanioQueAbsorbe();
                     break;
                 }
                 //El dato introducido es incorrecto
@@ -141,7 +141,7 @@ public class Carguero extends NaveBuilder {
     }
 
     //Cargueros no tiene armas
-    public List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArma[]) {
+    public List<Arma> conjuntoDeArmas(int numeroArmas, int tipoArma[], int potenciaArmas[]) {
         return null;
     }
 
@@ -178,6 +178,9 @@ public class Carguero extends NaveBuilder {
     //Lista de tipos de Propulsion del Carguero (1 o 2)
     public List<Propulsion> conjuntoDePropulsion(int cantidadProp, int tipoPropArray[]) {
         List<Propulsion> prop = new ArrayList<>();
+        if (cantidadProp > 2 || cantidadProp < 1) {
+            throw new IllegalStateException("Tiene 1 o 2 tipos de propulsion");
+        }
         //Añadir los tipos de Propulsion
         for (int i = 0; i < cantidadProp; i++) {
             Propulsion a = new Propulsion(tipoPropArray[i]);
@@ -198,7 +201,7 @@ public class Carguero extends NaveBuilder {
 
     @Override
     public String toString() {
-        return "   Carguero" +
+        return "Carguero" +
                 "\nNumero de Tripulantes = " + tripulantesTotales +
                 "\nCarga Máxima = " + carga +
                 "\nNumero de Defensas = " + numDefensas +
