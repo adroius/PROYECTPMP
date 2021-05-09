@@ -97,22 +97,22 @@ public class Cliente {
                 escribir.close();
                 break;
             }
-        case 2: {
-            suscribirse = false;
-            break;
+            case 2: {
+                suscribirse = false;
+                break;
+            }
+            default:
+                throw new IllegalStateException("Valor no valido");
         }
-        default:
-        throw new IllegalStateException("Valor no valido");
-    }
         return suscribirse;
-}
+    }
 
     //Escribe en pantalla el numero de Advertencias del Cliente
 
     public static void comprobarAdvertencias(String ad) {
-        if (Integer.parseInt(ad) >= 2) {
-            noEntrarAlSistemaPorAdvertencias();
-        }
+            if (Integer.parseInt(ad)>= 2) {
+                noEntrarAlSistemaPorAdvertencias();
+            }
     }
 
     //Queda pasarle el usuario y poco más
@@ -130,7 +130,7 @@ public class Cliente {
                 }
                 FileWriter fw = new FileWriter("usernotificaciones.txt");
                 PrintWriter escribir = new PrintWriter(fw);
-                if (br.readLine() == null) {
+                if(br.readLine()== null){
                     System.out.println("No tienes notificaciones");
                 } else {
                     while ((line = br.readLine()) != "-" && line != null) {
@@ -148,7 +148,6 @@ public class Cliente {
                 throw new IllegalStateException("Valor no valido: ");
         }
     }
-
     //Comprobar si es de la especie Kromagg
     protected boolean isKromagg() {
         boolean is = false;

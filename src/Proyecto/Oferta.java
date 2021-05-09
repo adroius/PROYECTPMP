@@ -5,7 +5,6 @@ import java.util.*;
 
 //Clase Oferta
 public class Oferta {
-    public int suscriptores;
     String nIdentificacion; //Numero de identificacion de Oferta
     int valoracion;
     String comentario;
@@ -14,7 +13,6 @@ public class Oferta {
     //Constructor Oferta
     public Oferta() {
         this.nIdentificacion = numaleatorios();
-        this.suscriptores = 0;
     }
 
     public static void modificarOferta(String id) throws IOException {
@@ -279,8 +277,6 @@ public class Oferta {
                             min = min + 1;
                             lecturaOfertas.add(min, "Fecha Limite " + d);
                             min = min + 1;
-                            lecturaOfertas.add(min, "Suscriptores " + suscriptores);
-                            min = min + 1;
                             lecturaOfertas.add(min, "-");
                             found = true;
                         } else {
@@ -297,7 +293,6 @@ public class Oferta {
                     lecturaOfertas.add("Numero de oferta: " + this.nIdentificacion);
                     lecturaOfertas.add("Precio de la nave: " + precio);
                     lecturaOfertas.add("Fecha Limite: " + d);
-                    lecturaOfertas.add("Suscriptores: " + suscriptores);
                     lecturaOfertas.add("-");
                     lecturaOfertas.add("*");
                 }

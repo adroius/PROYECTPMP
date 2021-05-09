@@ -28,6 +28,7 @@ public class Administrador extends Usuario {
     }
 
     //Comprobar si las ofertas son validas
+    //Comprobar si las ofertas son validas
     private static boolean ofertaComprobar() throws IOException {
         boolean valido;
         BufferedReader br = new BufferedReader(new FileReader("userComprobar.txt"));
@@ -35,10 +36,14 @@ public class Administrador extends Usuario {
         Scanner sc = new Scanner(System.in);
         String line;
         String line2;
+        String tipoNave = "";
         List<String> fichero = new ArrayList<>();
         while ((line = br.readLine()) != null && line != "-") {
             System.out.println(line);
             fichero.add(line);
+            if (line.contains("Caza") || line.contains("Carguero") || line.contains("Destructor") || line.contains("Estacion Espacial")){
+                tipoNave = line;
+            }
         }
         System.out.println("¿La oferta es válida?");
         System.out.println("1) Si");
@@ -57,15 +62,20 @@ public class Administrador extends Usuario {
                     }
                     escritura.close();
                 }
+                for(int i = 0; i < fichero.size(); i++) {
+                    fichero.remove(i);
+                }
                 while ((line2 = br2.readLine()) != null && line2 != "-") {
                     FileWriter fw2 = new FileWriter("userComprobar.txt");
                     PrintWriter escritura2 = new PrintWriter(fw2);
                     for (int i = 0; i < fichero.size(); i++) {
-                        escritura2.println("");
+                        escritura2.println(fichero.get(i));
                     }
                     escritura2.close();
                 }
+                mandarNotificaciones(tipoNave);
                 break;
+
             }
             case 2: {
                 valido = false;
@@ -87,7 +97,7 @@ public class Administrador extends Usuario {
             fichero.add(line);
         }
         for (int i = 0; i <= fichero.size(); i++) {
-            if ((fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
+            if ((fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor")  || fichero.get(i).contains("Estacion Espacial"))) {
                 i--;
                 user = fichero.get(i);
                 break;
@@ -153,5 +163,42 @@ public class Administrador extends Usuario {
         escrit.close();
         System.out.println("Llevas " + numeroAdvertencia + " advertencias.");
         Cliente.comprobarAdvertencias(String.valueOf(numeroAdvertencia));
+    }
+    public static void mandarNotificaciones(String tipoNave) throws IOException{
+        String line;
+        String line2;
+        List<String> fichero = new ArrayList<>();
+        BufferedReader br3 = new BufferedReader(new FileReader("usernotificaciones.txt"));
+        while((line = br3.readLine()) != null){
+            fichero.add(line);
+        }
+
+
+        BufferedReader br = new BufferedReader(new FileReader("suscriptoresOferta.txt"));
+        while ( (line = br.readLine())  != null){
+            if(line.equals(tipoNave)){
+
+                while ((line = br.readLine())  != null && !line.equals("*")){
+                    BufferedReader br2 = new BufferedReader(new FileReader("usernotificaciones.txt"));
+                    while ( (line2 = br2.readLine())  != null){
+                        for (int i=0 ; i< fichero.size(); i++){
+                            if(line2.equals(fichero.get(i))){
+                               fichero.add(i+1,"Nueva oferta de "+tipoNave);
+                            }
+                        }
+
+                    }
+                    br.readLine();
+                }
+            }
+
+
+        }
+        FileWriter fw = new FileWriter("usernotificaciones.txt");
+        PrintWriter escrit = new PrintWriter(fw);
+        for (int i = 0; i < fichero.size(); i++) {
+            escrit.println(fichero.get(i));
+        }
+        escrit.close();
     }
 }

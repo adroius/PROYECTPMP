@@ -212,7 +212,8 @@ public class Sistema {
     }
 
     //Registrar Nuevo Cliente
-    public Usuario registrarNuevoCliente() throws IOException {
+    public Usuario registrarNuevoCliente(){
+        List<String> ficheroNotificaciones = new ArrayList<>();
         List<String> ficheroContraseña = new ArrayList<>();
         List<String> ficheroInfo = new ArrayList<>();
         List<String> ficheroInfoAux = new ArrayList<>();
@@ -227,12 +228,23 @@ public class Sistema {
             while ((line = br.readLine()) != null) {
                 ficheroInfo.add(line);
             }
+            br = new BufferedReader(new FileReader("usernotificaciones.txt"));
+            while ((line = br.readLine()) != null) {
+                ficheroNotificaciones.add(line);
+            }
             String s = u.user + u.contrasena;
             ficheroContraseña.add(s);
+            ficheroNotificaciones.add(s);
             FileWriter fw = new FileWriter("usercontraseña.txt");
             PrintWriter escritura = new PrintWriter(fw);
             for (int i = 0; i < ficheroContraseña.size(); i++) {
                 escritura.println(ficheroContraseña.get(i));
+            }
+            escritura.close();
+            fw = new FileWriter("usernotificaciones.txt");
+            escritura = new PrintWriter(fw);
+            for (int i = 0; i < ficheroNotificaciones.size(); i++) {
+                escritura.println(ficheroNotificaciones.get(i));
             }
             escritura.close();
             fw = new FileWriter("usuarioInfo.txt");
