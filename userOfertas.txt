@@ -1,17 +1,16 @@
-alba1234
+aa
    Caza
 Numero de Tripulantes = 1
 Numero de Defensas = 1
-Defensas = [Escudo: Energia requerida= 1
-Daño Absorbido= 10]
+Defensas = [Escudo: Energia requerida = 1
+Daño Absorbido = 10]
 Armas = [La potencia del Misil Termonuclear es de 1 GigaJulios, La potencia del Misil Termonuclear es de 1 GigaJulios]
 Potencia total = 2
 Propulsion = [ Nombre = Motor FTL
-Velocidad = 10435]
-Numero de Identificacion = a-7246-bru
-Numero de oferta: 8822
-Precio de la nave: 125
-Fecha Limite: 12
-Suscriptores: 0
+Velocidad = 1770]
+Numero de Identificacion = a-9069-ldc
+Numero de oferta: 7539
+Precio de la nave: 123
+Fecha Limite: 21
 -
 *

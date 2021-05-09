@@ -54,64 +54,65 @@ public class Cliente {
         switch (s) {
             case 1: {
                 suscribirse = true;
-                try {
-                    BufferedReader br = new BufferedReader(new FileReader("suscriptoresOferta.txt"));
-                    List<String> fichero = new ArrayList<>();
-                    boolean encontrado = false;
-                    boolean ofertaEnElFichero = false;
-                    String line;
-                    while ((line = br.readLine()) != null){
-                        fichero.add(line);
-                    }
-                    BufferedReader br2 = new BufferedReader(new FileReader("suscriptoresOferta.txt"));
-                    while (br2.readLine() != null && !ofertaEnElFichero) {
-                        if(br2.readLine() == tipoNave){
-                            ofertaEnElFichero = true;
-                            break;
-                        }
-                    }
-                    if (!ofertaEnElFichero) {
-                        fichero.add(tipoNave);
-                        fichero.add(Sistema.usuarioEntrar);
-                        fichero.add("-");
-                    } else {
-                        while (br.readLine() != "-" && !encontrado) {
-                            encontrado = (br.readLine() == Sistema.usuarioEntrar);
-                        }
-                        if (encontrado) {
-                            System.out.print("Ya estas suscrito a esta oferta");
-                        } else {
-                            fichero.add(Sistema.usuarioEntrar);
-                            fichero.add("-");
-                        }
-                        FileWriter fw = new FileWriter("suscriptoresOferta.txt");
-                        PrintWriter escribir = new PrintWriter(fw);
-                        for (int i = 0; i < fichero.size(); i++) {
-                            escribir.println(fichero.get(i));
-                        }
-                        escribir.close();
-                    }
-                } catch (Exception e) {
-                    System.out.println("Error al suscribirte");
+                BufferedReader br = new BufferedReader(new FileReader("suscriptoresOferta.txt"));
+                BufferedReader br2 = new BufferedReader(new FileReader("suscriptoresOferta.txt"));
+                List<String> fichero = new ArrayList<>();
+                boolean encontrado = false;
+                boolean ofertaEnElFichero = false;
+                String line;
+                while ((line = br.readLine()) != null) {
+                    fichero.add(line);
                 }
+                int i=0;
+                int posNave=0;
+                while ((line = br2.readLine()) != null && !ofertaEnElFichero) {
+                    ofertaEnElFichero = (line.contains(tipoNave));
+                    if (line.contains(tipoNave)){
+                        posNave=i;
+                    }
+                    i++;
+                }
+                if (!ofertaEnElFichero) {
+                    fichero.add(tipoNave);
+                    fichero.add(Sistema.usuarioEntrar);
+                    fichero.add("-");
+                    fichero.add("*");
+                } else {
+                    while (!line.equals("-") && !encontrado) {
+                        encontrado = (line.contains(Sistema.usuarioEntrar));
+                        line = br2.readLine();
+                    }
+                    if (encontrado) {
+                        System.out.print("Ya estas suscrito a esta oferta");
+                    } else {
+                        fichero.add(posNave+1,Sistema.usuarioEntrar);
+                        fichero.add(posNave+2,"-");
+                    }
+                }
+                FileWriter fw = new FileWriter("suscriptoresOferta.txt");
+                PrintWriter escribir = new PrintWriter(fw);
+                for (int ij = 0; ij < fichero.size(); ij++) {
+                    escribir.println(fichero.get(ij));
+                }
+                escribir.close();
                 break;
             }
-            case 2: {
-                suscribirse = false;
-                break;
-            }
-            default:
-                throw new IllegalStateException("Valor no valido");
+        case 2: {
+            suscribirse = false;
+            break;
         }
-        return suscribirse;
+        default:
+        throw new IllegalStateException("Valor no valido");
     }
+        return suscribirse;
+}
 
     //Escribe en pantalla el numero de Advertencias del Cliente
 
     public static void comprobarAdvertencias(String ad) {
-            if (Integer.parseInt(ad)>= 2) {
-                noEntrarAlSistemaPorAdvertencias();
-            }
+        if (Integer.parseInt(ad) >= 2) {
+            noEntrarAlSistemaPorAdvertencias();
+        }
     }
 
     //Queda pasarle el usuario y poco más
@@ -129,7 +130,7 @@ public class Cliente {
                 }
                 FileWriter fw = new FileWriter("usernotificaciones.txt");
                 PrintWriter escribir = new PrintWriter(fw);
-                if(br.readLine()== null){
+                if (br.readLine() == null) {
                     System.out.println("No tienes notificaciones");
                 } else {
                     while ((line = br.readLine()) != "-" && line != null) {
@@ -147,6 +148,7 @@ public class Cliente {
                 throw new IllegalStateException("Valor no valido: ");
         }
     }
+
     //Comprobar si es de la especie Kromagg
     protected boolean isKromagg() {
         boolean is = false;
