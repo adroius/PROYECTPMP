@@ -203,6 +203,7 @@ public class Oferta {
         for (int i = 0; i < naves.size(); i++) {
             System.out.println(naves.get(i));
         }
+        Cliente.suscribirseAUnaOferta(c);
         return encontrado;
     }
 
@@ -384,6 +385,7 @@ public class Oferta {
                 while (!(fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
                     i--;
                 }
+                Cliente.suscribirseAUnaOferta(fichero.get(i));
                 while (!fichero.get(i).equals("-")) {
                     nave.add(fichero.get(i));
                     i++;

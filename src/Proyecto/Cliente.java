@@ -44,11 +44,10 @@ public class Cliente {
     }
 
     //Suscribirse a una Oferta Especifica
-    public static boolean suscribirseAUnaOferta(String nOferta) throws IOException {
+    public static boolean suscribirseAUnaOferta(String tipoNave) throws IOException {
         boolean suscribirse;
-        Oferta offer = null;
         Scanner sc = new Scanner(System.in);
-        System.out.println("¿Quieres suscribirte a esta oferta?");
+        System.out.println("Â¿Quieres suscribirte a esta oferta?");
         System.out.println("1) Si");
         System.out.println("2) No");
         int s = sc.nextInt();
@@ -56,35 +55,38 @@ public class Cliente {
             case 1: {
                 suscribirse = true;
                 try {
-                    FileWriter escribir = new FileWriter("suscriptoresOferta.txt");
-                    System.out.println("Escribe tu numero de identificacion");
-                    String nIdentificacion = sc.next();
                     BufferedReader br = new BufferedReader(new FileReader("suscriptoresOferta.txt"));
+                    List<String> fichero = new ArrayList<>();
                     boolean encontrado = false;
                     boolean ofertaEnElFichero = false;
-                    boolean fin = (br.readLine() == null);
-                    while (!fin && !ofertaEnElFichero) {
-                        ofertaEnElFichero = (br.readLine() == nOferta);
+                    String line;
+                    while ((line = br.readLine()) != null){
+                        fichero.add(line);
+                    }
+                    while (br.readLine() != null && !ofertaEnElFichero) {
+                        ofertaEnElFichero = (br.readLine() == tipoNave);
                     }
                     if (!ofertaEnElFichero) {
-                        escribir.write(nOferta);
-                        offer.suscriptores += 1;
-                        escribir.write(nIdentificacion);
-                        escribir.write("-");
+                        fichero.add(tipoNave);
+                        fichero.add(Sistema.usuarioEntrar);
+                        fichero.add("-");
                     } else {
                         while (br.readLine() != "-" && !encontrado) {
-                            encontrado = (br.readLine() == nIdentificacion);
-
+                            encontrado = (br.readLine() == Sistema.usuarioEntrar);
                         }
                         if (encontrado) {
                             System.out.print("Ya estas suscrito a esta oferta");
                         } else {
-                            offer.suscriptores += 1;
-                            escribir.write(nIdentificacion);
-                            escribir.write("-");
+                            fichero.add(Sistema.usuarioEntrar);
+                            fichero.add("-");
                         }
+                        FileWriter fw = new FileWriter("suscriptoresOferta.txt");
+                        PrintWriter escribir = new PrintWriter(fw);
+                        for (int i = 0; i < fichero.size(); i++) {
+                            escribir.println(fichero.get(i));
+                        }
+                        escribir.close();
                     }
-                    escribir.close();
                 } catch (Exception e) {
                     System.out.println("Error al suscribirte");
                 }
@@ -101,6 +103,7 @@ public class Cliente {
     }
 
     //Escribe en pantalla el numero de Advertencias del Cliente
+
     public static void comprobarAdvertencias(String ad) {
             if (Integer.parseInt(ad)>= 2) {
                 noEntrarAlSistemaPorAdvertencias();
@@ -122,9 +125,13 @@ public class Cliente {
                 }
                 FileWriter fw = new FileWriter("usernotificaciones.txt");
                 PrintWriter escribir = new PrintWriter(fw);
-                while ((line = br.readLine()) != "-" && line != null) {
-                    System.out.println(line);
-                    escribir.println("");
+                if(br.readLine()== null){
+                    System.out.println("No tienes notificaciones");
+                } else {
+                    while ((line = br.readLine()) != "-" && line != null) {
+                        System.out.println(line);
+                        escribir.println("");
+                    }
                 }
                 escribir.close();
             }
