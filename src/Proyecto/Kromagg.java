@@ -11,14 +11,12 @@ public class Kromagg{
         int numero = licenciaMenu();
         licencia = licencia(numero);
     }
-
     //Constructor Kromagg sin introducir datos por pantalla
     public Kromagg(int numero){
         licencia = licencia(numero);
     }
 
     //Comprobar si tiene licencia
-    //Esto no tiene ningun tipo de seguridad...
     protected static int licenciaMenu(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Tienes licencia?");
@@ -48,5 +46,4 @@ public class Kromagg{
     protected static boolean getLicencia(){
         return licencia;
     }
-
 }

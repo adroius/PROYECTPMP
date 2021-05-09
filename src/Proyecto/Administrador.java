@@ -15,7 +15,6 @@ public class Administrador extends Usuario {
     //Valida -> Permite mostrarla a los clientes
     //Na valida -> Borra la oferta y se manda una advertencia al vendedor
 
-
     public boolean ofertaValida() throws IOException {
         boolean visible = true;
         String user = "";
@@ -116,7 +115,7 @@ public class Administrador extends Usuario {
         List<String> f = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
         String line2 = "";
-        int numeroAdvertencia=0;
+        int numeroAdvertencia = 0;
         while ((line2 = br.readLine()) != null) {
             f.add(line2);
         }
