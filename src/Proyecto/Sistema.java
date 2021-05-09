@@ -315,6 +315,7 @@ public class Sistema {
         boolean encontrado = false;
         System.out.println("Introduzca usuario");
         String user = sc.next();
+        usuarioSolo=user;
         System.out.println("Introduzca contraseña");
         user += sc.next();
         switch (user) {
