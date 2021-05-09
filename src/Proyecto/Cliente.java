@@ -131,14 +131,14 @@ public class Cliente {
                 while ((linea=br.readLine()) != null) {
                     fichero.add(linea);
                 }
-                for (int i =0;i<=fichero.size();i++){
+                for (int i =0;i<fichero.size();i++){
                     if(fichero.get(i) == null){
                         System.out.println("No tienes notificaciones");
                     } else if (fichero.get(i).equals(user)){
                             i++;
                             FileWriter fw = new FileWriter("usernotificaciones.txt");
                             PrintWriter escribir = new PrintWriter(fw);
-                            while (!fichero.get(i).equals("-")){
+                            while (!fichero.get(i).equals("*")){
                                 System.out.println(fichero.get(i));
                                 i++;
                             }
