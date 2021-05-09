@@ -114,7 +114,7 @@ public class Sistema {
                     break;
                 }
                 case 5: {
-                    Cliente.verNotificaciones(cogerUsuario(usuarioEntrar));
+                    Cliente.verNotificaciones(usuarioEntrar);
                     break;
                 }
                 case 6: {
