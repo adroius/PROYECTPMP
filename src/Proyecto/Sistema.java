@@ -114,7 +114,6 @@ public class Sistema {
                     break;
                 }
                 case 5: {
-                    new Cliente();
                     Cliente.verNotificaciones(cogerUsuario(usuarioEntrar));
                     break;
                 }
@@ -379,7 +378,7 @@ public class Sistema {
                     break;
                 }
                 case 3: {
-                    new Administrador();
+                    Administrador.ofertaValida();
                     break;
                 }
                 case 4: {
@@ -413,7 +412,7 @@ public class Sistema {
     }
 
 
-    public void getSistema() throws IOException {
+    public static void getSistema() throws IOException {
         new Sistema();
     }
 }

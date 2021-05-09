@@ -122,7 +122,7 @@ public class Cliente {
                 }
                 FileWriter fw = new FileWriter("usernotificaciones.txt");
                 PrintWriter escribir = new PrintWriter(fw);
-                while ((line = br.readLine()) != "-") {
+                while ((line = br.readLine()) != "-" && line != null) {
                     System.out.println(line);
                     escribir.println("");
                 }

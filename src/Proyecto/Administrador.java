@@ -10,13 +10,12 @@ import java.util.Scanner;
 public class Administrador extends Usuario {
 
     public Administrador() throws IOException {
-        ofertaValida();
     }
 //Comprobar que la oferta es valida
     //Valida -> Permite mostrarla a los clientes
     //Na valida -> Borra la oferta y se manda una advertencia al vendedor
 
-    private boolean ofertaValida() throws IOException {
+    public static boolean ofertaValida() throws IOException {
         boolean visible = true;
         String user;
         boolean comprobar = ofertaComprobar();
@@ -29,7 +28,7 @@ public class Administrador extends Usuario {
     }
 
     //Comprobar si las ofertas son validas
-    private boolean ofertaComprobar() throws IOException {
+    private static boolean ofertaComprobar() throws IOException {
         boolean valido;
         BufferedReader br = new BufferedReader(new FileReader("userComprobar.txt"));
         BufferedReader br2 = new BufferedReader(new FileReader("userComprobar.txt"));
@@ -78,7 +77,7 @@ public class Administrador extends Usuario {
         return valido;
     }
 
-    private String eliminarOferta() throws IOException {
+    private static String eliminarOferta() throws IOException {
         List<String> fichero = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("userComprobar.txt"));
 
@@ -112,7 +111,7 @@ public class Administrador extends Usuario {
         return user;
     }
 
-    private void notificarVendedorConAdvertencia(String nUser) throws IOException {
+    private static void notificarVendedorConAdvertencia(String nUser) throws IOException {
         List<String> f = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
         String line2 = "";

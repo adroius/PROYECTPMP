@@ -1,2 +1,26 @@
 alba1234
 *
+j1
+Estacion Espacial
+Numero de Tripulantes = 5
+Numero de Pasajeros Máximo4
+Numero de Defensas = 1
+Defensas = [  Blindaje: 
+Material ='Plata
+Danio Que Absorbe =7324823
+Peso = 73248230]
+Potencia total del conjunto de naves = 0
+Propulsion = [ Nombre = Motor FTL
+Velocidad = 10412]
+Numero de Identificacion = m-8217-psj
+Naves = [Carguero
+Numero de Tripulantes = 1
+Carga Máxima = 2
+Numero de Defensas = 1
+Defensas = [Escudo: Energia requerida = 123
+Daño Absorbido = 1230]
+Propulsion = [ Nombre = Motor FTL
+Velocidad = 2015]
+Numero de Identificacion = l-7073-mjj]
+-
+*
