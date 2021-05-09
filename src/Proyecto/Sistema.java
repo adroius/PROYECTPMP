@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Sistema {
     private int intentospermitidos = 2; //Se permiten dos intentos para poner bien el usuario y la contraseña
     public static String usuarioEntrar = "";
-    public static String usuarioSolo = "";//Guardar el Cliente que a entrado
+    public static String usuarioSolo ="";//Guardar el Cliente que a entrado
     boolean isKromagg = false;
 
     //Constructor Sistema
