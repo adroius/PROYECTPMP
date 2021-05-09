@@ -14,7 +14,7 @@ public class Sistema {
 
     //Constructor Sistema
     public Sistema() throws IOException {
-        boolean f = false;
+        boolean f;
         Scanner sc = new Scanner(System.in);
         //Registrarse como nuevo Cliente o Iniciar Sesion
         do {

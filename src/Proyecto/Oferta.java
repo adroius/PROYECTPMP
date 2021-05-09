@@ -262,14 +262,12 @@ public class Oferta {
             }
             min = 0;
             max = lecturaOfertas.size();
-            String naveElegida = "";
             boolean found = false;
             if (Sistema.pertenece(usuarioAmeter)) {
                 if (max != 0) {
                     while (!found && max != 0) {
                         if (usuarioAmeter.equals(lecturaOfertas.get(min))) {
                             min = min + 1;
-                            naveElegida = naves.get(0);
                             for (int i = 0; i < naves.size(); i++) {
                                 lecturaOfertas.add(min, naves.get(i));
                                 min = min + 1;
@@ -292,7 +290,6 @@ public class Oferta {
                 }
                 if (!found) {
                     lecturaOfertas.add(usuarioAmeter);
-                    naveElegida = naves.get(0);
                     for (int i = 0; i < naves.size(); i++) {
                         lecturaOfertas.add(naves.get(i));
                     }
