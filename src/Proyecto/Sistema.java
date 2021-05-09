@@ -236,7 +236,6 @@ public class Sistema {
                 escritura.println(ficheroContraseña.get(i));
             }
             escritura.close();
-
             fw = new FileWriter("usuarioInfo.txt");
             escritura = new PrintWriter(fw);
             for (int i = 0; i < ficheroInfo.size(); i++) {
@@ -252,7 +251,7 @@ public class Sistema {
             escritura.write("-");
             escritura.write(u.usuario.Especie);
             escritura.write("-");
-            escritura.write("No tiene licencia kromagg");
+            escritura.write("No tiene licencia especial");
             escritura.write("-");
             escritura.write(u.usuario.Nick);
             escritura.write("-");
@@ -261,17 +260,17 @@ public class Sistema {
             escritura.println(u.usuario.nAdvertencias);
             escritura.println("*");
             escritura.close();
+            String linea;
             BufferedReader br2 = new BufferedReader(new FileReader("usuarioInfo.txt"));
-            while ((line = br2.readLine()) != null) {
-                ficheroInfoAux.add(line);
+            while ((linea = br2.readLine()) != null) {
+                ficheroInfoAux.add(linea);
             }
             if (buscarSiUserIsKromagg(s)){
                 int i=1;
-                while ((line = br.readLine()) != null) {
-                    if (line.contains(s)) {
-                        line = br.readLine();
-                        if (line.contains("Kromagg") || line.contains("kromagg")) {
-                            String[] palabras = line.split("-");
+                for(int j=0;j<=ficheroInfoAux.size();j++) {
+                    if (ficheroInfoAux.get(j).contains(s)) {
+                        if (ficheroInfoAux.get(j+1).contains("Kromagg") || ficheroInfoAux.get(j+1).contains("kromagg")) {
+                            String[] palabras = ficheroInfoAux.get(j+1).split("-");
                             palabras[3]=Nave.numaleatorios();
                             String aux=(palabras[0]+"-"+palabras[1]+"-"+palabras[2]+"-"+palabras[3]+"-"+palabras[4]+"-"+palabras[5]);
                             ficheroInfoAux.set(i, aux);
