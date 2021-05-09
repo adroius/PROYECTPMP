@@ -161,9 +161,10 @@ public class Administrador extends Usuario {
         Cliente.comprobarAdvertencias(String.valueOf(numeroAdvertencia));
     }
     public static void mandarNotificaciones(String tipoNave) throws IOException{
-        String line;
-        String line2;
+        String line=null;
+        String line2 = null;
         String lineuser;
+        String usere="";
         List<String> fichero = new ArrayList<>();
         List<String> ficheroUser = new ArrayList<>();
         BufferedReader br3 = new BufferedReader(new FileReader("usernotificaciones.txt"));
@@ -174,6 +175,7 @@ public class Administrador extends Usuario {
         while ( (line = br.readLine())  != null){
             if(line.contains(tipoNave)){
                 while ((line = br.readLine())  != null && !line.equals("*")){
+                    usere=line;
                     BufferedReader br2 = new BufferedReader(new FileReader("usernotificaciones.txt"));
                     while ( (line2 = br2.readLine())  != null && line2.equals(line)){
                         int i=0;
@@ -186,6 +188,11 @@ public class Administrador extends Usuario {
                         }
                     }
                     br.readLine();
+                }
+                if (line2==null){
+                    fichero.add(usere);
+                    fichero.add( "Nueva oferta de " + tipoNave);
+                    fichero.add("*");
                 }
             }
         }
