@@ -33,9 +33,4 @@ class KromaggTest {
             kromagg.licencia(3);
         });
     }
-
-    @Test
-    void kromaggNave() {
-    }
-
 }
