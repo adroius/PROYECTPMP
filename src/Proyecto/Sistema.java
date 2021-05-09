@@ -55,7 +55,7 @@ public class Sistema {
     public boolean comprobarAd() throws IOException {
         List<String> fi = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
-        String line2 = "";
+        String line2;
         int numeroAdvertencia = 0;
         while ((line2 = br.readLine()) != null) {
             fi.add(line2);
@@ -202,7 +202,7 @@ public class Sistema {
 
     public static boolean pertenece(String use) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("userNaves.txt"));
-        String linea = "";
+        String linea;
         boolean encontrado = false;
         while ((linea = br.readLine()) != null) {
             if (linea.equalsIgnoreCase(use)) {
@@ -293,11 +293,10 @@ public class Sistema {
     }
 
     public static String cogerUsuario(String usuario) throws IOException {
-        String infouser="";
         String usuarioSoloEso = "";
-        String user="";
+        String user;
         BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
-        String linea = "";
+        String linea;
         while ((linea = br.readLine()) != null) {
             if (linea.contains(usuario)) {
                 linea = br.readLine();

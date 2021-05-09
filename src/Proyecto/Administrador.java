@@ -9,15 +9,16 @@ import java.util.Scanner;
 //Clase Administrador
 public class Administrador extends Usuario {
 
-    public Administrador() {
+    public Administrador() throws IOException {
+        ofertaValida();
     }
 //Comprobar que la oferta es valida
     //Valida -> Permite mostrarla a los clientes
     //Na valida -> Borra la oferta y se manda una advertencia al vendedor
 
-    public boolean ofertaValida() throws IOException {
+    private boolean ofertaValida() throws IOException {
         boolean visible = true;
-        String user = "";
+        String user;
         boolean comprobar = ofertaComprobar();
         if (!comprobar) {
             user = eliminarOferta();
@@ -151,7 +152,7 @@ public class Administrador extends Usuario {
             escrit.println(f.get(i));
         }
         escrit.close();
-        System.out.println("Llevas " + String.valueOf(numeroAdvertencia) + " advertencias.");
+        System.out.println("Llevas " + numeroAdvertencia + " advertencias.");
         Cliente.comprobarAdvertencias(String.valueOf(numeroAdvertencia));
     }
 }
