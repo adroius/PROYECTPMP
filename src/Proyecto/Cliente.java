@@ -117,7 +117,7 @@ public class Cliente {
 
     //Queda pasarle el usuario y poco más
     public static void verNotificaciones(String user) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("usernotificaciones.txt"));
+        List<String> fichero = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         String line;
         System.out.println("¿Deseas ver una notificación?");
@@ -126,19 +126,25 @@ public class Cliente {
         int respuesta = sc.nextInt();
         switch (respuesta) {
             case 1: {
-                while (br.readLine() != user && br.readLine() != null) {
+                String linea="";
+                BufferedReader br = new BufferedReader(new FileReader("usernotificaciones.txt"));
+                while ((linea=br.readLine()) != null) {
+                    fichero.add(linea);
                 }
-                FileWriter fw = new FileWriter("usernotificaciones.txt");
-                PrintWriter escribir = new PrintWriter(fw);
-                if(br.readLine()== null){
-                    System.out.println("No tienes notificaciones");
-                } else {
-                    while ((line = br.readLine()) != "-" && line != null) {
-                        System.out.println(line);
-                        escribir.println("");
+                for (int i =0;i<fichero.size();i++){
+                    if(fichero.get(i) == null){
+                        System.out.println("No tienes notificaciones");
+                    } else if (fichero.get(i).equals(user)){
+                            i++;
+                            FileWriter fw = new FileWriter("usernotificaciones.txt");
+                            PrintWriter escribir = new PrintWriter(fw);
+                            while (!fichero.get(i).equals("*")){
+                                System.out.println(fichero.get(i));
+                                i++;
+                            }
+                            escribir.close();
                     }
                 }
-                escribir.close();
             }
             break;
             case 2: {

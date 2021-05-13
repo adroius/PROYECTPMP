@@ -62,15 +62,11 @@ public class Administrador extends Usuario {
                     }
                     escritura.close();
                 }
-                for(int i = 0; i < fichero.size(); i++) {
-                    fichero.remove(i);
-                }
+                    fichero.clear();
                 while ((line2 = br2.readLine()) != null && line2 != "-") {
                     FileWriter fw2 = new FileWriter("userComprobar.txt");
                     PrintWriter escritura2 = new PrintWriter(fw2);
-                    for (int i = 0; i < fichero.size(); i++) {
-                        escritura2.println(fichero.get(i));
-                    }
+                    escritura2.println("");
                     escritura2.close();
                 }
                 mandarNotificaciones(tipoNave);
@@ -165,34 +161,40 @@ public class Administrador extends Usuario {
         Cliente.comprobarAdvertencias(String.valueOf(numeroAdvertencia));
     }
     public static void mandarNotificaciones(String tipoNave) throws IOException{
-        String line;
-        String line2;
+        String line=null;
+        String line2 = null;
+        String lineuser;
+        String usere="";
         List<String> fichero = new ArrayList<>();
+        List<String> ficheroUser = new ArrayList<>();
         BufferedReader br3 = new BufferedReader(new FileReader("usernotificaciones.txt"));
         while((line = br3.readLine()) != null){
             fichero.add(line);
         }
-
-
         BufferedReader br = new BufferedReader(new FileReader("suscriptoresOferta.txt"));
         while ( (line = br.readLine())  != null){
-            if(line.equals(tipoNave)){
-
+            if(line.contains(tipoNave)){
                 while ((line = br.readLine())  != null && !line.equals("*")){
+                    usere=line;
                     BufferedReader br2 = new BufferedReader(new FileReader("usernotificaciones.txt"));
-                    while ( (line2 = br2.readLine())  != null){
-                        for (int i=0 ; i< fichero.size(); i++){
-                            if(line2.equals(fichero.get(i))){
-                               fichero.add(i+1,"Nueva oferta de "+tipoNave);
+                    while ( (line2 = br2.readLine())  != null && line2.equals(line)){
+                        int i=0;
+                        while ((line2 = br2.readLine())  != "*"){
+                            if(line2.contains(fichero.get(i))) {
+                                fichero.add(i, "Nueva oferta de " + tipoNave);
+                                break;
                             }
+                            i++;
                         }
-
                     }
                     br.readLine();
                 }
+                if (line2==null){
+                    fichero.add(usere);
+                    fichero.add( "Nueva oferta de " + tipoNave);
+                    fichero.add("*");
+                }
             }
-
-
         }
         FileWriter fw = new FileWriter("usernotificaciones.txt");
         PrintWriter escrit = new PrintWriter(fw);
