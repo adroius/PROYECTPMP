@@ -1,8 +1,6 @@
 package Test;
 
-import Proyecto.Sistema;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -18,12 +16,6 @@ class SistemaTest {
 
     @Test
     void getSistema() {
-        try {
-            Sistema s=new Sistema();
-            System.out.println(2);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Test
