@@ -86,7 +86,6 @@ public class Administrador extends Usuario {
     private static String eliminarOferta() throws IOException {
         List<String> fichero = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("userComprobar.txt"));
-
         String user = "";
         String line;
         while ((line = br.readLine()) != null) {
@@ -163,10 +162,8 @@ public class Administrador extends Usuario {
     public static void mandarNotificaciones(String tipoNave) throws IOException{
         String line=null;
         String line2 = null;
-        String lineuser;
         String usere="";
         List<String> fichero = new ArrayList<>();
-        List<String> ficheroUser = new ArrayList<>();
         BufferedReader br3 = new BufferedReader(new FileReader("usernotificaciones.txt"));
         while((line = br3.readLine()) != null){
             fichero.add(line);
