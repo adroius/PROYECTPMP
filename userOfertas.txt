@@ -1,8 +1,0 @@
-Caza
-Numero de Defensas = 1
-Daño Absorbido = 10]
-Potencia total = 2
-Velocidad = 7014]
-Numero de oferta: 9229
-Fecha Limite: 1
-*
