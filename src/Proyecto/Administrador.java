@@ -9,8 +9,6 @@ import java.util.Scanner;
 //Clase Administrador
 public class Administrador extends Usuario {
 
-    public Administrador() throws IOException {
-    }
 //Comprobar que la oferta es valida
     //Valida -> Permite mostrarla a los clientes
     //Na valida -> Borra la oferta y se manda una advertencia al vendedor
@@ -27,8 +25,6 @@ public class Administrador extends Usuario {
         return visible;
     }
 
-    //Comprobar si las ofertas son validas
-    //Comprobar si las ofertas son validas
     private static boolean ofertaComprobar() throws IOException {
         boolean valido;
         BufferedReader br = new BufferedReader(new FileReader("userComprobar.txt"));
@@ -101,7 +97,6 @@ public class Administrador extends Usuario {
         }
         for (int i = 0; i <= fichero.size(); i++) {
             if ((fichero.get(i).contains("Caza") || fichero.get(i).contains("Carguero") || fichero.get(i).contains("Destructor") || fichero.get(i).contains("Estacion Espacial"))) {
-                int k=i-1;
                 while (!fichero.get(i).equals("-")) {
                     fichero.remove(i);
                 }
@@ -160,7 +155,7 @@ public class Administrador extends Usuario {
         System.out.println("Llevas " + numeroAdvertencia + " advertencias.");
         Cliente.comprobarAdvertencias(String.valueOf(numeroAdvertencia));
     }
-    public static void mandarNotificaciones(String tipoNave) throws IOException{
+    private static void mandarNotificaciones(String tipoNave) throws IOException{
         String line=null;
         String line2 = null;
         String lineuser;
