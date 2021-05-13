@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Sistema {
     private int intentospermitidos = 2; //Se permiten dos intentos para poner bien el usuario y la contraseña
     public static String usuarioEntrar = "";
-    public static String usuarioSolo ="";//Guardar el Cliente que a entrado
+    public static String usuarioSolo = "";//Guardar el Cliente que a entrado
     boolean isKromagg = false;
 
     //Constructor Sistema
@@ -33,7 +33,7 @@ public class Sistema {
                 //Inciar Sesion en el Sistema
                 case 2: {
                     if (iniciarSesion()) {
-                        if (comprobarAd()){
+                        if (comprobarAd()) {
                             menu();
                         }
                     }
@@ -66,11 +66,11 @@ public class Sistema {
                 break;
             }
         }
-        if (numeroAdvertencia >= 2){
+        if (numeroAdvertencia >= 2) {
             System.out.println("Ha excedido en el numero de advertencias.");
             Cliente.noEntrarAlSistemaPorAdvertencias();
             return false;
-        } else{
+        } else {
             return true;
         }
     }
@@ -212,7 +212,7 @@ public class Sistema {
     }
 
     //Registrar Nuevo Cliente
-    public Usuario registrarNuevoCliente(){
+    public Usuario registrarNuevoCliente() {
         List<String> ficheroNotificaciones = new ArrayList<>();
         List<String> ficheroContraseña = new ArrayList<>();
         List<String> ficheroInfo = new ArrayList<>();
@@ -233,6 +233,26 @@ public class Sistema {
                 ficheroNotificaciones.add(line);
             }
             String s = u.user + u.contrasena;
+            BufferedReader br6 = new BufferedReader(new FileReader("usercontraseña.txt"));
+            String lin = "";
+            boolean cambiado;
+            String contrasena="";
+            if (comprobarContraseña(s)){
+                while ((lin = br6.readLine()) != null) {
+                    if (lin.equalsIgnoreCase(s)) {
+                        do {
+                            Scanner sc = new Scanner(System.in);
+                            System.out.println("Usuario ya existe.");
+                            System.out.println("Introduzca nuevo usuario:");
+                            contrasena = sc.next();
+                            System.out.println("Introduzca contraseña:");
+                            contrasena += sc.next();
+                        } while (comprobarContraseña(contrasena));
+                        s = contrasena;
+                        break;
+                    }
+                }
+            }
             ficheroContraseña.add(s);
             ficheroNotificaciones.add(s);
             FileWriter fw = new FileWriter("usercontraseña.txt");
@@ -276,14 +296,14 @@ public class Sistema {
             while ((linea = br2.readLine()) != null) {
                 ficheroInfoAux.add(linea);
             }
-            if (buscarSiUserIsKromagg(s)){
-                int i=1;
-                for(int j=0;j<=ficheroInfoAux.size();j++) {
+            if (buscarSiUserIsKromagg(s)) {
+                int i = 1;
+                for (int j = 0; j <= ficheroInfoAux.size(); j++) {
                     if (ficheroInfoAux.get(j).contains(s)) {
-                        if (ficheroInfoAux.get(j+1).contains("Kromagg") || ficheroInfoAux.get(j+1).contains("kromagg")) {
-                            String[] palabras = ficheroInfoAux.get(j+1).split("-");
-                            palabras[3]=Nave.numaleatorios();
-                            String aux=(palabras[0]+"-"+palabras[1]+"-"+palabras[2]+"-"+palabras[3]+"-"+palabras[4]+"-"+palabras[5]);
+                        if (ficheroInfoAux.get(j + 1).contains("Kromagg") || ficheroInfoAux.get(j + 1).contains("kromagg")) {
+                            String[] palabras = ficheroInfoAux.get(j + 1).split("-");
+                            palabras[3] = Nave.numaleatorios();
+                            String aux = (palabras[0] + "-" + palabras[1] + "-" + palabras[2] + "-" + palabras[3] + "-" + palabras[4] + "-" + palabras[5]);
                             ficheroInfoAux.set(i, aux);
                             break;
                         }
@@ -311,12 +331,25 @@ public class Sistema {
         while ((linea = br.readLine()) != null) {
             if (linea.contains(usuario)) {
                 linea = br.readLine();
-                usuarioSoloEso=linea;
+                usuarioSoloEso = linea;
             }
         }
         String[] arrSplit_2 = usuarioSoloEso.split("-");
-        user=arrSplit_2[0];
+        user = arrSplit_2[0];
         return user;
+    }
+
+    public boolean comprobarContraseña(String c) throws IOException {
+        boolean comprobado=false;
+        BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
+        String line;
+        while ((line = br.readLine()) != null) {
+            if (line.contains(c)){
+                comprobado=true;
+                break;
+            }
+        }
+        return comprobado;
     }
 
     //Inciar Sesion
@@ -325,7 +358,7 @@ public class Sistema {
         boolean encontrado = false;
         System.out.println("Introduzca usuario");
         String user = sc.next();
-        usuarioSolo=user;
+        usuarioSolo = user;
         System.out.println("Introduzca contraseña");
         user += sc.next();
         switch (user) {
