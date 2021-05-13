@@ -192,8 +192,7 @@ public class Cliente {
         System.out.println("2) No");
         int s = sc.nextInt();
         switch (s) {
-            case 1: {
-                n = new Carguero();
+            case 1: { //faltaria la implementacion que te redirige a buscar oferta de carguero.
                 compra = true;
                 break;
             }
