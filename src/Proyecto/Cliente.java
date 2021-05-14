@@ -17,7 +17,7 @@ public class Cliente {
     static int nAdvertencias = 0;
 
     //Constructor Cliente
-    public Cliente() {
+    public Cliente() throws IOException {
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Cual es su nombre?");
         String s = sc.next();
@@ -39,8 +39,6 @@ public class Cliente {
         s = sc.next();
         this.email = s;
         this.isKromagg = isKromagg();
-        this.isPirata = isPirata();
-        this.isFraude = isFraude();
     }
 
     //Suscribirse a una Oferta Especifica
@@ -63,12 +61,12 @@ public class Cliente {
                 while ((line = br.readLine()) != null) {
                     fichero.add(line);
                 }
-                int i=0;
-                int posNave=0;
+                int i = 0;
+                int posNave = 0;
                 while ((line = br2.readLine()) != null && !ofertaEnElFichero) {
                     ofertaEnElFichero = (line.contains(tipoNave));
-                    if (line.contains(tipoNave)){
-                        posNave=i;
+                    if (line.contains(tipoNave)) {
+                        posNave = i;
                     }
                     i++;
                 }
@@ -85,8 +83,8 @@ public class Cliente {
                     if (encontrado) {
                         System.out.print("Ya estas suscrito a esta oferta");
                     } else {
-                        fichero.add(posNave+1,Sistema.usuarioEntrar);
-                        fichero.add(posNave+2,"-");
+                        fichero.add(posNave + 1, Sistema.usuarioEntrar);
+                        fichero.add(posNave + 2, "-");
                     }
                 }
                 FileWriter fw = new FileWriter("suscriptoresOferta.txt");
@@ -110,9 +108,9 @@ public class Cliente {
     //Escribe en pantalla el numero de Advertencias del Cliente
 
     public static void comprobarAdvertencias(String ad) {
-            if (Integer.parseInt(ad)>= 2) {
-                noEntrarAlSistemaPorAdvertencias();
-            }
+        if (Integer.parseInt(ad) >= 2) {
+            noEntrarAlSistemaPorAdvertencias();
+        }
     }
 
     //Queda pasarle el usuario y poco más
@@ -126,23 +124,23 @@ public class Cliente {
         int respuesta = sc.nextInt();
         switch (respuesta) {
             case 1: {
-                String linea="";
+                String linea = "";
                 BufferedReader br = new BufferedReader(new FileReader("usernotificaciones.txt"));
-                while ((linea=br.readLine()) != null) {
+                while ((linea = br.readLine()) != null) {
                     fichero.add(linea);
                 }
-                for (int i =0;i<fichero.size();i++){
-                    if(fichero.get(i) == null){
+                for (int i = 0; i < fichero.size(); i++) {
+                    if (fichero.get(i) == null) {
                         System.out.println("No tienes notificaciones");
-                    } else if (fichero.get(i).equals(user)){
+                    } else if (fichero.get(i).equals(user)) {
+                        i++;
+                        FileWriter fw = new FileWriter("usernotificaciones.txt");
+                        PrintWriter escribir = new PrintWriter(fw);
+                        while (!fichero.get(i).equals("*")) {
+                            System.out.println(fichero.get(i));
                             i++;
-                            FileWriter fw = new FileWriter("usernotificaciones.txt");
-                            PrintWriter escribir = new PrintWriter(fw);
-                            while (!fichero.get(i).equals("*")){
-                                System.out.println(fichero.get(i));
-                                i++;
-                            }
-                            escribir.close();
+                        }
+                        escribir.close();
                     }
                 }
             }
@@ -154,6 +152,7 @@ public class Cliente {
                 throw new IllegalStateException("Valor no valido: ");
         }
     }
+
     //Comprobar si es de la especie Kromagg
     protected boolean isKromagg() {
         boolean is = false;
@@ -164,27 +163,8 @@ public class Cliente {
         return is;
     }
 
-    //Comprobar si es Sospechoso de Pirateria
-    private boolean isPirata() {
-        boolean is = this.isPirata;
-        if (is) {
-            comprarNavePirata();
-        }
-        return is;
-    }
-
-    //Comprobar si es Sospechoso de Fraude
-    private boolean isFraude() {
-        boolean is = this.isFraude;
-        if (is) {
-            noEntrarAlSistemaFraude();
-        }
-        return is;
-    }
-
     //Menu de Compra para los Sospechosos de Pirateria (Solo pueden comprar Cargueros)
-    private boolean comprarNavePirata() {
-        Nave n;
+    protected static boolean comprarNavePirata() throws IOException {
         boolean compra;
         Scanner sc = new Scanner(System.in);
         System.out.println("¿Quieres comprar un carguero?");
@@ -192,8 +172,9 @@ public class Cliente {
         System.out.println("2) No");
         int s = sc.nextInt();
         switch (s) {
-            case 1: { //faltaria la implementacion que te redirige a buscar oferta de carguero.
+            case 1: {
                 compra = true;
+                new Oferta().buscadorDeOfertasPirata();
                 break;
             }
             case 2: {
@@ -226,15 +207,10 @@ public class Cliente {
     }
 
     //Impide entrar al Sistema mientras el Cliente sea Sospechoso de Pirateria
-    private boolean noEntrarAlSistemaFraude() {
-        boolean bloqueoFinalizado = true;
-        while (isFraude == true) {
-            bloqueoFinalizado = false;
-            System.out.println("No puedes entrar al sistema");
-        }
-        return bloqueoFinalizado;
+    protected static void noEntrarAlSistemaFraude() {
+        System.out.println("No puedes entrar al sistema");
+        noEntrarAlSistemaPorAdvertencias();
     }
-
     @Override
     public String toString() {
         return "Cliente: " + "\nNombre= " + Nombre +
@@ -246,4 +222,3 @@ public class Cliente {
                 "\nEmail='" + email;
     }
 }
-

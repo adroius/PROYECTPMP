@@ -13,7 +13,7 @@ public class Sistema {
     boolean isKromagg = false;
 
     //Constructor Sistema
-    public Sistema() throws IOException {
+    protected Sistema() throws IOException {
         boolean f;
         Scanner sc = new Scanner(System.in);
         //Registrarse como nuevo Cliente o Iniciar Sesion
@@ -52,7 +52,7 @@ public class Sistema {
         } while (!f);
     }
 
-    public boolean comprobarAd() throws IOException {
+    protected boolean comprobarAd() throws IOException {
         List<String> fi = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
         String line2;
@@ -76,64 +76,70 @@ public class Sistema {
     }
 
     //Menu una vez has ingresado como Cliente
-    public void menu() throws IOException {
+    protected void menu() throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean f = false;
-        do {
-            System.out.println("¿Que es lo que quiere realizar?");
-            System.out.println("1) Registrar nave");
-            System.out.println("2) Crear Oferta");
-            System.out.println("3) Ver ofertas");
-            System.out.println("4) Realizar compra");
-            System.out.println("5) Ver notificaciones");
-            System.out.println("6) Salir");
-            int s = sc.nextInt();
-            switch (s) {
-                //Ingresar una nueva nave propiedad del Cliente
-                case 1: {
-                    insertarNave();
-                    break;
-                }
-                //Crear una oferta con las naves que posee el Cliente
-                case 2: {
-                    crearOferta();
-                    break;
-                }
-                //Ver las ofertas publicadas en la pagina web
-                case 3: {
-                    if (buscarSiUserIsKromagg(usuarioEntrar) && !Kromagg.licencia(Kromagg.licenciaMenu())) {
-                        new Oferta().buscadorDeOfertasKromaggSinLicencia();
-                    } else {
-                        new Oferta().buscadorDeOfertas();
+        if (!ComprobarSiEsFraude()) {
+            do {
+                System.out.println("¿Que es lo que quiere realizar?");
+                System.out.println("1) Registrar nave");
+                System.out.println("2) Crear Oferta");
+                System.out.println("3) Ver ofertas");
+                System.out.println("4) Realizar compra");
+                System.out.println("5) Ver notificaciones");
+                System.out.println("6) Salir");
+                int s = sc.nextInt();
+                switch (s) {
+                    //Ingresar una nueva nave propiedad del Cliente
+                    case 1: {
+                        insertarNave();
+                        break;
                     }
-                    break;
+                    //Crear una oferta con las naves que posee el Cliente
+                    case 2: {
+                        crearOferta();
+                        break;
+                    }
+                    //Ver las ofertas publicadas en la pagina web
+                    case 3: {
+                        if (ComprobarSiEsPirata()) {
+                            Cliente.comprarNavePirata();
+                        } else if (buscarSiUserIsKromagg(usuarioEntrar) && !Kromagg.licencia(Kromagg.licenciaMenu())) {
+                            new Oferta().buscadorDeOfertasKromaggSinLicencia();
+                        } else {
+                            new Oferta().buscadorDeOfertas();
+                        }
+                        break;
+                    }
+                    //Salir del Sistema
+                    case 4: {
+                        new Registro().ejecutarCompra();
+                        break;
+                    }
+                    case 5: {
+                        Cliente.verNotificaciones(usuarioEntrar);
+                        break;
+                    }
+                    case 6: {
+                        f = true;
+                        break;
+                    }
+                    //Valor introducido incorrecto
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + s);
                 }
-                //Salir del Sistema
-                case 4: {
-                    new Registro().ejecutarCompra();
-                    break;
-                }
-                case 5: {
-                    Cliente.verNotificaciones(usuarioEntrar);
-                    break;
-                }
-                case 6: {
-                    f = true;
-                    break;
-                }
-                //Valor introducido incorrecto
-                default:
-                    throw new IllegalStateException("Unexpected value: " + s);
-            }
-        } while (!f);
+            } while (!f);
+        } else {
+            Cliente.noEntrarAlSistemaFraude();
+        }
     }
 
     //Crear oferta con las naves que posee el Cliente
-    public void crearOferta() throws IOException {
+    protected void crearOferta() throws IOException {
         new Oferta().construirOferta(usuarioEntrar);
     }
 
-    public void insertarNave() {
+    protected void insertarNave() {
         List<String> fichero = new ArrayList<>();
         boolean encontrado = false;
         String usuarioAmeter = usuarioEntrar;
@@ -173,7 +179,7 @@ public class Sistema {
         }
     }
 
-    public static List<String> cogerNave(List<String> naves, String matricula) {
+    protected static List<String> cogerNave(List<String> naves, String matricula) {
         List<String> devolucion = new ArrayList<>();
         int i = 0;
         boolean encontrado = false;
@@ -199,7 +205,7 @@ public class Sistema {
         return devolucion;
     }
 
-    public static boolean pertenece(String use) throws IOException {
+    protected static boolean pertenece(String use) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader("userNaves.txt"));
         String linea;
         boolean encontrado = false;
@@ -212,7 +218,7 @@ public class Sistema {
     }
 
     //Registrar Nuevo Cliente
-    public Usuario registrarNuevoCliente() {
+    protected Usuario registrarNuevoCliente() throws IOException {
         List<String> ficheroNotificaciones = new ArrayList<>();
         List<String> ficheroContraseña = new ArrayList<>();
         List<String> ficheroInfo = new ArrayList<>();
@@ -236,8 +242,8 @@ public class Sistema {
             BufferedReader br6 = new BufferedReader(new FileReader("usercontraseña.txt"));
             String lin = "";
             boolean cambiado;
-            String contrasena="";
-            if (comprobarContraseña(s)){
+            String contrasena = "";
+            if (comprobarContraseña(s)) {
                 while ((lin = br6.readLine()) != null) {
                     if (lin.equalsIgnoreCase(s)) {
                         do {
@@ -287,6 +293,14 @@ public class Sistema {
             escritura.write(u.usuario.Nick);
             escritura.write("-");
             escritura.write(u.usuario.email);
+            escritura.write("-");
+            if (!u.usuario.isPirata) {
+                escritura.write("NoPirata");
+            }
+            escritura.write("-");
+            if (!u.usuario.isFraude) {
+                escritura.write("NoFraude");
+            }
             escritura.write("\n");
             escritura.println(u.usuario.nAdvertencias);
             escritura.println("*");
@@ -303,7 +317,7 @@ public class Sistema {
                         if (ficheroInfoAux.get(j + 1).contains("Kromagg") || ficheroInfoAux.get(j + 1).contains("kromagg")) {
                             String[] palabras = ficheroInfoAux.get(j + 1).split("-");
                             palabras[3] = Nave.numaleatorios();
-                            String aux = (palabras[0] + "-" + palabras[1] + "-" + palabras[2] + "-" + palabras[3] + "-" + palabras[4] + "-" + palabras[5]);
+                            String aux = (palabras[0] + "-" + palabras[1] + "-" + palabras[2] + "-" + palabras[3] + "-" + palabras[4] + "-" + palabras[5] + "-" + palabras[6] + "-" + palabras[7]);
                             ficheroInfoAux.set(i, aux);
                             break;
                         }
@@ -323,13 +337,13 @@ public class Sistema {
         return u;
     }
 
-    public boolean comprobarContraseña(String c) throws IOException {
-        boolean comprobado=false;
+    protected boolean comprobarContraseña(String c) throws IOException {
+        boolean comprobado = false;
         BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
         String line;
         while ((line = br.readLine()) != null) {
-            if (line.contains(c)){
-                comprobado=true;
+            if (line.contains(c)) {
+                comprobado = true;
                 break;
             }
         }
@@ -337,7 +351,7 @@ public class Sistema {
     }
 
     //Inciar Sesion
-    public boolean iniciarSesion() throws IOException {
+    protected boolean iniciarSesion() throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean encontrado = false;
         System.out.println("Introduzca usuario");
@@ -391,7 +405,9 @@ public class Sistema {
             System.out.println("1) Editar informacion Cliente");
             System.out.println("2) Editar informacion Ofertas");
             System.out.println("3) Validar ofertas");
-            System.out.println("4) Salir");
+            System.out.println("4) Poner User a Fraudulentos");
+            System.out.println("5) Poner User a Pirata");
+            System.out.println("6) Salir");
             int s = sc.nextInt();
             switch (s) {
                 case 1: {
@@ -411,6 +427,18 @@ public class Sistema {
                     break;
                 }
                 case 4: {
+                    System.out.println("¿Numero de usuario?");
+                    String mod = sc.next();
+                    Usuario.ponerAFraude(mod);
+                    break;
+                }
+                case 5: {
+                    System.out.println("¿Numero de usuario?");
+                    String mod = sc.next();
+                    Usuario.ponerAPirata(mod);
+                    break;
+                }
+                case 6: {
                     f = true;
                     break;
                 }
@@ -421,7 +449,7 @@ public class Sistema {
     }
 
     //Busca en fichero si el Cliente es de la especie Kromagg
-    public boolean buscarSiUserIsKromagg(String user) throws IOException {
+    protected boolean buscarSiUserIsKromagg(String user) throws IOException {
         boolean encontrado = false;
         BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
         String linea = "";
@@ -440,8 +468,49 @@ public class Sistema {
         return encontrado;
     }
 
-
     public static void getSistema() throws IOException {
         new Sistema();
+    }
+
+    protected boolean ComprobarSiEsPirata() throws IOException {
+        boolean encontrado = false;
+        BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
+        String linea = "";
+        while ((linea = br.readLine()) != null) {
+            if (linea.contains(usuarioEntrar)) {
+                linea = br.readLine();
+                String[] palabras = linea.split("-");
+                String aux = (palabras[0] + "-" + palabras[1] + "-" + palabras[2] + "-" + palabras[3] + "-" + palabras[4] + "-" + palabras[5] + "-" + palabras[6] + "-" + palabras[7]);
+                if (palabras[6].equals("EsPirata")) {
+                    encontrado = true; //Comprobar si el Cliente tiene Licencia
+                    break;
+                } else {
+                    encontrado = false;
+                    break;
+                }
+            }
+        }
+        return encontrado;
+    }
+
+    protected boolean ComprobarSiEsFraude() throws IOException {
+        boolean encontrado = false;
+        BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
+        String linea = "";
+        while ((linea = br.readLine()) != null) {
+            if (linea.contains(usuarioEntrar)) {
+                linea = br.readLine();
+                String[] palabras = linea.split("-");
+                String aux = (palabras[0] + "-" + palabras[1] + "-" + palabras[2] + "-" + palabras[3] + "-" + palabras[4] + "-" + palabras[5] + "-" + palabras[6] + "-" + palabras[7]);
+                if (palabras[7].equals("EsFraude")) {
+                    encontrado = true; //Comprobar si el Cliente tiene Licencia
+                    break;
+                } else {
+                    encontrado = false;
+                    break;
+                }
+            }
+        }
+        return encontrado;
     }
 }

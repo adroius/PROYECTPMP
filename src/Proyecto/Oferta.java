@@ -309,37 +309,37 @@ public class Oferta {
 
     //Guarda la valoracion echa por el comprador y por el vendedor
     public static void votar() throws IOException {
-        Scanner sc=new Scanner(System.in);
-                    List<String> fichero = new ArrayList<>();
-                    BufferedReader br = new BufferedReader(new FileReader("usuarioVotacionYComentario.txt"));
-                    String line;
-                    int valoracion;
-                    while ((line = br.readLine()) != null) {
-                        fichero.add(line);
-                    }
-                    fichero.add(Sistema.usuarioEntrar + ":");
-                    System.out.println("¿Cual es su valoración sobre 10?");
-                    valoracion = sc.nextInt();
-                    while (valoracion > 10 || valoracion < 0) {
-                        System.out.println("Su valoración no está en los parámentros del sistema");
-                        valoracion = sc.nextInt();
-                    }
-                    fichero.add(String.valueOf(valoracion));
-                    FileWriter fw = new FileWriter("usuarioVotacionYComentario.txt");
-                    PrintWriter escribir = new PrintWriter(fw);
-                    for (int i = 0; i < fichero.size(); i++) {
-                        escribir.println(fichero.get(i));
-                    }
-                    System.out.println("¿A que usuario deseas valorar?");
-                    line = sc.next();
-                    escribir.println("Valora a este usuario: " + line);
-                    escribir.println("-");
-                    escribir.close();
+        Scanner sc = new Scanner(System.in);
+        List<String> fichero = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader("usuarioVotacionYComentario.txt"));
+        String line;
+        int valoracion;
+        while ((line = br.readLine()) != null) {
+            fichero.add(line);
         }
+        fichero.add(Sistema.usuarioEntrar + ":");
+        System.out.println("¿Cual es su valoración sobre 10?");
+        valoracion = sc.nextInt();
+        while (valoracion > 10 || valoracion < 0) {
+            System.out.println("Su valoración no está en los parámentros del sistema");
+            valoracion = sc.nextInt();
+        }
+        fichero.add(String.valueOf(valoracion));
+        FileWriter fw = new FileWriter("usuarioVotacionYComentario.txt");
+        PrintWriter escribir = new PrintWriter(fw);
+        for (int i = 0; i < fichero.size(); i++) {
+            escribir.println(fichero.get(i));
+        }
+        System.out.println("¿A que usuario deseas valorar?");
+        line = sc.next();
+        escribir.println("Valora a este usuario: " + line);
+        escribir.println("-");
+        escribir.close();
+    }
 
     //Guarda el comentario realizado por el comprador y por el vendedor
     public static void comentar() throws IOException {
-        Scanner sc=new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         List<String> fichero = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader("usuarioVotacionYComentario.txt"));
         String line;
@@ -447,5 +447,24 @@ public class Oferta {
             escritura.println(fichero.get(i));
         }
         escritura.close();
+    }
+
+    public void buscadorDeOfertasPirata() throws IOException {
+        Scanner sc = new Scanner(System.in);
+        int s;
+        String seleccion = "";
+        boolean hayOferta;
+        seleccion = "Carguero";
+        hayOferta = listaDeOfertas(seleccion);
+        if (hayOferta) {
+            System.out.println("Desea realizar alguna compra:");
+            System.out.println("1) Si");
+            System.out.println("2) No");
+            s = sc.nextInt();
+            if (s == 1)
+                new Registro().crearCarritoDeNaves();
+        } else {
+            System.out.println("No se han encontrado ofertas");
+        }
     }
 }

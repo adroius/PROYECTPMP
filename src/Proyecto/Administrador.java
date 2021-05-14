@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 //Clase Administrador
 public class Administrador extends Usuario {
+    public Administrador() throws IOException {
+    }
 
 //Comprobar que la oferta es valida
     //Valida -> Permite mostrarla a los clientes
