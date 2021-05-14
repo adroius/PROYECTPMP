@@ -56,23 +56,22 @@ public class Usuario {
             //Guardar la informacion del Cliente modificada
             do {
                 if (id.equals(fichero.get(min))) {
-                    System.out.println(fichero.get(min + 1));
+                    String[] palabras = fichero.get(min + 2).split("-");
+                    System.out.println(fichero.get(min + 2));
                     Scanner sc = new Scanner(System.in);
                     System.out.println("¿Cual es su nombre?");
-                    String s = sc.next();
-                    s += ("-");
+                    palabras[0] = sc.next();
                     System.out.println("¿Cual es su Planeta de Origen?");
-                    s += sc.next();
-                    s += ("-");
+                    palabras[1] = sc.next();
                     System.out.println("¿Cual es su Especie?");
-                    s += sc.next();
-                    s += ("-");
+                    palabras[2] = sc.next();
                     System.out.println("¿Cual es su Nick?");
-                    s += sc.next();
-                    s += ("-");
+                    palabras[4] = sc.next();
                     System.out.println("¿Cual es su email?");
-                    s += sc.next();
-                    fichero.set(min + 1, s);
+                    palabras[5] = sc.next();
+                    String aux = (palabras[0] + "-" + palabras[1] + "-" + palabras[2] + "-" + palabras[3] + "-" + palabras[4] + "-" + palabras[5]);
+                    fichero.set(min + 2, aux);
+                    System.out.println(aux);
                     encontrado = true;
                 } else {
                     min = min + 1;

@@ -411,7 +411,7 @@ public class Sistema {
             int s = sc.nextInt();
             switch (s) {
                 case 1: {
-                    System.out.println("¿PUsuario a editar?");
+                    System.out.println("¿Numero de usuario?");
                     String mod = sc.next();
                     Usuario.modificarInformacionUsuario(mod);
                     break;
