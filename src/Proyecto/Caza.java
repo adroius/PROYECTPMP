@@ -25,6 +25,7 @@ public class Caza extends NaveBuilder {
         int def;
         if (var == 1) {
             def = EscudoMenu();
+
         }else {
             def = BlindajeMenu();
         }

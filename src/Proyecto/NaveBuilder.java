@@ -43,31 +43,4 @@ public abstract class NaveBuilder extends Nave{
         }
         return n;
     }
-
-    //Elegir que nave se va a crear para especie Kromagg sin LicenciaEspecial
-    public static Nave CrearNaveEspecial(){
-        Nave n;
-        System.out.println("Que nave desea registrar:");
-        System.out.println("1) Caza");
-        System.out.println("2) Carguero");
-        Scanner sc = new Scanner(System.in);
-        int s = sc.nextInt();
-        //Seleccion del tipo de Nave que se va a registrar
-        switch (s) {
-            case 1: {
-                System.out.println("Ha seleccionada Caza");
-                n = new Caza(); //Constructor de Caza
-                break;
-            }
-            case 2: {
-                System.out.println("Ha seleccionada Carguero");
-                n = new Carguero(); //Constructor de Carguero
-                break;
-            }
-            //Valor introducido incorrecto
-            default:
-                throw new IllegalStateException("Unexpected value: " + s); //Ha introducido un numero incorrecto
-        }
-        return n;
-    }
 }

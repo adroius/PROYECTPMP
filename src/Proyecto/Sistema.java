@@ -323,22 +323,6 @@ public class Sistema {
         return u;
     }
 
-    public static String cogerUsuario(String usuario) throws IOException {
-        String usuarioSoloEso = "";
-        String user;
-        BufferedReader br = new BufferedReader(new FileReader("usuarioInfo.txt"));
-        String linea;
-        while ((linea = br.readLine()) != null) {
-            if (linea.contains(usuario)) {
-                linea = br.readLine();
-                usuarioSoloEso = linea;
-            }
-        }
-        String[] arrSplit_2 = usuarioSoloEso.split("-");
-        user = arrSplit_2[0];
-        return user;
-    }
-
     public boolean comprobarContraseña(String c) throws IOException {
         boolean comprobado=false;
         BufferedReader br = new BufferedReader(new FileReader("usercontraseña.txt"));
