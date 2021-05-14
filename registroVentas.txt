@@ -1,0 +1,22 @@
+daniel1234
+Destructor
+Numero de Tripulantes3
+Numero de Defensas1
+Defensas = [  Blindaje: 
+Material ='Platino
+Danio Que Absorbe =321091
+Peso = 3210910]
+Armas = [La potencia del Rayo Laser es de 100 GigaJulios]
+Potencia total = 100
+Propulsion = [ Nombre = Vela Solar
+Velocidad = 2345]
+Numero de Identificacion = c-6200-rgf
+Numero de oferta: 4577
+Precio de la nave: 100
+Fecha Limite: 11/04/2022
+-
+Su precio total es 0
+Su defensa total es 0
+Su potencia total es 100
+-
+*

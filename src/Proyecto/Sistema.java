@@ -349,7 +349,6 @@ public class Sistema {
         }
         return comprobado;
     }
-
     //Inciar Sesion
     protected boolean iniciarSesion() throws IOException {
         Scanner sc = new Scanner(System.in);
@@ -395,7 +394,6 @@ public class Sistema {
         }
         return encontrado;
     }
-
     //Menu de Administrador (Editar Clientes y Ofertas)
     private void menuAdministrador() throws IOException {
         Scanner sc = new Scanner(System.in);

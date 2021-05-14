@@ -1,0 +1,27 @@
+adrian1234
+Estacion Espacial
+Numero de Tripulantes = 5
+Numero de Pasajeros Máximo3
+Numero de Defensas = 1
+Defensas = [Escudo: Energia requerida = 100
+Daño Absorbido = 1000]
+Potencia total del conjunto de naves = 200
+Propulsion = [ Nombre = Vela Solar
+Velocidad = 2297]
+Numero de Identificacion = d-10520-xue
+Naves = [   Caza
+Numero de Tripulantes = 1
+Numero de Defensas = 1
+Defensas = [  Blindaje: 
+Material ='Hierro
+Danio Que Absorbe =329473
+Peso = 3294730]
+Armas = [La potencia del Misil Termonuclear es de 100 GigaJulios, La potencia del Misil Termonuclear es de 100 GigaJulios]
+Potencia total = 200
+Propulsion = [ Nombre = Motor FTL
+Velocidad = 1312]
+Numero de Identificacion = r-7250-npk]
+-
+*
+daniel1234
+*

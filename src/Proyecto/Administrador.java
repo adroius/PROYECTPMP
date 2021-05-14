@@ -123,9 +123,9 @@ public class Administrador extends Usuario {
         }
         for (int i = 0; i < f.size(); i++) {
             if (f.get(i).contains(nUser)) {
-                numeroAdvertencia = Integer.parseInt(f.get(i + 3));
+                numeroAdvertencia = Integer.parseInt(f.get(i + 2));
                 numeroAdvertencia++;
-                f.set(i + 3, String.valueOf(numeroAdvertencia));
+                f.set(i + 2, String.valueOf(numeroAdvertencia));
                 break;
             }
         }
